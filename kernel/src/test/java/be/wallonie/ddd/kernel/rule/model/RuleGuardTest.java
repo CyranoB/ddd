@@ -47,6 +47,6 @@ public class RuleGuardTest {
         Assert.assertFalse(result);
 
         Assert.assertTrue(violations.size() == 1);
-        Assert.assertTrue(violations.get(0).getPropertyPaths().get(0).equals("entity.MyClass|getNumber"));
+        Assert.assertTrue(violations.get(0).getPropertyPaths().get(0).equals("be.wallonie.ddd.kernel.common.entity.MyClass|getNumber"));
     }
 }
