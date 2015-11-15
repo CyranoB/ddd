@@ -43,9 +43,8 @@ public class RuleGuardTest {
 
         Assert.assertFalse(result);
 
-        System.out.println(violations.size());
         Assert.assertTrue(violations.size() == 1);
-        System.out.println(violations.get(0).getPropertyPaths().get(0));
+
         Assert.assertTrue(violations.get(0).getPropertyPaths().get(0).equals("be.wallonie.ddd.kernel.rule.entity.RuleObjectA|getNumber"));
     }
 

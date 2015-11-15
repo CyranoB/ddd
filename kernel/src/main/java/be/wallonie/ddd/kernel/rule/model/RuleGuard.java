@@ -40,7 +40,6 @@ public class RuleGuard {
     public static <T> boolean equalsInvariant(RuleObject ruleObject, Property<T> propertyLambda, int invariant, RuleSeverityType severityType) {
         final T t = propertyLambda.get();
 
-
         return (Guard.equals((Integer) t, invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda, Integer.toString(invariant), 1, severityType);
     }
 
