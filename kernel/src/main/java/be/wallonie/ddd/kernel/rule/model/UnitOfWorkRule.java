@@ -31,10 +31,17 @@ public class UnitOfWorkRule {
         staticApplicationContext.registerSingleton("KernelContext", StandAloneContext.class);
     }
 
+    /**
+     * @return
+     */
     public static UnitOfWorkRule getInstance() {
         return unitOfWorkRule;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<RuleViolation> getViolations() {
 
         String contextKey = "UnitOfWorkManager.UnitOfWorkRule";
@@ -49,36 +56,66 @@ public class UnitOfWorkRule {
         return violations;
     }
 
+    /**
+     *
+     */
     public void clear() {
         ((KernelContext) staticApplicationContext.getBean("KernelContext")).clearData(contextKey);
     }
 
+    /**
+     *
+     * @param violation
+     */
     public void addViolation(RuleViolation violation) {
         getViolations().add(violation);
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean hasViolations() {
         return getViolations() != null && getViolations().size() > 0;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean hasBlockingError() {
         return RuleViolationHelper.HasBlockingError(getViolations());
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean hasError() {
         return RuleViolationHelper.HasError(getViolations());
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean hasWarning() {
         return RuleViolationHelper.HasWarning(getViolations());
     }
 
+    /**
+     *
+     */
     public void raiseExceptionInCaseOfError() {
         if (hasError()) {
             throw new RuleException(getViolations());
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public RuleSeverityType getSeverity() {
         if (hasBlockingError())
             return RuleSeverityType.BlockingError;

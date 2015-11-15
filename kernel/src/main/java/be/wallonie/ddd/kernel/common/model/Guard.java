@@ -334,14 +334,4 @@ public class Guard {
         return objs == null ? minElement == 0 : (minElement <= objs.size() && objs.size() <= maxElement);
     }
 
-    /**
-     * @param value
-     * @param list
-     * @param <T>
-     * @return
-     */
-    public static <T> boolean contains(T value, List<T> list) {
-        return list == null ? false : list.contains(value);
-    }
-
 }

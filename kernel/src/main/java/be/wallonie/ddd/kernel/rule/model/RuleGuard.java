@@ -25,7 +25,7 @@ public class RuleGuard {
      * @param <T>
      * @return
      */
-    public static <T> boolean equalsInvariant(RuleObject ruleObject, Property<T> propertyLambda, int invariant) {
+    public static <T> boolean equalsInvariant(RuleObject ruleObject, Property<T> propertyLambda, Integer invariant) {
         return equalsInvariant(ruleObject, propertyLambda, invariant, RuleSeverityType.Error);
     }
 
@@ -37,14 +37,38 @@ public class RuleGuard {
      * @param <T>
      * @return
      */
-    public static <T> boolean equalsInvariant(RuleObject ruleObject, Property<T> propertyLambda, int invariant, RuleSeverityType severityType) {
+    public static <T> boolean equalsInvariant(RuleObject ruleObject, Property<T> propertyLambda, Integer invariant, RuleSeverityType severityType) {
         final T t = propertyLambda.get();
 
-        return (Guard.equals((Integer) t, invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda, Integer.toString(invariant), 1, severityType);
+        return (Guard.equals((Integer) t, invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda, Integer.toString(invariant), RuleType.EqualsNumberInvariant.typeValue, severityType);
     }
 
     /**
-     *
+     * @param ruleObject
+     * @param propertyLambda
+     * @param invariant
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean smallerThanInvariant(RuleObject ruleObject, Property<T> propertyLambda, Integer invariant) {
+        return smallerThanInvariant(ruleObject, propertyLambda, invariant, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param invariant
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean smallerThanInvariant(RuleObject ruleObject, Property<T> propertyLambda, int invariant, RuleSeverityType severityType) {
+        final T t = propertyLambda.get();
+
+        return (Guard.smallerThan((Integer) t, invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda, Integer.toString(invariant), RuleType.SmallerThanInvariant.typeValue, severityType);
+    }
+
+    /**
      * @param ruleObject
      * @param propertyLambda
      * @param value
@@ -63,7 +87,6 @@ public class RuleGuard {
     }
 
     /**
-     *
      * @param ruleObject
      * @param propertyLambda
      * @param values
@@ -106,7 +129,6 @@ public class RuleGuard {
     }
 
     /**
-     *
      * @param expression
      * @param buffer
      */
@@ -139,9 +161,13 @@ public class RuleGuard {
 
                     Class baseClass = constantExpression.getResultType();
 
-                    buffer.append(baseClass.getName());
+                    buffer.append(baseClass.getPackage().getName());
 
                     buffer.append("|");
+
+                    buffer.append(baseClass.getSimpleName());
+
+                    buffer.append(".");
 
                     completePropertyPath(invocationExpression.getTarget(), buffer);
                 } else {
@@ -173,7 +199,6 @@ public class RuleGuard {
     }
 
     /**
-     *
      * @param <T>
      */
     public static interface Property<T> extends Supplier<T>, Serializable {

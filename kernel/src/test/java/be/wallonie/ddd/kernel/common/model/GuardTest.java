@@ -114,7 +114,9 @@ public class GuardTest {
 
     @Test
     public void testBetweenNumberDouble() throws Exception {
-
+        Assert.assertTrue(Guard.betweenNumber(10.1, 9.1, 11.1));
+        Assert.assertTrue(Guard.betweenNumber(10.1, 10.1, 10.1));
+        Assert.assertFalse(Guard.betweenNumber(10.1, 11.1, 12.1));
     }
 
     @Test
@@ -271,7 +273,7 @@ public class GuardTest {
     }
 
     @Test
-    public void testNbrofElements() throws Exception {
+    public void testNbrOfElements() throws Exception {
         Assert.assertTrue(Guard.nbrOfElements(Arrays.asList("1", "2", "3"), 3, 3, false));
         Assert.assertTrue(Guard.nbrOfElements(Arrays.asList("1", "2", "3"), 2, 4, false));
         Assert.assertFalse(Guard.nbrOfElements(Arrays.asList("1", "2", "3"), 1, 2, false));
