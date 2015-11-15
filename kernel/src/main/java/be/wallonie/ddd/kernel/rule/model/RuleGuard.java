@@ -98,10 +98,10 @@ public class RuleGuard {
             ruleViolation.getValues().add(value);
         }
 
-        UnitOfWorkRule.getDefault().getViolations().add(ruleViolation);
+        UnitOfWorkRule.getInstance().getViolations().add(ruleViolation);
 
         if (severityType == RuleSeverityType.BlockingError)
-            throw new RuleException(UnitOfWorkRule.getDefault().getViolations());
+            throw new RuleException(UnitOfWorkRule.getInstance().getViolations());
 
         return false;
     }
@@ -122,14 +122,12 @@ public class RuleGuard {
 
                 completePropertyPath(first, buffer);
 
-                System.out.println();
                 break;
             case ExpressionType.Lambda:
                 LambdaExpression lambdaExpression = (LambdaExpression) expression;
 
                 completePropertyPath(lambdaExpression.getBody(), buffer);
 
-                System.out.println();
                 break;
             case ExpressionType.Invoke:
                 InvocationExpression invocationExpression = (InvocationExpression) expression;
@@ -148,18 +146,26 @@ public class RuleGuard {
 
                     completePropertyPath(invocationExpression.getTarget(), buffer);
                 } else {
-
-
                     completePropertyPath(invocationExpression.getTarget(), buffer);
-                    System.out.println();
                 }
                 break;
             case ExpressionType.MethodAccess:
                 MemberExpression memberExpression = (MemberExpression) expression;
 
+                final Expression instance = memberExpression.getInstance();
+
+                if (instance != null) {
+                    String before = buffer.toString();
+
+                    completePropertyPath(instance, buffer);
+
+                    if (!before.equals(buffer.toString())) {
+                        buffer.append(".");
+                    }
+                }
+
                 buffer.append(memberExpression.getMember().getName());
 
-                System.out.println();
                 break;
             default:
                 break;

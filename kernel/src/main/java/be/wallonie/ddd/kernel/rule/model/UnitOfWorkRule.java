@@ -20,6 +20,8 @@ public class UnitOfWorkRule {
 
     private final StaticApplicationContext staticApplicationContext;
 
+    private final String contextKey = "UnitOfWorkManager.UnitOfWorkRule";
+
     /**
      *
      */
@@ -29,7 +31,7 @@ public class UnitOfWorkRule {
         staticApplicationContext.registerSingleton("KernelContext", StandAloneContext.class);
     }
 
-    public static UnitOfWorkRule getDefault() {
+    public static UnitOfWorkRule getInstance() {
         return unitOfWorkRule;
     }
 
@@ -45,6 +47,10 @@ public class UnitOfWorkRule {
         }
 
         return violations;
+    }
+
+    public void clear() {
+        ((KernelContext) staticApplicationContext.getBean("KernelContext")).clearData(contextKey);
     }
 
     public void addViolation(RuleViolation violation) {
