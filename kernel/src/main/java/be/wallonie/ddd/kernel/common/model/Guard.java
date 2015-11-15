@@ -1,5 +1,8 @@
 package be.wallonie.ddd.kernel.common.model;
 
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -296,7 +299,17 @@ public class Guard {
      * @return
      */
     public static boolean phoneNumber(String value) {
-        return Guard.nullOrEmpty(value) ? false : false;
+        if (Guard.nullOrEmpty(value)) {
+            return false;
+        } else {
+            PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
+            try {
+                Phonenumber.PhoneNumber phoneNumber = phoneUtil.parse(value, "BE");
+                return true;
+            } catch (NumberParseException e) {
+                return false;
+            }
+        }
     }
 
     /**
