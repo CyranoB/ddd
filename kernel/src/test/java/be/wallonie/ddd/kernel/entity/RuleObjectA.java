@@ -1,4 +1,4 @@
-package be.wallonie.ddd.kernel.rule.entity;
+package be.wallonie.ddd.kernel.entity;
 
 import be.wallonie.ddd.kernel.rule.interfaces.RuleObject;
 

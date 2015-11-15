@@ -1,4 +1,4 @@
-package be.wallonie.ddd.kernel.rule.entity;
+package be.wallonie.ddd.kernel.common.entity;
 
 /**
  * Created by eddie on 13/11/15.

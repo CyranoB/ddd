@@ -1,7 +1,7 @@
 package be.wallonie.ddd.kernel.rule.model;
 
-import be.wallonie.ddd.kernel.rule.entity.RuleObjectA;
-import be.wallonie.ddd.kernel.rule.entity.RuleObjectB;
+import be.wallonie.ddd.kernel.entity.RuleObjectA;
+import be.wallonie.ddd.kernel.entity.RuleObjectB;
 import be.wallonie.ddd.kernel.rule.interfaces.RuleViolation;
 import org.junit.Assert;
 import org.junit.Test;
@@ -47,6 +47,6 @@ public class RuleGuardTest {
         Assert.assertFalse(result);
 
         Assert.assertTrue(violations.size() == 1);
-        Assert.assertTrue(violations.get(0).getPropertyPaths().get(0).equals("be.wallonie.ddd.kernel.rule.entity.RuleObjectA|getNumber"));
+        Assert.assertTrue(violations.get(0).getPropertyPaths().get(0).equals("be.wallonie.ddd.kernel.entity.RuleObjectA|getNumber"));
     }
 }
