@@ -5,24 +5,40 @@ import be.wallonie.ddd.kernel.rule.interfaces.RuleViolation;
 import java.util.List;
 
 /**
- * Created by asmolabs on 14/11/15.
+ *
  */
-public class RuleException extends Exception {
+public class RuleException extends RuntimeException {
     private List<RuleViolation> ruleViolations;
 
+    /**
+     * @param ruleViolations
+     */
     public RuleException(List<RuleViolation> ruleViolations) {
         super("Rule Violation");
         this.ruleViolations = ruleViolations;
     }
 
+    /**
+     *
+     * @param message
+     */
     public RuleException(String message) {
         super(message);
     }
 
+    /**
+     *
+     * @param message
+     * @param innerException
+     */
     public RuleException(String message, Exception innerException) {
         super(message, innerException);
     }
 
+    /**
+     *
+     * @return
+     */
     public List<RuleViolation> getRuleViolations() {
         return ruleViolations;
     }
