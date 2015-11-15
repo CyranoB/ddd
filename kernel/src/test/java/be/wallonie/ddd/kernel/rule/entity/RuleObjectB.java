@@ -5,7 +5,7 @@ import be.wallonie.ddd.kernel.rule.interfaces.RuleObject;
 /**
  * Created by asmolabs on 13/11/15.
  */
-public class MySubClass implements RuleObject {
+public class RuleObjectB implements RuleObject {
 
     private String name;
 

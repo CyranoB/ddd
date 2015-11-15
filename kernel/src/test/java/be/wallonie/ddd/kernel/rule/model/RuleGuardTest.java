@@ -1,7 +1,7 @@
 package be.wallonie.ddd.kernel.rule.model;
 
-import be.wallonie.ddd.kernel.rule.entity.MyClass;
-import be.wallonie.ddd.kernel.rule.entity.MySubClass;
+import be.wallonie.ddd.kernel.rule.entity.RuleObjectA;
+import be.wallonie.ddd.kernel.rule.entity.RuleObjectB;
 import be.wallonie.ddd.kernel.rule.interfaces.RuleViolation;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,38 +15,38 @@ public class RuleGuardTest {
 
     @Test
     public void testEqualsInvariantOneLevelTrue() throws Exception {
-        MyClass myClass = new MyClass();
+        RuleObjectA ruleObjectA = new RuleObjectA();
 
-        myClass.setNumber(100);
+        ruleObjectA.setNumber(100);
 
         boolean result;
 
-        result = RuleGuard.equalsInvariant(myClass, myClass::getNumber, 100);
+        result = RuleGuard.equalsInvariant(ruleObjectA, ruleObjectA::getNumber, 100);
 
         Assert.assertTrue(result);
     }
 
     @Test
     public void testEqualsInvariantOneLevelFalse() throws Exception {
-        MyClass myClass = new MyClass();
+        RuleObjectA ruleObjectA = new RuleObjectA();
 
-        myClass.setNumber(100);
+        ruleObjectA.setNumber(100);
 
-        MySubClass mySubClass = new MySubClass();
+        RuleObjectB ruleObjectB = new RuleObjectB();
 
-        mySubClass.setCount(100);
+        ruleObjectB.setCount(100);
 
-        myClass.setMySubClass(mySubClass);
+        ruleObjectA.setRuleObjectB(ruleObjectB);
 
         boolean result = false;
 
-        result = RuleGuard.equalsInvariant(myClass, () -> myClass.getNumber(), 10);
+        result = RuleGuard.equalsInvariant(ruleObjectA, () -> ruleObjectA.getNumber(), 10);
 
         final List<RuleViolation> violations = UnitOfWorkRule.getDefault().getViolations();
 
         Assert.assertFalse(result);
 
         Assert.assertTrue(violations.size() == 1);
-        Assert.assertTrue(violations.get(0).getPropertyPaths().get(0).equals("be.wallonie.ddd.kernel.rule.entity.MyClass|getNumber"));
+        Assert.assertTrue(violations.get(0).getPropertyPaths().get(0).equals("be.wallonie.ddd.kernel.rule.entity.RuleObjectA|getNumber"));
     }
 }

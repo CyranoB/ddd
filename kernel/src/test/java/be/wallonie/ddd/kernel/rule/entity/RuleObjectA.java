@@ -5,13 +5,13 @@ import be.wallonie.ddd.kernel.rule.interfaces.RuleObject;
 /**
  * Created by asmolabs on 13/11/15.
  */
-public class MyClass implements RuleObject {
+public class RuleObjectA implements RuleObject {
 
     private int number;
 
     private String name;
 
-    private MySubClass mySubClass;
+    private RuleObjectB ruleObjectB;
 
     public int getNumber() {
         return number;
@@ -29,11 +29,11 @@ public class MyClass implements RuleObject {
         this.name = name;
     }
 
-    public MySubClass getMySubClass() {
-        return mySubClass;
+    public RuleObjectB getRuleObjectB() {
+        return ruleObjectB;
     }
 
-    public void setMySubClass(MySubClass mySubClass) {
-        this.mySubClass = mySubClass;
+    public void setRuleObjectB(RuleObjectB ruleObjectB) {
+        this.ruleObjectB = ruleObjectB;
     }
 }
