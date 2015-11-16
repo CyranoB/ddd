@@ -71,6 +71,75 @@ public class RuleGuard {
     /**
      * @param ruleObject
      * @param propertyLambda
+     * @param invariant
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean smallerOrEqualThanInvariant(RuleObject ruleObject, Property<T> propertyLambda, Integer invariant) {
+        return smallerOrEqualThanInvariant(ruleObject, propertyLambda, invariant, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param invariant
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean smallerOrEqualThanInvariant(RuleObject ruleObject, Property<T> propertyLambda, Integer invariant, RuleSeverityType severityType) {
+        final T t = propertyLambda.get();
+
+        return (Guard.smallerOrEqualThan((Integer) t, invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda, Integer.toString(invariant), RuleType.SmallerOrEqualThanInvariant.typeValue, severityType);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param invariant
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean greaterThanInvariant(RuleObject ruleObject, Property<T> propertyLambda, Integer invariant) {
+        return greaterThanInvariant(ruleObject, propertyLambda, invariant, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param invariant
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean greaterThanInvariant(RuleObject ruleObject, Property<T> propertyLambda, Integer invariant, RuleSeverityType severityType) {
+        final T t = propertyLambda.get();
+
+        return (Guard.greaterThan((Integer) t, invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda, Integer.toString(invariant), RuleType.GreaterThanInvariant.typeValue, severityType);
+
+    }
+
+    public static <T> boolean greaterOrEqualThanInvariant(RuleObject ruleObject, Property<T> propertyLambda, Integer invariant) {
+        return greaterOrEqualThanInvariant(ruleObject, propertyLambda, invariant, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param invariant
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean greaterOrEqualThanInvariant(RuleObject ruleObject, Property<T> propertyLambda, Integer invariant, RuleSeverityType severityType) {
+        final T t = propertyLambda.get();
+
+        return (Guard.greaterOrEqualThan((Integer) t, invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda, Integer.toString(invariant), RuleType.GreaterOrEqualThanInvariant.typeValue, severityType);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
      * @param value
      * @param ruleId
      * @param severityType

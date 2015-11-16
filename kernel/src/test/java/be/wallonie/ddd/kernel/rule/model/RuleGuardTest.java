@@ -171,4 +171,75 @@ public class RuleGuardTest {
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "1").toArray());
     }
+
+    @Test
+    public void testSmallerOrEqualThanInvariant() {
+        RuleObject01 ruleObject = new RuleObject01();
+
+        ruleObject.setAttribute01(1);
+
+        // No violation Smaller
+        Assert.assertTrue(RuleGuard.smallerOrEqualThanInvariant(ruleObject, () -> ruleObject.getAttribute01(), 2, RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // No violation Equal
+        Assert.assertTrue(RuleGuard.smallerOrEqualThanInvariant(ruleObject, () -> ruleObject.getAttribute01(), 1, RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        Assert.assertFalse(RuleGuard.smallerOrEqualThanInvariant(ruleObject, () -> ruleObject.getAttribute01(), 0, RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.wallonie.ddd.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.SmallerOrEqualThanInvariant.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "0").toArray());
+    }
+
+    @Test
+    public void TestGreaterThanInvariant() {
+        RuleObject01 ruleObject = new RuleObject01();
+
+        ruleObject.setAttribute01(1);
+
+        // No violation Smaller
+        Assert.assertTrue(RuleGuard.greaterThanInvariant(ruleObject, () -> ruleObject.getAttribute01(), 0, RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        Assert.assertFalse(RuleGuard.greaterThanInvariant(ruleObject, () -> ruleObject.getAttribute01(), 2, RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.wallonie.ddd.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.GreaterThanInvariant.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2").toArray());
+    }
+
+    @Test
+    public void testGreaterOrEqualThanInvariant() {
+        RuleObject01 ruleObject = new RuleObject01();
+
+        ruleObject.setAttribute01(1);
+
+        // No violation Smaller
+        Assert.assertTrue(RuleGuard.greaterOrEqualThanInvariant(ruleObject, () -> ruleObject.getAttribute01(), 0, RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // No violation Equal
+        Assert.assertTrue(RuleGuard.greaterOrEqualThanInvariant(ruleObject, () -> ruleObject.getAttribute01(), 1, RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        Assert.assertFalse(RuleGuard.greaterOrEqualThanInvariant(ruleObject, () -> ruleObject.getAttribute01(), 3, RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.wallonie.ddd.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.GreaterOrEqualThanInvariant.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "3").toArray());
+    }
 }
