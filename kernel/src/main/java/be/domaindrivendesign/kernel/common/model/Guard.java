@@ -70,7 +70,7 @@ public class Guard {
      * @return
      */
     public static boolean betweenNumber(Integer value01, Integer minimum, Integer maximum) {
-        return value01 == null ? false : (minimum <= value01 && value01 <= maximum);
+        return value01 == null ? false : (value01 >= minimum && value01 <= maximum);
     }
 
     /**

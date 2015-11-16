@@ -1,5 +1,7 @@
 package be.domaindrivendesign.domain.ecole.common.valueobject;
 
+import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
+import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 import lombok.Value;
 
 /**
@@ -7,7 +9,15 @@ import lombok.Value;
  */
 
 @Value
-public class AnneeScolaire {
-    int AnneeDebut;
-    int AnneeFin;
+public class AnneeScolaire implements RuleObject {
+    int anneeDebut;
+    int anneeFin;
+
+    public AnneeScolaire( int debut, int fin ) {
+        this.anneeDebut = debut;
+        this.anneeFin = fin;
+
+        RuleGuard.Between( this, () -> this.anneeDebut, debut, 2000, 2100);
+        RuleGuard.Between( this, () -> this.anneeFin, fin, 2000, 2100);
+    }
 }

@@ -69,6 +69,41 @@ public class RuleGuard {
     }
 
     /**
+     *
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param value
+     * @param minimum
+     * @param maximum
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean Between(RuleObject ruleObject, Property<T> propertyLambda01, int value, int minimum, int maximum, RuleSeverityType severityType)
+    {
+        ArrayList<String> list = new ArrayList<String>();
+        list.add(Integer.toString(value));
+        list.add(Integer.toString(minimum));
+        list.add(Integer.toString(maximum));
+        return (Guard.betweenNumber(value, minimum, maximum)) || raiseViolation(ruleObject, propertyLambda01, list, RuleType.Between.typeValue, severityType);
+    }
+
+    /**
+     *
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param value
+     * @param minimum
+     * @param maximum
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean Between(RuleObject ruleObject, Property<T> propertyLambda01, int value, int minimum, int maximum)
+    {
+        return Between(ruleObject,propertyLambda01,value,minimum,maximum,RuleSeverityType.Error);
+    }
+
+    /**
      * @param ruleObject
      * @param propertyLambda
      * @param value
