@@ -17,7 +17,7 @@ public class AnneeScolaire implements RuleObject {
         this.anneeDebut = debut;
         this.anneeFin = fin;
 
-        RuleGuard.Between( this, () -> this.anneeDebut, debut, 2000, 2100);
-        RuleGuard.Between( this, () -> this.anneeFin, fin, 2000, 2100);
+        RuleGuard.between(this, () -> this.anneeDebut, debut, 2000, 2100);
+        RuleGuard.between(this, () -> this.anneeFin, fin, 2000, 2100);
     }
 }
