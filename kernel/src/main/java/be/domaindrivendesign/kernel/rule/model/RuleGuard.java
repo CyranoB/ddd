@@ -9,6 +9,7 @@ import com.trigersoft.jaque.expression.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -174,6 +175,32 @@ public class RuleGuard {
 
     /**
      * @param ruleObject
+     * @param propertyLambda01
+     * @param propertyLambda02
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean equals(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02) {
+        return equals(ruleObject, propertyLambda01, propertyLambda02, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param propertyLambda02
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean equals(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02, RuleSeverityType severityType) {
+        final T value01 = propertyLambda01.get();
+        final T value02 = propertyLambda02.get();
+
+        return (Guard.equals((Integer) value01, (Integer) value02)) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.EqualsNumber.typeValue, severityType);
+    }
+
+    /**
+     * @param ruleObject
      * @param propertyLambda
      * @param value
      * @param ruleId
@@ -191,6 +218,26 @@ public class RuleGuard {
     }
 
     /**
+     *
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param propertyLambda02
+     * @param ruleId
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean raiseViolation(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02, int ruleId, RuleSeverityType severityType) {
+        List<String> values = new ArrayList<>();
+
+        values.add(propertyLambda01.get().toString());
+        values.add(propertyLambda02.get().toString());
+
+        return raiseViolation(ruleObject, Arrays.asList(propertyLambda01, propertyLambda02), values, ruleId, severityType);
+    }
+
+
+    /**
      * @param ruleObject
      * @param propertyLambda
      * @param values
@@ -200,6 +247,19 @@ public class RuleGuard {
      * @return
      */
     public static <T> boolean raiseViolation(RuleObject ruleObject, Property<T> propertyLambda, List<String> values, int ruleId, RuleSeverityType severityType) {
+       return raiseViolation(ruleObject, Arrays.asList(propertyLambda), values, ruleId, severityType);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertiesLambda
+     * @param values
+     * @param ruleId
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean raiseViolation(RuleObject ruleObject, List<Property<T>> propertiesLambda, List<String> values, int ruleId, RuleSeverityType severityType) {
         RuleViolation ruleViolation = new RuleViolationImpl(
                 ruleObject,
                 new ArrayList<>(),
@@ -209,16 +269,18 @@ public class RuleGuard {
                 new ArrayList<>(),
                 true);
 
-        final LambdaExpression<Supplier<T>> parsedTree =
-                LambdaExpression.parse(propertyLambda);
+        for (Property propertyLambda : propertiesLambda) {
+            final LambdaExpression<Supplier<T>> parsedTree =
+                    LambdaExpression.parse(propertyLambda);
 
-        Expression body = parsedTree.getBody();
+            Expression body = parsedTree.getBody();
 
-        StringBuffer buffer = new StringBuffer();
+            StringBuffer buffer = new StringBuffer();
 
-        completePropertyPath(body, buffer);
+            completePropertyPath(body, buffer);
 
-        ruleViolation.getPropertyPaths().add(buffer.toString());
+            ruleViolation.getPropertyPaths().add(buffer.toString());
+        }
 
         for (String value : values) {
             ruleViolation.getValues().add(value);

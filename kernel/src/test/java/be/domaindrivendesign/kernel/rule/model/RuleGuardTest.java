@@ -1,6 +1,7 @@
 package be.domaindrivendesign.kernel.rule.model;
 
 import be.domaindrivendesign.kernel.rule.entity.RuleObject01;
+import be.domaindrivendesign.kernel.rule.entity.RuleObject02;
 import be.domaindrivendesign.kernel.rule.entity.RuleObjectA;
 import be.domaindrivendesign.kernel.rule.entity.RuleObjectB;
 import be.domaindrivendesign.kernel.rule.error.RuleException;
@@ -241,5 +242,30 @@ public class RuleGuardTest {
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.GreaterOrEqualThanInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "3").toArray());
+    }
+
+    @Test
+    public void testEquals() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+        RuleObject02 ruleObject02 = new RuleObject02();
+
+        ruleObject01.setAttribute01(1);
+
+        ruleObject02.setAttribute02(1);
+
+        // No violation Smaller
+        Assert.assertTrue(RuleGuard.equals(ruleObject01, () -> ruleObject01.getAttribute01(), () -> ruleObject02.getAttribute02(), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        ruleObject02.setAttribute02(2);
+        Assert.assertFalse(RuleGuard.equals(ruleObject01, () -> ruleObject01.getAttribute01(), () -> ruleObject02.getAttribute02(), RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01", "be.domaindrivendesign.kernel.rule.entity|RuleObject02.getAttribute02").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.EqualsNumber.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2").toArray());
     }
 }
