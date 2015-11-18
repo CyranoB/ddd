@@ -18,133 +18,78 @@ import java.util.stream.Collectors;
  */
 public class Guard {
 
-    /**
-     * @param value01
-     * @param value02
-     * @return
-     */
-    public static boolean equals(Integer value01, Integer value02) {
-        return value01 != null && value02 != null && value01 == value02;
-    }
+    //region Numeric
 
     /**
      * @param value01
      * @param value02
+     * @param <T>
      * @return
      */
-    public static boolean smallerThan(Integer value01, Integer value02) {
-        return value01 != null && value02 != null && value01 < value02;
-    }
-
-    /**
-     * @param value01
-     * @param value02
-     * @return
-     */
-    public static boolean greaterThan(Integer value01, Integer value02) {
-        return value01 != null && value02 != null && value01 > value02;
-    }
-
-    /**
-     * @param value01
-     * @param value02
-     * @return
-     */
-    public static boolean smallerOrEqualThan(Integer value01, Integer value02) {
-        return value01 != null && value02 != null && value01 <= value02;
-    }
-
-    /**
-     * @param value01
-     * @param value02
-     * @return
-     */
-    public static boolean greaterOrEqualThan(Integer value01, Integer value02) {
-        return value01 != null && value02 != null && value01 >= value02;
-    }
-
-    /**
-     * @param value01
-     * @param minimum
-     * @param maximum
-     * @return
-     */
-    public static boolean betweenNumber(Integer value01, Integer minimum, Integer maximum) {
-        return value01 == null ? false : (value01 >= minimum && value01 <= maximum);
-    }
-
-    /**
-     * @param value
-     * @param domain
-     * @return
-     */
-    public static boolean domain(Integer value, java.util.List<Integer> domain) {
-        return value == null ? false : domain.contains(value);
-    }
-
-    /**
-     * @param value01
-     * @param value02
-     * @return
-     */
-    public static boolean equals(Double value01, Double value02) {
+    public static <T extends Number & Comparable<T>> boolean equals(T value01, T value02) {
         return value01 != null && value02 != null && value01.equals(value02);
     }
 
-    /**
-     * @param value01
-     * @param value02
-     * @return
-     */
-    public static boolean smallerThan(Double value01, Double value02) {
-        return value01 != null && value02 != null && value01 < value02;
+
+    public static <T extends Number & Comparable<T>> boolean smallerThan(T value01, T value02) {
+        return value01 != null && value02 != null && value01.compareTo(value02) == -1;
     }
 
     /**
      * @param value01
      * @param value02
+     * @param <T>
      * @return
      */
-    public static boolean greaterThan(Double value01, Double value02) {
-        return value01 != null && value02 != null && value01 > value02;
+    public static <T extends Number & Comparable<T>> boolean greaterThan(T value01, T value02) {
+        return value01 != null && value02 != null && value01.compareTo(value02) == 1;
     }
 
     /**
      * @param value01
      * @param value02
+     * @param <T>
      * @return
      */
-    public static boolean smallerOrEqualThan(Double value01, Double value02) {
-        return value01 != null && value02 != null && value01 <= value02;
+    public static <T extends Number & Comparable<T>> boolean smallerOrEqualThan(T value01, T value02) {
+        return value01 != null && value02 != null && value01.compareTo(value02) <= 0;
     }
 
     /**
+     *
      * @param value01
      * @param value02
+     * @param <T>
      * @return
      */
-    public static boolean greaterOrEqualThan(Double value01, Double value02) {
-        return value01 != null && value02 != null && value01 >= value02;
+    public static <T extends Number & Comparable<T>> boolean greaterOrEqualThan(T value01, T value02) {
+        return value01 != null && value02 != null && value01.compareTo(value02) >= 0;
     }
 
     /**
+     *
      * @param value01
      * @param minimum
      * @param maximum
+     * @param <T>
      * @return
      */
-    public static boolean betweenNumber(Double value01, Double minimum, Double maximum) {
-        return value01 == null ? false : (minimum <= value01 && value01 <= maximum);
+    public static <T extends Number & Comparable<T>> boolean betweenNumber(T value01, T minimum, T maximum) {
+        return value01 == null ? false : (value01.compareTo(minimum) >= 0 && value01.compareTo(maximum) <= 0);
     }
 
     /**
+     *
      * @param value
      * @param domain
+     * @param <T>
      * @return
      */
-    public static boolean domain(Double value, List<Double> domain) {
+    public static <T extends Number & Comparable<T>> boolean domain(T value, java.util.List<T> domain) {
         return value == null ? false : domain.contains(value);
     }
+
+    //endregion
 
     /**
      * @param value
@@ -175,6 +120,10 @@ public class Guard {
     public static boolean isFormat(Double value, int digitBeforeComma, int decimalPlaces) {
         return isFormat(value, digitBeforeComma, decimalPlaces, false);
     }
+
+    //endregion
+
+    //region Date
 
     /**
      * @param value
@@ -221,6 +170,10 @@ public class Guard {
     public static boolean equals(Date value, Date date) {
         return value != null && date != null && value.compareTo(date) == 0;
     }
+
+    //endregion
+
+    //region String
 
     /**
      * @param value
@@ -293,6 +246,8 @@ public class Guard {
             }
         }
     }
+
+    //endregion
 
     /**
      * @param value
