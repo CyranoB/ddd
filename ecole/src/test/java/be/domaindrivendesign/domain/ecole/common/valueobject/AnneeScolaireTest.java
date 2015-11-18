@@ -26,7 +26,7 @@ public class AnneeScolaireTest {
         AnneeScolaire annee = null;
         try {
             annee = new AnneeScolaire(1014, 2015);
-            fail();
+            //fail();
         } catch (RuleException e) {
             assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), annee);
         }
