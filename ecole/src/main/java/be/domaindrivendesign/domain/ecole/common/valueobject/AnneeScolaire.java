@@ -26,6 +26,18 @@ public class AnneeScolaire extends ValueObject {
         RuleGuard.between(anneeScolaire, () -> anneeScolaire.getAnneeFin(), 2000, 2100, RuleSeverityType.Error);
     }
 
+    public static AnneeScolaire Create(int debut, int fin) {
+        AnneeScolaire anneeScolaire = new AnneeScolaire();
+
+        anneeScolaire.setAnneeDebut(debut);
+        anneeScolaire.setAnneeFin(fin);
+
+        RuleGuard.between(anneeScolaire, () -> anneeScolaire.getAnneeDebut(), 2000, 2100, RuleSeverityType.Error);
+        RuleGuard.between(anneeScolaire, () -> anneeScolaire.getAnneeFin(), 2000, 2100, RuleSeverityType.Error);
+
+        return anneeScolaire;
+    }
+
     public int getAnneeDebut() {
         return anneeDebut;
     }

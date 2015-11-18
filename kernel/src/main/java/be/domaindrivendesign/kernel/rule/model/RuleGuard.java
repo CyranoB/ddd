@@ -21,7 +21,6 @@ public class RuleGuard {
 //region Number
 
     /**
-     *
      * @param ruleObject
      * @param propertyLambda
      * @param invariant
@@ -33,7 +32,6 @@ public class RuleGuard {
     }
 
     /**
-     *
      * @param ruleObject
      * @param propertyLambda
      * @param invariant
@@ -46,7 +44,6 @@ public class RuleGuard {
     }
 
     /**
-     *
      * @param ruleObject
      * @param propertyLambda
      * @param invariant
@@ -58,7 +55,6 @@ public class RuleGuard {
     }
 
     /**
-     *
      * @param ruleObject
      * @param propertyLambda
      * @param invariant
@@ -71,7 +67,6 @@ public class RuleGuard {
     }
 
     /**
-     *
      * @param ruleObject
      * @param propertyLambda01
      * @param minimum
@@ -89,7 +84,6 @@ public class RuleGuard {
     }
 
     /**
-     *
      * @param ruleObject
      * @param propertyLambda01
      * @param minimum
@@ -102,7 +96,6 @@ public class RuleGuard {
     }
 
     /**
-     *
      * @param ruleObject
      * @param propertyLambda
      * @param invariant
@@ -114,7 +107,6 @@ public class RuleGuard {
     }
 
     /**
-     *
      * @param ruleObject
      * @param propertyLambda
      * @param invariant
@@ -127,7 +119,6 @@ public class RuleGuard {
     }
 
     /**
-     *
      * @param ruleObject
      * @param propertyLambda
      * @param invariant
@@ -139,7 +130,6 @@ public class RuleGuard {
     }
 
     /**
-     *
      * @param ruleObject
      * @param propertyLambda
      * @param invariant
@@ -163,7 +153,6 @@ public class RuleGuard {
     }
 
     /**
-     *
      * @param ruleObject
      * @param propertyLambda
      * @param invariant
@@ -187,7 +176,6 @@ public class RuleGuard {
     }
 
     /**
-     *
      * @param ruleObject
      * @param propertyLambda01
      * @param propertyLambda02
@@ -199,7 +187,6 @@ public class RuleGuard {
     }
 
     /**
-     *
      * @param ruleObject
      * @param propertyLambda01
      * @param propertyLambda02
@@ -254,8 +241,7 @@ public class RuleGuard {
      * @param <T>
      * @return
      */
-    public static <T extends Number & Comparable<T>> boolean greaterOrEqualThan(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02, RuleSeverityType severityType)
-    {
+    public static <T extends Number & Comparable<T>> boolean greaterOrEqualThan(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02, RuleSeverityType severityType) {
         return (Guard.greaterOrEqualThan((T) propertyLambda01.get(), (T) propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.GreaterOrEqualThan.typeValue, severityType);
     }
 
@@ -276,6 +262,49 @@ public class RuleGuard {
 
         raiseViolation(ruleObject, propertyLambda01, values, RuleType.Domain.typeValue, severityType);
         return false;
+    }
+
+    //endregion
+
+    //region double
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param digitBeforeComma
+     * @param decimalPlaces
+     * @param <T>
+     * @return
+     */
+    public static <T extends Double> boolean isFormat(RuleObject ruleObject, Property propertyLambda01, Integer digitBeforeComma, Integer decimalPlaces) {
+        return isFormat(ruleObject, propertyLambda01, digitBeforeComma, decimalPlaces, false, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param digitBeforeComma
+     * @param decimalPlaces
+     * @param isNullAllowed
+     * @param <T>
+     * @return
+     */
+    public static <T extends Double> boolean isFormat(RuleObject ruleObject, Property propertyLambda01, Integer digitBeforeComma, Integer decimalPlaces, boolean isNullAllowed) {
+        return isFormat(ruleObject, propertyLambda01, digitBeforeComma, decimalPlaces, isNullAllowed, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param digitBeforeComma
+     * @param decimalPlaces
+     * @param isNullAllowed
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T extends Double> boolean isFormat(RuleObject ruleObject, Property propertyLambda01, Integer digitBeforeComma, Integer decimalPlaces, boolean isNullAllowed, RuleSeverityType severityType) {
+        return (Guard.isFormat((T) propertyLambda01.get(), digitBeforeComma, decimalPlaces, isNullAllowed)) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, Arrays.asList((T) propertyLambda01.get() == null ? null : propertyLambda01.get().toString(), digitBeforeComma.toString(), decimalPlaces.toString()), RuleType.IsFormatDecimal.typeValue, severityType);
     }
 
     //endregion
