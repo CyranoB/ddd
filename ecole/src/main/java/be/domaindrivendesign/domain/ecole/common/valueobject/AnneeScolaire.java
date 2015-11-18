@@ -1,6 +1,6 @@
 package be.domaindrivendesign.domain.ecole.common.valueobject;
 
-import be.domaindrivendesign.kernel.common.valueobject.ValueObjectImpl;
+import be.domaindrivendesign.kernel.common.valueobject.ValueObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 
 /**
@@ -8,7 +8,7 @@ import be.domaindrivendesign.kernel.rule.model.RuleGuard;
  */
 
 
-public class AnneeScolaire extends ValueObjectImpl<AnneeScolaire> {
+public class AnneeScolaire extends ValueObject {
     private int anneeDebut;
     private int anneeFin;
 
