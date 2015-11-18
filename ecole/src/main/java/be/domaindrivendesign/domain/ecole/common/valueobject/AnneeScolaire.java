@@ -2,6 +2,7 @@ package be.domaindrivendesign.domain.ecole.common.valueobject;
 
 import be.domaindrivendesign.kernel.common.valueobject.ValueObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
+import be.domaindrivendesign.kernel.rule.type.RuleSeverityType;
 
 /**
  * Created by eddie on 13/11/15.
@@ -12,12 +13,17 @@ public class AnneeScolaire extends ValueObject {
     private int anneeDebut;
     private int anneeFin;
 
-    public AnneeScolaire( int debut, int fin ) {
-        this.anneeDebut = debut;
-        this.anneeFin = fin;
+    public AnneeScolaire() {
+    }
 
-        RuleGuard.between(this, () -> this.anneeDebut, 2000, 2100);
-        RuleGuard.between(this, () -> this.anneeFin, 2000, 2100);
+    public AnneeScolaire(int debut, int fin) {
+        AnneeScolaire anneeScolaire = this;
+
+        anneeScolaire.setAnneeDebut(debut);
+        anneeScolaire.setAnneeFin(fin);
+
+        RuleGuard.between(anneeScolaire, () -> anneeScolaire.getAnneeDebut(), 2000, 2100, RuleSeverityType.Error);
+        RuleGuard.between(anneeScolaire, () -> anneeScolaire.getAnneeFin(), 2000, 2100, RuleSeverityType.Error);
     }
 
     public int getAnneeDebut() {

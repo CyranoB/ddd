@@ -20,7 +20,9 @@ public class AnneeScolaireTest {
 
     @Test
     public void testConstructor() throws Exception {
-        AnneeScolaire annee = new AnneeScolaire(2014,2015);
+        //AnneeScolaire annee = AnneeScolaire.Create(2014,2015);
+
+        AnneeScolaire annee = new AnneeScolaire(2014, 2015);
 
         assertNotNull(annee);
         assertEquals(2014, annee.getAnneeDebut());
