@@ -16,8 +16,8 @@ public class AnneeScolaire extends ValueObjectImpl<AnneeScolaire> {
         this.anneeDebut = debut;
         this.anneeFin = fin;
 
-        RuleGuard.between(this, () -> this.anneeDebut, debut, 2000, 2100);
-        RuleGuard.between(this, () -> this.anneeFin, fin, 2000, 2100);
+        RuleGuard.between(this, () -> this.anneeDebut, 2000, 2100);
+        RuleGuard.between(this, () -> this.anneeFin, 2000, 2100);
     }
 
     public int getAnneeDebut() {

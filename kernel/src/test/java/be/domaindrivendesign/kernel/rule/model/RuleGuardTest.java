@@ -199,7 +199,7 @@ public class RuleGuardTest {
     }
 
     @Test
-    public void TestGreaterThanInvariant() {
+    public void testGreaterThanInvariant() {
         RuleObject01 ruleObject = new RuleObject01();
 
         ruleObject.setAttribute01(1);
@@ -267,5 +267,26 @@ public class RuleGuardTest {
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.EqualsNumber.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2").toArray());
+    }
+
+    @Test
+    public void testBetween() {
+        RuleObject01 ruleObject = new RuleObject01();
+
+        ruleObject.setAttribute01(1);
+
+        // No violation Smaller
+        Assert.assertTrue(RuleGuard.between(ruleObject, () -> ruleObject.getAttribute01(), 0, 2, RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        Assert.assertFalse(RuleGuard.between(ruleObject, () -> ruleObject.getAttribute01(), 2, 3, RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.Between.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2", "3").toArray());
     }
 }

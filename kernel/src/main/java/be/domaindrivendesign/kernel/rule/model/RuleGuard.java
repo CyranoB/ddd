@@ -73,33 +73,31 @@ public class RuleGuard {
      *
      * @param ruleObject
      * @param propertyLambda01
-     * @param value
      * @param minimum
      * @param maximum
      * @param severityType
      * @param <T>
      * @return
      */
-    public static <T extends Number & Comparable<T>> boolean between(RuleObject ruleObject, Property<T> propertyLambda01, T value, T minimum, T maximum, RuleSeverityType severityType) {
+    public static <T extends Number & Comparable<T>> boolean between(RuleObject ruleObject, Property<T> propertyLambda01, T minimum, T maximum, RuleSeverityType severityType) {
         ArrayList<String> list = new ArrayList<String>();
-        list.add(value.toString());
+        list.add(propertyLambda01.get().toString());
         list.add(minimum.toString());
         list.add(maximum.toString());
-        return (Guard.betweenNumber(value, minimum, maximum)) || raiseViolation(ruleObject, propertyLambda01, list, RuleType.Between.typeValue, severityType);
+        return (Guard.betweenNumber((T) propertyLambda01.get(), minimum, maximum)) || raiseViolation(ruleObject, propertyLambda01, list, RuleType.Between.typeValue, severityType);
     }
 
     /**
      *
      * @param ruleObject
      * @param propertyLambda01
-     * @param value
      * @param minimum
      * @param maximum
      * @param <T>
      * @return
      */
-    public static <T extends Number & Comparable<T>> boolean between(RuleObject ruleObject, Property<T> propertyLambda01, T value, T minimum, T maximum) {
-        return between(ruleObject, propertyLambda01, value, minimum, maximum, RuleSeverityType.Error);
+    public static <T extends Number & Comparable<T>> boolean between(RuleObject ruleObject, Property<T> propertyLambda01, T minimum, T maximum) {
+        return between(ruleObject, propertyLambda01, minimum, maximum, RuleSeverityType.Error);
     }
 
     /**
