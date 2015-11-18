@@ -1,4 +1,4 @@
-package be.domaindrivendesign.kernel.common.entity;
+package be.domaindrivendesign.kernel.common.model;
 
 import be.domaindrivendesign.kernel.common.error.KernelException;
 import org.junit.Test;

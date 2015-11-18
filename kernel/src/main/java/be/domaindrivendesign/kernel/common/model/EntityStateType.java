@@ -1,4 +1,4 @@
-package be.domaindrivendesign.kernel.common.entity;
+package be.domaindrivendesign.kernel.common.model;
 
 /**
  * Created by eddie on 13/11/15.
