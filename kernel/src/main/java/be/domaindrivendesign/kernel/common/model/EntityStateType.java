@@ -13,9 +13,9 @@ public enum EntityStateType {
     // The entity has been updated (and in most case need to be updated in the infrastructure layer).
     Modified(16);
 
-    private final int value;
+    public final int typeValue;
 
     EntityStateType(int value) {
-        this.value = value;
+        this.typeValue = value;
     }
 }

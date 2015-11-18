@@ -1,4 +1,4 @@
-package be.domaindrivendesign.kernel.context;
+package be.domaindrivendesign.kernel.common.context;
 
 /**
  * Created by asmolabs on 14/11/15.

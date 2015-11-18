@@ -1,7 +1,7 @@
 package be.domaindrivendesign.kernel.rule.model;
 
-import be.domaindrivendesign.kernel.context.KernelContext;
-import be.domaindrivendesign.kernel.context.StandAloneContext;
+import be.domaindrivendesign.kernel.common.context.KernelContext;
+import be.domaindrivendesign.kernel.common.context.StandAloneContext;
 import be.domaindrivendesign.kernel.rule.error.RuleException;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleViolation;
 import be.domaindrivendesign.kernel.rule.type.RuleSeverityType;

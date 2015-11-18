@@ -1,17 +1,23 @@
 package be.domaindrivendesign.domain.ecole.common.valueobject;
 
-import be.domaindrivendesign.kernel.rule.error.RuleException;
 import be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule;
+import org.junit.After;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import java.util.Arrays;
+
+import static org.junit.Assert.*;
 
 /**
  * Created by eddie on 13/11/15.
  */
 public class AnneeScolaireTest {
+
+    @After
+    public void tearDown() {
+        UnitOfWorkRule.getInstance().clear();
+    }
+
     @Test
     public void testConstructor() throws Exception {
         AnneeScolaire annee = new AnneeScolaire(2014,2015);
@@ -24,13 +30,12 @@ public class AnneeScolaireTest {
     @Test
     public void testInvalidStartDate() throws Exception {
         AnneeScolaire annee = null;
-        try {
-            annee = new AnneeScolaire(1014, 2015);
-            //fail();
-        } catch (RuleException e) {
-            assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), annee);
-        }
-
+        annee = new AnneeScolaire(1014, 2015);
+        assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), annee);
+        assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
+        assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
+        assertEquals("1014", UnitOfWorkRule.getInstance().getViolations().get(0).getValues().get(0));
+        assertArrayEquals(Arrays.asList("be.domaindrivendesign.domain.ecole.common.valueobject|AnneeScolaire.getAnneeDebut").toArray(), UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray());
     }
 
 }

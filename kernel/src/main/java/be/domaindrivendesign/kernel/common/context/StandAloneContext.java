@@ -1,4 +1,4 @@
-package be.domaindrivendesign.kernel.context;
+package be.domaindrivendesign.kernel.common.context;
 
 import java.util.HashMap;
 
