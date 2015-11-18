@@ -19,11 +19,11 @@ public class AnneeScolaire extends ValueObject {
     public AnneeScolaire(int debut, int fin) {
         AnneeScolaire anneeScolaire = this;
 
-        anneeScolaire.setAnneeDebut(debut);
-        anneeScolaire.setAnneeFin(fin);
+        this.setAnneeDebut(debut);
+        this.setAnneeFin(fin);
 
-        RuleGuard.between(anneeScolaire, () -> anneeScolaire.getAnneeDebut(), 2000, 2100, RuleSeverityType.Error);
-        RuleGuard.between(anneeScolaire, () -> anneeScolaire.getAnneeFin(), 2000, 2100, RuleSeverityType.Error);
+        RuleGuard.between(this, this::getAnneeDebut, 2000, 2100, RuleSeverityType.Error);
+        RuleGuard.between(this, this::getAnneeFin, 2000, 2100, RuleSeverityType.Error);
     }
 
     public static AnneeScolaire Create(int debut, int fin) {

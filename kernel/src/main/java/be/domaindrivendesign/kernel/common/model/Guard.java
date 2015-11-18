@@ -9,6 +9,7 @@ import org.apache.commons.validator.routines.EmailValidator;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -119,6 +120,56 @@ public class Guard {
      */
     public static boolean isFormat(Double value, int digitBeforeComma, int decimalPlaces) {
         return isFormat(value, digitBeforeComma, decimalPlaces, false);
+    }
+
+    //endregion
+
+    //region LocalDateTime
+
+    /**
+     * @param value
+     * @param date
+     * @return
+     */
+    public static boolean before(LocalDateTime value, LocalDateTime date) {
+        return value != null && date != null && value.compareTo(date) == -1;
+    }
+
+    /**
+     * @param value
+     * @param date
+     * @return
+     */
+    public static boolean after(LocalDateTime value, LocalDateTime date) {
+        return value != null && date != null && value.compareTo(date) == 1;
+    }
+
+
+    /**
+     * @param value
+     * @param date
+     * @return
+     */
+    public static boolean beforeOrEqual(LocalDateTime value, LocalDateTime date) {
+        return value != null && date != null && value.compareTo(date) <= 0;
+    }
+
+    /**
+     * @param value
+     * @param date
+     * @return
+     */
+    public static boolean afterOrEqual(LocalDateTime value, LocalDateTime date) {
+        return value != null && date != null && value.compareTo(date) >= 0;
+    }
+
+    /**
+     * @param value
+     * @param date
+     * @return
+     */
+    public static boolean equals(LocalDateTime value, LocalDateTime date) {
+        return value != null && date != null && value.compareTo(date) == 0;
     }
 
     //endregion

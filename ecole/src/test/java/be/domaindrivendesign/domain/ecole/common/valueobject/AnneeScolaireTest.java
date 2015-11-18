@@ -32,7 +32,7 @@ public class AnneeScolaireTest {
     @Test
     public void testInvalidStartDate() throws Exception {
         AnneeScolaire annee = null;
-        annee = AnneeScolaire.Create(1014, 2015);
+        annee = new AnneeScolaire(1014, 2015);
         assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), annee);
         assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
         assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());

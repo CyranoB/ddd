@@ -21,8 +21,8 @@ public class RuleGuard {
 //region Number
 
     /**
-     * @param ruleObject
-     * @param propertyLambda
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda La propriété sur laquelle la validation est effectuée
      * @param invariant
      * @param <T>
      * @return
@@ -32,9 +32,9 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda
-     * @param invariant
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda La propriété sur laquelle la validation est effectuée
+     * @param invariant La valeur de référence
      * @param severityType
      * @param <T>
      * @return
@@ -44,9 +44,9 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda
-     * @param invariant
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda La propriété sur laquelle la validation est effectuée
+     * @param invariant La valeur de référence
      * @param <T>
      * @return
      */
@@ -55,8 +55,8 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda La propriété sur laquelle la validation est effectuée
      * @param invariant
      * @param severityType
      * @param <T>
@@ -67,8 +67,8 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda01
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
      * @param minimum
      * @param maximum
      * @param severityType
@@ -84,8 +84,8 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda01
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
      * @param minimum
      * @param maximum
      * @param <T>
@@ -96,8 +96,8 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda La propriété sur laquelle la validation est effectuée
      * @param invariant
      * @param <T>
      * @return
@@ -107,8 +107,8 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda La propriété sur laquelle la validation est effectuée
      * @param invariant
      * @param severityType
      * @param <T>
@@ -119,8 +119,8 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda La propriété sur laquelle la validation est effectuée
      * @param invariant
      * @param <T>
      * @return
@@ -130,8 +130,8 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda La propriété sur laquelle la validation est effectuée
      * @param invariant
      * @param severityType
      * @param <T>
@@ -143,8 +143,8 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda La propriété sur laquelle la validation est effectuée
      * @param invariant
      * @return
      */
@@ -153,8 +153,8 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda La propriété sur laquelle la validation est effectuée
      * @param invariant
      * @param severityType
      * @param <T>
@@ -176,9 +176,9 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda01
-     * @param propertyLambda02
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
+     * @param propertyLambda02 La propriété sur laquelle la validation est effectuée02
      * @param <T>
      * @return
      */
@@ -187,9 +187,9 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda01
-     * @param propertyLambda02
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
+     * @param propertyLambda02 La propriété sur laquelle la validation est effectuée02
      * @param severityType
      * @param <T>
      * @return
@@ -200,9 +200,33 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda01
-     * @param propertyLambda02
+     * @param ruleObject       L'objet sur lequel la validation est effectué
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
+     * @param propertyLambda02 La propriété sur laquelle la validation est effectuée02
+     * @param <T>
+     * @return
+     */
+    public static <T extends Number & Comparable<T>> boolean greaterThan(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02) {
+        return greaterThan(ruleObject, propertyLambda01, propertyLambda02, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject       L'objet sur lequel la validation est effectué
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
+     * @param propertyLambda02 La propriété sur laquelle la validation est effectuée02
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T extends Number & Comparable<T>> boolean greaterThan(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02, RuleSeverityType severityType) {
+        return (Guard.greaterThan((T) propertyLambda01.get(), (T) propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.GreaterThan.typeValue
+                , severityType);
+    }
+
+    /**
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
+     * @param propertyLambda02 La propriété sur laquelle la validation est effectuée02
      * @param <T>
      * @return
      */
@@ -211,9 +235,9 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda01
-     * @param propertyLambda02
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
+     * @param propertyLambda02 La propriété sur laquelle la validation est effectuée02
      * @param severityType
      * @param <T>
      * @return
@@ -223,9 +247,9 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda01
-     * @param propertyLambda02
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
+     * @param propertyLambda02 La propriété sur laquelle la validation est effectuée02
      * @param <T>
      * @return
      */
@@ -234,9 +258,9 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda01
-     * @param propertyLambda02
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
+     * @param propertyLambda02 La propriété sur laquelle la validation est effectuée02
      * @param severityType
      * @param <T>
      * @return
@@ -269,8 +293,8 @@ public class RuleGuard {
     //region double
 
     /**
-     * @param ruleObject
-     * @param propertyLambda01
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
      * @param digitBeforeComma
      * @param decimalPlaces
      * @param <T>
@@ -281,8 +305,8 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda01
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
      * @param digitBeforeComma
      * @param decimalPlaces
      * @param isNullAllowed
@@ -294,8 +318,8 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda01
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
      * @param digitBeforeComma
      * @param decimalPlaces
      * @param isNullAllowed
@@ -312,8 +336,8 @@ public class RuleGuard {
     //region RaiseViolation
 
     /**
-     * @param ruleObject
-     * @param propertyLambda
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda La propriété sur laquelle la validation est effectuée
      * @param value
      * @param ruleId
      * @param severityType
@@ -330,9 +354,9 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
-     * @param propertyLambda01
-     * @param propertyLambda02
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
+     * @param propertyLambda02 La propriété sur laquelle la validation est effectuée02
      * @param ruleId
      * @param severityType
      * @param <T>
@@ -349,8 +373,8 @@ public class RuleGuard {
 
 
     /**
-     * @param ruleObject
-     * @param propertyLambda
+     * @param ruleObject L'objet sur lequel la validation est effectué
+     * @param propertyLambda La propriété sur laquelle la validation est effectuée
      * @param values
      * @param ruleId
      * @param severityType
@@ -362,7 +386,7 @@ public class RuleGuard {
     }
 
     /**
-     * @param ruleObject
+     * @param ruleObject L'objet sur lequel la validation est effectué
      * @param propertiesLambda
      * @param values
      * @param ruleId
