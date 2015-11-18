@@ -199,7 +199,7 @@ public class RuleGuardTest {
     }
 
     @Test
-    public void TestGreaterThanInvariant() {
+    public void testGreaterThanInvariant() {
         RuleObject01 ruleObject = new RuleObject01();
 
         ruleObject.setAttribute01(1);
@@ -253,7 +253,7 @@ public class RuleGuardTest {
 
         ruleObject02.setAttribute02(1);
 
-        // No violation Smaller
+        // No violation
         Assert.assertTrue(RuleGuard.equals(ruleObject01, () -> ruleObject01.getAttribute01(), () -> ruleObject02.getAttribute02(), RuleSeverityType.Warning));
         Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
 
@@ -267,5 +267,107 @@ public class RuleGuardTest {
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.EqualsNumber.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2").toArray());
+    }
+
+    @Test
+    public void testBetween() {
+        RuleObject01 ruleObject = new RuleObject01();
+
+        ruleObject.setAttribute01(1);
+
+        // No violation Smaller
+        Assert.assertTrue(RuleGuard.between(ruleObject, () -> ruleObject.getAttribute01(), 0, 2, RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        Assert.assertFalse(RuleGuard.between(ruleObject, () -> ruleObject.getAttribute01(), 2, 3, RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.Between.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2", "3").toArray());
+    }
+
+    @Test
+    public void testSmallerOrEqualThan() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+        RuleObject02 ruleObject02 = new RuleObject02();
+
+        ruleObject01.setAttribute01(1);
+        ruleObject02.setAttribute02(2);
+
+        // No violation Smaller
+        Assert.assertTrue(RuleGuard.smallerOrEqualThan(ruleObject01, () -> ruleObject01.getAttribute01(), () -> ruleObject02.getAttribute02(), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // No violation Equal
+        ruleObject02.setAttribute02(1);
+
+        Assert.assertTrue(RuleGuard.smallerOrEqualThan(ruleObject01, () -> ruleObject01.getAttribute01(), () -> ruleObject02.getAttribute02(), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        ruleObject02.setAttribute02(0);
+        Assert.assertFalse(RuleGuard.smallerOrEqualThan(ruleObject01, () -> ruleObject01.getAttribute01(), () -> ruleObject02.getAttribute02(), RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01", "be.domaindrivendesign.kernel.rule.entity|RuleObject02.getAttribute02").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.SmallerOrEqualThan.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "0").toArray());
+    }
+
+    @Test
+    public void testGreaterOrEqualThan() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+        RuleObject02 ruleObject02 = new RuleObject02();
+
+        ruleObject01.setAttribute01(1);
+        ruleObject02.setAttribute02(0);
+
+        // No violation Smaller
+        Assert.assertTrue(RuleGuard.greaterOrEqualThan(ruleObject01, () -> ruleObject01.getAttribute01(), () -> ruleObject02.getAttribute02(), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // No violation Equal
+        ruleObject02.setAttribute02(1);
+
+        Assert.assertTrue(RuleGuard.greaterOrEqualThan(ruleObject01, () -> ruleObject01.getAttribute01(), () -> ruleObject02.getAttribute02(), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        ruleObject02.setAttribute02(3);
+        Assert.assertFalse(RuleGuard.greaterOrEqualThan(ruleObject01, () -> ruleObject01.getAttribute01(), () -> ruleObject02.getAttribute02(), RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01", "be.domaindrivendesign.kernel.rule.entity|RuleObject02.getAttribute02").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.GreaterOrEqualThan.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "3").toArray());
+    }
+
+    @Test
+    public void testDomain() {
+        RuleObject01 ruleObject = new RuleObject01();
+
+        ruleObject.setAttribute01(1);
+
+        // No violation Smaller
+        Assert.assertTrue(RuleGuard.domain(ruleObject, () -> ruleObject.getAttribute01(), Arrays.asList(1, 2), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        Assert.assertFalse(RuleGuard.domain(ruleObject, () -> ruleObject.getAttribute01(), Arrays.asList(2, 3), RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.Domain.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2", "3").toArray());
     }
 }

@@ -18,6 +18,7 @@ import java.util.function.Supplier;
  */
 public class RuleGuard {
 
+//region Number
 
     /**
      *
@@ -73,33 +74,31 @@ public class RuleGuard {
      *
      * @param ruleObject
      * @param propertyLambda01
-     * @param value
      * @param minimum
      * @param maximum
      * @param severityType
      * @param <T>
      * @return
      */
-    public static <T extends Number & Comparable<T>> boolean between(RuleObject ruleObject, Property<T> propertyLambda01, T value, T minimum, T maximum, RuleSeverityType severityType) {
+    public static <T extends Number & Comparable<T>> boolean between(RuleObject ruleObject, Property<T> propertyLambda01, T minimum, T maximum, RuleSeverityType severityType) {
         ArrayList<String> list = new ArrayList<String>();
-        list.add(value.toString());
+        list.add(propertyLambda01.get().toString());
         list.add(minimum.toString());
         list.add(maximum.toString());
-        return (Guard.betweenNumber(value, minimum, maximum)) || raiseViolation(ruleObject, propertyLambda01, list, RuleType.Between.typeValue, severityType);
+        return (Guard.betweenNumber((T) propertyLambda01.get(), minimum, maximum)) || raiseViolation(ruleObject, propertyLambda01, list, RuleType.Between.typeValue, severityType);
     }
 
     /**
      *
      * @param ruleObject
      * @param propertyLambda01
-     * @param value
      * @param minimum
      * @param maximum
      * @param <T>
      * @return
      */
-    public static <T extends Number & Comparable<T>> boolean between(RuleObject ruleObject, Property<T> propertyLambda01, T value, T minimum, T maximum) {
-        return between(ruleObject, propertyLambda01, value, minimum, maximum, RuleSeverityType.Error);
+    public static <T extends Number & Comparable<T>> boolean between(RuleObject ruleObject, Property<T> propertyLambda01, T minimum, T maximum) {
+        return between(ruleObject, propertyLambda01, minimum, maximum, RuleSeverityType.Error);
     }
 
     /**
@@ -192,10 +191,36 @@ public class RuleGuard {
      * @param ruleObject
      * @param propertyLambda01
      * @param propertyLambda02
+     * @param <T>
      * @return
      */
-    public static boolean smallerThan(RuleObject ruleObject, Property<Double> propertyLambda01, Property<Double> propertyLambda02) {
+    public static <T extends Number & Comparable<T>> boolean smallerThan(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02) {
         return smallerThan(ruleObject, propertyLambda01, propertyLambda02, RuleSeverityType.Error);
+    }
+
+    /**
+     *
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param propertyLambda02
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T extends Number & Comparable<T>> boolean smallerThan(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02, RuleSeverityType severityType) {
+        return (Guard.smallerThan((T) propertyLambda01.get(), (T) propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.SmallerThan.typeValue
+                , severityType);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param propertyLambda02
+     * @param <T>
+     * @return
+     */
+    public static <T extends Number & Comparable<T>> boolean smallerOrEqualThan(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02) {
+        return smallerOrEqualThan(ruleObject, propertyLambda01, propertyLambda02, RuleSeverityType.Error);
     }
 
     /**
@@ -203,12 +228,57 @@ public class RuleGuard {
      * @param propertyLambda01
      * @param propertyLambda02
      * @param severityType
+     * @param <T>
      * @return
      */
-    public static boolean smallerThan(RuleObject ruleObject, Property<Double> propertyLambda01, Property<Double> propertyLambda02, RuleSeverityType severityType) {
-        return (Guard.smallerThan((Double) propertyLambda01.get(), (Double) propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.SmallerThan.typeValue
-                , severityType);
+    public static <T extends Number & Comparable<T>> boolean smallerOrEqualThan(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02, RuleSeverityType severityType) {
+        return (Guard.smallerOrEqualThan((T) propertyLambda01.get(), (T) propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.SmallerOrEqualThan.typeValue, severityType);
     }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param propertyLambda02
+     * @param <T>
+     * @return
+     */
+    public static <T extends Number & Comparable<T>> boolean greaterOrEqualThan(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02) {
+        return greaterOrEqualThan(ruleObject, propertyLambda01, propertyLambda02, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param propertyLambda02
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T extends Number & Comparable<T>> boolean greaterOrEqualThan(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02, RuleSeverityType severityType)
+    {
+        return (Guard.greaterOrEqualThan((T) propertyLambda01.get(), (T) propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.GreaterOrEqualThan.typeValue, severityType);
+    }
+
+    public static <T extends Number & Comparable<T>> boolean domain(RuleObject ruleObject, Property propertyLambda01, List<T> domain) {
+        return domain(ruleObject, propertyLambda01, domain, RuleSeverityType.Error);
+    }
+
+    public static <T extends Number & Comparable<T>> boolean domain(RuleObject ruleObject, Property propertyLambda01, List<T> domain, RuleSeverityType severityType) {
+        if (Guard.domain((T) propertyLambda01.get(), domain)) {
+            return true;
+        }
+
+        List<String> values = new ArrayList<>();
+
+        values.add(propertyLambda01.get().toString());
+
+        domain.forEach(x -> values.add(x.toString()));
+
+        raiseViolation(ruleObject, propertyLambda01, values, RuleType.Domain.typeValue, severityType);
+        return false;
+    }
+
+    //endregion
 
     //region RaiseViolation
 
