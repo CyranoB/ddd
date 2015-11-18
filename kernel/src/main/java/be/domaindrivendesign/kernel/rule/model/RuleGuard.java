@@ -235,79 +235,48 @@ public class RuleGuard {
         return (Guard.smallerOrEqualThan((T) propertyLambda01.get(), (T) propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.SmallerOrEqualThan.typeValue, severityType);
     }
 
-  /*  /// <summary>
-    /// Vérifie qu'un entier est supérieur ou égal à un autre et lève une violation de type <see cref="RuleGuardRuleId.GreaterOrEqualThan"/> si ce n'est pas le cas.
-    /// </summary>
-    /// <typeparam name="T">Le type des propriétés pour lesquelles la validation est effectuée.</typeparam>
-    /// <param name="ruleObject">Le <see cref="IRuleObject"/> pour lequel la validation est effectuée.</param>
-    /// <param name="propertyLambda01">La propriété de <paramref name="ruleObject"/> correspondant à <paramref name="value01"/>.</param>
-    /// <param name="value01">La première valeur.</param>
-    /// <param name="propertyLambda02">La propriété de <paramref name="ruleObject"/> correspondant à <paramref name="value02"/>.</param>
-    /// <param name="value02">La deuxième valeur.</param>
-    /// <param name="severityType">La sévérité de l'erreur.</param>
-    /// <returns><c>True</c> si <paramref name="value01"/> est supérieur ou égal à <paramref name="value02"/>, sinon <c>False</c>.</returns>
-    /// <exception cref="RuleException">Lancée si la validation échoue et que le niveau de sévérité spécifié est <see cref="RuleSeverityType.BlockingError"/>.</exception>
-    public static bool GreaterOrEqualThan<T>(IRuleObject ruleObject, Expression<Func<T>> propertyLambda01, int? value01, Expression<Func<T>> propertyLambda02, int? value02, RuleSeverityType severityType = RuleSeverityType.Error)
-    {
-        return (Guard.GreaterOrEqualThan(value01, value02)) || RuleGuard.RaiseViolation(ruleObject, propertyLambda01, value01, propertyLambda02, value02, (int)RuleGuardRuleId.GreaterOrEqualThan, severityType);
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param propertyLambda02
+     * @param <T>
+     * @return
+     */
+    public static <T extends Number & Comparable<T>> boolean greaterOrEqualThan(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02) {
+        return greaterOrEqualThan(ruleObject, propertyLambda01, propertyLambda02, RuleSeverityType.Error);
     }
 
-    /// <summary>
-    /// Vérifie qu'un entier est compris entre deux valeurs (bornes comprises) et lève une violation de type <see cref="RuleGuardRuleId.Between"/> si ce n'est pas le cas.
-    /// </summary>
-    /// <typeparam name="T">Le type de la propriété pour laquelle la validation est effectuée.</typeparam>
-    /// <param name="ruleObject">Le <see cref="IRuleObject"/> pour lequel la validation est effectuée.</param>
-    /// <param name="propertyLambda01">La propriété de <paramref name="ruleObject"/> pour laquelle la validation est effectuée.</param>
-    /// <param name="value">La valeur à vérifier.</param>
-    /// <param name="minimum">La borne inférieure.</param>
-    /// <param name="maximum">La borne supérieure.</param>
-    /// <param name="severityType">La sévérité de l'erreur.</param>
-    /// <returns><c>True</c> si <paramref name="value"/> est compris dans l'interval [<paramref name="minimum" />, <paramref name="maximum"/>], sinon <c>False</c>.</returns>
-    /// <exception cref="RuleException">Lancée si la validation échoue et que le niveau de sévérité spécifié est <see cref="RuleSeverityType.BlockingError"/>.</exception>
-    public static bool Between<T>(IRuleObject ruleObject, Expression<Func<T>> propertyLambda01, int? value, int minimum, int maximum, RuleSeverityType severityType = RuleSeverityType.Error)
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param propertyLambda02
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T extends Number & Comparable<T>> boolean greaterOrEqualThan(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02, RuleSeverityType severityType)
     {
-        return (Guard.BetweenNumber(value, minimum, maximum)) || RuleGuard.RaiseViolation(ruleObject, propertyLambda01, new List<string>() { !value.HasValue ? null : value.ToString(), minimum.ToString(), maximum.ToString() }, (int)RuleGuardRuleId.Between, severityType);
+        return (Guard.greaterOrEqualThan((T) propertyLambda01.get(), (T) propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.GreaterOrEqualThan.typeValue, severityType);
     }
 
-    /// <summary>
-    /// Vérifie que la représentation de l'entier contenu dans une chaîne de caractères est compris entre deux valeurs (bornes comprises) et lève une violation de type <see cref="RuleGuardRuleId.Between"/> si ce n'est pas le cas.
-    /// </summary>
-    /// <typeparam name="T">Le type de la propriété pour laquelle la validation est effectuée.</typeparam>
-    /// <param name="ruleObject">Le <see cref="IRuleObject"/> pour lequel la validation est effectuée.</param>
-    /// <param name="propertyLambda01">La propriété de <paramref name="ruleObject"/> pour laquelle la validation est effectuée.</param>
-    /// <param name="value">La représentation de la valeur à vérifier.</param>
-    /// <param name="minimum">La borne inférieure.</param>
-    /// <param name="maximum">La borne supérieure.</param>
-    /// <param name="severityType">La sévérité de l'erreur.</param>
-    /// <returns><c>True</c> si l'entier contenu dans <paramref name="value"/> est compris dans l'interval [<paramref name="minimum" />, <paramref name="maximum"/>], sinon <c>False</c>.</returns>
-    /// <exception cref="RuleException">Lancée si la validation échoue et que le niveau de sévérité spécifié est <see cref="RuleSeverityType.BlockingError"/>.</exception>
-    public static bool Between<T>(IRuleObject ruleObject, Expression<Func<T>> propertyLambda01, string value, int minimum, int maximum, RuleSeverityType severityType = RuleSeverityType.Error)
-    {
-        return (Guard.BetweenNumberString(value, minimum, maximum)) || RuleGuard.RaiseViolation(ruleObject, propertyLambda01, new List<string>() { value == null ? null : value.ToString(), minimum.ToString(), maximum.ToString() }, (int)RuleGuardRuleId.Between, severityType);
+    public static <T extends Number & Comparable<T>> boolean domain(RuleObject ruleObject, Property propertyLambda01, List<T> domain) {
+        return domain(ruleObject, propertyLambda01, domain, RuleSeverityType.Error);
     }
 
-    /// <summary>
-    /// Vérifie qu'un entier se trouve contenu dans une liste d'entier et lève une violation de type <see cref="RuleGuardRuleId.Domain"/> si ce n'est pas le cas.
-    /// </summary>
-    /// <typeparam name="T">Le type de la propriété pour laquelle la validation est effectuée.</typeparam>
-    /// <param name="ruleObject">Le <see cref="IRuleObject"/> pour lequel la validation est effectuée.</param>
-    /// <param name="propertyLambda01">La propriété de <paramref name="ruleObject"/> pour laquelle la validation est effectuée.</param>
-    /// <param name="value">L'entier à vérifier.</param>
-    /// <param name="domain">La liste d'entier.</param>
-    /// <param name="severityType">La sévérité de l'erreur.</param>
-    /// <returns><c>True</c> si <paramref name="value"/> fait partie de <paramref name="domain" />, sinon <c>False</c>.</returns>
-    /// <exception cref="RuleException">Lancée si la validation échoue et que le niveau de sévérité spécifié est <see cref="RuleSeverityType.BlockingError"/>.</exception>
-    public static bool Domain<T>(IRuleObject ruleObject, Expression<Func<T>> propertyLambda01, int? value, List<int> domain, RuleSeverityType severityType = RuleSeverityType.Error)
-    {
-        if (Guard.Domain(value, domain))
-        {
+    public static <T extends Number & Comparable<T>> boolean domain(RuleObject ruleObject, Property propertyLambda01, List<T> domain, RuleSeverityType severityType) {
+        if (Guard.domain((T) propertyLambda01.get(), domain)) {
             return true;
         }
-        List<string> values = new List<string>() { !value.HasValue ? "0" : value.ToString() };
-        values.AddRange(domain.ConvertAll(delegate (int i) { return i.ToString(); }));
-        RaiseViolation<T>(ruleObject, propertyLambda01, values, (int)RuleGuardRuleId.Domain, severityType);
+
+        List<String> values = new ArrayList<>();
+
+        values.add(propertyLambda01.get().toString());
+
+        domain.forEach(x -> values.add(x.toString()));
+
+        raiseViolation(ruleObject, propertyLambda01, values, RuleType.Domain.typeValue, severityType);
         return false;
-    }   */
+    }
 
     //endregion
 
