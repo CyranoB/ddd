@@ -40,7 +40,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends Number & Comparable<T>> boolean equalsInvariant(RuleObject ruleObject, Property<T> propertyLambda, T invariant, RuleSeverityType severityType) {
-        return (Guard.equals((T) propertyLambda.get(), invariant)) || raiseViolation(ruleObject, propertyLambda, invariant.toString(), RuleType.EqualsNumberInvariant.typeValue, severityType);
+        return (Guard.equals(propertyLambda.get(), invariant)) || raiseViolation(ruleObject, propertyLambda, invariant.toString(), RuleType.EqualsNumberInvariant.typeValue, severityType);
     }
 
     /**
@@ -63,7 +63,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends Number & Comparable<T>> boolean smallerThanInvariant(RuleObject ruleObject, Property<T> propertyLambda, T invariant, RuleSeverityType severityType) {
-        return (Guard.smallerThan((T) propertyLambda.get(), invariant)) || raiseViolation(ruleObject, propertyLambda, invariant.toString(), RuleType.SmallerThanInvariant.typeValue, severityType);
+        return (Guard.smallerThan(propertyLambda.get(), invariant)) || raiseViolation(ruleObject, propertyLambda, invariant.toString(), RuleType.SmallerThanInvariant.typeValue, severityType);
     }
 
     /**
@@ -80,7 +80,7 @@ public class RuleGuard {
         list.add(propertyLambda01.get().toString());
         list.add(minimum.toString());
         list.add(maximum.toString());
-        return (Guard.betweenNumber((T) propertyLambda01.get(), minimum, maximum)) || raiseViolation(ruleObject, propertyLambda01, list, RuleType.Between.typeValue, severityType);
+        return (Guard.betweenNumber(propertyLambda01.get(), minimum, maximum)) || raiseViolation(ruleObject, propertyLambda01, list, RuleType.Between.typeValue, severityType);
     }
 
     /**
@@ -115,7 +115,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends Number & Comparable<T>> boolean smallerOrEqualThanInvariant(RuleObject ruleObject, Property<T> propertyLambda, T invariant, RuleSeverityType severityType) {
-        return (Guard.smallerOrEqualThan((T) propertyLambda.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda, invariant.toString(), RuleType.SmallerOrEqualThanInvariant.typeValue, severityType);
+        return (Guard.smallerOrEqualThan(propertyLambda.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda, invariant.toString(), RuleType.SmallerOrEqualThanInvariant.typeValue, severityType);
     }
 
     /**
@@ -138,7 +138,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends Number & Comparable<T>> boolean greaterThanInvariant(RuleObject ruleObject, Property<T> propertyLambda, T invariant, RuleSeverityType severityType) {
-        return (Guard.greaterThan((T) propertyLambda.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda, invariant.toString(), RuleType.GreaterThanInvariant.typeValue, severityType);
+        return (Guard.greaterThan(propertyLambda.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda, invariant.toString(), RuleType.GreaterThanInvariant.typeValue, severityType);
 
     }
 
@@ -161,7 +161,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends Number & Comparable<T>> boolean greaterOrEqualThanInvariant(RuleObject ruleObject, Property<T> propertyLambda, T invariant, RuleSeverityType severityType) {
-        return (Guard.greaterOrEqualThan((T) propertyLambda.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda, invariant.toString(), RuleType.GreaterOrEqualThanInvariant.typeValue, severityType);
+        return (Guard.greaterOrEqualThan(propertyLambda.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda, invariant.toString(), RuleType.GreaterOrEqualThanInvariant.typeValue, severityType);
     }
 
 
@@ -172,7 +172,7 @@ public class RuleGuard {
 
     public static <T extends Number & Comparable<T>> boolean equals(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02, RuleSeverityType severityType) {
 
-        return (Guard.equals((T) propertyLambda01.get(), (T) propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.EqualsNumber.typeValue, severityType);
+        return (Guard.equals(propertyLambda01.get(), propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.EqualsNumber.typeValue, severityType);
     }
 
     /**
@@ -195,7 +195,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends Number & Comparable<T>> boolean smallerThan(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02, RuleSeverityType severityType) {
-        return (Guard.smallerThan((T) propertyLambda01.get(), (T) propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.SmallerThan.typeValue
+        return (Guard.smallerThan(propertyLambda01.get(), propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.SmallerThan.typeValue
                 , severityType);
     }
 
@@ -214,12 +214,12 @@ public class RuleGuard {
      * @param ruleObject       L'objet sur lequel la validation est effectué
      * @param propertyLambda01 La propriété sur laquelle la validation est effectuée
      * @param propertyLambda02 La propriété dans laquelle on va chercher la référence
-     * @param severityType
+     * @param severityType ff
      * @param <T>
      * @return
      */
     public static <T extends Number & Comparable<T>> boolean greaterThan(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02, RuleSeverityType severityType) {
-        return (Guard.greaterThan((T) propertyLambda01.get(), (T) propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.GreaterThan.typeValue
+        return (Guard.greaterThan(propertyLambda01.get(), propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.GreaterThan.typeValue
                 , severityType);
     }
 
@@ -243,7 +243,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends Number & Comparable<T>> boolean smallerOrEqualThan(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02, RuleSeverityType severityType) {
-        return (Guard.smallerOrEqualThan((T) propertyLambda01.get(), (T) propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.SmallerOrEqualThan.typeValue, severityType);
+        return (Guard.smallerOrEqualThan(propertyLambda01.get(), propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.SmallerOrEqualThan.typeValue, severityType);
     }
 
     /**
@@ -266,7 +266,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends Number & Comparable<T>> boolean greaterOrEqualThan(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02, RuleSeverityType severityType) {
-        return (Guard.greaterOrEqualThan((T) propertyLambda01.get(), (T) propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.GreaterOrEqualThan.typeValue, severityType);
+        return (Guard.greaterOrEqualThan(propertyLambda01.get(), propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.GreaterOrEqualThan.typeValue, severityType);
     }
 
     public static <T extends Number & Comparable<T>> boolean domain(RuleObject ruleObject, Property propertyLambda01, List<T> domain) {
@@ -328,7 +328,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends Double> boolean isFormat(RuleObject ruleObject, Property propertyLambda01, Integer digitBeforeComma, Integer decimalPlaces, boolean isNullAllowed, RuleSeverityType severityType) {
-        return (Guard.isFormat((T) propertyLambda01.get(), digitBeforeComma, decimalPlaces, isNullAllowed)) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, Arrays.asList((T) propertyLambda01.get() == null ? null : propertyLambda01.get().toString(), digitBeforeComma.toString(), decimalPlaces.toString()), RuleType.IsFormatDecimal.typeValue, severityType);
+        return (Guard.isFormat((T) propertyLambda01.get(), digitBeforeComma, decimalPlaces, isNullAllowed)) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, Arrays.asList(propertyLambda01.get() == null ? null : propertyLambda01.get().toString(), digitBeforeComma.toString(), decimalPlaces.toString()), RuleType.IsFormatDecimal.typeValue, severityType);
     }
 
     //endregion

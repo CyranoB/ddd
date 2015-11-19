@@ -27,7 +27,8 @@ public class Entity {
     protected Entity() {
         this.state = EntityStateType.Unchanged;
     }
-    //region
+
+    //endregion
 
     // Utiliser cette méthode que dans des cas bien spécifique.
     public void ForceState(EntityStateType state) {
