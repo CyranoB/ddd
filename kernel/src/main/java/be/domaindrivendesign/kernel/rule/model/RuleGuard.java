@@ -68,7 +68,7 @@ public class RuleGuard {
 
     /**
      * @param ruleObject L'objet sur lequel la validation est effectué
-     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée
      * @param minimum
      * @param maximum
      * @param severityType
@@ -85,7 +85,7 @@ public class RuleGuard {
 
     /**
      * @param ruleObject L'objet sur lequel la validation est effectué
-     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée
      * @param minimum
      * @param maximum
      * @param <T>
@@ -177,8 +177,8 @@ public class RuleGuard {
 
     /**
      * @param ruleObject L'objet sur lequel la validation est effectué
-     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
-     * @param propertyLambda02 La propriété sur laquelle la validation est effectuée02
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée
+     * @param propertyLambda02 La propriété dans laquelle on va chercher la référence
      * @param <T>
      * @return
      */
@@ -188,8 +188,8 @@ public class RuleGuard {
 
     /**
      * @param ruleObject L'objet sur lequel la validation est effectué
-     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
-     * @param propertyLambda02 La propriété sur laquelle la validation est effectuée02
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée
+     * @param propertyLambda02 La propriété dans laquelle on va chercher la référence
      * @param severityType
      * @param <T>
      * @return
@@ -201,8 +201,8 @@ public class RuleGuard {
 
     /**
      * @param ruleObject       L'objet sur lequel la validation est effectué
-     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
-     * @param propertyLambda02 La propriété sur laquelle la validation est effectuée02
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée
+     * @param propertyLambda02 La propriété dans laquelle on va chercher la référence
      * @param <T>
      * @return
      */
@@ -212,8 +212,8 @@ public class RuleGuard {
 
     /**
      * @param ruleObject       L'objet sur lequel la validation est effectué
-     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
-     * @param propertyLambda02 La propriété sur laquelle la validation est effectuée02
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée
+     * @param propertyLambda02 La propriété dans laquelle on va chercher la référence
      * @param severityType
      * @param <T>
      * @return
@@ -225,8 +225,8 @@ public class RuleGuard {
 
     /**
      * @param ruleObject L'objet sur lequel la validation est effectué
-     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
-     * @param propertyLambda02 La propriété sur laquelle la validation est effectuée02
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée
+     * @param propertyLambda02 La propriété dans laquelle on va chercher la référence
      * @param <T>
      * @return
      */
@@ -236,8 +236,8 @@ public class RuleGuard {
 
     /**
      * @param ruleObject L'objet sur lequel la validation est effectué
-     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
-     * @param propertyLambda02 La propriété sur laquelle la validation est effectuée02
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée
+     * @param propertyLambda02 La propriété dans laquelle on va chercher la référence
      * @param severityType
      * @param <T>
      * @return
@@ -248,8 +248,8 @@ public class RuleGuard {
 
     /**
      * @param ruleObject L'objet sur lequel la validation est effectué
-     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
-     * @param propertyLambda02 La propriété sur laquelle la validation est effectuée02
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée
+     * @param propertyLambda02 La propriété dans laquelle on va chercher la référence
      * @param <T>
      * @return
      */
@@ -259,8 +259,8 @@ public class RuleGuard {
 
     /**
      * @param ruleObject L'objet sur lequel la validation est effectué
-     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
-     * @param propertyLambda02 La propriété sur laquelle la validation est effectuée02
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée
+     * @param propertyLambda02 La propriété dans laquelle on va chercher la référence
      * @param severityType
      * @param <T>
      * @return
@@ -294,7 +294,7 @@ public class RuleGuard {
 
     /**
      * @param ruleObject L'objet sur lequel la validation est effectué
-     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée
      * @param digitBeforeComma
      * @param decimalPlaces
      * @param <T>
@@ -306,7 +306,7 @@ public class RuleGuard {
 
     /**
      * @param ruleObject L'objet sur lequel la validation est effectué
-     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée
      * @param digitBeforeComma
      * @param decimalPlaces
      * @param isNullAllowed
@@ -319,7 +319,7 @@ public class RuleGuard {
 
     /**
      * @param ruleObject L'objet sur lequel la validation est effectué
-     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée
      * @param digitBeforeComma
      * @param decimalPlaces
      * @param isNullAllowed
@@ -355,8 +355,8 @@ public class RuleGuard {
 
     /**
      * @param ruleObject L'objet sur lequel la validation est effectué
-     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée01
-     * @param propertyLambda02 La propriété sur laquelle la validation est effectuée02
+     * @param propertyLambda01 La propriété sur laquelle la validation est effectuée
+     * @param propertyLambda02 La propriété dans laquelle on va chercher la référence
      * @param ruleId
      * @param severityType
      * @param <T>
