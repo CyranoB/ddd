@@ -2,6 +2,7 @@ package be.domaindrivendesign.kernel.common.valueobject;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -27,14 +28,14 @@ public class ValueObjectTests {
         assertTrue(v2a.equals(v2b));
 
         // Same type, different values
-        assertTrue(!v1a.equals(v1c));
+        assertFalse(v1a.equals(v1c));
 
         // Different type, same values
-        assertTrue(!v1a.equals(v2a));
+        assertFalse(v1a.equals(v2a));
 
         // null object
         //noinspection ObjectEqualsNull
-        assertTrue(!v1a.equals(null));
+        assertFalse(v1a.equals(null));
     }
 
     @Test
@@ -50,12 +51,12 @@ public class ValueObjectTests {
         MyMixedValueObject mixedAllNull = new MyMixedValueObject(null, null);
 
         // Not all values are null
-        assertTrue(!vo1NotNull.areEntirePropertyNull());
-        assertTrue(!notNull.areEntirePropertyNull());
-        assertTrue(!partiallyNull1.areEntirePropertyNull());
-        assertTrue(!partiallyNull2.areEntirePropertyNull());
-        assertTrue(!partiallyNull3.areEntirePropertyNull());
-        assertTrue(!partiallyNull4.areEntirePropertyNull());
+        assertFalse(vo1NotNull.areEntirePropertyNull());
+        assertFalse(notNull.areEntirePropertyNull());
+        assertFalse(partiallyNull1.areEntirePropertyNull());
+        assertFalse(partiallyNull2.areEntirePropertyNull());
+        assertFalse(partiallyNull3.areEntirePropertyNull());
+        assertFalse(partiallyNull4.areEntirePropertyNull());
 
         // All values are null
         assertTrue(allNull.areEntirePropertyNull());

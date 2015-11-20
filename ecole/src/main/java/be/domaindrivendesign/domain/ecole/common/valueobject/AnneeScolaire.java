@@ -5,6 +5,8 @@ import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 import be.domaindrivendesign.kernel.rule.type.RuleSeverityType;
 
 /**
+ * Value object représentant une année scolaire
+ *
  * Created by eddie on 13/11/15.
  */
 
@@ -13,10 +15,9 @@ public class AnneeScolaire extends ValueObject {
     private int anneeDebut;
     private int anneeFin;
 
-    public AnneeScolaire() {
-    }
-
     public AnneeScolaire(int debut, int fin) {
+        //noinspection UnusedAssignment
+        @SuppressWarnings("UnusedAssignment")
         AnneeScolaire anneeScolaire = this;
 
         this.setAnneeDebut(debut);
@@ -24,25 +25,16 @@ public class AnneeScolaire extends ValueObject {
 
         RuleGuard.between(this, this::getAnneeDebut, 2000, 2100, RuleSeverityType.Error);
         RuleGuard.between(this, this::getAnneeFin, 2000, 2100, RuleSeverityType.Error);
+        RuleGuard.smallerOrEqualThan(this, this::getAnneeDebut, this::getAnneeFin, RuleSeverityType.Error);
     }
 
-    public static AnneeScolaire Create(int debut, int fin) {
-        AnneeScolaire anneeScolaire = new AnneeScolaire();
 
-        anneeScolaire.setAnneeDebut(debut);
-        anneeScolaire.setAnneeFin(fin);
-
-        RuleGuard.between(anneeScolaire, () -> anneeScolaire.getAnneeDebut(), 2000, 2100, RuleSeverityType.Error);
-        RuleGuard.between(anneeScolaire, () -> anneeScolaire.getAnneeFin(), 2000, 2100, RuleSeverityType.Error);
-
-        return anneeScolaire;
-    }
-
+    //region Getters & Setters
     public int getAnneeDebut() {
         return anneeDebut;
     }
 
-    protected void setAnneeDebut(int anneeDebut) {
+    private void setAnneeDebut(int anneeDebut) {
         this.anneeDebut = anneeDebut;
     }
 
@@ -50,7 +42,13 @@ public class AnneeScolaire extends ValueObject {
         return anneeFin;
     }
 
-    protected void setAnneeFin(int anneeFin) {
+    private void setAnneeFin(int anneeFin) {
         this.anneeFin = anneeFin;
+    }
+    //endregion
+
+    @Override
+    public String toString() {
+        return String.format("%d / %d", this.anneeDebut, this.anneeFin);
     }
 }

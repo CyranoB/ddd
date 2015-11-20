@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
+ * An object that is not defined by its attributes, but rather by a thread of continuity and its identity.
+ *
  * Created by eddie on 18/11/15.
  */
 public class Entity {
@@ -27,17 +29,26 @@ public class Entity {
     protected Entity() {
         this.state = EntityStateType.Unchanged;
     }
-    //region
+
+    //endregion
 
     // Utiliser cette méthode que dans des cas bien spécifique.
-    public void ForceState(EntityStateType state) {
-        this.state = state;
-    }
+//    public void forceState(EntityStateType state) {
+//        this.state = state;
+//    }
 
     // Equality for non complex entity
     @Override
     public boolean equals(Object otherObject) {
-        return otherObject != null && otherObject instanceof Entity && ((Entity) otherObject).getId().equals(id);
+
+        if (otherObject == null) {
+            return false;
+        }
+
+        if (this == otherObject) {
+            return true;
+        }
+        return otherObject instanceof Entity && id.equals(((Entity) otherObject).getId());
     }
 
     @Override
@@ -64,7 +75,8 @@ public class Entity {
         } else {
             if ((state == EntityStateType.Deleted) && (this.state == EntityStateType.Added)) {
                 throw new KernelException("The entity was just added, set the state to delete is a non-sense.");
-            } else if ((state == EntityStateType.Modified) && (this.state == EntityStateType.Added)) {
+            } else //noinspection StatementWithEmptyBody
+                if ((state == EntityStateType.Modified) && (this.state == EntityStateType.Added)) {
                 // don't change the state because the entity is not yet added.
             } else {
                 if (state == EntityStateType.Unchanged) {

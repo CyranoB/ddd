@@ -8,6 +8,8 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 import java.lang.reflect.Field;
 
 /**
+ * An object that contains attributes but has no conceptual identity. They should be treated as immutable.
+ *
  * Created by eddie on 17/11/15.
  */
 public class ValueObject implements RuleObject {

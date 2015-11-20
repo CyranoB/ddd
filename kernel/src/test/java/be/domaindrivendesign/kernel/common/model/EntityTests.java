@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.UUID;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -24,16 +25,16 @@ public class EntityTests {
         assertTrue(entity01.equals(entity01));
 
         // 2 entities with different ID
-        assertTrue(!entity01.equals(entity02));
+        assertFalse(entity01.equals(entity02));
 
         // 2 entities with same ID => Must be equal cause ID is unique
         assertTrue(entity01.equals(entity03));
 
         // entity vs non entity always non equal
-        assertTrue(!entity01.equals(object01));
+        assertFalse(entity01.equals(object01));
 
         // entity vs null always non equal
-        assertTrue(!entity01.equals(null));
+        assertFalse(entity01.equals(null));
     }
 
     @Test
@@ -52,7 +53,7 @@ public class EntityTests {
     }
 
     @Test(expected = KernelException.class)
-    public void TestSetStateToDeleted() {
+    public void testSetStateToDeleted() {
         Entity entity01 = EntityGuid01.Create(UUID.randomUUID());
 
         // set state to deleted when = to added
@@ -60,7 +61,7 @@ public class EntityTests {
     }
 
     @Test(expected = KernelException.class)
-    public void TestSetStateToUnchanged() {
+    public void testSetStateToUnchanged() {
         Entity entity01 = EntityGuid01.Create(UUID.randomUUID());
 
         // set state to deleted when = to added
@@ -68,7 +69,7 @@ public class EntityTests {
     }
 
     @Test
-    public void TestSetStateToModified() {
+    public void testSetStateToModified() {
         Entity entity01 = EntityGuid01.Create(UUID.randomUUID());
 
         // set to modified when state = to added does not modify the state

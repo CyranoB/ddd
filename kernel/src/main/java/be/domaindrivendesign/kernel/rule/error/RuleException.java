@@ -45,7 +45,7 @@ public class RuleException extends RuntimeException {
 
     @Override
     public String toString() {
-        return String.format("{0} \n {1} \n", super.toString(), ruleViolations.toString());
+        return String.format("%d \n %d \n", super.toString(), ruleViolations.toString());
     }
 
 }
