@@ -53,7 +53,7 @@ public class EntityTests {
     }
 
     @Test(expected = KernelException.class)
-    public void TestSetStateToDeleted() {
+    public void testSetStateToDeleted() {
         Entity entity01 = EntityGuid01.Create(UUID.randomUUID());
 
         // set state to deleted when = to added
@@ -61,7 +61,7 @@ public class EntityTests {
     }
 
     @Test(expected = KernelException.class)
-    public void TestSetStateToUnchanged() {
+    public void testSetStateToUnchanged() {
         Entity entity01 = EntityGuid01.Create(UUID.randomUUID());
 
         // set state to deleted when = to added
@@ -69,7 +69,7 @@ public class EntityTests {
     }
 
     @Test
-    public void TestSetStateToModified() {
+    public void testSetStateToModified() {
         Entity entity01 = EntityGuid01.Create(UUID.randomUUID());
 
         // set to modified when state = to added does not modify the state

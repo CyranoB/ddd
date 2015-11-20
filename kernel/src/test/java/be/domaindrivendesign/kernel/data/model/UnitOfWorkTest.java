@@ -20,7 +20,7 @@ public class UnitOfWorkTest {
     }
 
     @Test
-    public void TestUniqueId() {
+    public void testUniqueId() {
         UnitOfWork unitOfWork01 = new UnitOfWorkImpl();
         UnitOfWork unitOfWork02 = new UnitOfWorkImpl();
 

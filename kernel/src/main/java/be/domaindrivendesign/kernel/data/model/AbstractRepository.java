@@ -37,21 +37,21 @@ public abstract class AbstractRepository<T extends Entity> implements Repository
     public abstract void persistDeletedItem(Entity entity);
 
     public void insert(Entity entity) {
-        RaiseUnitOfWorkOrEntityNull(entity);
+        raiseUnitOfWorkOrEntityNull(entity);
         unitOfWork.registerInserted(entity, this);
     }
 
     public void update(Entity entity) {
-        RaiseUnitOfWorkOrEntityNull(entity);
+        raiseUnitOfWorkOrEntityNull(entity);
         unitOfWork.registerUpdated(entity, this);
     }
 
     public void delete(Entity entity) {
-        RaiseUnitOfWorkOrEntityNull(entity);
+        raiseUnitOfWorkOrEntityNull(entity);
         unitOfWork.registerRemoved(entity, this);
     }
 
-    protected void RaiseUnitOfWorkOrEntityNull(Entity entity) {
+    protected void raiseUnitOfWorkOrEntityNull(Entity entity) {
         if (unitOfWork == null) {
             throw new KernelException("Unit of work is null, no insert is allowed.");
         }

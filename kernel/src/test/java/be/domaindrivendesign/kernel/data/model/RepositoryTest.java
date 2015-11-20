@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class RepositoryTest {
 
     @Test
-    public void TestDeferredInsert() {
+    public void testDeferredInsert() {
         UnitOfWork01 unitOfWork = new UnitOfWork01();
         Repository01 repository = new Repository01(unitOfWork);
         Entity entity01 = Entity01.create(UUID.randomUUID());
@@ -28,7 +28,7 @@ public class RepositoryTest {
     }
 
     @Test
-    public void TestDeferredUpdated() {
+    public void testDeferredUpdated() {
         UnitOfWork01 unitOfWork = new UnitOfWork01();
         Repository01 repository = new Repository01(unitOfWork);
         Entity01 entity01 = Entity01.create(UUID.randomUUID());
@@ -45,7 +45,7 @@ public class RepositoryTest {
     }
 
     @Test
-    public void TestDeferredDeleted() {
+    public void testDeferredDeleted() {
         UnitOfWork01 unitOfWork = new UnitOfWork01();
         Repository01 repository = new Repository01(unitOfWork);
         Entity01 entity01 = Entity01.create(UUID.randomUUID());
@@ -62,7 +62,7 @@ public class RepositoryTest {
     }
 
     @Test(expected = KernelException.class)
-    public void TestInsertNull() {
+    public void testInsertNull() {
         UnitOfWork01 unitOfWork = new UnitOfWork01();
         Repository01 repository = new Repository01(unitOfWork);
         // null insert is not allowed
@@ -70,7 +70,7 @@ public class RepositoryTest {
     }
 
     @Test(expected = KernelException.class)
-    public void TestUpdateNull() {
+    public void testUpdateNull() {
         UnitOfWork01 unitOfWork = new UnitOfWork01();
         Repository01 repository = new Repository01(unitOfWork);
         // null update is not allowed
@@ -78,7 +78,7 @@ public class RepositoryTest {
     }
 
     @Test(expected = KernelException.class)
-    public void TestDeleteNull() {
+    public void testDeleteNull() {
         UnitOfWork01 unitOfWork = new UnitOfWork01();
         Repository01 repository = new Repository01(unitOfWork);
         // null deleted is not allowed
