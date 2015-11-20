@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import static junit.framework.Assert.*;
 
-
 /**
  * Created by eddie on 19/11/15.
  */

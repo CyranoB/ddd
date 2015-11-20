@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
+ * An aggregate is a cluster of domain objects that can be treated as a single unit.
+ *
  * Created by eddie on 19/11/15.
  */
 public class Aggregate extends Entity {
@@ -22,12 +24,12 @@ public class Aggregate extends Entity {
         super(id);
     }
 
-    protected void supprimerLogiquement(LocalDateTime date) {
+    protected void deleteLogically(LocalDateTime date) {
         setLogicalDeleteOn(date == null ? LocalDateTime.now() : date);
         setState(EntityStateType.Modified);
     }
 
-    protected void supprimerLogiquement() {
-        supprimerLogiquement(null);
+    protected void deleteLogically() {
+        deleteLogically(null);
     }
 }

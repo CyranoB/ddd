@@ -76,7 +76,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends Number & Comparable<T>> boolean between(RuleObject ruleObject, Property<T> propertyLambda01, T minimum, T maximum, RuleSeverityType severityType) {
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<>();
         list.add(propertyLambda01.get().toString());
         list.add(minimum.toString());
         list.add(maximum.toString());

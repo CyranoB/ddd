@@ -14,16 +14,16 @@ import java.util.UUID;
  */
 public class UnitOfWorkImpl implements UnitOfWork {
 
-    protected UUID id;
-    protected Map<Entity, UnitOfWorkRepository> insertedEntities;
-    protected Map<Entity, UnitOfWorkRepository> updatedEntities;
-    protected Map<Entity, UnitOfWorkRepository> deletedEntities;
+    protected final UUID id;
+    protected final Map<Entity, UnitOfWorkRepository> insertedEntities;
+    protected final Map<Entity, UnitOfWorkRepository> updatedEntities;
+    protected final Map<Entity, UnitOfWorkRepository> deletedEntities;
 
     public UnitOfWorkImpl() {
         id = UUID.randomUUID();
-        insertedEntities = new HashMap<Entity, UnitOfWorkRepository>();
-        updatedEntities = new HashMap<Entity, UnitOfWorkRepository>();
-        deletedEntities = new HashMap<Entity, UnitOfWorkRepository>();
+        insertedEntities = new HashMap<>();
+        updatedEntities = new HashMap<>();
+        deletedEntities = new HashMap<>();
     }
 
     //region UnitOfWork members
@@ -60,9 +60,7 @@ public class UnitOfWorkImpl implements UnitOfWork {
     //endregion
 
     public boolean equals(Object other) {
-        if (other instanceof UnitOfWork)
-            return other == null ? false : id.equals(((UnitOfWork) other).getId());
-        return false;
+        return other instanceof UnitOfWork && id.equals(((UnitOfWork) other).getId());
     }
 
     /// <summary>
