@@ -4,7 +4,7 @@ import be.domaindrivendesign.kernel.common.valueobject.PeriodDateHeure;
 import be.domaindrivendesign.kernel.common.valueobject.ValueObject;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class RuleObject01 extends ValueObject implements RuleObject {
     int attribute01;
-    Date date01;
+    LocalDateTime localDateTime01;
     String string01;
     Object object01;
     List<Object> lists01;
@@ -27,12 +27,12 @@ public class RuleObject01 extends ValueObject implements RuleObject {
         this.attribute01 = attribute01;
     }
 
-    public Date getDate01() {
-        return date01;
+    public LocalDateTime getLocalDateTime01() {
+        return localDateTime01;
     }
 
-    public void setDate01(Date date01) {
-        this.date01 = date01;
+    public void setLocalDateTime01(LocalDateTime localDateTime01) {
+        this.localDateTime01 = localDateTime01;
     }
 
     public String getString01() {

@@ -8,8 +8,10 @@ import be.domaindrivendesign.kernel.rule.type.RuleSeverityType;
 import com.trigersoft.jaque.expression.*;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -330,6 +332,121 @@ public class RuleGuard {
     public static <T extends Double> boolean isFormat(RuleObject ruleObject, Property propertyLambda01, Integer digitBeforeComma, Integer decimalPlaces, boolean isNullAllowed, RuleSeverityType severityType) {
         return (Guard.isFormat((T) propertyLambda01.get(), digitBeforeComma, decimalPlaces, isNullAllowed)) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, Arrays.asList((T) propertyLambda01.get() == null ? null : propertyLambda01.get().toString(), digitBeforeComma.toString(), decimalPlaces.toString()), RuleType.IsFormatDecimal.typeValue, severityType);
     }
+
+    //endregion
+
+    //region LocalDateTime && Date
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param propertyLambda02
+     * @return
+     */
+    public static <T extends Date> boolean before(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02) {
+        return before(ruleObject, propertyLambda01, propertyLambda02, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param propertyLambda02
+     * @param severityType
+     * @return
+     */
+    public static <T extends Date> boolean before(RuleObject ruleObject, Property<T> propertyLambda01, Property<T> propertyLambda02, RuleSeverityType severityType) {
+
+        return (Guard.before(propertyLambda01.get(), propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.Before.typeValue, severityType);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param invariant
+     * @return
+     */
+    public static boolean beforeInvariant(RuleObject ruleObject, Property<LocalDateTime> propertyLambda01, LocalDateTime invariant) {
+        return beforeInvariant(ruleObject, propertyLambda01, invariant, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param invariant
+     * @param severityType
+     * @return
+     */
+    public static boolean beforeInvariant(RuleObject ruleObject, Property<LocalDateTime> propertyLambda01, LocalDateTime invariant, RuleSeverityType severityType) {
+        return (Guard.before(propertyLambda01.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, invariant.toString(), RuleType.BeforeInvariant.typeValue, severityType);
+    }
+
+    /*/// <summary>
+    /// Vérifie qu'un <see cref="Nullable{DateTime}"/> est plus récent (après) qu'un autre et lève une violation de type <see cref="RuleGuardRuleId.After"/> si ce n'est pas le cas.
+    /// </summary>
+    /// <typeparam name="T">Le type des propriétés pour lesquelles la validation est effectuée.</typeparam>
+    /// <param name="ruleObject">Le <see cref="IRuleObject"/> pour lequel la validation est effectuée.</param>
+    /// <param name="propertyLambda01">La propriété de <paramref name="ruleObject"/> correspondant à <paramref name="value01"/>.</param>
+    /// <param name="value01">La première date.</param>
+    /// <param name="propertyLambda02">La propriété de <paramref name="ruleObject"/> correspondant à <paramref name="value02"/>.</param>
+    /// <param name="value02">La seconde date.</param>
+    /// <param name="severityType">La sévérité de l'erreur.</param>
+    /// <returns><c>True</c> si <paramref name="value01"/> est "après" <paramref name="value02"/>, sinon <c>False</c></returns>
+    /// <exception cref="RuleException">Lancée si la validation échoue et que le niveau de sévérité spécifié est <see cref="RuleSeverityType.BlockingError"/>.</exception>
+    public static bool After<T>(IRuleObject ruleObject, Expression<Func<T>> propertyLambda01, DateTime? value01, Expression<Func<T>> propertyLambda02, DateTime? value02, RuleSeverityType severityType = RuleSeverityType.Error)
+    {
+        return (Guard.After(value01, value02)) || RuleGuard.RaiseViolation(ruleObject, propertyLambda01, value01, propertyLambda02, value02, (int)RuleGuardRuleId.After, severityType);
+    }
+
+    /// <summary>
+    /// Vérifie qu'un <see cref="Nullable{DateTime}"/> est plus vieux (avant) qu'un autre et lève une violation de type <see cref="RuleGuardRuleId.BeforeOrEqual"/> si ce n'est pas le cas.
+    /// </summary>
+    /// <typeparam name="T">Le type des propriétés pour lesquelles la validation est effectuée.</typeparam>
+    /// <param name="ruleObject">Le <see cref="IRuleObject"/> pour lequel la validation est effectuée.</param>
+    /// <param name="propertyLambda01">La propriété de <paramref name="ruleObject"/> correspondant à <paramref name="value01"/>.</param>
+    /// <param name="value01">La première date.</param>
+    /// <param name="propertyLambda02">La propriété de <paramref name="ruleObject"/> correspondant à <paramref name="value02"/>.</param>
+    /// <param name="value02">La seconde date.</param>
+    /// <param name="severityType">La sévérité de l'erreur.</param>
+    /// <returns><c>True</c> si <paramref name="value01"/> est identique ou "avant" <paramref name="value02"/>, sinon <c>False</c></returns>
+    /// <exception cref="RuleException">Lancée si la validation échoue et que le niveau de sévérité spécifié est <see cref="RuleSeverityType.BlockingError"/>.</exception>
+    public static bool BeforeOrEqual<T>(IRuleObject ruleObject, Expression<Func<T>> propertyLambda01, DateTime? value01, Expression<Func<T>> propertyLambda02, DateTime? value02, RuleSeverityType severityType = RuleSeverityType.Error)
+    {
+        return (Guard.BeforeOrEqual(value01, value02)) || RuleGuard.RaiseViolation(ruleObject, propertyLambda01, value01, propertyLambda02, value02, (int)RuleGuardRuleId.BeforeOrEqual, severityType);
+    }
+
+    /// <summary>
+    /// Vérifie qu'un <see cref="Nullable{DateTime}"/> est plus récent (après) qu'un autre et lève une violation de type <see cref="RuleGuardRuleId.AfterOrEqual"/> si ce n'est pas le cas.
+    /// </summary>
+    /// <typeparam name="T">Le type des propriétés pour lesquelles la validation est effectuée.</typeparam>
+    /// <param name="ruleObject">Le <see cref="IRuleObject"/> pour lequel la validation est effectuée.</param>
+    /// <param name="propertyLambda01">La propriété de <paramref name="ruleObject"/> correspondant à <paramref name="value01"/>.</param>
+    /// <param name="value01">La première date.</param>
+    /// <param name="propertyLambda02">La propriété de <paramref name="ruleObject"/> correspondant à <paramref name="value02"/>.</param>
+    /// <param name="value02">La seconde date.</param>
+    /// <param name="severityType">La sévérité de l'erreur.</param>
+    /// <returns><c>True</c> si <paramref name="value01"/> est identique ou "après" <paramref name="value02"/>, sinon <c>False</c></returns>
+    /// <exception cref="RuleException">Lancée si la validation échoue et que le niveau de sévérité spécifié est <see cref="RuleSeverityType.BlockingError"/>.</exception>
+    public static bool AfterOrEqual<T>(IRuleObject ruleObject, Expression<Func<T>> propertyLambda01, DateTime? value01, Expression<Func<T>> propertyLambda02, DateTime? value02, RuleSeverityType severityType = RuleSeverityType.Error)
+    {
+        return (Guard.AfterOrEqual(value01, value02)) || RuleGuard.RaiseViolation(ruleObject, propertyLambda01, value01, propertyLambda02, value02, (int)RuleGuardRuleId.AfterOrEqual, severityType);
+    }
+
+    /// <summary>
+    /// Vérifie que deux <see cref="Nullable{DateTime}"/> représentent le même moment (sont égaux) et lève une violation de type <see cref="RuleGuardRuleId.EqualsDateTime"/> si ce n'est pas le cas.
+    /// </summary>
+    /// <typeparam name="T">Le type des propriétés pour lesquelles la validation est effectuée.</typeparam>
+    /// <param name="ruleObject">Le <see cref="IRuleObject"/> pour lequel la validation est effectuée.</param>
+    /// <param name="propertyLambda01">La propriété de <paramref name="ruleObject"/> correspondant à <paramref name="value01"/>.</param>
+    /// <param name="value01">La première date.</param>
+    /// <param name="propertyLambda02">La propriété de <paramref name="ruleObject"/> correspondant à <paramref name="value02"/>.</param>
+    /// <param name="value02">La seconde date.</param>
+    /// <param name="severityType">La sévérité de l'erreur.</param>
+    /// <returns><c>True</c> si <paramref name="value01"/> est identique à <paramref name="value02"/>, sinon <c>False</c></returns>
+    /// <exception cref="RuleException">Lancée si la validation échoue et que le niveau de sévérité spécifié est <see cref="RuleSeverityType.BlockingError"/>.</exception>
+    public static bool Equals<T>(IRuleObject ruleObject, Expression<Func<T>> propertyLambda01, DateTime? value01, Expression<Func<T>> propertyLambda02, DateTime? value02, RuleSeverityType severityType = RuleSeverityType.Error)
+    {
+        return (Guard.Equals(value01, value02)) || RuleGuard.RaiseViolation(ruleObject, propertyLambda01, value01, propertyLambda02, value02, (int)RuleGuardRuleId.EqualsDateTime, severityType);
+    }*/
 
     //endregion
 

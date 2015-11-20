@@ -24,6 +24,11 @@ public enum RuleType {
     AfterOrEqual(53),
     EqualsDateTime(54),
     Include(55),
+    BeforeInvariant(56),
+    AfterInvariant(57),
+    BeforeOrEqualInvariant(58),
+    AfterOrEqualInvariant(59),
+    EqualsDateTimeInvariant(60),
 
     NullOrEmpty(100),
     EqualsString(101),

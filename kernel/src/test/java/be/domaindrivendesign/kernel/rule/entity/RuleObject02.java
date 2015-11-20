@@ -3,7 +3,7 @@ package be.domaindrivendesign.kernel.rule.entity;
 import be.domaindrivendesign.kernel.common.valueobject.PeriodDateHeure;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class RuleObject02 implements RuleObject {
     int attribute02;
-    Date date02;
+    LocalDateTime localDateTime02;
     String string02;
     Object object02;
     List<Object> lists02;
@@ -25,12 +25,12 @@ public class RuleObject02 implements RuleObject {
         this.attribute02 = attribute02;
     }
 
-    public Date getDate02() {
-        return date02;
+    public LocalDateTime getLocalDateTime02() {
+        return localDateTime02;
     }
 
-    public void setDate02(Date date02) {
-        this.date02 = date02;
+    public void setLocalDateTime02(LocalDateTime localDateTime02) {
+        this.localDateTime02 = localDateTime02;
     }
 
     public String getString02() {
