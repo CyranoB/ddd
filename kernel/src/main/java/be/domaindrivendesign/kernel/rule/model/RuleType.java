@@ -33,9 +33,11 @@ public enum RuleType {
 
     NullOrEmpty(100),
     EqualsString(101),
-    OnlyDigit(102),
+    DigitOnly(102),
     Length(103),
     MustBeNull(104),
+    DomainString(105),
+    EqualsStringInvariant(106),
 
     Mandatory(150),
     Unique(151),

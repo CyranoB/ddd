@@ -611,7 +611,7 @@ public class RuleGuard {
 
         domain.forEach(x -> values.add(x.toString()));
 
-        raiseViolation(ruleObject, propertyLambda01, values, RuleType.DomainNumber.typeValue, severityType);
+        raiseViolation(ruleObject, propertyLambda01, values, RuleType.DomainTemporal.typeValue, severityType);
         return false;
     }
 
@@ -622,7 +622,163 @@ public class RuleGuard {
 
     //endregion
 
+    //region String
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param <T>
+     * @return
+     */
+    public static <T extends String & Comparable<String>> boolean nullOrEmpty(RuleObject ruleObject, StringProperty<T> propertyLambda) {
+        return nullOrEmpty(ruleObject, propertyLambda, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T extends String & Comparable<String>> boolean nullOrEmpty(RuleObject ruleObject, StringProperty<T> propertyLambda, RuleSeverityType severityType) {
+        return (Guard.nullOrEmpty(propertyLambda.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda, RuleType.NullOrEmpty.typeValue, severityType);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param propertyLambda02
+     * @return
+     */
+    public static <T extends String & Comparable<String>> boolean equals(RuleObject ruleObject, StringProperty<T> propertyLambda01, StringProperty<T> propertyLambda02) {
+        return equals(ruleObject, propertyLambda01, propertyLambda02, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param propertyLambda02
+     * @param severityType
+     * @return
+     */
+    public static <T extends String & Comparable<String>> boolean equals(RuleObject ruleObject, StringProperty<T> propertyLambda01, StringProperty<T> propertyLambda02, RuleSeverityType severityType) {
+
+        return (Guard.equals(propertyLambda01.get(), propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.EqualsString.typeValue, severityType);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param invariant
+     * @return
+     */
+    public static <T extends String & Comparable<String>> boolean equalsInvariant(RuleObject ruleObject, StringProperty<T> propertyLambda01, T invariant) {
+        return equalsInvariant(ruleObject, propertyLambda01, invariant, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param invariant
+     * @param severityType
+     * @return
+     */
+
+    public static <T extends String & Comparable<String>> boolean equalsInvariant(RuleObject ruleObject, StringProperty<T> propertyLambda01, T invariant, RuleSeverityType severityType) {
+        return (Guard.equals(propertyLambda01.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, invariant.toString(), RuleType.EqualsStringInvariant.typeValue, severityType);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param <T>
+     * @return
+     */
+    public static <T extends String & Comparable<String>> boolean digitOnly(RuleObject ruleObject, StringProperty<T> propertyLambda) {
+        return digitOnly(ruleObject, propertyLambda, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T extends String & Comparable<String>> boolean digitOnly(RuleObject ruleObject, StringProperty<T> propertyLambda, RuleSeverityType severityType) {
+        return Guard.digitOnly(propertyLambda.get()) || RuleGuard.raiseViolation(ruleObject, propertyLambda, RuleType.DigitOnly.typeValue, severityType);
+    }
+
+    public static <T extends String & Comparable<String>> boolean length(RuleObject ruleObject, StringProperty<T> propertyLambda, int length) {
+        return length(ruleObject, propertyLambda, length, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param length
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T extends String & Comparable<String>> boolean length(RuleObject ruleObject, StringProperty<T> propertyLambda, int length, RuleSeverityType severityType) {
+        return Guard.length(propertyLambda.get(), length) || RuleGuard.raiseViolation(ruleObject, propertyLambda, RuleType.Length.typeValue, severityType);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param domain
+     * @param <T>
+     * @return
+     */
+    public static <T extends String & Comparable<String>> boolean domain(RuleObject ruleObject, StringProperty<T> propertyLambda01, List<T> domain) {
+        return domain(ruleObject, propertyLambda01, domain, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param domain
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T extends String & Comparable<String>> boolean domain(RuleObject ruleObject, StringProperty<T> propertyLambda01, List<T> domain, RuleSeverityType severityType) {
+        if (Guard.domain(propertyLambda01.get(), domain)) {
+            return true;
+        }
+
+        List<String> values = new ArrayList<>();
+
+        values.add(propertyLambda01.get().toString());
+
+        domain.forEach(x -> values.add(x.toString()));
+
+        raiseViolation(ruleObject, propertyLambda01, values, RuleType.DomainString.typeValue, severityType);
+        return false;
+    }
+
+    //endregion
+
     //region RaiseViolation
+
+    /**
+     * @param ruleObject     L'objet sur lequel la validation est effectué
+     * @param propertyLambda La propriété sur laquelle la validation est effectuée
+     * @param ruleId
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean raiseViolation(RuleObject ruleObject, Property<T> propertyLambda, int ruleId, RuleSeverityType severityType) {
+        List<String> values = new ArrayList<>();
+
+        values.add(propertyLambda.get().toString());
+
+        return raiseViolation(ruleObject, propertyLambda, values, ruleId, severityType);
+    }
 
     /**
      * @param ruleObject     L'objet sur lequel la validation est effectué
@@ -800,5 +956,8 @@ public class RuleGuard {
     }
 
     public interface TemporalProperty<T extends Temporal & Comparable<T>> extends Property<T> {
+    }
+
+    public interface StringProperty<T extends String & Comparable<String>> extends Property<T> {
     }
 }

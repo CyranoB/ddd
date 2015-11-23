@@ -245,7 +245,7 @@ public class Guard {
      * @param values
      * @return
      */
-    public static boolean domain(String value, List<String> values) {
+    public static <T extends String> boolean domain(T value, List<T> values) {
         if (Guard.nullOrEmpty(value)) {
             return false;
         } else {
