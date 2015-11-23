@@ -1,11 +1,11 @@
 package be.domaindrivendesign.ecole.etablissement.model;
 
-import be.domaindrivendesign.ecole.common.valueobject.Adresse;
-import be.domaindrivendesign.ecole.common.valueobject.Contact;
 import be.domaindrivendesign.ecole.etablissement.type.EcoleType;
 import be.domaindrivendesign.ecole.etablissement.type.EnseignementReseauType;
 import be.domaindrivendesign.kernel.domain.model.AggregateRoot;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
+import be.domaindrivendesign.shared.valueobject.Adresse;
+import be.domaindrivendesign.shared.valueobject.Contact;
 
 import java.util.List;
 

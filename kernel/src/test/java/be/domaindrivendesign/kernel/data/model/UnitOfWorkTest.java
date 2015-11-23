@@ -3,7 +3,10 @@ package be.domaindrivendesign.kernel.data.model;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import org.junit.Test;
 
-import static junit.framework.Assert.*;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotSame;
+import static junit.framework.Assert.assertNotNull;
+
 
 /**
  * Created by eddie on 19/11/15.

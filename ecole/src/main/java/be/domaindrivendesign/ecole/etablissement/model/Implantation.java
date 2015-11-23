@@ -1,14 +1,14 @@
 package be.domaindrivendesign.ecole.etablissement.model;
 
-import be.domaindrivendesign.ecole.common.valueobject.Adresse;
-import be.domaindrivendesign.ecole.common.valueobject.Contact;
-import be.domaindrivendesign.ecole.common.valueobject.PeriodDateHeure;
 import be.domaindrivendesign.ecole.etablissement.type.NiveauType;
 import be.domaindrivendesign.kernel.common.model.EntityStateType;
 import be.domaindrivendesign.kernel.domain.model.Aggregate;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 import be.domaindrivendesign.kernel.rule.type.RuleSeverityType;
+import be.domaindrivendesign.shared.valueobject.Adresse;
+import be.domaindrivendesign.shared.valueobject.Contact;
+import be.domaindrivendesign.shared.valueobject.PeriodDateHeure;
 
 import java.time.LocalDateTime;
 import java.util.List;

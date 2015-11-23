@@ -37,7 +37,7 @@ public class AnneeScolaireTest {
         assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
         assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
         assertEquals("1014", UnitOfWorkRule.getInstance().getViolations().get(0).getValues().get(0));
-        assertArrayEquals(Collections.singletonList("be.domaindrivendesign.domain.ecole.common.valueobject|AnneeScolaire.getAnneeDebut").toArray(), UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray());
+        assertArrayEquals(Collections.singletonList("be.domaindrivendesign.ecole.common.valueobject|AnneeScolaire.getAnneeDebut").toArray(), UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class AnneeScolaireTest {
         assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
         assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
         assertEquals("3015", UnitOfWorkRule.getInstance().getViolations().get(0).getValues().get(0));
-        assertArrayEquals(Collections.singletonList("be.domaindrivendesign.domain.ecole.common.valueobject|AnneeScolaire.getAnneeFin").toArray(), UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray());
+        assertArrayEquals(Collections.singletonList("be.domaindrivendesign.ecole.common.valueobject|AnneeScolaire.getAnneeFin").toArray(), UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray());
     }
 
 

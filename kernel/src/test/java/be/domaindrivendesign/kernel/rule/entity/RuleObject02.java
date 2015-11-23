@@ -1,6 +1,5 @@
 package be.domaindrivendesign.kernel.rule.entity;
 
-import be.domaindrivendesign.kernel.common.valueobject.PeriodDateHeure;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 
 import java.time.LocalDateTime;
@@ -15,7 +14,7 @@ public class RuleObject02 implements RuleObject {
     String string02;
     Object object02;
     List<Object> lists02;
-    PeriodDateHeure periodDateHeure02;
+    DummyValueObject dummyValueObject02;
 
     public int getAttribute02() {
         return attribute02;
@@ -57,11 +56,11 @@ public class RuleObject02 implements RuleObject {
         this.lists02 = lists02;
     }
 
-    public PeriodDateHeure getPeriodDateHeure02() {
-        return periodDateHeure02;
+    public DummyValueObject getDummyValueObject02() {
+        return dummyValueObject02;
     }
 
-    public void setPeriodDateHeure02(PeriodDateHeure periodDateHeure02) {
-        this.periodDateHeure02 = periodDateHeure02;
+    public void setDummyValueObject02(DummyValueObject dummyValueObject02) {
+        this.dummyValueObject02 = dummyValueObject02;
     }
 }
