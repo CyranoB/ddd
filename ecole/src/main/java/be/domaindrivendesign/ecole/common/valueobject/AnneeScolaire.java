@@ -1,4 +1,4 @@
-package be.domaindrivendesign.domain.ecole.common.valueobject;
+package be.domaindrivendesign.ecole.common.valueobject;
 
 import be.domaindrivendesign.kernel.common.valueobject.ValueObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
@@ -6,10 +6,9 @@ import be.domaindrivendesign.kernel.rule.type.RuleSeverityType;
 
 /**
  * Value object représentant une année scolaire
- *
+ * <p>
  * Created by eddie on 13/11/15.
  */
-
 
 public class AnneeScolaire extends ValueObject {
     private int anneeDebut;

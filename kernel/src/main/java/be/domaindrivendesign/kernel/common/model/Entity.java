@@ -11,10 +11,10 @@ import java.util.UUID;
  * Created by eddie on 18/11/15.
  */
 public class Entity {
-    private UUID id;
-    private EntityStateType state;
-    private LocalDateTime logicalDeleteOn;
-    private LocalDateTime lastUpdateOn;
+    protected UUID id;
+    protected EntityStateType state;
+    protected LocalDateTime logicalDeleteOn;
+    protected LocalDateTime lastUpdateOn;
 
     //region Constructors
     protected Entity(UUID id, EntityStateType state) {
