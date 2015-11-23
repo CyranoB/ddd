@@ -40,15 +40,17 @@ public class UnitOfWorkImpl implements UnitOfWork {
         deletedEntities.put(entity, repository);
     }
 
-    // Rem il faudrait pas mettre un try finally pour les clear ??
     @Transactional
     public void commit() {
-        deletedEntities.forEach((e, r) -> r.persistDeletedItem(e));
-        insertedEntities.forEach((e, r) -> r.persistNewItem(e));
-        updatedEntities.forEach((e, r) -> r.persistUpdatedItem(e));
-        deletedEntities.clear();
-        insertedEntities.clear();
-        updatedEntities.clear();
+        try {
+            deletedEntities.forEach((e, r) -> r.persistDeletedItem(e));
+            insertedEntities.forEach((e, r) -> r.persistNewItem(e));
+            updatedEntities.forEach((e, r) -> r.persistUpdatedItem(e));
+        } finally {
+            deletedEntities.clear();
+            insertedEntities.clear();
+            updatedEntities.clear();
+        }
     }
 
     public boolean isEmpty() {
