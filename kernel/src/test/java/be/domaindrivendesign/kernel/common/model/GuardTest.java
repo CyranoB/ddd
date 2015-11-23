@@ -3,9 +3,9 @@ package be.domaindrivendesign.kernel.common.model;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Date;
 
 /**
  * Created by asmolabs on 15/11/15.
@@ -151,68 +151,25 @@ public class GuardTest {
         Assert.assertFalse(Guard.isFormat(9999.9999, 4, 3));
     }
 
-    //region Date
-
-    @Test
-    public void testBeforeDate() throws Exception {
-        Assert.assertTrue(Guard.before(new Date(2010, 01, 01), new Date(2011, 01, 01)));
-        Assert.assertFalse(Guard.before(new Date(2010, 01, 01), new Date(2010, 01, 01)));
-        Assert.assertFalse(Guard.before(new Date(2011, 01, 01), new Date(2010, 01, 01)));
-        Assert.assertFalse(Guard.before(new Date(2011, 01, 01), null));
-        Assert.assertFalse(Guard.before(null, new Date(2010, 01, 01)));
-    }
-
-    @Test
-    public void testAfterDate() throws Exception {
-        Assert.assertFalse(Guard.after(new Date(2010, 01, 01), new Date(2011, 01, 01)));
-        Assert.assertFalse(Guard.after(new Date(2010, 01, 01), new Date(2010, 01, 01)));
-        Assert.assertTrue(Guard.after(new Date(2011, 01, 01), new Date(2010, 01, 01)));
-        Assert.assertFalse(Guard.after(new Date(2011, 01, 01), null));
-        Assert.assertFalse(Guard.after(null, new Date(2010, 01, 01)));
-    }
-
-    @Test
-    public void testBeforeOrEqualDate() throws Exception {
-        Assert.assertTrue(Guard.beforeOrEqual(new Date(2010, 01, 01), new Date(2011, 01, 01)));
-        Assert.assertTrue(Guard.beforeOrEqual(new Date(2010, 01, 01), new Date(2010, 01, 01)));
-        Assert.assertFalse(Guard.beforeOrEqual(new Date(2011, 01, 01), new Date(2010, 01, 01)));
-        Assert.assertFalse(Guard.beforeOrEqual(new Date(2011, 01, 01), null));
-        Assert.assertFalse(Guard.beforeOrEqual(null, new Date(2010, 01, 01)));
-    }
-
-    @Test
-    public void testAfterOrEqualDate() throws Exception {
-        Assert.assertFalse(Guard.afterOrEqual(new Date(2010, 01, 01), new Date(2011, 01, 01)));
-        Assert.assertTrue(Guard.afterOrEqual(new Date(2010, 01, 01), new Date(2010, 01, 01)));
-        Assert.assertTrue(Guard.afterOrEqual(new Date(2011, 01, 01), new Date(2010, 01, 01)));
-        Assert.assertFalse(Guard.afterOrEqual(new Date(2011, 01, 01), null));
-        Assert.assertFalse(Guard.afterOrEqual(null, new Date(2010, 01, 01)));
-    }
-
-    @Test
-    public void testEqualsDate() throws Exception {
-        Assert.assertFalse(Guard.equals(new Date(2010, 01, 01), new Date(2011, 01, 01)));
-        Assert.assertTrue(Guard.equals(new Date(2010, 01, 01), new Date(2010, 01, 01)));
-        Assert.assertFalse(Guard.equals(new Date(2011, 01, 01), new Date(2010, 01, 01)));
-        Assert.assertFalse(Guard.equals(new Date(2011, 01, 01), null));
-        Assert.assertFalse(Guard.equals(null, new Date(2010, 01, 01)));
-    }
-
-    //endregion
-
     //region LocalDateTime
 
     @Test
-    public void testBeforeLocalDateTime() throws Exception {
+    public void testBeforeTemporal() throws Exception {
         Assert.assertTrue(Guard.before(LocalDateTime.of(2010, 01, 01, 0, 0, 0), LocalDateTime.of(2011, 01, 01, 0, 0)));
         Assert.assertFalse(Guard.before(LocalDateTime.of(2010, 01, 01, 0, 0, 0), LocalDateTime.of(2010, 01, 01, 0, 0, 0)));
         Assert.assertFalse(Guard.before(LocalDateTime.of(2011, 01, 01, 0, 0, 0), LocalDateTime.of(2010, 01, 01, 0, 0, 0)));
         Assert.assertFalse(Guard.before(LocalDateTime.of(2011, 01, 01, 0, 0, 0), null));
         Assert.assertFalse(Guard.before(null, LocalDateTime.of(2010, 01, 01, 0, 0, 0)));
+
+        Assert.assertTrue(Guard.before(LocalDate.of(2010, 01, 01), LocalDate.of(2011, 01, 01)));
+        Assert.assertFalse(Guard.before(LocalDate.of(2010, 01, 01), LocalDate.of(2010, 01, 01)));
+        Assert.assertFalse(Guard.before(LocalDate.of(2011, 01, 01), LocalDate.of(2010, 01, 01)));
+        Assert.assertFalse(Guard.before(LocalDate.of(2011, 01, 01), null));
+        Assert.assertFalse(Guard.before(null, LocalDate.of(2010, 01, 01)));
     }
 
     @Test
-    public void testAfterLocalDateTime() throws Exception {
+    public void testAfterTemporal() throws Exception {
         Assert.assertFalse(Guard.after(LocalDateTime.of(2010, 01, 01, 0, 0, 0), LocalDateTime.of(2011, 01, 01, 0, 0, 0)));
         Assert.assertFalse(Guard.after(LocalDateTime.of(2010, 01, 01, 0, 0, 0), LocalDateTime.of(2010, 01, 01, 0, 0, 0)));
         Assert.assertTrue(Guard.after(LocalDateTime.of(2011, 01, 01, 0, 0, 0), LocalDateTime.of(2010, 01, 01, 0, 0, 0)));
@@ -221,7 +178,7 @@ public class GuardTest {
     }
 
     @Test
-    public void testBeforeOrEqualLocalDateTime() throws Exception {
+    public void testBeforeOrEqualTemporal() throws Exception {
         Assert.assertTrue(Guard.beforeOrEqual(LocalDateTime.of(2010, 01, 01, 0, 0, 0), LocalDateTime.of(2011, 01, 01, 0, 0, 0)));
         Assert.assertTrue(Guard.beforeOrEqual(LocalDateTime.of(2010, 01, 01, 0, 0, 0), LocalDateTime.of(2010, 01, 01, 0, 0, 0)));
         Assert.assertFalse(Guard.beforeOrEqual(LocalDateTime.of(2011, 01, 01, 0, 0, 0), LocalDateTime.of(2010, 01, 01, 0, 0, 0)));
@@ -230,7 +187,7 @@ public class GuardTest {
     }
 
     @Test
-    public void testAfterOrEqualLocalDateTime() throws Exception {
+    public void testAfterOrEqualTemporal() throws Exception {
         Assert.assertFalse(Guard.afterOrEqual(LocalDateTime.of(2010, 01, 01, 0, 0, 0), LocalDateTime.of(2011, 01, 01, 0, 0, 0)));
         Assert.assertTrue(Guard.afterOrEqual(LocalDateTime.of(2010, 01, 01, 0, 0, 0), LocalDateTime.of(2010, 01, 01, 0, 0, 0)));
         Assert.assertTrue(Guard.afterOrEqual(LocalDateTime.of(2011, 01, 01, 0, 0, 0), LocalDateTime.of(2010, 01, 01, 0, 0, 0)));
@@ -239,7 +196,7 @@ public class GuardTest {
     }
 
     @Test
-    public void testEqualsLocalDateTime() throws Exception {
+    public void testEqualsLocalTemporal() throws Exception {
         Assert.assertFalse(Guard.equals(LocalDateTime.of(2010, 01, 01, 0, 0, 0), LocalDateTime.of(2011, 01, 01, 0, 0, 0)));
         Assert.assertTrue(Guard.equals(LocalDateTime.of(2010, 01, 01, 0, 0, 0), LocalDateTime.of(2010, 01, 01, 0, 0, 0)));
         Assert.assertFalse(Guard.equals(LocalDateTime.of(2011, 01, 01, 0, 0, 0), LocalDateTime.of(2010, 01, 01, 0, 0, 0)));

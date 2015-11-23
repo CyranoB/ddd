@@ -9,8 +9,7 @@ import org.apache.commons.validator.routines.EmailValidator;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.temporal.Temporal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -124,14 +123,14 @@ public class Guard {
 
     //endregion
 
-    //region LocalDateTime
+    //region Temporal
 
     /**
      * @param value
      * @param date
      * @return
      */
-    public static boolean before(LocalDateTime value, LocalDateTime date) {
+    public static <T extends Temporal & Comparable<T>> boolean before(T value, T date) {
         return value != null && date != null && value.compareTo(date) == -1;
     }
 
@@ -140,7 +139,7 @@ public class Guard {
      * @param date
      * @return
      */
-    public static boolean after(LocalDateTime value, LocalDateTime date) {
+    public static <T extends Temporal & Comparable<T>> boolean after(T value, T date) {
         return value != null && date != null && value.compareTo(date) == 1;
     }
 
@@ -150,7 +149,7 @@ public class Guard {
      * @param date
      * @return
      */
-    public static boolean beforeOrEqual(LocalDateTime value, LocalDateTime date) {
+    public static <T extends Temporal & Comparable<T>> boolean beforeOrEqual(T value, T date) {
         return value != null && date != null && value.compareTo(date) <= 0;
     }
 
@@ -159,7 +158,7 @@ public class Guard {
      * @param date
      * @return
      */
-    public static boolean afterOrEqual(LocalDateTime value, LocalDateTime date) {
+    public static <T extends Temporal & Comparable<T>> boolean afterOrEqual(T value, T date) {
         return value != null && date != null && value.compareTo(date) >= 0;
     }
 
@@ -168,58 +167,18 @@ public class Guard {
      * @param date
      * @return
      */
-    public static boolean equals(LocalDateTime value, LocalDateTime date) {
+    public static <T extends Temporal & Comparable<T>> boolean equals(T value, T date) {
         return value != null && date != null && value.compareTo(date) == 0;
     }
 
-    //endregion
-
-    //region Date
-
     /**
      * @param value
-     * @param date
+     * @param domain
+     * @param <T>
      * @return
      */
-    public static boolean before(Date value, Date date) {
-        return value != null && date != null && value.compareTo(date) == -1;
-    }
-
-    /**
-     * @param value
-     * @param date
-     * @return
-     */
-    public static boolean after(Date value, Date date) {
-        return value != null && date != null && value.compareTo(date) == 1;
-    }
-
-
-    /**
-     * @param value
-     * @param date
-     * @return
-     */
-    public static boolean beforeOrEqual(Date value, Date date) {
-        return value != null && date != null && value.compareTo(date) <= 0;
-    }
-
-    /**
-     * @param value
-     * @param date
-     * @return
-     */
-    public static boolean afterOrEqual(Date value, Date date) {
-        return value != null && date != null && value.compareTo(date) >= 0;
-    }
-
-    /**
-     * @param value
-     * @param date
-     * @return
-     */
-    public static boolean equals(Date value, Date date) {
-        return value != null && date != null && value.compareTo(date) == 0;
+    public static <T extends Temporal & Comparable<T>> boolean domain(T value, java.util.List<T> domain) {
+        return value == null ? false : domain.contains(value);
     }
 
     //endregion
@@ -235,12 +194,12 @@ public class Guard {
     }
 
     /**
-     * @param value1
-     * @param value2
+     * @param value01
+     * @param value02
      * @return
      */
-    public static boolean equals(String value1, String value2) {
-        return (value1 == null && value2 == null) || (value1 != null && value1.equals(value2));
+    public static <T extends String> boolean equals(T value01, T value02) {
+        return value01 != null && value02 != null && value01.compareTo(value02) == 0;
     }
 
     /**
