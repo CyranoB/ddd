@@ -196,12 +196,22 @@ public class GuardTest {
     }
 
     @Test
-    public void testEqualsLocalTemporal() throws Exception {
+    public void testEqualsTemporal() throws Exception {
         Assert.assertFalse(Guard.equals(LocalDateTime.of(2010, 01, 01, 0, 0, 0), LocalDateTime.of(2011, 01, 01, 0, 0, 0)));
         Assert.assertTrue(Guard.equals(LocalDateTime.of(2010, 01, 01, 0, 0, 0), LocalDateTime.of(2010, 01, 01, 0, 0, 0)));
         Assert.assertFalse(Guard.equals(LocalDateTime.of(2011, 01, 01, 0, 0, 0), LocalDateTime.of(2010, 01, 01, 0, 0, 0)));
         Assert.assertFalse(Guard.equals(LocalDateTime.of(2011, 01, 01, 0, 0, 0), null));
         Assert.assertFalse(Guard.equals(null, LocalDateTime.of(2010, 01, 01, 0, 0, 0)));
+    }
+
+
+    @Test
+    public void testDomainTemporal() throws Exception {
+        Assert.assertTrue(Guard.domain(LocalDate.of(2010, 01, 01), Arrays.asList(LocalDate.of(2010, 01, 01))));
+        Assert.assertTrue(Guard.domain(LocalDate.of(2010, 01, 01), Arrays.asList(LocalDate.of(2010, 01, 01), LocalDate.of(2010, 01, 02), LocalDate.of(2010, 01, 03))));
+        Assert.assertFalse(Guard.domain(null, Arrays.asList(LocalDate.of(2010, 01, 01), LocalDate.of(2010, 01, 02), LocalDate.of(2010, 01, 03))));
+        Assert.assertFalse(Guard.domain(LocalDate.of(2010, 01, 01), Arrays.asList()));
+        Assert.assertFalse(Guard.domain(LocalDate.of(2010, 01, 010), Arrays.asList(LocalDate.of(2010, 01, 01), LocalDate.of(2010, 01, 02), LocalDate.of(2010, 01, 03))));
     }
 
     //endregion
@@ -211,11 +221,6 @@ public class GuardTest {
         Assert.assertTrue(Guard.nullOrEmpty(null));
         Assert.assertTrue(Guard.nullOrEmpty(""));
         Assert.assertFalse(Guard.nullOrEmpty("not null"));
-    }
-
-    @Test
-    public void testEqualsString() throws Exception {
-
     }
 
     @Test
@@ -264,11 +269,20 @@ public class GuardTest {
     }
 
     @Test
+    public void testEqualsString() throws Exception {
+        Assert.assertTrue(Guard.equals("1", "1"));
+        Assert.assertFalse(Guard.equals((String) null, "1"));
+        Assert.assertFalse(Guard.equals("1", "2"));
+        Assert.assertFalse(Guard.domain("1", null));
+    }
+
+    @Test
     public void testPhoneNumber() throws Exception {
         Assert.assertTrue(Guard.phone("0495786754"));
         Assert.assertTrue(Guard.phone("071788967"));
         Assert.assertTrue(Guard.phone("+32495786754"));
         Assert.assertFalse(Guard.phone("ae"));
+        Assert.assertFalse(Guard.phone(null));
     }
 
     @Test
@@ -297,6 +311,10 @@ public class GuardTest {
 
     @Test
     public void testContains() throws Exception {
+        Assert.assertTrue(Guard.contains(1, Arrays.asList(1, 2, 3)));
+        Assert.assertFalse(Guard.contains(1, Arrays.asList(2, 3, 4)));
+        Assert.assertFalse(Guard.contains(null, Arrays.asList(1, 2, 3)));
+        Assert.assertFalse(Guard.contains(1, null));
 
     }
 }

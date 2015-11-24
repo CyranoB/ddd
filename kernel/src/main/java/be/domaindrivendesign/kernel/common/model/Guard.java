@@ -30,7 +30,12 @@ public class Guard {
         return value01 != null && value02 != null && value01.equals(value02);
     }
 
-
+    /**
+     * @param value01
+     * @param value02
+     * @param <T>
+     * @return
+     */
     public static <T extends Number & Comparable<T>> boolean smallerThan(T value01, T value02) {
         return value01 != null && value02 != null && value01.compareTo(value02) == -1;
     }
