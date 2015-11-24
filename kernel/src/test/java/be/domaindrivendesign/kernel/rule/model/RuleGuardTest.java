@@ -12,6 +12,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -714,4 +715,566 @@ public class RuleGuardTest {
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2", "3").toArray());
     }
+
+    @Test
+    public void testIsFormat() {
+        RuleObject01 ruleObject = new RuleObject01();
+
+        ruleObject.setDouble01(1.1);
+
+        // No violation Smaller
+        Assert.assertTrue(RuleGuard.isFormat(ruleObject, () -> ruleObject.getDouble01(), 1, 1, false, RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        ruleObject.setDouble01(100.0);
+
+        // Violation
+        Assert.assertFalse(RuleGuard.isFormat(ruleObject, () -> ruleObject.getDouble01(), 2, 2, false, RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getDouble01").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.IsFormatDecimal.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("100.0", "2", "2").toArray());
+    }
+
+    @Test
+    public void testIsFormatWithoutSeverity() {
+        RuleObject01 ruleObject = new RuleObject01();
+
+        ruleObject.setDouble01(1.1);
+
+        // No violation Smaller
+        Assert.assertTrue(RuleGuard.isFormat(ruleObject, () -> ruleObject.getDouble01(), 1, 1, false));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        ruleObject.setDouble01(100.0);
+
+        // Violation
+        Assert.assertFalse(RuleGuard.isFormat(ruleObject, () -> ruleObject.getDouble01(), 2, 2, false));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getDouble01").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.IsFormatDecimal.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("100.0", "2", "2").toArray());
+    }
+
+    @Test
+    public void testIsFormatWithoutSeverityAndNullAllowed() {
+        RuleObject01 ruleObject = new RuleObject01();
+
+        ruleObject.setDouble01(1.1);
+
+        // No violation Smaller
+        Assert.assertTrue(RuleGuard.isFormat(ruleObject, () -> ruleObject.getDouble01(), 1, 1));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        ruleObject.setDouble01(100.0);
+
+        // Violation
+        Assert.assertFalse(RuleGuard.isFormat(ruleObject, () -> ruleObject.getDouble01(), 2, 2));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getDouble01").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.IsFormatDecimal.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("100.0", "2", "2").toArray());
+    }
+
+    @Test
+    public void testBefore() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+        RuleObject02 ruleObject02 = new RuleObject02();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2015, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.before(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02(), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2013, 1, 1, 0, 0));
+        Assert.assertFalse(RuleGuard.before(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02(), RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01", "be.domaindrivendesign.kernel.rule.entity|RuleObject02.getLocalDateTime02").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.Before.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2013-01-01T00:00").toArray());
+    }
+
+    @Test
+    public void testBeforeWithoutSeverity() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+        RuleObject02 ruleObject02 = new RuleObject02();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2015, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.before(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02()));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2013, 1, 1, 0, 0));
+        Assert.assertFalse(RuleGuard.before(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02()));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01", "be.domaindrivendesign.kernel.rule.entity|RuleObject02.getLocalDateTime02").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.Before.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2013-01-01T00:00").toArray());
+    }
+
+    @Test
+    public void testBeforeInvariant() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.beforeInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2015, 1, 1, 0, 0), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        Assert.assertFalse(RuleGuard.beforeInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2013, 1, 1, 0, 0), RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.BeforeInvariant.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2013-01-01T00:00").toArray());
+    }
+
+    @Test
+    public void testBeforeInvariantWithoutSeverity() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.beforeInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2015, 1, 1, 0, 0)));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        Assert.assertFalse(RuleGuard.beforeInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2013, 1, 1, 0, 0)));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.BeforeInvariant.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2013-01-01T00:00").toArray());
+    }
+
+    @Test
+    public void testBeforeOrEqual() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+        RuleObject02 ruleObject02 = new RuleObject02();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2015, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.beforeOrEqual(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02(), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        Assert.assertTrue(RuleGuard.beforeOrEqual(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02(), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2013, 1, 1, 0, 0));
+        Assert.assertFalse(RuleGuard.beforeOrEqual(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02(), RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01", "be.domaindrivendesign.kernel.rule.entity|RuleObject02.getLocalDateTime02").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.BeforeOrEqual.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2013-01-01T00:00").toArray());
+    }
+
+    @Test
+    public void testBeforeOrEqualsWithoutSeverity() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+        RuleObject02 ruleObject02 = new RuleObject02();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2015, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.beforeOrEqual(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02()));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        Assert.assertTrue(RuleGuard.beforeOrEqual(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02()));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2013, 1, 1, 0, 0));
+        Assert.assertFalse(RuleGuard.beforeOrEqual(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02()));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01", "be.domaindrivendesign.kernel.rule.entity|RuleObject02.getLocalDateTime02").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.BeforeOrEqual.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2013-01-01T00:00").toArray());
+    }
+
+    @Test
+    public void testBeforeOrEqualInvariant() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.beforeOrEqualInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2015, 1, 1, 0, 0), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        Assert.assertTrue(RuleGuard.beforeOrEqualInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2014, 1, 1, 0, 0), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        Assert.assertFalse(RuleGuard.beforeOrEqualInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2013, 1, 1, 0, 0), RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.BeforeOrEqualInvariant.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2013-01-01T00:00").toArray());
+    }
+
+    @Test
+    public void testBeforeOrEqualInvariantWithoutSeverity() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.beforeOrEqualInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2015, 1, 1, 0, 0)));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        Assert.assertTrue(RuleGuard.beforeOrEqualInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2014, 1, 1, 0, 0)));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        Assert.assertFalse(RuleGuard.beforeOrEqualInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2013, 1, 1, 0, 0)));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.BeforeOrEqualInvariant.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2013-01-01T00:00").toArray());
+    }
+
+    @Test
+    public void testAfter() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+        RuleObject02 ruleObject02 = new RuleObject02();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2015, 1, 1, 0, 0));
+
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.after(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02(), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2016, 1, 1, 0, 0));
+        Assert.assertFalse(RuleGuard.after(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02(), RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01", "be.domaindrivendesign.kernel.rule.entity|RuleObject02.getLocalDateTime02").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.After.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2015-01-01T00:00", "2016-01-01T00:00").toArray());
+    }
+
+    @Test
+    public void testAfterWithoutSeverity() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+        RuleObject02 ruleObject02 = new RuleObject02();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2015, 1, 1, 0, 0));
+
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.after(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02()));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2016, 1, 1, 0, 0));
+        Assert.assertFalse(RuleGuard.after(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02()));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01", "be.domaindrivendesign.kernel.rule.entity|RuleObject02.getLocalDateTime02").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.After.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2015-01-01T00:00", "2016-01-01T00:00").toArray());
+    }
+
+    @Test
+    public void testAfterInvariant() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.afterInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2013, 1, 1, 0, 0), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        Assert.assertFalse(RuleGuard.afterInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2015, 1, 1, 0, 0), RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.AfterInvariant.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2015-01-01T00:00").toArray());
+    }
+
+    @Test
+    public void testAfterInvariantWithoutSeverity() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.afterInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2013, 1, 1, 0, 0)));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        Assert.assertFalse(RuleGuard.afterInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2015, 1, 1, 0, 0)));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.AfterInvariant.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2015-01-01T00:00").toArray());
+    }
+
+    @Test
+    public void testAfterOrEqual() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+        RuleObject02 ruleObject02 = new RuleObject02();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2013, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.afterOrEqual(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02(), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        Assert.assertTrue(RuleGuard.afterOrEqual(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02(), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2015, 1, 1, 0, 0));
+        Assert.assertFalse(RuleGuard.afterOrEqual(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02(), RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01", "be.domaindrivendesign.kernel.rule.entity|RuleObject02.getLocalDateTime02").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.AfterOrEqual.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2015-01-01T00:00").toArray());
+    }
+
+    @Test
+    public void testAfterOrEqualsWithoutSeverity() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+        RuleObject02 ruleObject02 = new RuleObject02();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2013, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.afterOrEqual(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02()));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        Assert.assertTrue(RuleGuard.afterOrEqual(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02()));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2015, 1, 1, 0, 0));
+        Assert.assertFalse(RuleGuard.afterOrEqual(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02()));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01", "be.domaindrivendesign.kernel.rule.entity|RuleObject02.getLocalDateTime02").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.AfterOrEqual.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2015-01-01T00:00").toArray());
+    }
+
+    @Test
+    public void testAfterOrEqualInvariant() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.afterOrEqualInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2013, 1, 1, 0, 0), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        Assert.assertTrue(RuleGuard.afterOrEqualInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2014, 1, 1, 0, 0), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        Assert.assertFalse(RuleGuard.afterOrEqualInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2015, 1, 1, 0, 0), RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.AfterOrEqualInvariant.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2015-01-01T00:00").toArray());
+    }
+
+    @Test
+    public void testAfterOrEqualInvariantWithoutSeverity() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2014, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.afterOrEqualInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2013, 1, 1, 0, 0)));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        Assert.assertTrue(RuleGuard.afterOrEqualInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2014, 1, 1, 0, 0)));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        Assert.assertFalse(RuleGuard.afterOrEqualInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2015, 1, 1, 0, 0)));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.AfterOrEqualInvariant.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2015-01-01T00:00").toArray());
+    }
+
+    @Test
+    public void testEqualsTemporal() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+        RuleObject02 ruleObject02 = new RuleObject02();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2015, 1, 1, 0, 0));
+
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2015, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.equals(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02(), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2016, 1, 1, 0, 0));
+        Assert.assertFalse(RuleGuard.equals(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02(), RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01", "be.domaindrivendesign.kernel.rule.entity|RuleObject02.getLocalDateTime02").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.EqualsTemporal.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2015-01-01T00:00", "2016-01-01T00:00").toArray());
+    }
+
+    @Test
+    public void testEqualsTemporalWithoutSeverity() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+        RuleObject02 ruleObject02 = new RuleObject02();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2015, 1, 1, 0, 0));
+
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2015, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.equals(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02()));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        ruleObject02.setLocalDateTime02(LocalDateTime.of(2016, 1, 1, 0, 0));
+        Assert.assertFalse(RuleGuard.equals(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02()));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01", "be.domaindrivendesign.kernel.rule.entity|RuleObject02.getLocalDateTime02").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.EqualsTemporal.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2015-01-01T00:00", "2016-01-01T00:00").toArray());
+    }
+
+    @Test
+    public void testEqualsInvariantTemporal() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2015, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.equalsInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2015, 1, 1, 0, 0), RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        Assert.assertFalse(RuleGuard.equalsInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2016, 1, 1, 0, 0), RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.EqualsTemporalInvariant.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2015-01-01T00:00", "2016-01-01T00:00").toArray());
+    }
+
+    @Test
+    public void testEqualsInvarantTemporalWithoutSeverity() {
+        RuleObject01 ruleObject01 = new RuleObject01();
+
+        ruleObject01.setLocalDateTime01(LocalDateTime.of(2015, 1, 1, 0, 0));
+
+        // No violation
+        Assert.assertTrue(RuleGuard.equalsInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2015, 1, 1, 0, 0)));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        Assert.assertFalse(RuleGuard.equalsInvariant(ruleObject01, () -> ruleObject01.getLocalDateTime01(), LocalDateTime.of(2016, 1, 1, 0, 0)));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.EqualsTemporalInvariant.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2015-01-01T00:00", "2016-01-01T00:00").toArray());
+    }
+
 }

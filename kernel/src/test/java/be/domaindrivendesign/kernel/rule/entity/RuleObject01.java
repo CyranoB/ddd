@@ -17,6 +17,15 @@ public class RuleObject01 extends ValueObject implements RuleObject {
     Object object01;
     List<Object> lists01;
     DummyValueObject dummyValueObject01;
+    double double01;
+
+    public double getDouble01() {
+        return double01;
+    }
+
+    public void setDouble01(double double01) {
+        this.double01 = double01;
+    }
 
     public int getAttribute01() {
         return attribute01;

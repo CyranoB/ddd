@@ -47,7 +47,7 @@ public class Guard {
      * @return
      */
     public static <T extends Number & Comparable<T>> boolean greaterThan(T value01, T value02) {
-        return value01 != null && value02 != null && value01.compareTo(value02) == 1;
+        return value01 != null && value02 != null && value01.compareTo(value02) > 0;
     }
 
     /**
@@ -136,7 +136,7 @@ public class Guard {
      * @return
      */
     public static <T extends Temporal & Comparable<T>> boolean before(T value, T date) {
-        return value != null && date != null && value.compareTo(date) == -1;
+        return value != null && date != null && value.compareTo(date) < 0;
     }
 
     /**
@@ -145,7 +145,7 @@ public class Guard {
      * @return
      */
     public static <T extends Temporal & Comparable<T>> boolean after(T value, T date) {
-        return value != null && date != null && value.compareTo(date) == 1;
+        return value != null && date != null && value.compareTo(date) > 0;
     }
 
 
