@@ -1,5 +1,6 @@
 package be.domaindrivendesign.kernel.rule.error;
 
+import be.domaindrivendesign.kernel.common.error.KernelException;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleViolation;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 /**
  *
  */
-public class RuleException extends RuntimeException {
+public class RuleException extends KernelException {
     private List<RuleViolation> ruleViolations;
 
     /**

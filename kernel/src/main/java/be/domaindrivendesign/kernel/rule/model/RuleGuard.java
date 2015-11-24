@@ -763,6 +763,35 @@ public class RuleGuard {
 
     //endregion
 
+    //region Object
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean mandatory(RuleObject ruleObject, Property<T> propertyLambda) {
+        return mandatory(ruleObject, propertyLambda, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean mandatory(RuleObject ruleObject, Property<T> propertyLambda, RuleSeverityType severityType) {
+        if (propertyLambda.get() instanceof String) {
+            return (!Guard.nullOrEmpty((String) propertyLambda.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda, RuleType.Mandatory.typeValue, severityType);
+        } else {
+            return (propertyLambda.get() != null) || RuleGuard.raiseViolation(ruleObject, propertyLambda, RuleType.Mandatory.typeValue, severityType);
+        }
+    }
+
+    // endregion
+
     //region RaiseViolation
 
     /**
