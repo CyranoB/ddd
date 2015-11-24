@@ -982,12 +982,23 @@ public class RuleGuard {
     public interface Property<T> extends Supplier<T>, Serializable {
     }
 
+    /**
+     * @param <T>
+     */
     public interface NumberProperty<T extends Number & Comparable<T>> extends Property<T> {
     }
 
+    /**
+     *
+     * @param <T>
+     */
     public interface TemporalProperty<T extends Temporal & Comparable<T>> extends Property<T> {
     }
 
+    /**
+     *
+     * @param <T>
+     */
     public interface StringProperty<T extends String & Comparable<String>> extends Property<T> {
     }
 }
