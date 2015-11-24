@@ -449,7 +449,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends Temporal & Comparable<T>> boolean beforeOrEqualInvariant(RuleObject ruleObject, TemporalProperty<T> propertyLambda01, T invariant, RuleSeverityType severityType) {
-        return (Guard.before(propertyLambda01.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, invariant.toString(), RuleType.BeforeOrEqualInvariant.typeValue, severityType);
+        return (Guard.beforeOrEqual(propertyLambda01.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, invariant.toString(), RuleType.BeforeOrEqualInvariant.typeValue, severityType);
     }
 
     /**
@@ -471,7 +471,7 @@ public class RuleGuard {
      */
     public static <T extends Temporal & Comparable<T>> boolean after(RuleObject ruleObject, TemporalProperty<T> propertyLambda01, TemporalProperty<T> propertyLambda02, RuleSeverityType severityType) {
 
-        return (Guard.before(propertyLambda01.get(), propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.After.typeValue, severityType);
+        return (Guard.after(propertyLambda01.get(), propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.After.typeValue, severityType);
     }
 
     /**
@@ -492,7 +492,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends Temporal & Comparable<T>> boolean afterInvariant(RuleObject ruleObject, TemporalProperty<T> propertyLambda01, T invariant, RuleSeverityType severityType) {
-        return (Guard.before(propertyLambda01.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, invariant.toString(), RuleType.AfterInvariant.typeValue, severityType);
+        return (Guard.after(propertyLambda01.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, invariant.toString(), RuleType.AfterInvariant.typeValue, severityType);
     }
 
     /**
@@ -514,7 +514,7 @@ public class RuleGuard {
      */
     public static <T extends Temporal & Comparable<T>> boolean afterOrEqual(RuleObject ruleObject, TemporalProperty<T> propertyLambda01, TemporalProperty<T> propertyLambda02, RuleSeverityType severityType) {
 
-        return (Guard.beforeOrEqual(propertyLambda01.get(), propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.AfterOrEqual.typeValue, severityType);
+        return (Guard.afterOrEqual(propertyLambda01.get(), propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.AfterOrEqual.typeValue, severityType);
     }
 
     /**
@@ -535,7 +535,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends Temporal & Comparable<T>> boolean afterOrEqualInvariant(RuleObject ruleObject, TemporalProperty<T> propertyLambda01, T invariant, RuleSeverityType severityType) {
-        return (Guard.before(propertyLambda01.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, invariant.toString(), RuleType.AfterOrEqualInvariant.typeValue, severityType);
+        return (Guard.afterOrEqual(propertyLambda01.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, invariant.toString(), RuleType.AfterOrEqualInvariant.typeValue, severityType);
     }
 
     /**
