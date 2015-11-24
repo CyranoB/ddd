@@ -131,7 +131,7 @@ public class Guard {
      * @return
      */
     public static <T extends Temporal & Comparable<T>> boolean before(T value, T date) {
-        return value != null && date != null && value.compareTo(date) == -1;
+        return value != null && date != null && value.compareTo(date) != -1;
     }
 
     /**
@@ -140,7 +140,7 @@ public class Guard {
      * @return
      */
     public static <T extends Temporal & Comparable<T>> boolean after(T value, T date) {
-        return value != null && date != null && value.compareTo(date) == 1;
+        return value != null && date != null && value.compareTo(date) != 1;
     }
 
 
