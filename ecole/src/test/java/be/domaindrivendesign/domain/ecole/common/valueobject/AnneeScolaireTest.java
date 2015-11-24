@@ -1,8 +1,8 @@
 package be.domaindrivendesign.domain.ecole.common.valueobject;
 
 import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
-import be.domaindrivendesign.kernel.rule.model.RuleType;
 import be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule;
+import be.domaindrivendesign.kernel.rule.type.RuleType;
 import org.junit.After;
 import org.junit.Test;
 

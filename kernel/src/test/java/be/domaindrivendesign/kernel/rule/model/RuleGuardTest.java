@@ -7,6 +7,7 @@ import be.domaindrivendesign.kernel.rule.entity.RuleObjectB;
 import be.domaindrivendesign.kernel.rule.error.RuleException;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleViolation;
 import be.domaindrivendesign.kernel.rule.type.RuleSeverityType;
+import be.domaindrivendesign.kernel.rule.type.RuleType;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;

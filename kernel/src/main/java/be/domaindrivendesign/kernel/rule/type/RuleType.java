@@ -1,4 +1,4 @@
-package be.domaindrivendesign.kernel.rule.model;
+package be.domaindrivendesign.kernel.rule.type;
 
 /**
  * Created by asmolabs on 16/11/15.

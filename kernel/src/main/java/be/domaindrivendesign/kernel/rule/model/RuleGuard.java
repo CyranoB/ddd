@@ -5,6 +5,7 @@ import be.domaindrivendesign.kernel.rule.error.RuleException;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleViolation;
 import be.domaindrivendesign.kernel.rule.type.RuleSeverityType;
+import be.domaindrivendesign.kernel.rule.type.RuleType;
 import com.trigersoft.jaque.expression.*;
 
 import java.io.Serializable;
