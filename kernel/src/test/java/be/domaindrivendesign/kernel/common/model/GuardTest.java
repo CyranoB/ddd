@@ -265,10 +265,10 @@ public class GuardTest {
 
     @Test
     public void testPhoneNumber() throws Exception {
-        Assert.assertTrue(Guard.phoneNumber("0495786754"));
-        Assert.assertTrue(Guard.phoneNumber("071788967"));
-        Assert.assertTrue(Guard.phoneNumber("+32495786754"));
-        Assert.assertFalse(Guard.phoneNumber("ae"));
+        Assert.assertTrue(Guard.phone("0495786754"));
+        Assert.assertTrue(Guard.phone("071788967"));
+        Assert.assertTrue(Guard.phone("+32495786754"));
+        Assert.assertFalse(Guard.phone("ae"));
     }
 
     @Test

@@ -263,7 +263,7 @@ public class Guard {
      * @param value
      * @return
      */
-    public static boolean phoneNumber(String value) {
+    public static boolean phone(String value) {
         if (Guard.nullOrEmpty(value)) {
             return false;
         } else {
@@ -297,6 +297,16 @@ public class Guard {
         if (objs != null && !nullCountAsElement)
             objs = objs.stream().filter(x -> x != null).collect(Collectors.toList());
         return objs == null ? minElement == 0 : (minElement <= objs.size() && objs.size() <= maxElement);
+    }
+
+    /**
+     * @param value
+     * @param list
+     * @param <TA>
+     * @return
+     */
+    public static <TA> boolean contains(TA value, List<TA> list) {
+        return list == null ? false : list.contains(value);
     }
 
 }

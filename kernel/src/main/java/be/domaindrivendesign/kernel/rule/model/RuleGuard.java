@@ -4,15 +4,16 @@ import be.domaindrivendesign.kernel.common.model.Guard;
 import be.domaindrivendesign.kernel.rule.error.RuleException;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleViolation;
+import be.domaindrivendesign.kernel.rule.lambda.*;
 import be.domaindrivendesign.kernel.rule.type.RuleSeverityType;
 import be.domaindrivendesign.kernel.rule.type.RuleType;
 import com.trigersoft.jaque.expression.*;
 
-import java.io.Serializable;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 /**
@@ -792,7 +793,249 @@ public class RuleGuard {
 
     // endregion
 
+    //region List
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param objs
+     * @param minElement
+     * @param maxElement
+     * @param <T>
+     * @param <TElement>
+     * @return
+     */
+    public static <T, TElement> boolean nbrOfElements(RuleObject ruleObject, Property<T> propertyLambda, List<TElement> objs, Integer minElement, Integer maxElement) {
+        return nbrOfElements(ruleObject, propertyLambda, objs, minElement, maxElement, false, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param objs
+     * @param minElement
+     * @param maxElement
+     * @param nullCountAsElement
+     * @param <T>
+     * @param <TElement>
+     * @return
+     */
+    public static <T, TElement> boolean nbrOfElements(RuleObject ruleObject, Property<T> propertyLambda, List<TElement> objs, Integer minElement, Integer maxElement, boolean nullCountAsElement) {
+        return nbrOfElements(ruleObject, propertyLambda, objs, minElement, maxElement, nullCountAsElement, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param objs
+     * @param minElement
+     * @param maxElement
+     * @param nullCountAsElement
+     * @param severityType
+     * @param <T>
+     * @param <TElement>
+     * @return
+     */
+    public static <T, TElement> boolean nbrOfElements(RuleObject ruleObject, Property<T> propertyLambda, List<TElement> objs, int minElement, int maxElement, boolean nullCountAsElement, RuleSeverityType severityType) {
+        return Guard.nbrOfElements(objs, minElement, maxElement, nullCountAsElement) || RuleGuard.raiseViolation(ruleObject, propertyLambda, new ArrayList<String>(Arrays.asList(objs == null ? "0" : Integer.toString(objs.size()), Integer.toString(minElement), Integer.toString(maxElement))), RuleType.NbrOfElementsInList.typeValue, severityType);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambdas
+     * @param minElement
+     * @param maxElement
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean nbrOfElements(RuleObject ruleObject, ListProperty<List<T>> propertyLambdas, int minElement, int maxElement) {
+        return nbrOfElements(ruleObject, propertyLambdas, minElement, maxElement, false, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambdas
+     * @param minElement
+     * @param maxElement
+     * @param nullCountAsElement
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean nbrOfElements(RuleObject ruleObject, ListProperty<List<T>> propertyLambdas, int minElement, int maxElement, boolean nullCountAsElement) {
+        return nbrOfElements(ruleObject, propertyLambdas, minElement, maxElement, nullCountAsElement, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambdas
+     * @param minElement
+     * @param maxElement
+     * @param nullCountAsElement
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean nbrOfElements(RuleObject ruleObject, ListProperty<List<T>> propertyLambdas, int minElement, int maxElement, boolean nullCountAsElement, RuleSeverityType severityType) {
+        return Guard.nbrOfElements(propertyLambdas.get(), minElement, maxElement, nullCountAsElement) || RuleGuard.raiseViolation(ruleObject, propertyLambdas, new ArrayList<String>(Arrays.asList(propertyLambdas.get() == null ? "0" : Integer.toString(propertyLambdas.get().size()), Integer.toString(minElement), Integer.toString(maxElement))), RuleType.NbrOfElementsInList.typeValue, severityType);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambdas
+     * @param minElement
+     * @param maxElement
+     * @param <T>
+     * @return
+     */
+    public static <TKey, T> boolean nbrOfElements(RuleObject ruleObject, MapProperty<Map<TKey, T>> propertyLambdas, int minElement, int maxElement) {
+        return nbrOfElements(ruleObject, propertyLambdas, minElement, maxElement, false, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambdas
+     * @param minElement
+     * @param maxElement
+     * @param nullCountAsElement
+     * @param <T>
+     * @return
+     */
+    public static <TKey, T> boolean nbrOfElements(RuleObject ruleObject, MapProperty<Map<TKey, T>> propertyLambdas, int minElement, int maxElement, boolean nullCountAsElement) {
+        return nbrOfElements(ruleObject, propertyLambdas, minElement, maxElement, nullCountAsElement, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambdas
+     * @param minElement
+     * @param maxElement
+     * @param nullCountAsElement
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <TKey, T> boolean nbrOfElements(RuleObject ruleObject, MapProperty<Map<TKey, T>> propertyLambdas, int minElement, int maxElement, boolean nullCountAsElement, RuleSeverityType severityType) {
+        return Guard.nbrOfElements(new ArrayList<>(propertyLambdas.get().values()), minElement, maxElement, nullCountAsElement) || RuleGuard.raiseViolation(ruleObject, propertyLambdas, new ArrayList<String>(Arrays.asList(propertyLambdas.get().values() == null ? "0" : Integer.toString(propertyLambdas.get().values().size()), Integer.toString(minElement), Integer.toString(maxElement))), RuleType.NbrOfElementsInList.typeValue, severityType);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param list
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean notInList(RuleObject ruleObject, Property<T> propertyLambda01, List<T> list) {
+        return notInList(ruleObject, propertyLambda01, list, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param list
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean notInList(RuleObject ruleObject, Property<T> propertyLambda01, List<T> list, RuleSeverityType severityType) {
+        if (!Guard.contains(propertyLambda01.get(), list)) {
+            return true;
+        }
+        List<String> values = new ArrayList<String>();
+        values.add(propertyLambda01.get() == null ? "0" : propertyLambda01.get().toString());
+        list.forEach(x -> values.add(x.toString()));
+        raiseViolation(ruleObject, propertyLambda01, values, RuleType.NotInList.typeValue, severityType);
+        return false;
+    }
+
+    //endregion
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param <T>
+     * @return
+     */
+    public static <T extends String> boolean email(RuleObject ruleObject, Property<T> propertyLambda) {
+        return email(ruleObject, propertyLambda, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T extends String> boolean email(RuleObject ruleObject, Property<T> propertyLambda, RuleSeverityType severityType) {
+        return (Guard.email(propertyLambda.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda, RuleType.EMail.typeValue, severityType);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param <T>
+     * @return
+     */
+    public static <T extends String> boolean phone(RuleObject ruleObject, Property<T> propertyLambda) {
+        return phone(ruleObject, propertyLambda, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T extends String> boolean phone(RuleObject ruleObject, Property<T> propertyLambda, RuleSeverityType severityType) {
+        return (Guard.phone(propertyLambda.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda, RuleType.EMail.typeValue, severityType);
+    }
+
     //region RaiseViolation
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean raiseUniqueViolation(RuleObject ruleObject, Property<T> propertyLambda) {
+        return raiseUniqueViolation(ruleObject, propertyLambda, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean raiseUniqueViolation(RuleObject ruleObject, Property<T> propertyLambda, RuleSeverityType severityType) {
+        return RuleGuard.raiseViolation(ruleObject, propertyLambda, RuleType.Unique.typeValue, severityType);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean raiseImmutableViolation(RuleObject ruleObject, Property<T> propertyLambda) {
+        return raiseImmutableViolation(ruleObject, propertyLambda, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean raiseImmutableViolation(RuleObject ruleObject, Property<T> propertyLambda, RuleSeverityType severityType) {
+        return RuleGuard.raiseViolation(ruleObject, propertyLambda, RuleType.Immutable.typeValue, severityType);
+    }
+
 
     /**
      * @param ruleObject     L'objet sur lequel la validation est effectué
@@ -976,28 +1219,5 @@ public class RuleGuard {
 
     //endregion
 
-    /**
-     * @param <T>
-     */
-    public interface Property<T> extends Supplier<T>, Serializable {
-    }
 
-    /**
-     * @param <T>
-     */
-    public interface NumberProperty<T extends Number & Comparable<T>> extends Property<T> {
-    }
-
-    /**
-     * @param <T>
-     */
-    public interface TemporalProperty<T extends Temporal & Comparable<T>> extends Property<T> {
-    }
-
-    /**
-     *
-     * @param <T>
-     */
-    public interface StringProperty<T extends String & Comparable<String>> extends Property<T> {
-    }
 }
