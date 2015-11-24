@@ -989,7 +989,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends String> boolean phone(RuleObject ruleObject, Property<T> propertyLambda, RuleSeverityType severityType) {
-        return (Guard.phone(propertyLambda.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda, RuleType.EMail.typeValue, severityType);
+        return (Guard.phone(propertyLambda.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda, RuleType.PhoneNbr.typeValue, severityType);
     }
 
     //region RaiseViolation
