@@ -989,7 +989,6 @@ public class RuleGuard {
     }
 
     /**
-     *
      * @param <T>
      */
     public interface TemporalProperty<T extends Temporal & Comparable<T>> extends Property<T> {
