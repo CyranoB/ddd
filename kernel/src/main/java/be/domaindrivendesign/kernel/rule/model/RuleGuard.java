@@ -725,7 +725,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends String & Comparable<String>> boolean length(RuleObject ruleObject, StringProperty<T> propertyLambda, int length, RuleSeverityType severityType) {
-        return Guard.length(propertyLambda.get(), length) || RuleGuard.raiseViolation(ruleObject, propertyLambda, RuleType.Length.typeValue, severityType);
+        return Guard.length(propertyLambda.get(), length) || RuleGuard.raiseViolation(ruleObject, propertyLambda, Integer.toString(length), RuleType.Length.typeValue, severityType);
     }
 
     /**
@@ -794,51 +794,6 @@ public class RuleGuard {
     // endregion
 
     //region List
-
-    /**
-     * @param ruleObject
-     * @param propertyLambda
-     * @param objs
-     * @param minElement
-     * @param maxElement
-     * @param <T>
-     * @param <TElement>
-     * @return
-     */
-    public static <T, TElement> boolean nbrOfElements(RuleObject ruleObject, Property<T> propertyLambda, List<TElement> objs, Integer minElement, Integer maxElement) {
-        return nbrOfElements(ruleObject, propertyLambda, objs, minElement, maxElement, false, RuleSeverityType.Error);
-    }
-
-    /**
-     * @param ruleObject
-     * @param propertyLambda
-     * @param objs
-     * @param minElement
-     * @param maxElement
-     * @param nullCountAsElement
-     * @param <T>
-     * @param <TElement>
-     * @return
-     */
-    public static <T, TElement> boolean nbrOfElements(RuleObject ruleObject, Property<T> propertyLambda, List<TElement> objs, Integer minElement, Integer maxElement, boolean nullCountAsElement) {
-        return nbrOfElements(ruleObject, propertyLambda, objs, minElement, maxElement, nullCountAsElement, RuleSeverityType.Error);
-    }
-
-    /**
-     * @param ruleObject
-     * @param propertyLambda
-     * @param objs
-     * @param minElement
-     * @param maxElement
-     * @param nullCountAsElement
-     * @param severityType
-     * @param <T>
-     * @param <TElement>
-     * @return
-     */
-    public static <T, TElement> boolean nbrOfElements(RuleObject ruleObject, Property<T> propertyLambda, List<TElement> objs, int minElement, int maxElement, boolean nullCountAsElement, RuleSeverityType severityType) {
-        return Guard.nbrOfElements(objs, minElement, maxElement, nullCountAsElement) || RuleGuard.raiseViolation(ruleObject, propertyLambda, new ArrayList<String>(Arrays.asList(objs == null ? "0" : Integer.toString(objs.size()), Integer.toString(minElement), Integer.toString(maxElement))), RuleType.NbrOfElementsInList.typeValue, severityType);
-    }
 
     /**
      * @param ruleObject
@@ -1048,7 +1003,7 @@ public class RuleGuard {
     public static <T> boolean raiseViolation(RuleObject ruleObject, Property<T> propertyLambda, int ruleId, RuleSeverityType severityType) {
         List<String> values = new ArrayList<>();
 
-        values.add(propertyLambda.get().toString());
+        if (propertyLambda.get() != null) values.add(propertyLambda.get().toString());
 
         return raiseViolation(ruleObject, propertyLambda, values, ruleId, severityType);
     }
