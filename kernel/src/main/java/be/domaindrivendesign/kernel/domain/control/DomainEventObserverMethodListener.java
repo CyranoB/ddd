@@ -10,9 +10,9 @@ import java.lang.reflect.Method;
  */
 public class DomainEventObserverMethodListener<T> implements DomainEventListener<T> {
 
-    protected String descriptor;
-    protected Method method;
-    protected Object instance;
+    protected final String descriptor;
+    protected final Method method;
+    protected final Object instance;
 
     public DomainEventObserverMethodListener(Object instance, Method method) {
         this.instance = instance;
@@ -75,8 +75,7 @@ public class DomainEventObserverMethodListener<T> implements DomainEventListener
     public String makeDescriptor(Class[] params, Class retType) {
         StringBuffer sbuf = new StringBuffer();
         sbuf.append('(');
-        for (int i = 0; i < params.length; i++)
-            makeDesc(sbuf, params[i]);
+        for (Class param : params) makeDesc(sbuf, param);
 
         sbuf.append(')');
         if (retType != null)

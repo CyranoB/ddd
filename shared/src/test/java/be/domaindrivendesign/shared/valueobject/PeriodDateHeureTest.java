@@ -1,7 +1,6 @@
-package be.domaindrivendesign.share.valueobject;
+package be.domaindrivendesign.shared.valueobject;
 
 import be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule;
-import be.domaindrivendesign.shared.valueobject.PeriodDateHeure;
 import org.junit.After;
 import org.junit.Test;
 

@@ -45,10 +45,7 @@ public class Entity {
             return false;
         }
 
-        if (this == otherObject) {
-            return true;
-        }
-        return otherObject instanceof Entity && id.equals(((Entity) otherObject).getId());
+        return this == otherObject || otherObject instanceof Entity && id.equals(((Entity) otherObject).getId());
     }
 
     @Override
@@ -86,6 +83,11 @@ public class Entity {
                 }
             }
         }
+    }
+
+    // Only use for tests and other specific cases
+    public void forceState(EntityStateType state) {
+        this.state = state;
     }
 
     public LocalDateTime getLogicalDeleteOn() {

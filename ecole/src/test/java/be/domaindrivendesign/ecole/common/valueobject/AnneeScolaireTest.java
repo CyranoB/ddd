@@ -1,6 +1,5 @@
-package be.domaindrivendesign.domain.ecole.common.valueobject;
+package be.domaindrivendesign.ecole.common.valueobject;
 
-import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
 import be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule;
 import be.domaindrivendesign.kernel.rule.type.RuleType;
 import org.junit.After;
@@ -59,9 +58,9 @@ public class AnneeScolaireTest {
         assertNotNull(anneeScolaire);
         assertEquals(2, UnitOfWorkRule.getInstance().getViolations().size());
         assertEquals(RuleType.Between.typeValue, UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId());
-        assertArrayEquals(new String[] { "1980", "2000", "2100" }, UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray());
+        assertArrayEquals(new String[]{"1980", "2000", "2100"}, UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray());
         assertEquals(RuleType.Between.typeValue, UnitOfWorkRule.getInstance().getViolations().get(1).getRuleId());
-        assertArrayEquals(new String[] { "2115", "2000", "2100" }, UnitOfWorkRule.getInstance().getViolations().get(1).getValues().toArray());
+        assertArrayEquals(new String[]{"2115", "2000", "2100"}, UnitOfWorkRule.getInstance().getViolations().get(1).getValues().toArray());
         assertEquals(1980, anneeScolaire.getAnneeDebut());
         assertEquals(2115, anneeScolaire.getAnneeFin());
     }
@@ -73,7 +72,7 @@ public class AnneeScolaireTest {
         assertNotNull(anneeScolaire);
         assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
         assertEquals(RuleType.SmallerOrEqualThan.typeValue, UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId());
-        assertArrayEquals(new String[] { "2016", "2015" }, UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray());
+        assertArrayEquals(new String[]{"2016", "2015"}, UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray());
         assertEquals(2016, anneeScolaire.getAnneeDebut());
         assertEquals(2015, anneeScolaire.getAnneeFin());
     }

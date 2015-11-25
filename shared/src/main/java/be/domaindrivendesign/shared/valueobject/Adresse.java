@@ -28,8 +28,8 @@ public class Adresse extends ValueObject {
         this.localite = localite;
 
         // Guard
-        RuleGuard.nullOrEmpty(this, this::getAdr, RuleSeverityType.Error);
-        RuleGuard.nullOrEmpty(this, this::getLocalite, RuleSeverityType.Error);
+        RuleGuard.mandatory(this, this::getAdr);
+        RuleGuard.mandatory(this, this::getLocalite);
         RuleGuard.between(this, this::getCodePostal, 1000, 9999, RuleSeverityType.Error);
 
     }
