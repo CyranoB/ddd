@@ -88,6 +88,11 @@ public class Entity {
         }
     }
 
+    // Only use for tests and other specific cases
+    public void forceState(EntityStateType state) {
+        this.state = state;
+    }
+
     public LocalDateTime getLogicalDeleteOn() {
         return logicalDeleteOn;
     }
