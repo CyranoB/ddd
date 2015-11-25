@@ -306,7 +306,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends Number & Comparable<T>> boolean domain(RuleObject ruleObject, NumberProperty<T> propertyLambda01, List<T> domain, RuleSeverityType severityType) {
-        if (Guard.domain((T) propertyLambda01.get(), domain)) {
+        if (Guard.domain(propertyLambda01.get(), domain)) {
             return true;
         }
 
@@ -603,7 +603,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends Temporal & Comparable<T>> boolean domain(RuleObject ruleObject, TemporalProperty<T> propertyLambda01, List<T> domain, RuleSeverityType severityType) {
-        if (Guard.domain((T) propertyLambda01.get(), domain)) {
+        if (Guard.domain(propertyLambda01.get(), domain)) {
             return true;
         }
 
@@ -1047,8 +1047,9 @@ public class RuleGuard {
      */
     public static <T> boolean raiseViolation(RuleObject ruleObject, Property<T> propertyLambda, int ruleId, RuleSeverityType severityType) {
         List<String> values = new ArrayList<>();
-
-        values.add(propertyLambda.get().toString());
+        T p = propertyLambda.get();
+        if (p != null)
+            values.add(p.toString());
 
         return raiseViolation(ruleObject, propertyLambda, values, ruleId, severityType);
     }

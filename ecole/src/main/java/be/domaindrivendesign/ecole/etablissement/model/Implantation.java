@@ -19,7 +19,7 @@ import java.util.UUID;
  */
 public class Implantation extends Aggregate implements RuleObject {
 
-    //region Constructeurs
+
 
     //region Propriétés
     /// <summary>
@@ -46,7 +46,6 @@ public class Implantation extends Aggregate implements RuleObject {
     /// </value>
     private Adresse adresse;
 
-    //endregion
     /// <summary>
     /// Obient la liste des niveaux.
     /// </summary>
@@ -68,7 +67,9 @@ public class Implantation extends Aggregate implements RuleObject {
     /// La période de validité.
     /// </value>
     private PeriodDateHeure validite;
+    //endregion
 
+    //region Constructeurs
     /// <summary>
     /// Constructeur protégé afin d'empêcher les créations illicites d'objets.
     /// </summary>
@@ -76,9 +77,6 @@ public class Implantation extends Aggregate implements RuleObject {
     protected Implantation(UUID id) {
         super(id);
     }
-
-
-    //region Getters
 
     /// <summary>
     /// Constructeur protégé afin d'empêcher les créations illicites d'objets.
@@ -88,6 +86,7 @@ public class Implantation extends Aggregate implements RuleObject {
     /// </remarks>
     protected Implantation() {
     }
+    //endregion
 
     /// <summary>
     /// Crée une nouvelle instance de la classe <see cref="Implantation"/>.
@@ -108,13 +107,11 @@ public class Implantation extends Aggregate implements RuleObject {
         implantation.contact = contact;
         implantation.validite = validite;
 
-
-        // TODO RuleGuard
-        RuleGuard.nullOrEmpty(implantation, implantation::getNumeroReference, RuleSeverityType.Error);
-        RuleGuard.nullOrEmpty(implantation, implantation::getDenomination, RuleSeverityType.Error);
-        //RuleGuard.nullOrEmpty(implantation, implantation::getAdresse, RuleSeverityType.Error);
-        //RuleGuard.nullOrEmpty(implantation, implantation::getNiveaux, niveaux, 1, 7, RuleSeverityType.Error);
-        //RuleGuard.nullOrEmpty(implantation, implantation::getValidite, RuleSeverityType.Error);
+        RuleGuard.mandatory(implantation, implantation::getNumeroReference);
+        RuleGuard.mandatory(implantation, implantation::getDenomination);
+        RuleGuard.mandatory(implantation, implantation::getAdresse);
+        RuleGuard.nbrOfElements(implantation, implantation::getNiveaux, niveaux, 1, 7);
+        RuleGuard.mandatory(implantation, implantation::getValidite);
 
         return implantation;
     }
@@ -149,9 +146,8 @@ public class Implantation extends Aggregate implements RuleObject {
     /// </summary>
     /// <param name="fermeLe">La date de fermeture.</param>
     public void fermer(LocalDateTime fermeLe) {
-        // TODO RuleGuard
-        //if (RuleGuard.after( this, fermeLe, validite::getDebut, RuleSeverityType.BlockingError))
-        //    this.validite = new PeriodDateHeure(validite.getDebut(), fermeLe);
+        if (RuleGuard.after(this, () -> fermeLe, validite::getDebut, RuleSeverityType.BlockingError))
+            this.validite = new PeriodDateHeure(validite.getDebut(), fermeLe);
         setState(EntityStateType.Modified);
         // TODO DomainEventManager
         // DomainEventManager.Default.Raise(new ImplantationFermee(this, fermeLe));
@@ -167,8 +163,7 @@ public class Implantation extends Aggregate implements RuleObject {
         //DomainEventManager.Default.Raise(new ImplantationFermee(this, supprimeLe));
     }
 
-    //endregion
-
+    //region Getters
     public String getNumeroReference() {
         return numeroReference;
     }

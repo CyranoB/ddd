@@ -2,7 +2,6 @@ package be.domaindrivendesign.shared.valueobject;
 
 import be.domaindrivendesign.kernel.common.valueobject.ValueObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
-import be.domaindrivendesign.kernel.rule.type.RuleSeverityType;
 
 /**
  * Created by eddie on 23/11/15.
@@ -19,11 +18,10 @@ public class Email extends ValueObject {
         @SuppressWarnings("UnusedAssignment")
         Email email = null;
 
-        // TODO EMail RuleGuard
-        // RuleGuard.email(this, () => Mail, mail);
-        RuleGuard.nullOrEmpty(this, this::getMail, RuleSeverityType.Error);
-
         this.mail = mail;
+
+        RuleGuard.email(this, this::getMail);
+        RuleGuard.mandatory(this, this::getMail);
     }
 
     public String getMail() {

@@ -1,6 +1,7 @@
 package be.domaindrivendesign.shared.valueobject;
 
 import be.domaindrivendesign.kernel.common.valueobject.ValueObject;
+import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 
 /**
  * Created by eddie on 23/11/15.
@@ -13,8 +14,7 @@ public class NumeroTelephone extends ValueObject {
     }
 
     public NumeroTelephone(String numero) {
-        // TODO RuleGuard PhoneNumber
-        //RuleGuard.PhoneNumber(this, () => this.Numero, numero);
+        RuleGuard.phone(this, () -> numero);
         this.numero = numero;
     }
 
