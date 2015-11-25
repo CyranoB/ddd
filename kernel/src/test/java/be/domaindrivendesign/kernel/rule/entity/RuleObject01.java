@@ -5,6 +5,7 @@ import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by asmolabs on 15/11/15.
@@ -16,6 +17,7 @@ public class RuleObject01 extends ValueObject implements RuleObject {
     String string01;
     Object object01;
     List<Object> lists01;
+    Map<String, String> maps01;
     DummyValueObject dummyValueObject01;
     double double01;
 
@@ -73,5 +75,13 @@ public class RuleObject01 extends ValueObject implements RuleObject {
 
     public void setDummyValueObject01(DummyValueObject dummyValueObject01) {
         this.dummyValueObject01 = dummyValueObject01;
+    }
+
+    public Map<String, String> getMaps01() {
+        return maps01;
+    }
+
+    public void setMaps01(Map<String, String> maps01) {
+        this.maps01 = maps01;
     }
 }

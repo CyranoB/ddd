@@ -275,7 +275,8 @@ public class Guard {
             PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
             try {
                 Phonenumber.PhoneNumber phoneNumber = phoneUtil.parse(value, "BE");
-                return true;
+
+                return phoneUtil.isValidNumber(phoneNumber);
             } catch (NumberParseException e) {
                 return false;
             }

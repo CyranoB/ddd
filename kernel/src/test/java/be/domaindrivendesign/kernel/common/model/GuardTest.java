@@ -283,6 +283,7 @@ public class GuardTest {
         Assert.assertTrue(Guard.phone("+32495786754"));
         Assert.assertFalse(Guard.phone("ae"));
         Assert.assertFalse(Guard.phone(null));
+        Assert.assertFalse(Guard.phone("1111"));
     }
 
     @Test
