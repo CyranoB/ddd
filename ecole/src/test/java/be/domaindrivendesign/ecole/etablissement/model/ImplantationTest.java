@@ -130,7 +130,6 @@ public class ImplantationTest {
     @Test
     public void testFermer() {
         Implantation implantation = Implantation.creer("reference", "denomination", new Adresse01(), Arrays.asList(NiveauType.Maternelle, NiveauType.Primaire), new Contact01(), PeriodDateHeure.EMPTY);
-        UUID implantationId = implantation.getId();
         implantation.forceState(EntityStateType.Unchanged); // Tromper l'état pour éviter que le test Modified reste Added.
 
         // TODO Event Register
@@ -150,7 +149,6 @@ public class ImplantationTest {
     @Test
     public void testSupprimer() {
         Implantation implantation = Implantation.creer("reference", "denomination", new Adresse01(), Arrays.asList(NiveauType.Maternelle, NiveauType.Primaire), new Contact01(), PeriodDateHeure.EMPTY);
-        UUID implantationId = implantation.getId();
         implantation.forceState(EntityStateType.Unchanged); // Tromper l'état pour éviter que le test Modified reste Added.
 
         // TODO Event Register

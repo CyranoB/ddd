@@ -78,7 +78,7 @@ public class PeriodDateHeure extends ValueObject {
 
     @Override
     public String toString() {
-        return String.format("[%d-%d]", debut, fin);
+        return String.format("[%s-%s]", debut, fin);
     }
 
 

@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Created by asmolabs on 15/11/15.
@@ -63,10 +64,10 @@ public class GuardTest {
 
     @Test
     public void testDomain() throws Exception {
-        Assert.assertTrue(Guard.domain(1, Arrays.asList(1)));
+        Assert.assertTrue(Guard.domain(1, Collections.singletonList(1)));
         Assert.assertTrue(Guard.domain(1, Arrays.asList(1, 2, 3)));
         Assert.assertFalse(Guard.domain(null, Arrays.asList(1, 2, 3)));
-        Assert.assertFalse(Guard.domain(1, Arrays.asList()));
+        Assert.assertFalse(Guard.domain(1, Collections.emptyList()));
         Assert.assertFalse(Guard.domain(10, Arrays.asList(1, 2, 3)));
         Assert.assertFalse(Guard.domain(null, Arrays.asList(1, 2, 3)));
     }
@@ -122,10 +123,10 @@ public class GuardTest {
 
     @Test
     public void testDomainDouble() throws Exception {
-        Assert.assertTrue(Guard.domain(1.1, Arrays.asList(1.1)));
+        Assert.assertTrue(Guard.domain(1.1, Collections.singletonList(1.1)));
         Assert.assertTrue(Guard.domain(1.1, Arrays.asList(1.1, 2.2, 3.3)));
         Assert.assertFalse(Guard.domain(null, Arrays.asList(1.1, 2.2, 3.3)));
-        Assert.assertFalse(Guard.domain(1.1, Arrays.asList()));
+        Assert.assertFalse(Guard.domain(1.1, Collections.emptyList()));
         Assert.assertFalse(Guard.domain(10.10, Arrays.asList(1.1, 2.2, 3.3)));
         Assert.assertFalse(Guard.domain(null, Arrays.asList(1.1, 2.2, 3.3)));
     }
@@ -207,10 +208,10 @@ public class GuardTest {
 
     @Test
     public void testDomainTemporal() throws Exception {
-        Assert.assertTrue(Guard.domain(LocalDate.of(2010, 01, 01), Arrays.asList(LocalDate.of(2010, 01, 01))));
+        Assert.assertTrue(Guard.domain(LocalDate.of(2010, 01, 01), Collections.singletonList(LocalDate.of(2010, 01, 01))));
         Assert.assertTrue(Guard.domain(LocalDate.of(2010, 01, 01), Arrays.asList(LocalDate.of(2010, 01, 01), LocalDate.of(2010, 01, 02), LocalDate.of(2010, 01, 03))));
         Assert.assertFalse(Guard.domain(null, Arrays.asList(LocalDate.of(2010, 01, 01), LocalDate.of(2010, 01, 02), LocalDate.of(2010, 01, 03))));
-        Assert.assertFalse(Guard.domain(LocalDate.of(2010, 01, 01), Arrays.asList()));
+        Assert.assertFalse(Guard.domain(LocalDate.of(2010, 01, 01), Collections.emptyList()));
         Assert.assertFalse(Guard.domain(LocalDate.of(2010, 01, 010), Arrays.asList(LocalDate.of(2010, 01, 01), LocalDate.of(2010, 01, 02), LocalDate.of(2010, 01, 03))));
     }
 
@@ -260,10 +261,10 @@ public class GuardTest {
 
     @Test
     public void testDomainString() throws Exception {
-        Assert.assertTrue(Guard.domain("1", Arrays.asList("1")));
+        Assert.assertTrue(Guard.domain("1", Collections.singletonList("1")));
         Assert.assertTrue(Guard.domain("1.1", Arrays.asList("1.1", "2.2", "3.3")));
         Assert.assertFalse(Guard.domain(null, Arrays.asList("1.1", "2.2", "3.3")));
-        Assert.assertFalse(Guard.domain("1.1", Arrays.asList()));
+        Assert.assertFalse(Guard.domain("1.1", Collections.emptyList()));
         Assert.assertFalse(Guard.domain("10.10", Arrays.asList("1.1", "2.2", "3.3")));
         Assert.assertFalse(Guard.domain(null, Arrays.asList("1.1", "2.2", "3.3")));
     }
@@ -271,7 +272,7 @@ public class GuardTest {
     @Test
     public void testEqualsString() throws Exception {
         Assert.assertTrue(Guard.equals("1", "1"));
-        Assert.assertFalse(Guard.equals((String) null, "1"));
+        Assert.assertFalse(Guard.equals(null, "1"));
         Assert.assertFalse(Guard.equals("1", "2"));
         Assert.assertFalse(Guard.domain("1", null));
     }

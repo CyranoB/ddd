@@ -14,9 +14,9 @@ import java.util.UUID;
  */
 public class Repository01 extends AbstractRepository<Entity01> {
 
-    public List<Entity> persistedInsertedItems = new ArrayList<Entity>();
-    public List<Entity> persistedUpdatedItems = new ArrayList<Entity>();
-    public List<Entity> persistedDeletedItems = new ArrayList<Entity>();
+    public List<Entity> persistedInsertedItems = new ArrayList<>();
+    public List<Entity> persistedUpdatedItems = new ArrayList<>();
+    public List<Entity> persistedDeletedItems = new ArrayList<>();
 
     public Repository01(UnitOfWork unitOfWork) {
         super(unitOfWork);

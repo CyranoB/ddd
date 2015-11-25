@@ -2,7 +2,6 @@ package be.domaindrivendesign.kernel.common.model;
 
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.Phonenumber;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -254,11 +253,7 @@ public class Guard {
         if (Guard.nullOrEmpty(value)) {
             return false;
         } else {
-            if (Guard.nbrOfElements(values, 1, Integer.MAX_VALUE, false)) {
-                return values.contains(value);
-            } else {
-                return false;
-            }
+            return Guard.nbrOfElements(values, 1, Integer.MAX_VALUE, false) && values.contains(value);
         }
     }
 
@@ -274,7 +269,7 @@ public class Guard {
         } else {
             PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
             try {
-                Phonenumber.PhoneNumber phoneNumber = phoneUtil.parse(value, "BE");
+                phoneUtil.parse(value, "BE");
                 return true;
             } catch (NumberParseException e) {
                 return false;

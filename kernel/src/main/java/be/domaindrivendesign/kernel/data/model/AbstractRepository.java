@@ -15,7 +15,7 @@ import java.util.UUID;
 public abstract class AbstractRepository<T extends Entity> implements Repository, UnitOfWorkRepository {
 
 
-    protected UnitOfWork unitOfWork;
+    protected final UnitOfWork unitOfWork;
 
     protected AbstractRepository() {
         this(null);

@@ -51,7 +51,7 @@ public class Etablissement extends AggregateRoot implements RuleObject {
     /// <value>
     /// Les implantations.
     /// </value>
-    private ArrayList implantations;
+    private ArrayList<Implantation> implantations;
     //endregion
     /// <summary>
     /// Obtient le réseau d'enseignement.
@@ -115,7 +115,7 @@ public class Etablissement extends AggregateRoot implements RuleObject {
         etablissement.adresse = adresse;
         etablissement.ecole = ecole;
         etablissement.contact = contact;
-        etablissement.implantations = new ArrayList(implantations);
+        etablissement.implantations = new ArrayList<>(implantations);
         etablissement.enseignementReseau = enseignementReseau;
 
         RuleGuard.mandatory(etablissement, etablissement::getNumeroReference);
@@ -188,7 +188,7 @@ public class Etablissement extends AggregateRoot implements RuleObject {
         return adresse;
     }
 
-    public List<Implantation> getImplantations() {
+    public ArrayList<Implantation> getImplantations() {
         return implantations;
     }
 
@@ -205,6 +205,4 @@ public class Etablissement extends AggregateRoot implements RuleObject {
     }
 
     //endregion
-
-
 }

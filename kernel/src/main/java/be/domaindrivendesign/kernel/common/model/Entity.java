@@ -45,10 +45,7 @@ public class Entity {
             return false;
         }
 
-        if (this == otherObject) {
-            return true;
-        }
-        return otherObject instanceof Entity && id.equals(((Entity) otherObject).getId());
+        return this == otherObject || otherObject instanceof Entity && id.equals(((Entity) otherObject).getId());
     }
 
     @Override

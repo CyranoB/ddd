@@ -11,10 +11,9 @@ import java.time.LocalDateTime;
 public class DummyValueObject extends ValueObject {
     public final static LocalDateTime DATE_MAX_VALUE = LocalDateTime.of(2999, 01, 01, 00, 00, 00);
     public final static LocalDateTime DATE_MIN_VALUE = LocalDateTime.of(1754, 01, 01, 00, 00, 00);
-    public final static DummyValueObject EMPTY = new DummyValueObject(DATE_MIN_VALUE, DATE_MAX_VALUE);
 
-    private LocalDateTime debut;
-    private LocalDateTime fin;
+    private final LocalDateTime debut;
+    private final LocalDateTime fin;
 
     private DummyValueObject(LocalDateTime debut, LocalDateTime fin) {
         this.debut = debut;

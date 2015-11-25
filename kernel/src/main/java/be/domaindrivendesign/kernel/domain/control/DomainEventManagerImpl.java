@@ -22,7 +22,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 @Scope("singleton")
 public class DomainEventManagerImpl implements DomainEventManager {
 
-    protected Map<Class<?>, Set<DomainEventListener<?>>> registrations = new HashMap<Class<?>, Set<DomainEventListener<?>>>(); // synchronized set
+    protected final Map<Class<?>, Set<DomainEventListener<?>>> registrations = new HashMap<>(); // synchronized set
 
     /**
      * Register the given EventListener to the contest and event class.
@@ -35,7 +35,7 @@ public class DomainEventManagerImpl implements DomainEventManager {
     public <T> void registerObserver(Class<T> event, DomainEventListener<?> listener) {
         Set<DomainEventListener<?>> observers = registrations.get(event);
         if (observers == null) {
-            observers = new CopyOnWriteArraySet<DomainEventListener<?>>();
+            observers = new CopyOnWriteArraySet<>();
             registrations.put(event, observers);
         }
 
@@ -124,7 +124,7 @@ public class DomainEventManagerImpl implements DomainEventManager {
         // As documented in http://docs.oracle.com/javase/1.4.2/docs/api/java/util/Collections.html#synchronizedSet(java.util.Set)
         //noinspection SynchronizationOnLocalVariableOrMethodParameter
         synchronized (observers) {
-            return new LinkedHashSet<DomainEventListener<?>>(observers);
+            return new LinkedHashSet<>(observers);
         }
     }
 
