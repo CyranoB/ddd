@@ -167,9 +167,8 @@ public class EtablissementTest {
                 EcoleType.EtablissementScolaire, new Contact01(), new ArrayList<>(Arrays.asList(implantation01, implantation02)));
         etablissement.forceState(EntityStateType.Unchanged); // Tromper l'état pour éviter que le test Modified reste Added.
 
-
-        // TODO Event Register
-        //EventRegister eventRegister = new EventRegister();
+        // Event Register
+        DummyEventRegister eventRegister = new DummyEventRegister();
 
         // Fermeture
         LocalDateTime dateDeFermeture = LocalDateTime.now();
@@ -181,14 +180,14 @@ public class EtablissementTest {
         assertEquals(EntityStateType.Modified, implantation01.getState());
         assertEquals(EntityStateType.Modified, implantation02.getState());
 
-        // TODO Evenement levé
-        //assertEquals(implantation01, eventRegister.Implantations[0]);
-        //assertEquals(implantation02, eventRegister.Implantations[1]);
+        // Evenement levé
+        assertEquals(implantation01, eventRegister.getImplantations().get(0));
+        assertEquals(implantation02, eventRegister.getImplantations().get(1));
     }
 
 
     @Test
-    public void testModifierImplantations() {
+    public void testModifierImplantations() throws NoSuchMethodException {
         // Etablissement existant
         Implantation implantation01A = Implantation.creer("reference a", "01 a", new Adresse01(), Collections.singletonList(NiveauType.Maternelle), new Contact01(), PeriodDateHeure.EMPTY);
         Implantation implantation01B = Implantation.creer("reference b", "01 b", new Adresse02(), Collections.singletonList(NiveauType.Prescolaire5Jour), new Contact02(), PeriodDateHeure.EMPTY);
@@ -203,18 +202,17 @@ public class EtablissementTest {
         Implantation implantation02A = Implantation.creer("reference a", "02 a", new Adresse02(), Collections.singletonList(NiveauType.Prescolaire5Jour), new Contact02(), PeriodDateHeure.EMPTY);
         Implantation implantation02C = Implantation.creer("reference c", "02 b", new Adresse01(), Collections.singletonList(NiveauType.Maternelle), new Contact01(), PeriodDateHeure.EMPTY);
 
-        // TODO Event Register
-        // EventRegister eventRegister = new EventRegister();
+        // Event register
+        DummyEventRegister eventRegister = new DummyEventRegister();
 
         // Modification Etablissement
         LocalDateTime dateApplication = LocalDateTime.now();
         etablissement01.modifierImplantations(Arrays.asList(implantation02A, implantation02C), dateApplication);
 
-        //TODO Event register
-        //assertEquals(1, eventRegister.Implantations.Count);
-        //assertEquals(implantation01B, eventRegister.Implantations[0]);
-        //assertEquals(EntityStateType.Modified, implantation01B.getState());
-
+        // Vérifications
+        assertEquals(1, eventRegister.getImplantations().size());
+        assertEquals(implantation01B, eventRegister.getImplantations().get(0));
+        assertEquals(EntityStateType.Modified, implantation01B.getState());
         assertEquals(EntityStateType.Modified, implantation01A.getState());
         assertEquals(EntityStateType.Added, implantation02C.getState());
     }

@@ -132,8 +132,8 @@ public class ImplantationTest {
         Implantation implantation = Implantation.creer("reference", "denomination", new Adresse01(), Arrays.asList(NiveauType.Maternelle, NiveauType.Primaire), new Contact01(), PeriodDateHeure.EMPTY);
         implantation.forceState(EntityStateType.Unchanged); // Tromper l'état pour éviter que le test Modified reste Added.
 
-        // TODO Event Register
-        //EventRegister eventRegister = new EventRegister();
+        // Event Register
+        DummyEventRegister eventRegister = new DummyEventRegister();
 
         // Fermeture
         LocalDateTime dateDeFermeture = LocalDateTime.now();
@@ -142,8 +142,8 @@ public class ImplantationTest {
         // Period de validite fermée
         assertEquals(EntityStateType.Modified, implantation.getState());
 
-        // TODO Evenement levé
-        // assertEquals(implantation, eventRegister.Implantation);
+        // Evenement levé
+        assertEquals(implantation, eventRegister.getImplantations().get(0));
     }
 
     @Test
@@ -151,8 +151,8 @@ public class ImplantationTest {
         Implantation implantation = Implantation.creer("reference", "denomination", new Adresse01(), Arrays.asList(NiveauType.Maternelle, NiveauType.Primaire), new Contact01(), PeriodDateHeure.EMPTY);
         implantation.forceState(EntityStateType.Unchanged); // Tromper l'état pour éviter que le test Modified reste Added.
 
-        // TODO Event Register
-        //EventRegister eventRegister = new EventRegister();
+        // Event Register
+        DummyEventRegister eventRegister = new DummyEventRegister();
 
         // Fermeture
         LocalDateTime supprimeLe = LocalDateTime.now();
@@ -162,7 +162,7 @@ public class ImplantationTest {
         assertEquals(supprimeLe, implantation.getLogicalDeleteOn());
         assertEquals(EntityStateType.Modified, implantation.getState());
 
-        // TODO Evenement levé
-        // assertEquals(implantation, eventRegister.Implantation);
+        // Evenement levé
+        assertEquals(implantation, eventRegister.getImplantations().get(0));
     }
 }

@@ -5,6 +5,6 @@ import java.time.LocalDateTime;
 /**
  * Created by eddie on 20/11/15.
  */
-public interface DomainEvent {
-    LocalDateTime getDateTimeOccured();
+public interface DomainEvent<T> {
+    LocalDateTime getEventOccuredTime();
 }

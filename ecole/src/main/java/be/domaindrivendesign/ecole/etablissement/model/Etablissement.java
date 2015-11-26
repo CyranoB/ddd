@@ -20,8 +20,6 @@ import java.util.UUID;
  */
 public class Etablissement extends AggregateRoot implements RuleObject {
 
-    //region Constructeurs
-
     /// <summary>
     /// Obtient le numéro de référence.
     /// </summary>
@@ -43,8 +41,7 @@ public class Etablissement extends AggregateRoot implements RuleObject {
     /// L'adresse.
     /// </value>
     private Adresse adresse;
-
-    // endregion
+    //endregion
     /// <summary>
     /// Obtient la liste des implantations.
     /// </summary>
@@ -60,7 +57,6 @@ public class Etablissement extends AggregateRoot implements RuleObject {
     /// Le réseau d'enseignement.
     /// </value>
     private EnseignementReseauType enseignementReseau;
-    //endregion
     /// <summary>
     /// Obtient le type d'école.
     /// </summary>
@@ -68,7 +64,8 @@ public class Etablissement extends AggregateRoot implements RuleObject {
     /// Le type d'école.
     /// </value>
     private EcoleType ecole;
-    // endregion
+
+    //endregion
 
     //region Getters
     /// <summary>
@@ -79,6 +76,7 @@ public class Etablissement extends AggregateRoot implements RuleObject {
     /// </value>
     private Contact contact;
 
+    //region Contructors
     /// <summary>
     /// Constructeur privé afin d'empêcher la création illicite d'objet.
     /// </summary>
@@ -123,12 +121,12 @@ public class Etablissement extends AggregateRoot implements RuleObject {
         RuleGuard.mandatory(etablissement, etablissement::getAdresse);
         RuleGuard.mandatory(etablissement, etablissement::getEnseignementReseau);
         RuleGuard.mandatory(etablissement, etablissement::getEcole);
-        RuleGuard.nbrOfElements(etablissement, etablissement::getImplantations, implantations, 1, 10);
+        RuleGuard.nbrOfElements(etablissement, etablissement::getImplantations, 1, 10);
 
         return etablissement;
     }
 
-    //region Gestion des implantations
+    // region Gestion des implantations
     /// <summary>
     /// Modifie les implantations.
     /// </summary>
@@ -146,11 +144,15 @@ public class Etablissement extends AggregateRoot implements RuleObject {
         }
 
         // existant vs a modifier
-        for (Implantation existant : getImplantations())
-            implantations.stream().filter(x -> x.getNumeroReference().equals(existant.getNumeroReference())).findFirst().ifPresent(i -> i.fermer(dateApplication));
+        for (Implantation existant: getImplantations()) {
+            Optional<Implantation> aModifier = implantations.stream().filter(x -> x.getNumeroReference().equals(existant.getNumeroReference())).findFirst();
+            if (!aModifier.isPresent()) {
+                existant.fermer(dateApplication);
+            }
+        }
     }
 
-    //region Gestion des informations de contact
+    // region Opération établissement
     /// <summary>
     /// Modifie les informations de contact.
     /// </summary>
@@ -160,7 +162,6 @@ public class Etablissement extends AggregateRoot implements RuleObject {
         setState(EntityStateType.Modified);
     }
 
-    // region Opération établissement
     /// <summary>
     /// Supprime l'établissement.
     /// </summary>
@@ -174,7 +175,7 @@ public class Etablissement extends AggregateRoot implements RuleObject {
 
     //endregion
 
-    //region Propriétés
+    //region Properties
 
     public String getNumeroReference() {
         return numeroReference;
@@ -203,6 +204,5 @@ public class Etablissement extends AggregateRoot implements RuleObject {
     public Contact getContact() {
         return contact;
     }
-
-    //endregion
+    // endregion
 }
