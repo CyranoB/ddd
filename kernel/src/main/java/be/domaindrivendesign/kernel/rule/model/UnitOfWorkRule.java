@@ -84,7 +84,7 @@ public class UnitOfWorkRule {
      * @return
      */
     public boolean hasBlockingError() {
-        return RuleViolationHelper.HasBlockingError(getViolations());
+        return RuleViolationHelper.hasBlockingError(getViolations());
     }
 
     /**
@@ -92,7 +92,7 @@ public class UnitOfWorkRule {
      * @return
      */
     public boolean hasError() {
-        return RuleViolationHelper.HasError(getViolations());
+        return RuleViolationHelper.hasError(getViolations());
     }
 
     /**
@@ -100,7 +100,7 @@ public class UnitOfWorkRule {
      * @return
      */
     public boolean hasWarning() {
-        return RuleViolationHelper.HasWarning(getViolations());
+        return RuleViolationHelper.hasWarning(getViolations());
     }
 
     /**

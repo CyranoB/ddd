@@ -13,7 +13,7 @@ public class RuleViolationHelper {
      * @param violations
      * @return
      */
-    public static boolean HasBlockingError(List<RuleViolation> violations) {
+    public static boolean hasBlockingError(List<RuleViolation> violations) {
         return violations != null && violations.stream().filter(x -> x.getSeverityType() == RuleSeverityType.BlockingError).count() > 0;
     }
 
@@ -21,7 +21,7 @@ public class RuleViolationHelper {
      * @param violations
      * @return
      */
-    public static boolean HasError(List<RuleViolation> violations) {
+    public static boolean hasError(List<RuleViolation> violations) {
         return violations != null && violations.stream().filter(x -> x.getSeverityType() == RuleSeverityType.Error).count() > 0;
     }
 
@@ -29,7 +29,7 @@ public class RuleViolationHelper {
      * @param violations
      * @return
      */
-    public static boolean HasWarning(List<RuleViolation> violations) {
+    public static boolean hasWarning(List<RuleViolation> violations) {
         return violations != null && violations.stream().filter(x -> x.getSeverityType() == RuleSeverityType.Warning).count() > 0;
     }
 }
