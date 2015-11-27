@@ -128,6 +128,14 @@ public class ImplantationTest {
     }
 
     @Test
+    public void testModifierContact() {
+        Implantation implantation = Implantation.creer("reference", "denomination", new Adresse01(), Arrays.asList(NiveauType.Maternelle, NiveauType.Primaire), new Contact01(), PeriodDateHeure.EMPTY);
+        implantation.modifierContact(new Contact02());
+
+        assertEquals(new Contact02(), implantation.getContact());
+    }
+
+    @Test
     public void testFermer() {
         Implantation implantation = Implantation.creer("reference", "denomination", new Adresse01(), Arrays.asList(NiveauType.Maternelle, NiveauType.Primaire), new Contact01(), PeriodDateHeure.EMPTY);
         implantation.forceState(EntityStateType.Unchanged); // Tromper l'état pour éviter que le test Modified reste Added.
