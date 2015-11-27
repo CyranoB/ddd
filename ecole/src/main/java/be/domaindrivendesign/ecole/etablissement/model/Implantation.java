@@ -3,7 +3,7 @@ package be.domaindrivendesign.ecole.etablissement.model;
 import be.domaindrivendesign.ecole.etablissement.event.ImplantationFermee;
 import be.domaindrivendesign.ecole.etablissement.type.NiveauType;
 import be.domaindrivendesign.kernel.common.model.EntityStateType;
-import be.domaindrivendesign.kernel.domain.control.SimpleDomainEventManager;
+import be.domaindrivendesign.kernel.domain.control.DefaultDomainEventManager;
 import be.domaindrivendesign.kernel.domain.model.Aggregate;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
@@ -151,7 +151,7 @@ public class Implantation extends Aggregate implements RuleObject {
         if (RuleGuard.after(this, () -> fermeLe, validite::getDebut, RuleSeverityType.BlockingError))
             this.validite = new PeriodDateHeure(validite.getDebut(), fermeLe);
         setState(EntityStateType.Modified);
-        SimpleDomainEventManager.getInstance().fire(new ImplantationFermee(this, fermeLe));
+        DefaultDomainEventManager.getInstance().fire(new ImplantationFermee(this, fermeLe));
     }
 
     /// <summary>
@@ -160,7 +160,7 @@ public class Implantation extends Aggregate implements RuleObject {
     /// <param name="supprimeLe">La date de suppression.</param>
     public void supprimer(LocalDateTime supprimeLe) {
         deleteLogically(supprimeLe);
-        SimpleDomainEventManager.getInstance().fire(new ImplantationFermee(this, supprimeLe));
+        DefaultDomainEventManager.getInstance().fire(new ImplantationFermee(this, supprimeLe));
     }
 
     //region Getters

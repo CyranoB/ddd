@@ -1,7 +1,9 @@
 package be.domaindrivendesign.kernel.domain.control;
 
+import be.domaindrivendesign.kernel.common.context.StandAloneContext;
 import be.domaindrivendesign.kernel.domain.interfaces.DomainEventListener;
 import be.domaindrivendesign.kernel.domain.interfaces.DomainEventManager;
+import org.springframework.context.support.StaticApplicationContext;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,16 +15,22 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * Created by eddie on 23/11/15.
  */
 
-public class SimpleDomainEventManager implements DomainEventManager {
+public class DefaultDomainEventManager implements DomainEventManager {
 
-    private static SimpleDomainEventManager ourInstance = new SimpleDomainEventManager();
+    private static DefaultDomainEventManager domainEventManager = new DefaultDomainEventManager();
     protected final Map<Class<?>, Set<DomainEventListener<?>>> registrations = new HashMap<>(); // synchronized set
+    private final StaticApplicationContext staticApplicationContext;
 
-    private SimpleDomainEventManager() {
+    private DefaultDomainEventManager() {
+
+        staticApplicationContext = new StaticApplicationContext();
+
+        staticApplicationContext.registerSingleton("DomainEventManager", StandAloneContext.class);
+
     }
 
-    public static SimpleDomainEventManager getInstance() {
-        return ourInstance;
+    public static DefaultDomainEventManager getInstance() {
+        return domainEventManager;
     }
 
     /**

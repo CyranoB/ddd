@@ -1,7 +1,7 @@
 package be.domaindrivendesign.ecole.etablissement.model;
 
 import be.domaindrivendesign.ecole.etablissement.event.ImplantationFermee;
-import be.domaindrivendesign.kernel.domain.control.SimpleDomainEventManager;
+import be.domaindrivendesign.kernel.domain.control.DefaultDomainEventManager;
 import be.domaindrivendesign.kernel.domain.interfaces.DomainEventListener;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class DummyEventRegister implements DomainEventListener<ImplantationFerme
     public ArrayList<Implantation> implantations;
 
     public DummyEventRegister() {
-        SimpleDomainEventManager.getInstance().registerObserver(ImplantationFermee.class, this);
+        DefaultDomainEventManager.getInstance().registerObserver(ImplantationFermee.class, this);
         this.implantations = new ArrayList<Implantation>();
     }
 
