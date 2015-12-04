@@ -35,13 +35,13 @@ public class Implantation extends Aggregate implements RuleObject {
     private String numeroReference;
     @Column(nullable = false, name = "DENOMINATION")
     private String denomination;
-    @Embedded
+    @Column
     private Adresse adresse;
     @ElementCollection
     private List<NiveauType> niveaux;
-    @Embedded
+    @Column
     private Contact contact;
-    @Embedded
+    @Column
     private PeriodDateHeure validite;
     //endregion
 
@@ -82,6 +82,7 @@ public class Implantation extends Aggregate implements RuleObject {
         implantation.niveaux = niveaux;
         implantation.contact = contact;
         implantation.validite = validite;
+        implantation.state = EntityStateType.Added;
 
         RuleGuard.mandatory(implantation, implantation::getNumeroReference);
         RuleGuard.mandatory(implantation, implantation::getDenomination);
