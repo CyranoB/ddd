@@ -16,7 +16,7 @@ public class DummyEventRegister implements DomainEventListener<ImplantationFerme
 
     public DummyEventRegister() {
         DefaultDomainEventManager.getInstance().registerObserver(ImplantationFermee.class, this);
-        this.implantations = new ArrayList<Implantation>();
+        this.implantations = new ArrayList<>();
     }
 
     public List<Implantation> getImplantations() {

@@ -2,18 +2,28 @@ package be.domaindrivendesign.kernel.common.model;
 
 import be.domaindrivendesign.kernel.common.error.KernelException;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
  * An object that is not defined by its attributes, but rather by a thread of continuity and its identity.
- *
+ * <p/>
  * Created by eddie on 18/11/15.
  */
+@MappedSuperclass
 public class Entity {
+
+    @Id
     protected UUID id;
+    @Transient
     protected EntityStateType state;
+    @Column
     protected LocalDateTime logicalDeleteOn;
+    @Column
     protected LocalDateTime lastUpdateOn;
 
     //region Constructors
@@ -23,19 +33,14 @@ public class Entity {
     }
 
     protected Entity(UUID id) {
-        this(id, EntityStateType.Added);
+        // By default, consider it called by JPA
+        this(id, EntityStateType.Unchanged);
     }
 
     protected Entity() {
         this.state = EntityStateType.Unchanged;
     }
-
     //endregion
-
-    // Utiliser cette méthode que dans des cas bien spécifique.
-//    public void forceState(EntityStateType state) {
-//        this.state = state;
-//    }
 
     // Equality for non complex entity
     @Override
@@ -67,21 +72,21 @@ public class Entity {
     }
 
     protected void setState(EntityStateType state) {
-        if (state == EntityStateType.Added) {
+        if (this.state != EntityStateType.Unchanged && state == EntityStateType.Added) {
             throw new KernelException("State can only be set to added by the factory methods.");
         } else {
             if ((state == EntityStateType.Deleted) && (this.state == EntityStateType.Added)) {
                 throw new KernelException("The entity was just added, set the state to delete is a non-sense.");
             } else //noinspection StatementWithEmptyBody
                 if ((state == EntityStateType.Modified) && (this.state == EntityStateType.Added)) {
-                // don't change the state because the entity is not yet added.
-            } else {
-                if (state == EntityStateType.Unchanged) {
-                    throw new KernelException("State can only be set to unchanged by the infrastructure layer.");
+                    // don't change the state because the entity is not yet added.
                 } else {
-                    this.state = state;
+                    if (state == EntityStateType.Unchanged) {
+                        throw new KernelException("State can only be set to unchanged by the infrastructure layer.");
+                    } else {
+                        this.state = state;
+                    }
                 }
-            }
         }
     }
 
@@ -96,6 +101,9 @@ public class Entity {
 
     protected void setLogicalDeleteOn(LocalDateTime logicalDeleteOn) {
         this.logicalDeleteOn = logicalDeleteOn;
+    }
+
+    public void logicalDelete() {setLogicalDeleteOn(LocalDateTime.now());
     }
 
     public LocalDateTime getLastUpdateOn() {

@@ -12,6 +12,7 @@ import be.domaindrivendesign.shared.valueobject.Adresse;
 import be.domaindrivendesign.shared.valueobject.Contact;
 import be.domaindrivendesign.shared.valueobject.PeriodDateHeure;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -19,55 +20,28 @@ import java.util.UUID;
 /**
  * Created by eddie on 23/11/15.
  */
+
+@Entity
+@Table(
+        name = "IMPLANTATION",
+        indexes = {
+                @Index(name = "IMPLANTATION_DENOMINATION_IDX", columnList = "DENOMINATION"),
+                @Index(name = "IMPLANTATION_NUMREF_IDX", columnList = "NUMERO_REFERENCE")
+        }
+)
 public class Implantation extends Aggregate implements RuleObject {
 
-
-
-    //region Propriétés
-    /// <summary>
-    /// Obtient le numéro de référence.
-    /// </summary>
-    /// <value>
-    /// Le numéro de référence.
-    /// </value>
+    @Column(nullable = false, name = "NUMERO_REFERENCE")
     private String numeroReference;
-    // La dénomination est immutable
-    /// <summary>
-    /// Obtient la dénomination.
-    /// </summary>
-    /// <value>
-    /// La dénomination.
-    /// </value>
+    @Column(nullable = false, name = "DENOMINATION")
     private String denomination;
-    // L'adresse est immutable
-    /// <summary>
-    /// Obtient l'adresse.
-    /// </summary>
-    /// <value>
-    /// L'adresse.
-    /// </value>
+    @Embedded
     private Adresse adresse;
-
-    /// <summary>
-    /// Obient la liste des niveaux.
-    /// </summary>
-    /// <value>
-    /// Les niveaux.
-    /// </value>
+    @ElementCollection
     private List<NiveauType> niveaux;
-    /// <summary>
-    /// Obtient les informations de contact.
-    /// </summary>
-    /// <value>
-    /// Le contact.
-    /// </value>
+    @Embedded
     private Contact contact;
-    /// <summary>
-    /// Obtient la période de validité.
-    /// </summary>
-    /// <value>
-    /// La période de validité.
-    /// </value>
+    @Embedded
     private PeriodDateHeure validite;
     //endregion
 

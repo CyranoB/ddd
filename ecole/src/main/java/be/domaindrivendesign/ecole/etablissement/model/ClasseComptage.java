@@ -5,25 +5,21 @@ import be.domaindrivendesign.kernel.domain.model.Aggregate;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 // <summary>
 // Définit un décompte d'élève par classe.
 // </summary>
+@Entity
 public class ClasseComptage extends Aggregate implements RuleObject {
 
-    //region Propriétés
-    /// <summary>
-    /// Obtient le type de classe
-    /// </summary>
+    @Column
     public ClasseType classe;
-    /// <summary>
-    /// Obtient le nombre d'élèves
-    /// </summary>
+    @Column
     public int nombreEleves;
-    // Periode de validite du comptage
-    //endregion
 
     //region Constructeurs
     /// <summary>

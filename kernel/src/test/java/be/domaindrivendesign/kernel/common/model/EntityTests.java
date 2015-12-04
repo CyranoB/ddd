@@ -16,9 +16,9 @@ public class EntityTests {
     @SuppressWarnings({"EqualsWithItself", "ObjectEqualsNull"})
     @Test
     public void testEquals() {
-        Entity entity01 = EntityGuid01.Create(UUID.randomUUID());
-        Entity entity02 = EntityGuid01.Create(UUID.randomUUID());
-        Entity entity03 = EntityGuid02.Create(entity01.getId());
+        Entity entity01 = EntityGuid01.create(UUID.randomUUID());
+        Entity entity02 = EntityGuid01.create(UUID.randomUUID());
+        Entity entity03 = EntityGuid02.create(entity01.getId());
         Object object01 = new Object();
 
         // equals to itself
@@ -39,7 +39,7 @@ public class EntityTests {
 
     @Test
     public void testDefaultState() {
-        Entity entity01 = EntityGuid01.Create(UUID.randomUUID());
+        Entity entity01 = EntityGuid01.create(UUID.randomUUID());
 
         // default state must be equal to Added
         assertTrue(entity01.getState() == EntityStateType.Added);
@@ -47,14 +47,14 @@ public class EntityTests {
 
     @Test(expected = KernelException.class)
     public void testSetStateToAdded() {
-        Entity entity01 = EntityGuid01.Create(UUID.randomUUID());
+        Entity entity01 = EntityGuid01.create(UUID.randomUUID());
         // set state to added is only allowed by constructor
         entity01.setState(EntityStateType.Added);
     }
 
     @Test(expected = KernelException.class)
     public void testSetStateToDeleted() {
-        Entity entity01 = EntityGuid01.Create(UUID.randomUUID());
+        Entity entity01 = EntityGuid01.create(UUID.randomUUID());
 
         // set state to deleted when = to added
         entity01.setState(EntityStateType.Deleted);
@@ -62,7 +62,7 @@ public class EntityTests {
 
     @Test(expected = KernelException.class)
     public void testSetStateToUnchanged() {
-        Entity entity01 = EntityGuid01.Create(UUID.randomUUID());
+        Entity entity01 = EntityGuid01.create(UUID.randomUUID());
 
         // set state to deleted when = to added
         entity01.setState(EntityStateType.Unchanged);
@@ -70,7 +70,7 @@ public class EntityTests {
 
     @Test
     public void testSetStateToModified() {
-        Entity entity01 = EntityGuid01.Create(UUID.randomUUID());
+        Entity entity01 = EntityGuid01.create(UUID.randomUUID());
 
         // set to modified when state = to added does not modify the state
         entity01.setState(EntityStateType.Modified);
@@ -84,8 +84,10 @@ public class EntityTests {
             super(id);
         }
 
-        public static EntityGuid01 Create(UUID guid) {
-            return new EntityGuid01(guid);
+        public static EntityGuid01 create(UUID guid) {
+            EntityGuid01 e = new EntityGuid01(guid);
+            e.setState(EntityStateType.Added);
+            return e;
         }
     }
 
@@ -94,9 +96,10 @@ public class EntityTests {
             super(id);
         }
 
-        public static EntityGuid02 Create(UUID guid) {
-            return new EntityGuid02(guid);
+        public static EntityGuid02 create(UUID guid) {
+            EntityGuid02 e = new EntityGuid02(guid);
+            e.setState(EntityStateType.Added);
+            return e;
         }
     }
-
 }

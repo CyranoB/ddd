@@ -6,6 +6,7 @@ import be.domaindrivendesign.kernel.domain.model.Aggregate;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -13,31 +14,15 @@ import java.util.stream.Collectors;
 /// <summary>
 /// Définit une implantation par année scolaire.
 /// </summary>
+@Entity
 public class ImplantationAnneeScolaire extends Aggregate implements RuleObject {
 
-    //region Propriétés
-    /// <summary>
-    /// Obtient le numéro de référence de l'implantation.
-    /// </summary>
-    /// <value>
-    /// Le numéro de référence de l'implantation.
-    /// </value>
+    @Column
     public String implantationNumeroReference;
-    /// <summary>
-    /// Obtient l'année scolaire.
-    /// </summary>
-    /// <value>
-    /// L'année scolaire.
-    /// </value>
+    @Column
     public AnneeScolaire anneeScolaire;
-    /// <summary>
-    /// Obtient la liste des décomptes d'élèves par classe.
-    /// </summary>
-    /// <value>
-    /// Les nombres d'élèves par classe.
-    /// </value>
-    public ArrayList<ClasseComptage> classeComptages;
-    //endregion
+    @OneToMany
+    public List<ClasseComptage> classeComptages;
 
     //region Constructeurs
     /// <summary>

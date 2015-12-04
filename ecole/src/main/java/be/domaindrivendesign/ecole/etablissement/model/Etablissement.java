@@ -9,30 +9,20 @@ import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 import be.domaindrivendesign.shared.valueobject.Adresse;
 import be.domaindrivendesign.shared.valueobject.Contact;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-/**
- * Created by eddie on 23/11/15.
- */
+@Entity
 public class Etablissement extends AggregateRoot implements RuleObject {
 
-    /// <summary>
-    /// Obtient le numéro de référence.
-    /// </summary>
-    /// <value>
-    /// Le numéro référence.
-    /// </value>
+    @Column
     private String numeroReference;
-    /// <summary>
-    /// Obtient la dénomination.
-    /// </summary>
-    /// <value>
-    /// La dénomination.
-    /// </value>
+    @Column
     private String denomination;
     /// <summary>
     /// Obtient l'adresse.
