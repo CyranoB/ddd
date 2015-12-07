@@ -34,6 +34,7 @@ public class RepositoryJpa<T extends Entity, ID extends Serializable> implements
     }
 
     public List<T> findAll() {
+        @SuppressWarnings("unchecked")
         List<T> entities = getJpaUnitOfWork().getEntityManager().createQuery(
                 "SELECT p FROM "+ getEntityType().getName() +" p").getResultList();
         entities.stream().forEach(e -> e.forceState(EntityStateType.Unchanged));
@@ -41,6 +42,7 @@ public class RepositoryJpa<T extends Entity, ID extends Serializable> implements
     }
 
     public T findById(ID id) {
+        //noinspection unchecked
         return (T) getJpaUnitOfWork().getEntityManager().find(getEntityType(), id);
     }
 

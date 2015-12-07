@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--suppress XmlUnboundNsPrefix -->
 <dataset>
     <Implantation Id="98A70BDA-C677-CF05-7F6A-08D2892A9523" NumeroReference="826"
                   Denomination="Ecole communale fondamentale de Saint-Job" Adresse_Adr="Rue Jean Benaets 74"

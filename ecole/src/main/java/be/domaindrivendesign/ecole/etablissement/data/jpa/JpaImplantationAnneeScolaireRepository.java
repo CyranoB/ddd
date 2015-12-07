@@ -16,7 +16,7 @@ public class JpaImplantationAnneeScolaireRepository extends RepositoryJpa<Implan
 
     @Override
     public List<ImplantationAnneeScolaire> getByImplantationNumeroReference(String numeroDeReference) {
-        JPAQuery<ImplantationAnneeScolaire> query = new JPAQuery<ImplantationAnneeScolaire>(getJpaUnitOfWork().getEntityManager());
+        JPAQuery<ImplantationAnneeScolaire> query = new JPAQuery<>(getJpaUnitOfWork().getEntityManager());
         QImplantationAnneeScolaire implantationsAnneeScolaire = QImplantationAnneeScolaire.implantationAnneeScolaire;
         return query.from(implantationsAnneeScolaire).where(implantationsAnneeScolaire.implantationNumeroReference.eq(numeroDeReference)).fetch();
     }

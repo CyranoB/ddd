@@ -14,7 +14,6 @@ import org.junit.Test;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDateTime;
 import java.util.*;
 
 /**
@@ -149,7 +148,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.EqualsNumberInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2").toArray());
@@ -170,7 +169,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.EqualsNumberInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2").toArray());
@@ -191,7 +190,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.SmallerThanInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "1").toArray());
@@ -212,7 +211,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.SmallerThanInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "1").toArray());
@@ -237,7 +236,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.SmallerOrEqualThanInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "0").toArray());
@@ -262,7 +261,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.SmallerOrEqualThanInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "0").toArray());
@@ -283,7 +282,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.GreaterThanInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2").toArray());
@@ -304,7 +303,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.GreaterThanInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2").toArray());
@@ -329,7 +328,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.GreaterOrEqualThanInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "3").toArray());
@@ -354,7 +353,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.GreaterOrEqualThanInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "3").toArray());
@@ -526,7 +525,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.Between.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2", "3").toArray());
@@ -547,7 +546,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.Between.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2", "3").toArray());
@@ -689,7 +688,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.DomainNumber.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2", "3").toArray());
@@ -710,7 +709,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.DomainNumber.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2", "3").toArray());
@@ -733,7 +732,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getDouble01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getDouble01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.IsFormatDecimal.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("100.0", "2", "2").toArray());
@@ -756,7 +755,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getDouble01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getDouble01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.IsFormatDecimal.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("100.0", "2", "2").toArray());
@@ -779,7 +778,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getDouble01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getDouble01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.IsFormatDecimal.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("100.0", "2", "2").toArray());
@@ -850,7 +849,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.BeforeInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2013-01-01T00:00").toArray());
@@ -871,7 +870,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.BeforeInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2013-01-01T00:00").toArray());
@@ -955,7 +954,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.BeforeOrEqualInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2013-01-01T00:00").toArray());
@@ -979,7 +978,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.BeforeOrEqualInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2013-01-01T00:00").toArray());
@@ -1050,7 +1049,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.AfterInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2015-01-01T00:00").toArray());
@@ -1071,7 +1070,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.AfterInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2015-01-01T00:00").toArray());
@@ -1155,7 +1154,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.AfterOrEqualInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2015-01-01T00:00").toArray());
@@ -1179,7 +1178,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.AfterOrEqualInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2014-01-01T00:00", "2015-01-01T00:00").toArray());
@@ -1250,7 +1249,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.EqualsTemporalInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2015-01-01T00:00", "2016-01-01T00:00").toArray());
@@ -1271,7 +1270,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.EqualsTemporalInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2015-01-01T00:00", "2016-01-01T00:00").toArray());
@@ -1284,15 +1283,15 @@ public class RuleGuardTest implements Serializable {
         ruleObject.setLocalDateTime01(LocalDateTime.of(2015, 1, 1, 0, 0));
 
         // No violation Smaller
-        Assert.assertTrue(RuleGuard.domain(ruleObject, () -> ruleObject.getLocalDateTime01(), new ArrayList<ChronoLocalDateTime<?>>(Arrays.asList(LocalDateTime.of(2015, 1, 1, 0, 0), LocalDateTime.of(2015, 2, 1, 0, 0))), RuleSeverityType.Warning));
+        Assert.assertTrue(RuleGuard.domain(ruleObject, () -> ruleObject.getLocalDateTime01(), new ArrayList<>(Arrays.asList(LocalDateTime.of(2015, 1, 1, 0, 0), LocalDateTime.of(2015, 2, 1, 0, 0))), RuleSeverityType.Warning));
         Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
 
         // Violation
-        Assert.assertFalse(RuleGuard.domain(ruleObject, () -> ruleObject.getLocalDateTime01(), new ArrayList<ChronoLocalDateTime<?>>(Arrays.asList(LocalDateTime.of(2015, 2, 1, 0, 0), LocalDateTime.of(2015, 3, 1, 0, 0))), RuleSeverityType.Warning));
+        Assert.assertFalse(RuleGuard.domain(ruleObject, () -> ruleObject.getLocalDateTime01(), new ArrayList<>(Arrays.asList(LocalDateTime.of(2015, 2, 1, 0, 0), LocalDateTime.of(2015, 3, 1, 0, 0))), RuleSeverityType.Warning));
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.DomainTemporal.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2015-01-01T00:00", "2015-02-01T00:00", "2015-03-01T00:00").toArray());
@@ -1305,15 +1304,15 @@ public class RuleGuardTest implements Serializable {
         ruleObject.setLocalDateTime01(LocalDateTime.of(2015, 1, 1, 0, 0));
 
         // No violation Smaller
-        Assert.assertTrue(RuleGuard.domain(ruleObject, () -> ruleObject.getLocalDateTime01(), new ArrayList<ChronoLocalDateTime<?>>(Arrays.asList(LocalDateTime.of(2015, 1, 1, 0, 0), LocalDateTime.of(2015, 2, 1, 0, 0)))));
+        Assert.assertTrue(RuleGuard.domain(ruleObject, () -> ruleObject.getLocalDateTime01(), new ArrayList<>(Arrays.asList(LocalDateTime.of(2015, 1, 1, 0, 0), LocalDateTime.of(2015, 2, 1, 0, 0)))));
         Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
 
         // Violation
-        Assert.assertFalse(RuleGuard.domain(ruleObject, () -> ruleObject.getLocalDateTime01(), new ArrayList<ChronoLocalDateTime<?>>(Arrays.asList(LocalDateTime.of(2015, 2, 1, 0, 0), LocalDateTime.of(2015, 3, 1, 0, 0)))));
+        Assert.assertFalse(RuleGuard.domain(ruleObject, () -> ruleObject.getLocalDateTime01(), new ArrayList<>(Arrays.asList(LocalDateTime.of(2015, 2, 1, 0, 0), LocalDateTime.of(2015, 3, 1, 0, 0)))));
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLocalDateTime01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.DomainTemporal.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("2015-01-01T00:00", "2015-02-01T00:00", "2015-03-01T00:00").toArray());
@@ -1343,10 +1342,10 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.NullOrEmpty.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("Test").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Collections.singletonList("Test").toArray());
     }
 
     @Test
@@ -1373,10 +1372,10 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.NullOrEmpty.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("Test").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Collections.singletonList("Test").toArray());
     }
 
     @Test
@@ -1447,7 +1446,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.EqualsStringInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("Test", "test").toArray());
@@ -1467,7 +1466,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.EqualsStringInvariant.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("Test", "test").toArray());
@@ -1491,10 +1490,10 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.DigitOnly.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("11.1€").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Collections.singletonList("11.1€").toArray());
     }
 
     @Test
@@ -1515,10 +1514,10 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.DigitOnly.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("11.1€").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Collections.singletonList("11.1€").toArray());
     }
 
     @Test
@@ -1538,7 +1537,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.Length.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("11.1", "5").toArray());
@@ -1561,7 +1560,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.Length.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("11.1", "5").toArray());
@@ -1584,7 +1583,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.DomainString.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2", "3").toArray());
@@ -1607,7 +1606,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.DomainString.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2", "3").toArray());
@@ -1631,10 +1630,10 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.Mandatory.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList().toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Collections.emptyList().toArray());
     }
 
     @Test
@@ -1655,10 +1654,10 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.Mandatory.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList().toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Collections.emptyList().toArray());
     }
 
     @Test
@@ -1677,7 +1676,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLists01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLists01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.NbrOfElementsInList.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("3", "1", "2").toArray());
@@ -1699,7 +1698,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLists01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLists01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.NbrOfElementsInList.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("3", "1", "2").toArray());
@@ -1721,7 +1720,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLists01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLists01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.NbrOfElementsInList.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("3", "1", "2").toArray());
@@ -1751,7 +1750,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getMaps01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getMaps01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.NbrOfElementsInList.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("3", "1", "2").toArray());
@@ -1781,7 +1780,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getMaps01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getMaps01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.NbrOfElementsInList.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("3", "1", "2").toArray());
@@ -1811,7 +1810,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getMaps01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getMaps01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.NbrOfElementsInList.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("3", "1", "2").toArray());
@@ -1833,7 +1832,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.NotInList.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "1", "2", "3").toArray());
@@ -1855,7 +1854,7 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.NotInList.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
         Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "1", "2", "3").toArray());
@@ -1878,10 +1877,10 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.EMail.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("test@spw.wallonie").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Collections.singletonList("test@spw.wallonie").toArray());
     }
 
     @Test
@@ -1901,10 +1900,10 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.EMail.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("test@spw.wallonie").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Collections.singletonList("test@spw.wallonie").toArray());
     }
 
     @Test
@@ -1924,10 +1923,10 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.PhoneNbr.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("01111").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Collections.singletonList("01111").toArray());
     }
 
     @Test
@@ -1947,10 +1946,10 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.PhoneNbr.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("01111").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Collections.singletonList("01111").toArray());
     }
 
     @Test
@@ -1963,10 +1962,10 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.Unique.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("0475010101").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Collections.singletonList("0475010101").toArray());
 
     }
 
@@ -1980,10 +1979,10 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.Unique.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("0475010101").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Collections.singletonList("0475010101").toArray());
 
     }
 
@@ -1997,10 +1996,10 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.Immutable.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("0475010101").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Collections.singletonList("0475010101").toArray());
 
     }
 
@@ -2014,10 +2013,10 @@ public class RuleGuardTest implements Serializable {
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Arrays.asList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getString01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.Immutable.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("0475010101").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Collections.singletonList("0475010101").toArray());
 
     }
 

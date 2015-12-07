@@ -11,6 +11,7 @@ import be.domaindrivendesign.shared.valueobject.Contact;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,8 @@ public class Etablissement extends AggregateRoot implements RuleObject {
     /// <value>
     /// Les implantations.
     /// </value>
-    private ArrayList<Implantation> implantations;
+    @OneToMany
+    private List<Implantation> implantations;
     //endregion
     /// <summary>
     /// Obtient le réseau d'enseignement.
@@ -81,7 +83,7 @@ public class Etablissement extends AggregateRoot implements RuleObject {
     /// <remarks>
     /// Ce constructeur est exclusivement utilisé par l'ORM pour créer des objets.
     /// </remarks>
-    private Etablissement() {
+    protected Etablissement() {
     }
 
     /// <summary>
@@ -180,7 +182,7 @@ public class Etablissement extends AggregateRoot implements RuleObject {
         return adresse;
     }
 
-    public ArrayList<Implantation> getImplantations() {
+    public List<Implantation> getImplantations() {
         return implantations;
     }
 

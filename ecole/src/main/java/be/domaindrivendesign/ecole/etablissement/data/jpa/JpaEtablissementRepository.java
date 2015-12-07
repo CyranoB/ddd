@@ -14,7 +14,7 @@ public class JpaEtablissementRepository extends RepositoryJpa<Etablissement, UUI
         implements EtablissementRepository {
     @Override
     public Etablissement getEtablissementForNumeroDeReference(String numeroDeReference) {
-        JPAQuery<Etablissement> query = new JPAQuery<Etablissement>(getJpaUnitOfWork().getEntityManager());
+        JPAQuery<Etablissement> query = new JPAQuery<>(getJpaUnitOfWork().getEntityManager());
         QEtablissement implantationsAnneeScolaire = QEtablissement.etablissement;
         return query.from(implantationsAnneeScolaire).where(implantationsAnneeScolaire.numeroReference.eq(numeroDeReference)).fetchFirst();
     }

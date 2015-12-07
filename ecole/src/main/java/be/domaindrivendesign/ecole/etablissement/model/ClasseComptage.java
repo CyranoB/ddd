@@ -30,6 +30,9 @@ public class ClasseComptage extends Aggregate implements RuleObject {
         super(id);
     }
 
+    public ClasseComptage() {
+    }
+
     /// <summary>
     /// Crée une nouvelle instance de la classe <see cref="ClasseComptage"/>.
     /// </summary>

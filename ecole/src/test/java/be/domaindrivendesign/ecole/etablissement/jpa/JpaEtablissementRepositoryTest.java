@@ -67,8 +67,7 @@ public class JpaEtablissementRepositoryTest {
 
         @Bean
         public UnitOfWork unitOfWork() {
-            UnitOfWorkJpa unitOfWorkJpa = new UnitOfWorkJpa();
-            return unitOfWorkJpa;
+            return new UnitOfWorkJpa();
         }
 
         @Bean

@@ -57,7 +57,7 @@ public class ImplantationAnneeScolaire extends Aggregate implements RuleObject {
 
         implantationAnneeScolaire.implantationNumeroReference = implantationNumeroReference;
         implantationAnneeScolaire.anneeScolaire = anneScolaire;
-        implantationAnneeScolaire.classeComptages = classes != null ? classes : new ArrayList<ClasseComptage>();
+        implantationAnneeScolaire.classeComptages = classes != null ? classes : new ArrayList<>();
         implantationAnneeScolaire.state = EntityStateType.Added;
 
 

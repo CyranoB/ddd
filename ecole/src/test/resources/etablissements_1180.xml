@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--suppress XmlUnboundNsPrefix -->
 <dataset>
     <Etablissement Id="171B3EB4-E175-C159-7F6A-08D2892A9523" NumeroReference="446"
                    Denomination="Ecole communale fondamentale de Calevoet" Adresse_Adr="Rue François Vervloet 10"

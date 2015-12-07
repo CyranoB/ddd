@@ -49,7 +49,7 @@ public class ImplantationAnneeScolaireTest {
         // Violation
         assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
         assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        assertEquals(Arrays.asList("be.domaindrivendesign.ecole.etablissement.model|ImplantationAnneeScolaire.getImplantationNumeroReference"), UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths());
+        assertEquals(Collections.singletonList("be.domaindrivendesign.ecole.etablissement.model|ImplantationAnneeScolaire.getImplantationNumeroReference"), UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths());
         assertEquals(RuleType.Mandatory.typeValue, UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId());
         assertEquals(implantationAnneeScolaire, UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject());
         assertEquals(RuleSeverityType.Error, UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType());
@@ -82,7 +82,7 @@ public class ImplantationAnneeScolaireTest {
         // Violation
         assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
         assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        assertEquals(Arrays.asList("be.domaindrivendesign.ecole.etablissement.model|ImplantationAnneeScolaire.getClasseComptages"), UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths());
+        assertEquals(Collections.singletonList("be.domaindrivendesign.ecole.etablissement.model|ImplantationAnneeScolaire.getClasseComptages"), UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths());
         assertEquals(RuleType.NbrOfElementsInList.typeValue, UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId());
         assertEquals(implantationAnneeScolaire, UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject());
         assertEquals(RuleSeverityType.Error, UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType());

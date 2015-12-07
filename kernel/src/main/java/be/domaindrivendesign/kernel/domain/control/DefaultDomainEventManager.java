@@ -80,6 +80,7 @@ public class DefaultDomainEventManager implements DomainEventManager {
         if (observers == null) return;
 
         for (DomainEventListener observer : observers)
+            //noinspection unchecked
             observer.onEvent(event);
 
     }

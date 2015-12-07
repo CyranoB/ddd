@@ -10,10 +10,7 @@ import be.domaindrivendesign.kernel.rule.type.RuleType;
 import com.trigersoft.jaque.expression.*;
 
 import java.time.temporal.Temporal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Supplier;
 
 /**
@@ -306,7 +303,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends Number & Comparable<T>> boolean domain(RuleObject ruleObject, NumberProperty<T> propertyLambda01, List<T> domain, RuleSeverityType severityType) {
-        if (Guard.domain((T) propertyLambda01.get(), domain)) {
+        if (Guard.domain(propertyLambda01.get(), domain)) {
             return true;
         }
 
@@ -603,7 +600,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends Temporal & Comparable<T>> boolean domain(RuleObject ruleObject, TemporalProperty<T> propertyLambda01, List<T> domain, RuleSeverityType severityType) {
-        if (Guard.domain((T) propertyLambda01.get(), domain)) {
+        if (Guard.domain(propertyLambda01.get(), domain)) {
             return true;
         }
 
@@ -688,7 +685,7 @@ public class RuleGuard {
      */
 
     public static <T extends String & Comparable<String>> boolean equalsInvariant(RuleObject ruleObject, StringProperty<T> propertyLambda01, T invariant, RuleSeverityType severityType) {
-        return (Guard.equals(propertyLambda01.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, invariant.toString(), RuleType.EqualsStringInvariant.typeValue, severityType);
+        return (Guard.equals(propertyLambda01.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, invariant, RuleType.EqualsStringInvariant.typeValue, severityType);
     }
 
     /**
@@ -754,9 +751,9 @@ public class RuleGuard {
 
         List<String> values = new ArrayList<>();
 
-        values.add(propertyLambda01.get().toString());
+        values.add(propertyLambda01.get());
 
-        domain.forEach(x -> values.add(x.toString()));
+        domain.forEach(x -> values.add(x));
 
         raiseViolation(ruleObject, propertyLambda01, values, RuleType.DomainString.typeValue, severityType);
         return false;
@@ -831,7 +828,7 @@ public class RuleGuard {
      * @return
      */
     public static <T> boolean nbrOfElements(RuleObject ruleObject, ListProperty<List<T>> propertyLambdas, int minElement, int maxElement, boolean nullCountAsElement, RuleSeverityType severityType) {
-        return Guard.nbrOfElements(propertyLambdas.get(), minElement, maxElement, nullCountAsElement) || RuleGuard.raiseViolation(ruleObject, propertyLambdas, new ArrayList<String>(Arrays.asList(propertyLambdas.get() == null ? "0" : Integer.toString(propertyLambdas.get().size()), Integer.toString(minElement), Integer.toString(maxElement))), RuleType.NbrOfElementsInList.typeValue, severityType);
+        return Guard.nbrOfElements(propertyLambdas.get(), minElement, maxElement, nullCountAsElement) || RuleGuard.raiseViolation(ruleObject, propertyLambdas, new ArrayList<>(Arrays.asList(propertyLambdas.get() == null ? "0" : Integer.toString(propertyLambdas.get().size()), Integer.toString(minElement), Integer.toString(maxElement))), RuleType.NbrOfElementsInList.typeValue, severityType);
     }
 
     /**
@@ -870,7 +867,7 @@ public class RuleGuard {
      * @return
      */
     public static <TKey, T> boolean nbrOfElements(RuleObject ruleObject, MapProperty<Map<TKey, T>> propertyLambdas, int minElement, int maxElement, boolean nullCountAsElement, RuleSeverityType severityType) {
-        return Guard.nbrOfElements(new ArrayList<>(propertyLambdas.get().values()), minElement, maxElement, nullCountAsElement) || RuleGuard.raiseViolation(ruleObject, propertyLambdas, new ArrayList<String>(Arrays.asList(propertyLambdas.get().values() == null ? "0" : Integer.toString(propertyLambdas.get().values().size()), Integer.toString(minElement), Integer.toString(maxElement))), RuleType.NbrOfElementsInList.typeValue, severityType);
+        return Guard.nbrOfElements(new ArrayList<>(propertyLambdas.get().values()), minElement, maxElement, nullCountAsElement) || RuleGuard.raiseViolation(ruleObject, propertyLambdas, new ArrayList<>(Arrays.asList(propertyLambdas.get().values() == null ? "0" : Integer.toString(propertyLambdas.get().values().size()), Integer.toString(minElement), Integer.toString(maxElement))), RuleType.NbrOfElementsInList.typeValue, severityType);
     }
 
     /**
@@ -896,7 +893,7 @@ public class RuleGuard {
         if (!Guard.contains(propertyLambda01.get(), list)) {
             return true;
         }
-        List<String> values = new ArrayList<String>();
+        List<String> values = new ArrayList<>();
         values.add(propertyLambda01.get() == null ? "0" : propertyLambda01.get().toString());
         list.forEach(x -> values.add(x.toString()));
         raiseViolation(ruleObject, propertyLambda01, values, RuleType.NotInList.typeValue, severityType);
@@ -1055,7 +1052,7 @@ public class RuleGuard {
      * @return
      */
     public static <T> boolean raiseViolation(RuleObject ruleObject, Property<T> propertyLambda, List<String> values, int ruleId, RuleSeverityType severityType) {
-        return raiseViolation(ruleObject, Arrays.asList(propertyLambda), values, ruleId, severityType);
+        return raiseViolation(ruleObject, Collections.singletonList(propertyLambda), values, ruleId, severityType);
     }
 
     /**
