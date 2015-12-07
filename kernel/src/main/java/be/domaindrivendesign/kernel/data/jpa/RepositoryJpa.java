@@ -6,12 +6,10 @@ import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWorkRepository;
 import net.jodah.typetools.TypeResolver;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.*;
+import javax.persistence.EntityNotFoundException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -19,20 +17,19 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class RepositoryJpa<T extends Entity, ID extends Serializable> implements UnitOfWorkRepository {
 
-    private Class<?>[] typeArgs = null;
-
     @Autowired
     protected UnitOfWork unitOfWork;
-
-    public void setUnitOfWork(UnitOfWork unitOfWork) {
-        this.unitOfWork = unitOfWork;
-    }
+    private Class<?>[] typeArgs = null;
 
     public UnitOfWork getUnitOfWork() {
         return unitOfWork;
     }
 
-    private UnitOfWorkJpa getJpaUnitOfWork() {
+    public void setUnitOfWork(UnitOfWork unitOfWork) {
+        this.unitOfWork = unitOfWork;
+    }
+
+    public UnitOfWorkJpa getJpaUnitOfWork() {
         return (UnitOfWorkJpa) unitOfWork;
     }
 

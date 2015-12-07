@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <Etablissement Id="171B3EB4-E175-C159-7F6A-08D2892A9523" NumeroReference="446"
+                   Denomination="Ecole communale fondamentale de Calevoet" Adresse_Adr="Rue François Vervloet 10"
+                   Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="9536D73B-9A4A-CF5C-7F6A-08D2892A9523" NumeroReference="445"
+                   Denomination="Ecole fondamentale du Longchamp" Adresse_Adr="Rue Edith Cavell 29"
+                   Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="84C524D3-FA8B-C5D8-7F6A-08D2892A9523" NumeroReference="447"
+                   Denomination="Ecole primaire communale du Homborch" Adresse_Adr="Avenue d'Homborchveld 34"
+                   Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="25C84581-3F88-CFF8-7F6A-08D2892A9523" NumeroReference="444"
+                   Denomination="Ecole communale fondamentale de Saint-Job" Adresse_Adr="Rue Jean Benaets 74"
+                   Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="667B1BDA-DBB4-CB04-A8AA-08D2892A9523" NumeroReference="450"
+                   Denomination="Ecole  com fond  Val Fleuri" Adresse_Adr="Avenue du Vossegat 45"
+                   Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="DFCDDDBA-6A12-C94D-A8AA-08D2892A9523" NumeroReference="452"
+                   Denomination="Ecole primaire Notre-Dame des Champs Cycle 8-12" Adresse_Adr="Rue Roberts-Jones 24"
+                   Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="3C0F6F19-2A83-C9B9-A8AA-08D2892A9523" NumeroReference="451"
+                   Denomination="Ecole primaire libre - Collège Saint-Pierre" Adresse_Adr="Rue du Doyenné, 68"
+                   Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="BF993A44-879D-C0DC-A8AA-08D2892A9523" NumeroReference="449"
+                   Denomination="Ecole com prim. des Eglantiers - grande section" Adresse_Adr="Avenue des Eglantiers 21"
+                   Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="95BB9AC9-310C-CEEE-A8AA-08D2892A9523" NumeroReference="453"
+                   Denomination="Ecole fondamentale libre Institut Saint-Vincent de Paul" Adresse_Adr="Rue Beeckman 99"
+                   Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="7E88C951-CC85-C5EF-A8AA-08D2892A9523" NumeroReference="448"
+                   Denomination="Ecole communale fondamentale de Messidor" Adresse_Adr="Avenue de Messidor 161"
+                   Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="904A951D-75FB-C904-CF7B-08D2892A9523" NumeroReference="456"
+                   Denomination="Ecole fondamentale libre Notre-Dame de La Consolation" Adresse_Adr="Rue du Bourdon 27"
+                   Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="5E99F6C0-5B90-C00C-CF7B-08D2892A9523" NumeroReference="458"
+                   Denomination="Ecole fondamentale libre non confessionnelle Plein Air" Adresse_Adr="Dieweg 65"
+                   Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="9F638C89-9901-C03A-CF7B-08D2892A9523" NumeroReference="454"
+                   Denomination="Ecole fondamentale libre Notre-Dame-Wolvenberg"
+                   Adresse_Adr="Av Jean et Pierre Carsoel, 4" Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES"
+                   EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="85F5B916-FA0D-C973-CF7B-08D2892A9523" NumeroReference="455"
+                   Denomination="Institut Montjoie  Primaire" Adresse_Adr="Avenue Montjoie 97" Adresse_CodePostal="1180"
+                   Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="165FD34F-16F3-CFFA-CF7B-08D2892A9523" NumeroReference="457"
+                   Denomination="Ecole fondamentale libre Saint-Paul - Regina Pacis"
+                   Adresse_Adr="Chaussée de Neerstalle 440" Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES"
+                   EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="49E9E3DA-A6E3-CC0B-F715-08D2892A9523" NumeroReference="485"
+                   Denomination="Ecole fond. libre - Collège Saint-Pierre - Servites de Marie"
+                   Adresse_Adr="Avenue d'Hougoumont 5" Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES"
+                   EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="0E9AD682-292B-C20C-F715-08D2892A9523" NumeroReference="484"
+                   Denomination="Athénée Ganenou - Ecole fondamentale libre" Adresse_Adr="Rue du Melkriek 3"
+                   Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="7E07FF52-733C-C25C-F715-08D2892A9523" NumeroReference="479"
+                   Denomination="Ecole nouvelle fondamentale libre non confes. Amélie Hamaide"
+                   Adresse_Adr="Avenue Hamoir 31" Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES"
+                   EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="3D87A74F-25BB-C0D5-F715-08D2892A9523" NumeroReference="459"
+                   Denomination="Ecole fondamentale libre Saint-Joseph" Adresse_Adr="Chaussée de Waterloo 1190"
+                   Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="8AAA7018-B167-C07D-520B-08D2892A9576" NumeroReference="3172"
+                   Denomination="Ecole fondamentale libre Decroly" Adresse_Adr="Drève des Gendarmes , 45"
+                   Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="07A89448-3550-CB69-ECE5-08D2892A9576" NumeroReference="3202"
+                   Denomination="Ecole maternelle libre - Collège Saint-Pierre" Adresse_Adr="Rue du Doyenné 76-80"
+                   Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="90B26199-9B6E-C3D0-5CD7-08D2892A9579" NumeroReference="5039"
+                   Denomination="EFA -  A.R. Uccle I La Petite Ecole dans la Prairie"
+                   Adresse_Adr="Avenue Paul Stroobant, 72" Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES"
+                   EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="B9F6FBD8-E9E0-C883-4C75-08D2892A957F" NumeroReference="5927"
+                   Denomination="Ecole fondamentale Notre-Dame des Champs - Cycle 2,5-8"
+                   Adresse_Adr="Rue Roberts-Jones 24B" Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES"
+                   EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="DA2915F1-5CFA-CE91-7389-08D2892A957F" NumeroReference="5938"
+                   Denomination="Ecolecommunale  fondamentale de Verrewinkel" Adresse_Adr="Avenue Dolez 544"
+                   Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="E4200AEA-38CB-CB58-CE86-08D2892A9582" NumeroReference="95358"
+                   Denomination="Ecole communale fondamentale du Centre" Adresse_Adr="Rue du Doyenné, 60"
+                   Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="FB255A6A-7C1C-C2EC-4ADF-08D2892A9583" NumeroReference="95380"
+                   Denomination="Institut Monjoie Maternelle" Adresse_Adr="Avenue Montjoie 30" Adresse_CodePostal="1180"
+                   Adresse_Localite="BRUXELLES" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="AEA530C0-3DF5-CF22-6A94-08D2892A9583" NumeroReference="95392"
+                   Denomination="Ecole com fond.  du Homborch - petite section" Adresse_Adr="Avenue du Homborchveld 32"
+                   Adresse_CodePostal="1180" Adresse_Localite="UCCLE" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="41EE959C-7C6E-CF8B-6A94-08D2892A9583" NumeroReference="95391"
+                   Denomination="Ecole com.fond. des Eglantiers- petite section" Adresse_Adr="Avenue des Eglantiers 19"
+                   Adresse_CodePostal="1180" Adresse_Localite="UCCLE" EnseignementReseau="7" Ecole="1"/>
+    <Etablissement Id="26CCD9F2-F83A-C9AE-9169-08D2892A9583" NumeroReference="95393"
+                   Denomination="Ecole com prim du Val Fleuri" Adresse_Adr="Rue Gatti de Gamond 140"
+                   Adresse_CodePostal="1180" Adresse_Localite="UCCLE" EnseignementReseau="7" Ecole="1"/>
+</dataset>

@@ -1,8 +1,16 @@
-package be.domaindrivendesign.kernel.data.model;
+package be.domaindrivendesign.ecole.etablissement.jpa;
 
-import be.domaindrivendesign.kernel.common.model.EntityStateType;
+import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaEtablissementRepository;
+import be.domaindrivendesign.ecole.etablissement.model.Adresse01;
+import be.domaindrivendesign.ecole.etablissement.model.Contact01;
+import be.domaindrivendesign.ecole.etablissement.model.Etablissement;
+import be.domaindrivendesign.ecole.etablissement.model.Implantation;
+import be.domaindrivendesign.ecole.etablissement.type.EcoleType;
+import be.domaindrivendesign.ecole.etablissement.type.EnseignementReseauType;
+import be.domaindrivendesign.ecole.etablissement.type.NiveauType;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpa;
+import be.domaindrivendesign.shared.valueobject.PeriodDateHeure;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,65 +25,40 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
-import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-/**
- * Created by eddie on 03/12/15.
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = AnnotationConfigContextLoader.class)
 @EnableJpaRepositories
-public class JpaRepository01Test {
+public class JpaEtablissementRepositoryTest {
 
     @Autowired
-    private JpaRepository01 jpaRepository01;
+    private JpaEtablissementRepository jpaRepository;
     @Autowired
     private UnitOfWork unitOfWork;
 
     @Test
     public void insertTest() {
-        Entity01 entity01 = Entity01.create(UUID.randomUUID());
-        entity01.setStringAttribute("Tutu");
-        jpaRepository01.insert(entity01);
+        ArrayList<Implantation> implantations = new ArrayList<>();
+        Implantation implantation01A = Implantation.creer("reference a", "01 a", new Adresse01(), Collections.singletonList(NiveauType.Maternelle), new Contact01(), PeriodDateHeure.EMPTY);
+        implantations.add(implantation01A);
+        Etablissement etablissement = Etablissement.creer("1", "Test", EnseignementReseauType.LibreSubventionneCf, new Adresse01(), EcoleType.EtablissementScolaire, new Contact01(), implantations);
+        jpaRepository.insert(etablissement);
         unitOfWork.commit();
 
-        List<Entity01> entity01s = jpaRepository01.findAll();
+        List<Etablissement> entity01s = jpaRepository.findAll();
         assertTrue(entity01s.size() > 0);
-    }
-
-    @Test
-    public void udapteTest() {
-        Entity01 entity01 = Entity01.create(UUID.randomUUID());
-
-        entity01.setStringAttribute("Tutu");
-
-        jpaRepository01.insert(entity01);
-
-        unitOfWork.commit();
-
-        entity01 = jpaRepository01.findAll().get(0);
-
-        entity01.setStringAttribute("Toto");
-
-        jpaRepository01.update(entity01);
-
-        unitOfWork.commit();
-
-        List<Entity01>entity01s = jpaRepository01.findAll();
-
-        assertTrue(entity01s.size() > 0);
-        assertEquals(EntityStateType.Unchanged, entity01s.get(0).getState());
-
     }
 
     @Test
     public void testEmpty() {
-        List<Entity01> emptyList = jpaRepository01.findAll();
+        List<Etablissement> emptyList = jpaRepository.findAll();
         assertEquals(0, emptyList.size());
     }
 
@@ -127,8 +110,8 @@ public class JpaRepository01Test {
         }
 
         @Bean
-        public JpaRepository01 jpaRepository01() {
-            return new JpaRepository01();
+        public JpaEtablissementRepository jpaRepository01() {
+            return new JpaEtablissementRepository();
         }
     }
 }

@@ -105,6 +105,7 @@ public class Etablissement extends AggregateRoot implements RuleObject {
         etablissement.contact = contact;
         etablissement.implantations = new ArrayList<>(implantations);
         etablissement.enseignementReseau = enseignementReseau;
+        etablissement.state = EntityStateType.Added;
 
         RuleGuard.mandatory(etablissement, etablissement::getNumeroReference);
         RuleGuard.mandatory(etablissement, etablissement::getDenomination);

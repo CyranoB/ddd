@@ -1,6 +1,10 @@
-package be.domaindrivendesign.kernel.data.model;
+package be.domaindrivendesign.ecole.etablissement.jpa;
 
-import be.domaindrivendesign.kernel.common.model.EntityStateType;
+import be.domaindrivendesign.ecole.common.type.ClasseType;
+import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
+import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaImplantationAnneeScolaireRepository;
+import be.domaindrivendesign.ecole.etablissement.model.ClasseComptage;
+import be.domaindrivendesign.ecole.etablissement.model.ImplantationAnneeScolaire;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpa;
 import org.junit.Test;
@@ -17,65 +21,43 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
-import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-/**
- * Created by eddie on 03/12/15.
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = AnnotationConfigContextLoader.class)
 @EnableJpaRepositories
-public class JpaRepository01Test {
+public class JpaImplantationAnneeScolaireRepositoryTest {
 
     @Autowired
-    private JpaRepository01 jpaRepository01;
+    private JpaImplantationAnneeScolaireRepository jpaRepository;
     @Autowired
     private UnitOfWork unitOfWork;
 
     @Test
     public void insertTest() {
-        Entity01 entity01 = Entity01.create(UUID.randomUUID());
-        entity01.setStringAttribute("Tutu");
-        jpaRepository01.insert(entity01);
+
+        ClasseComptage classeComptage01 = ClasseComptage.creer(ClasseType.Maternelle, 10);
+        ClasseComptage classeComptage02 = ClasseComptage.creer(ClasseType.PremierePrimaire, 14);
+        Arrays.asList(classeComptage01, classeComptage02);
+        ImplantationAnneeScolaire implantationAnneeScolaire = ImplantationAnneeScolaire.creer("1", new AnneeScolaire(2014, 2015),
+                new ArrayList<>(Arrays.asList(classeComptage01, classeComptage02)));
+
+        jpaRepository.insert(implantationAnneeScolaire);
         unitOfWork.commit();
 
-        List<Entity01> entity01s = jpaRepository01.findAll();
+        List<ImplantationAnneeScolaire> entity01s = jpaRepository.findAll();
         assertTrue(entity01s.size() > 0);
-    }
-
-    @Test
-    public void udapteTest() {
-        Entity01 entity01 = Entity01.create(UUID.randomUUID());
-
-        entity01.setStringAttribute("Tutu");
-
-        jpaRepository01.insert(entity01);
-
-        unitOfWork.commit();
-
-        entity01 = jpaRepository01.findAll().get(0);
-
-        entity01.setStringAttribute("Toto");
-
-        jpaRepository01.update(entity01);
-
-        unitOfWork.commit();
-
-        List<Entity01>entity01s = jpaRepository01.findAll();
-
-        assertTrue(entity01s.size() > 0);
-        assertEquals(EntityStateType.Unchanged, entity01s.get(0).getState());
-
     }
 
     @Test
     public void testEmpty() {
-        List<Entity01> emptyList = jpaRepository01.findAll();
+        List<ImplantationAnneeScolaire> emptyList = jpaRepository.findAll();
         assertEquals(0, emptyList.size());
     }
 
@@ -118,7 +100,7 @@ public class JpaRepository01Test {
             DriverManagerDataSource ds = new DriverManagerDataSource();
 
             ds.setDriverClassName("org.hsqldb.jdbcDriver");
-            ds.setUrl("jdbc:hsqldb:file:testdb");
+            ds.setUrl("jdbc:hsqldb:file:testdb;hsqldb.sqllog=3");
             ds.setUsername("sa");
             ds.setPassword("");
 
@@ -127,8 +109,8 @@ public class JpaRepository01Test {
         }
 
         @Bean
-        public JpaRepository01 jpaRepository01() {
-            return new JpaRepository01();
+        public JpaImplantationAnneeScolaireRepository jpaRepository01() {
+            return new JpaImplantationAnneeScolaireRepository();
         }
     }
 }

@@ -1,4 +1,4 @@
-package be.domaindrivendesign.kernel.data.model;
+package be.domaindrivendesign.ecole.etablissement.jpa;
 
 import be.domaindrivendesign.kernel.common.model.EntityStateType;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
@@ -66,7 +66,7 @@ public class JpaRepository01Test {
 
         unitOfWork.commit();
 
-        List<Entity01>entity01s = jpaRepository01.findAll();
+        List<Entity01> entity01s = jpaRepository01.findAll();
 
         assertTrue(entity01s.size() > 0);
         assertEquals(EntityStateType.Unchanged, entity01s.get(0).getState());

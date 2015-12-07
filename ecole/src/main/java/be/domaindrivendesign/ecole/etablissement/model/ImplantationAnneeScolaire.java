@@ -2,11 +2,14 @@ package be.domaindrivendesign.ecole.etablissement.model;
 
 import be.domaindrivendesign.ecole.common.type.ClasseType;
 import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
+import be.domaindrivendesign.kernel.common.model.EntityStateType;
 import be.domaindrivendesign.kernel.domain.model.Aggregate;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -55,6 +58,7 @@ public class ImplantationAnneeScolaire extends Aggregate implements RuleObject {
         implantationAnneeScolaire.implantationNumeroReference = implantationNumeroReference;
         implantationAnneeScolaire.anneeScolaire = anneScolaire;
         implantationAnneeScolaire.classeComptages = classes != null ? classes : new ArrayList<ClasseComptage>();
+        implantationAnneeScolaire.state = EntityStateType.Added;
 
 
         RuleGuard.mandatory(implantationAnneeScolaire, implantationAnneeScolaire::getImplantationNumeroReference);

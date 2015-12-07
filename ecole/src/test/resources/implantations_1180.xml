@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <Implantation Id="98A70BDA-C677-CF05-7F6A-08D2892A9523" NumeroReference="826"
+                  Denomination="Ecole communale fondamentale de Saint-Job" Adresse_Adr="Rue Jean Benaets 74"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="25C84581-3F88-CFF8-7F6A-08D2892A9523"/>
+    <Implantation Id="A02B94FC-4A1A-C01B-7F6A-08D2892A9523" NumeroReference="827"
+                  Denomination="Ecole fondamentale du Longchamp" Adresse_Adr="Rue Edith Cavell 29"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="9536D73B-9A4A-CF5C-7F6A-08D2892A9523"/>
+    <Implantation Id="3E554927-A776-C674-7F6A-08D2892A9523" NumeroReference="832"
+                  Denomination="Ecole communale fondamentale de Messidor" Adresse_Adr="Avenue de Messidor 161"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="7E88C951-CC85-C5EF-A8AA-08D2892A9523"/>
+    <Implantation Id="00FDBB9A-C157-CEA7-7F6A-08D2892A9523" NumeroReference="828"
+                  Denomination="Ecole communale fondamentale de Calevoet" Adresse_Adr="Rue François Vervloet 10"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="171B3EB4-E175-C159-7F6A-08D2892A9523"/>
+    <Implantation Id="F4E95464-8199-C5CC-7F6A-08D2892A9523" NumeroReference="831"
+                  Denomination="Ecole primaire communale du Homborch" Adresse_Adr="Avenue d'Homborchveld 34"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="84C524D3-FA8B-C5D8-7F6A-08D2892A9523"/>
+    <Implantation Id="F4736847-E039-CF31-A8AA-08D2892A9523" NumeroReference="839"
+                  Denomination="Ecole primaire Notre-Dame des Champs Cycle 8-12" Adresse_Adr="Rue Roberts-Jones 24"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="DFCDDDBA-6A12-C94D-A8AA-08D2892A9523"/>
+    <Implantation Id="329DBEAB-6D0C-CF54-A8AA-08D2892A9523" NumeroReference="842"
+                  Denomination="Ecole fondamentale libre Notre-Dame-Wolvenberg"
+                  Adresse_Adr="Av Jean et Pierre Carsoel, 4" Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES"
+                  Validite_Debut="1754-01-01 00:00:00.0" Validite_Fin="2999-01-01 00:00:00.0"
+                  Etablissement_Id="9F638C89-9901-C03A-CF7B-08D2892A9523"/>
+    <Implantation Id="7A26D204-3EA1-C259-A8AA-08D2892A9523" NumeroReference="840"
+                  Denomination="Ecole fondamentale libre Institut Saint-Vincent de Paul" Adresse_Adr="Rue Beeckman 99"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="95BB9AC9-310C-CEEE-A8AA-08D2892A9523"/>
+    <Implantation Id="478C550E-9955-CEA9-A8AA-08D2892A9523" NumeroReference="838"
+                  Denomination="Ecole primaire libre - Collège Saint-Pierre" Adresse_Adr="Rue du Doyenné, 68"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="3C0F6F19-2A83-C9B9-A8AA-08D2892A9523"/>
+    <Implantation Id="2660AE5B-E89A-C8B7-A8AA-08D2892A9523" NumeroReference="835"
+                  Denomination="Ecole  com fond  Val Fleuri" Adresse_Adr="Avenue du Vossegat 45"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="667B1BDA-DBB4-CB04-A8AA-08D2892A9523"/>
+    <Implantation Id="132221B1-1D2E-CBD7-A8AA-08D2892A9523" NumeroReference="833"
+                  Denomination="Ecole com prim. des Eglantiers - grande section" Adresse_Adr="Avenue des Eglantiers 21"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="BF993A44-879D-C0DC-A8AA-08D2892A9523"/>
+    <Implantation Id="05B784B2-3B00-CC21-CF7B-08D2892A9523" NumeroReference="849"
+                  Denomination="Ecole fondamentale libre non confessionnelle Plein Air" Adresse_Adr="Dieweg 65"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="5E99F6C0-5B90-C00C-CF7B-08D2892A9523"/>
+    <Implantation Id="DBC90FCE-A362-C124-CF7B-08D2892A9523" NumeroReference="844"
+                  Denomination="Institut Montjoie  Primaire" Adresse_Adr="Avenue Montjoie 97" Adresse_CodePostal="1180"
+                  Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="85F5B916-FA0D-C973-CF7B-08D2892A9523"/>
+    <Implantation Id="2D7008AB-1821-C128-CF7B-08D2892A9523" NumeroReference="846"
+                  Denomination="Ecole fondamentale libre Notre-Dame de La Consolation" Adresse_Adr="Rue du Bourdon 27"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="904A951D-75FB-C904-CF7B-08D2892A9523"/>
+    <Implantation Id="1DC092B5-AF0E-CB41-CF7B-08D2892A9523" NumeroReference="850"
+                  Denomination="Ecole fondamentale libre Saint-Joseph" Adresse_Adr="Chaussée de Waterloo 1190"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="3D87A74F-25BB-C0D5-F715-08D2892A9523"/>
+    <Implantation Id="D324D714-9D9E-CA69-CF7B-08D2892A9523" NumeroReference="848"
+                  Denomination="Ecole fondamentale libre Saint-Paul - Regina Pacis" Adresse_Adr="Parvis Chantecler 10"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="165FD34F-16F3-CFFA-CF7B-08D2892A9523"/>
+    <Implantation Id="0A03BE58-C387-C6A7-CF7B-08D2892A9523" NumeroReference="841"
+                  Denomination="Ecole fondamentale libre Notre-Dame-Wolvenberg" Adresse_Adr="Rue du Château d'Eau 77"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="9F638C89-9901-C03A-CF7B-08D2892A9523"/>
+    <Implantation Id="A9500FDD-231F-CFB2-CF7B-08D2892A9523" NumeroReference="847"
+                  Denomination="Ecole fondamentale libre Saint-Paul - Regina Pacis"
+                  Adresse_Adr="Chaussée de Neerstalle 440" Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES"
+                  Validite_Debut="1754-01-01 00:00:00.0" Validite_Fin="2999-01-01 00:00:00.0"
+                  Etablissement_Id="165FD34F-16F3-CFFA-CF7B-08D2892A9523"/>
+    <Implantation Id="20C210B3-438C-CE18-F715-08D2892A9523" NumeroReference="851"
+                  Denomination="Ecole nouvelle fondamentale libre non confes. Amélie Hamaide"
+                  Adresse_Adr="Avenue Hamoir 31" Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES"
+                  Validite_Debut="1754-01-01 00:00:00.0" Validite_Fin="2999-01-01 00:00:00.0"
+                  Etablissement_Id="7E07FF52-733C-C25C-F715-08D2892A9523"/>
+    <Implantation Id="41BD027E-5890-C34B-F715-08D2892A9523" NumeroReference="889"
+                  Denomination="Athénée Ganenou - Ecole fondamentale libre" Adresse_Adr="Rue du Melkriek 3"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="0E9AD682-292B-C20C-F715-08D2892A9523"/>
+    <Implantation Id="CD63F7CA-7A16-C5BE-F715-08D2892A9523" NumeroReference="897"
+                  Denomination="Ecole fond. libre - Collège Saint-Pierre - Servites de Marie"
+                  Adresse_Adr="Avenue d'Hougoumont 5" Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES"
+                  Validite_Debut="1754-01-01 00:00:00.0" Validite_Fin="2999-01-01 00:00:00.0"
+                  Etablissement_Id="49E9E3DA-A6E3-CC0B-F715-08D2892A9523"/>
+    <Implantation Id="182C3763-7ABC-C902-520B-08D2892A9576" NumeroReference="836"
+                  Denomination="Ecole fondamentale libre Decroly" Adresse_Adr="Drève des Gendarmes , 45"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="8AAA7018-B167-C07D-520B-08D2892A9576"/>
+    <Implantation Id="F377C60C-4932-CC6B-520B-08D2892A9576" NumeroReference="837"
+                  Denomination="Ecole fondamentale libre Decroly" Adresse_Adr="Avenue Casalta 10"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="8AAA7018-B167-C07D-520B-08D2892A9576"/>
+    <Implantation Id="712B37C4-FFB4-CF45-ECE5-08D2892A9576" NumeroReference="6332"
+                  Denomination="Ecole maternelle libre - Collège Saint-Pierre" Adresse_Adr="Rue du Doyenné 76-80"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="07A89448-3550-CB69-ECE5-08D2892A9576"/>
+    <Implantation Id="5697C037-C304-CC5E-5CD7-08D2892A9579" NumeroReference="853"
+                  Denomination="EFA -  A.R. Uccle I La Petite Ecole dans la Prairie"
+                  Adresse_Adr="Avenue Paul Stroobant, 72" Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES"
+                  Validite_Debut="1754-01-01 00:00:00.0" Validite_Fin="2999-01-01 00:00:00.0"
+                  Etablissement_Id="90B26199-9B6E-C3D0-5CD7-08D2892A9579"/>
+    <Implantation Id="2D98B203-07F7-C44E-4C75-08D2892A957F" NumeroReference="9629"
+                  Denomination="Ecole fondamentale Notre-Dame des Champs - Cycle 2,5-8"
+                  Adresse_Adr="Rue Roberts-Jones 24B" Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES"
+                  Validite_Debut="1754-01-01 00:00:00.0" Validite_Fin="2999-01-01 00:00:00.0"
+                  Etablissement_Id="B9F6FBD8-E9E0-C883-4C75-08D2892A957F"/>
+    <Implantation Id="5366E93A-896A-CCF9-7389-08D2892A957F" NumeroReference="825"
+                  Denomination="Ecolecommunale  fondamentale de Verrewinkel" Adresse_Adr="Avenue Dolez 544"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="DA2915F1-5CFA-CE91-7389-08D2892A957F"/>
+    <Implantation Id="E620DE23-DB79-C48D-CE86-08D2892A9582" NumeroReference="830"
+                  Denomination="Ecole communale fondamentale du Centre" Adresse_Adr="Rue du Doyenné, 60"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="E4200AEA-38CB-CB58-CE86-08D2892A9582"/>
+    <Implantation Id="F179D744-65A4-C52B-4ADF-08D2892A9583" NumeroReference="843"
+                  Denomination="Institut Monjoie Maternelle" Adresse_Adr="Rue Stanley 69" Adresse_CodePostal="1180"
+                  Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="FB255A6A-7C1C-C2EC-4ADF-08D2892A9583"/>
+    <Implantation Id="E0713998-0093-C6FC-4ADF-08D2892A9583" NumeroReference="845"
+                  Denomination="Institut Monjoie Maternelle" Adresse_Adr="Avenue Montjoie 30" Adresse_CodePostal="1180"
+                  Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="FB255A6A-7C1C-C2EC-4ADF-08D2892A9583"/>
+    <Implantation Id="06CA6AB6-3FB5-CF10-6A94-08D2892A9583" NumeroReference="10299"
+                  Denomination="Ecole com fond.  du Homborch - petite section" Adresse_Adr="Avenue du Homborchveld 32"
+                  Adresse_CodePostal="1180" Adresse_Localite="UCCLE" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="AEA530C0-3DF5-CF22-6A94-08D2892A9583"/>
+    <Implantation Id="0869C546-7342-C3DC-6A94-08D2892A9583" NumeroReference="834"
+                  Denomination="Ecole com.fond. des Eglantiers- petite section" Adresse_Adr="Avenue d'Hougoumont 8"
+                  Adresse_CodePostal="1180" Adresse_Localite="BRUXELLES" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="41EE959C-7C6E-CF8B-6A94-08D2892A9583"/>
+    <Implantation Id="A0C494C6-74FD-C6F0-6A94-08D2892A9583" NumeroReference="10298"
+                  Denomination="Ecole com.fond. des Eglantiers- petite section" Adresse_Adr="Avenue des Eglantiers 19"
+                  Adresse_CodePostal="1180" Adresse_Localite="UCCLE" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="41EE959C-7C6E-CF8B-6A94-08D2892A9583"/>
+    <Implantation Id="94A534FA-FE82-C576-9169-08D2892A9583" NumeroReference="10300"
+                  Denomination="Ecole com prim du Val Fleuri" Adresse_Adr="Rue Gatti de Gamond 140"
+                  Adresse_CodePostal="1180" Adresse_Localite="UCCLE" Validite_Debut="1754-01-01 00:00:00.0"
+                  Validite_Fin="2999-01-01 00:00:00.0" Etablissement_Id="26CCD9F2-F83A-C9AE-9169-08D2892A9583"/>
+</dataset>
