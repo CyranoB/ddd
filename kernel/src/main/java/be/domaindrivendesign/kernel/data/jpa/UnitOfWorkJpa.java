@@ -1,5 +1,6 @@
 package be.domaindrivendesign.kernel.data.jpa;
 
+import be.domaindrivendesign.kernel.common.error.KernelException;
 import be.domaindrivendesign.kernel.data.model.UnitOfWorkImpl;
 
 import javax.persistence.EntityManager;
@@ -28,7 +29,7 @@ public class UnitOfWorkJpa extends UnitOfWorkImpl {
         }catch (Exception e){
             getEntityManager().getTransaction().rollback();
             // Ajouter gestion des exceptions;
-            System.out.println(e.getMessage());
+            throw new KernelException("UnitOfWork Commit Exception", e);
         }
     }
 }
