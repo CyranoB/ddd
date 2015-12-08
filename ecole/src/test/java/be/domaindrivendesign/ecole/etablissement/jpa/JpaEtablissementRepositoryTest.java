@@ -10,12 +10,18 @@ import be.domaindrivendesign.ecole.etablissement.type.EnseignementReseauType;
 import be.domaindrivendesign.ecole.etablissement.type.NiveauType;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.shared.valueobject.PeriodDateHeure;
+import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,12 +33,24 @@ import static org.junit.Assert.assertTrue;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = RepositoryTestConfiguration.class)
 @EnableJpaRepositories
+@TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
+        DirtiesContextTestExecutionListener.class,
+        TransactionalTestExecutionListener.class,
+        DbUnitTestExecutionListener.class})
 public class JpaEtablissementRepositoryTest {
 
     @Autowired
     private JpaEtablissementRepository jpaRepository;
     @Autowired
     private UnitOfWork unitOfWork;
+
+    @Test
+    @DatabaseSetup("/etablissements_smalset.xml")
+    public void testList() {
+        List<Etablissement> entity01s = jpaRepository.findAll();
+        assertTrue(entity01s.size() > 0);
+    }
+
 
     @Test
     public void insertTest() {

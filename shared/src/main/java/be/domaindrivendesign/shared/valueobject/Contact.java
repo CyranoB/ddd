@@ -3,9 +3,9 @@ package be.domaindrivendesign.shared.valueobject;
 import be.domaindrivendesign.kernel.common.translation.LanguageType;
 import be.domaindrivendesign.kernel.common.valueobject.ValueObject;
 
-/**
- * Created by eddie on 23/11/15.
- */
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Contact extends ValueObject {
     private Adresse adresse;
     private NumeroTelephone fax;
@@ -14,7 +14,7 @@ public class Contact extends ValueObject {
     private String nomPrenom;
     private LanguageType langue;
 
-    private Contact() {
+    protected Contact() {
     }
 
     public Contact(Adresse adresse, NumeroTelephone fax, NumeroTelephone telephone, Email eMail, String nomPrenom, LanguageType langue) {

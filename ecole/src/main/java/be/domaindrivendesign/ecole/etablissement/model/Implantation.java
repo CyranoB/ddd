@@ -12,7 +12,10 @@ import be.domaindrivendesign.shared.valueobject.Adresse;
 import be.domaindrivendesign.shared.valueobject.Contact;
 import be.domaindrivendesign.shared.valueobject.PeriodDateHeure;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -22,28 +25,20 @@ import java.util.UUID;
  */
 
 @Entity
-@Table(
-        name = "IMPLANTATION",
-        indexes = {
-                @Index(name = "IMPLANTATION_DENOMINATION_IDX", columnList = "DENOMINATION"),
-                @Index(name = "IMPLANTATION_NUMREF_IDX", columnList = "NUMERO_REFERENCE")
-        }
-)
 public class Implantation extends Aggregate implements RuleObject {
 
-    @Column(nullable = false, name = "NUMERO_REFERENCE")
-    private String numeroReference;
-    @Column(nullable = false, name = "DENOMINATION")
-    private String denomination;
     @Column
+    private String numeroReference;
+    @Column
+    private String denomination;
+    @Embedded
     private Adresse adresse;
     @ElementCollection
     private List<NiveauType> niveaux;
-    @Column
+    @Embedded
     private Contact contact;
     @Column
     private PeriodDateHeure validite;
-    //endregion
 
     //region Constructeurs
     /// <summary>

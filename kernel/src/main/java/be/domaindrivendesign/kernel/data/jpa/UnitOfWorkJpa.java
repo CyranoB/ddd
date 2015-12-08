@@ -28,7 +28,7 @@ public class UnitOfWorkJpa extends UnitOfWorkImpl {
             getEntityManager().getTransaction().commit();
         }catch (Exception e){
             getEntityManager().getTransaction().rollback();
-            // Ajouter gestion des exceptions;
+            // TODO Ajouter gestion des exceptions;
             throw new KernelException("UnitOfWork Commit Exception", e);
         }
     }

@@ -23,36 +23,17 @@ public class Etablissement extends AggregateRoot implements RuleObject {
     private String numeroReference;
     @Column
     private String denomination;
-    /// <summary>
-    /// Obtient l'adresse.
-    /// </summary>
-    /// <value>
-    /// L'adresse.
-    /// </value>
+
+    @Column
     private Adresse adresse;
-    //endregion
-    /// <summary>
-    /// Obtient la liste des implantations.
-    /// </summary>
-    /// <value>
-    /// Les implantations.
-    /// </value>
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Implantation> implantations;
-    //endregion
-    /// <summary>
-    /// Obtient le réseau d'enseignement.
-    /// </summary>
-    /// <value>
-    /// Le réseau d'enseignement.
-    /// </value>
+
+    @Column
     private EnseignementReseauType enseignementReseau;
-    /// <summary>
-    /// Obtient le type d'école.
-    /// </summary>
-    /// <value>
-    /// Le type d'école.
-    /// </value>
+
+    @Column
     private EcoleType ecole;
 
     //endregion

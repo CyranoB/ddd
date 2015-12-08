@@ -4,17 +4,20 @@ import be.domaindrivendesign.kernel.common.valueobject.ValueObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 import be.domaindrivendesign.kernel.rule.type.RuleSeverityType;
 
-/**
- * Created by eddie on 23/11/15.
- */
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Adresse extends ValueObject {
 
-
+    @Column(name = "ADRESSE_ADR")
     public String adr;
+    @Column(name = "ADRESSE_CODEPOSTAL")
     public int codePostal;
+    @Column(name = "ADRESSE_LOCALITE")
     public String localite;
 
-    private Adresse() {
+    protected Adresse() {
     }
 
     public Adresse(String adr, int codePostal, String localite) {
