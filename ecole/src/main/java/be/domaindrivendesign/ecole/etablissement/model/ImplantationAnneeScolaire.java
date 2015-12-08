@@ -7,9 +7,7 @@ import be.domaindrivendesign.kernel.domain.model.Aggregate;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -24,7 +22,7 @@ public class ImplantationAnneeScolaire extends Aggregate implements RuleObject {
     public String implantationNumeroReference;
     @Column
     public AnneeScolaire anneeScolaire;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public List<ClasseComptage> classeComptages;
 
     //region Constructeurs

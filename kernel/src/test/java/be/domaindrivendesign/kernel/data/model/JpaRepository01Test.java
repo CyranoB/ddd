@@ -117,7 +117,7 @@ public class JpaRepository01Test {
             DriverManagerDataSource ds = new DriverManagerDataSource();
 
             ds.setDriverClassName("org.hsqldb.jdbcDriver");
-            ds.setUrl("jdbc:hsqldb:file:testdb");
+            ds.setUrl("jdbc:hsqldb:mem:testdb");
             ds.setUsername("sa");
             ds.setPassword("");
 

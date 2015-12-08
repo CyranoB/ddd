@@ -9,9 +9,7 @@ import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 import be.domaindrivendesign.shared.valueobject.Adresse;
 import be.domaindrivendesign.shared.valueobject.Contact;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +37,7 @@ public class Etablissement extends AggregateRoot implements RuleObject {
     /// <value>
     /// Les implantations.
     /// </value>
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Implantation> implantations;
     //endregion
     /// <summary>

@@ -33,6 +33,7 @@ public class RepositoryJpa<T extends Entity, ID extends Serializable> implements
         return (UnitOfWorkJpa) unitOfWork;
     }
 
+    // Il faudrait peut être faire un aspect qui fait cela pour toutes les méthodes find
     public List<T> findAll() {
         @SuppressWarnings("unchecked")
         List<T> entities = getJpaUnitOfWork().getEntityManager().createQuery(

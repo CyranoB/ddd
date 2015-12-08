@@ -57,12 +57,6 @@ class RepositoryTestConfiguration {
     }
 
     @Bean
-    public JpaRepository01 jpaRepository01() {
-        return new JpaRepository01();
-    }
-
-
-    @Bean
     public JpaImplantationAnneeScolaireRepository jpaImplantationAnneeScolaireRepository() {
         return new JpaImplantationAnneeScolaireRepository();
     }
@@ -70,11 +64,6 @@ class RepositoryTestConfiguration {
     @Bean
     public JpaEtablissementRepository jpaEtablissementRepository() {
         return new JpaEtablissementRepository();
-    }
-
-    @Bean
-    public JpaUserRepository jpaUserRepository() {
-        return new JpaUserRepository();
     }
 
 }
