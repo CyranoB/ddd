@@ -5,8 +5,6 @@ import java.util.UUID;
 
 @Entity
 public class User extends be.domaindrivendesign.kernel.common.model.Entity {
-
-    UUID id;
     String name;
     String email;
 
