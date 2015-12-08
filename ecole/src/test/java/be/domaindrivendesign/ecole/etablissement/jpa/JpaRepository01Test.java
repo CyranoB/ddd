@@ -2,34 +2,20 @@ package be.domaindrivendesign.ecole.etablissement.jpa;
 
 import be.domaindrivendesign.kernel.common.model.EntityStateType;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
-import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpa;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-import javax.sql.DataSource;
 import java.util.List;
-import java.util.Properties;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-/**
- * Created by eddie on 03/12/15.
- */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(loader = AnnotationConfigContextLoader.class)
-@EnableJpaRepositories
+@ContextConfiguration(classes = RepositoryTestConfiguration.class)
 public class JpaRepository01Test {
 
     @Autowired
@@ -77,57 +63,5 @@ public class JpaRepository01Test {
     public void testEmpty() {
         List<Entity01> emptyList = jpaRepository01.findAll();
         assertEquals(0, emptyList.size());
-    }
-
-    @Configuration
-    static class ContextConfiguration {
-
-        @Bean
-        public UnitOfWork unitOfWork() {
-            return new UnitOfWorkJpa();
-        }
-
-        @Bean
-        public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
-
-            LocalContainerEntityManagerFactoryBean lcemfb
-                    = new LocalContainerEntityManagerFactoryBean();
-
-            lcemfb.setDataSource(this.dataSource());
-            lcemfb.setPackagesToScan("be.domaindrivendesign");
-            lcemfb.setPersistenceUnitName("MyTestPU");
-
-            HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
-            lcemfb.setJpaVendorAdapter(va);
-
-            Properties ps = new Properties();
-            ps.put("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
-            ps.put("hibernate.hbm2ddl.auto", "create");
-            lcemfb.setJpaProperties(ps);
-
-            lcemfb.afterPropertiesSet();
-
-            return lcemfb;
-
-        }
-
-        @Bean
-        public DataSource dataSource() {
-
-            DriverManagerDataSource ds = new DriverManagerDataSource();
-
-            ds.setDriverClassName("org.hsqldb.jdbcDriver");
-            ds.setUrl("jdbc:hsqldb:file:testdb");
-            ds.setUsername("sa");
-            ds.setPassword("");
-
-            return ds;
-
-        }
-
-        @Bean
-        public JpaRepository01 jpaRepository01() {
-            return new JpaRepository01();
-        }
     }
 }
