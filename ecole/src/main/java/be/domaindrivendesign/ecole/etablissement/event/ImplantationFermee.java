@@ -14,12 +14,12 @@ public class ImplantationFermee extends DomainEventImpl<ImplantationFermee> {
     /// <summary>
     /// Obtient une référence sur l'implantation.
     /// </summary>
-    public Implantation implantation;
+    public final Implantation implantation;
     //endregion
     /// <summary>
     /// Obtient la date de fermeture de l'implantation
     /// </summary>
-    public LocalDateTime fermeLe;
+    public final LocalDateTime fermeLe;
 
     //region Constructeurs
     /// <summary>

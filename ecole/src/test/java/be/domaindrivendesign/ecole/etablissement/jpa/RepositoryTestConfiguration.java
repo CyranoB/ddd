@@ -6,7 +6,6 @@ import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpa;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -52,8 +51,7 @@ class RepositoryTestConfiguration {
     public DataSource dataSource() {
         //jdbc:hsqldb:mem:testdb
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-        EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.HSQL).setName("UnitTestDB").build();
-        return db;
+        return builder.setType(EmbeddedDatabaseType.HSQL).setName("UnitTestDB").build();
     }
 
     @Bean

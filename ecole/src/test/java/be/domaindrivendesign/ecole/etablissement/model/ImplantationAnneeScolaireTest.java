@@ -75,8 +75,6 @@ public class ImplantationAnneeScolaireTest {
 
     @Test
     public void testCreerNullClasseComptage() {
-        ClasseComptage classeComptage01 = ClasseComptage.creer(ClasseType.Maternelle, 10);
-        ClasseComptage classeComptage02 = ClasseComptage.creer(ClasseType.PremierePrimaire, 14);
         ImplantationAnneeScolaire implantationAnneeScolaire = ImplantationAnneeScolaire.creer("1", new AnneeScolaire(2014, 2015), null);
 
         // Violation
@@ -93,6 +91,7 @@ public class ImplantationAnneeScolaireTest {
     public void testCreerDoubleClasseComptage() {
         ClasseComptage classeComptage01 = ClasseComptage.creer(ClasseType.Maternelle, 10);
         ClasseComptage classeComptage02 = ClasseComptage.creer(ClasseType.Maternelle, 14);
+        //noinspection UnusedAssignment
         ImplantationAnneeScolaire implantationAnneeScolaire = ImplantationAnneeScolaire.creer("1", new AnneeScolaire(2014, 2015),
                 new ArrayList<>(Arrays.asList(classeComptage01, classeComptage02)));
 

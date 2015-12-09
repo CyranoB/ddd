@@ -1,28 +1,36 @@
 package be.domaindrivendesign.ecole.etablissement.jpa;
 
-import be.domaindrivendesign.ecole.common.type.ClasseType;
 import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
 import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaImplantationAnneeScolaireRepository;
-import be.domaindrivendesign.ecole.etablissement.model.ClasseComptage;
 import be.domaindrivendesign.ecole.etablissement.model.ImplantationAnneeScolaire;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
+import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = RepositoryTestConfiguration.class)
+@TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
+        DirtiesContextTestExecutionListener.class,
+        TransactionalTestExecutionListener.class,
+        DbUnitTestExecutionListener.class})
 @EnableJpaRepositories
+@DatabaseSetup("/etablissement/implantation_annee_scolaires.xml")
 public class JpaImplantationAnneeScolaireRepositoryTest {
 
     @Autowired
@@ -31,24 +39,45 @@ public class JpaImplantationAnneeScolaireRepositoryTest {
     private UnitOfWork unitOfWork;
 
     @Test
-    public void insertTest() {
+    public void testList() {
+        List<ImplantationAnneeScolaire> anneeScolaires = jpaRepository.findAll();
+        List<?> ids = anneeScolaires.stream().map(ImplantationAnneeScolaire::getId).collect(Collectors.toList());
 
-        ClasseComptage classeComptage01 = ClasseComptage.creer(ClasseType.Maternelle, 10);
-        ClasseComptage classeComptage02 = ClasseComptage.creer(ClasseType.PremierePrimaire, 14);
-        Arrays.asList(classeComptage01, classeComptage02);
-        ImplantationAnneeScolaire implantationAnneeScolaire = ImplantationAnneeScolaire.creer("1", new AnneeScolaire(2014, 2015),
-                new ArrayList<>(Arrays.asList(classeComptage01, classeComptage02)));
-
-        jpaRepository.insert(implantationAnneeScolaire);
-        unitOfWork.commit();
-
-        List<ImplantationAnneeScolaire> entity01s = jpaRepository.findAll();
-        assertTrue(entity01s.size() > 0);
+        assertEquals(3, anneeScolaires.size());
+        assertTrue(ids.contains(UUID.fromString("889BC410-D4D9-4DBD-A0E0-D714EC40967C")));
     }
 
     @Test
-    public void testEmpty() {
-        List<ImplantationAnneeScolaire> emptyList = jpaRepository.findAll();
-        assertEquals(0, emptyList.size());
+    public void testGetById() {
+        ImplantationAnneeScolaire result = jpaRepository.findById(UUID.fromString("CD64664B-CE45-4355-973D-0DAF2369D2DC".toLowerCase()));
+
+        assertNotNull(result);
+        assertEquals("CD64664B-CE45-4355-973D-0DAF2369D2DC", result.getId().toString().toUpperCase());
+        assertEquals(new AnneeScolaire(2013, 2014), result.getAnneeScolaire());
+        assertEquals("101", result.getImplantationNumeroReference());
+    }
+
+    @Test
+    public void testForImplantationNumeroReference() {
+        List<ImplantationAnneeScolaire> result = jpaRepository.listImplantationAnneeScolaireForImplantationNumeroReference("101");
+
+        assertEquals(3, result.size());
+        List<AnneeScolaire> annees = result.stream().map(ImplantationAnneeScolaire::getAnneeScolaire).collect(Collectors.toList());
+
+        assertNotNull(annees.contains(new AnneeScolaire(2013, 2014)));
+        assertNotNull(annees.contains(new AnneeScolaire(2012, 2013)));
+        assertNotNull(annees.contains(new AnneeScolaire(2011, 2012)));
+    }
+
+    @Test
+    public void testImplantationAnneeScolaireForAnneeScolaireAndImplantationNumeroReference() {
+        ImplantationAnneeScolaire result =
+                jpaRepository.getImplantationAnneeScolaireForAnneeScolaireAndImplantationNumeroReference(
+                        new AnneeScolaire(2011, 2012), "101");
+
+        assertNotNull(result);
+        assertEquals("119735F7-224E-4FF2-9F41-FD81643E6518", result.getId().toString().toUpperCase());
+        assertEquals(new AnneeScolaire(2011, 2012), result.getAnneeScolaire());
+        assertEquals("101", result.getImplantationNumeroReference());
     }
 }

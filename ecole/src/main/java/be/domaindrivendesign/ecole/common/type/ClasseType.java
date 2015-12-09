@@ -71,7 +71,7 @@ public enum ClasseType {
     /// </summary>
     SixiemeSecondaire(26);
 
-    public int typeValue;
+    public final int typeValue;
 
     ClasseType(int typeValue) {
         this.typeValue = typeValue;

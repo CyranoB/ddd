@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--suppress XmlUnboundNsPrefix -->
-<dataset>
-    <ETABLISSEMENT id="171B3EB4-E175-C159-7F6A-08D2892A9523" NUMEROREFERENCE="446"
-                   DENOMINATION="Ecole communale fondamentale de Calevoet" ADRESSE_ADR="Rue François Vervloet 10"
-                   ADRESSE_CODEPOSTAL="1180" ADRESSE_LOCALITE="BRUXELLES" ENSEIGNEMENTRESEAU="7" ECOLE="1"/>
-
-</dataset>

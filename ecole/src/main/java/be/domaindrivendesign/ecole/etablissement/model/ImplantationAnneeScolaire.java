@@ -20,9 +20,10 @@ public class ImplantationAnneeScolaire extends Aggregate implements RuleObject {
 
     @Column
     public String implantationNumeroReference;
-    @Column
+    @Embedded
     public AnneeScolaire anneeScolaire;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "IMPLANTATIONANNEESCOLAIRE_ID")
     public List<ClasseComptage> classeComptages;
 
     //region Constructeurs

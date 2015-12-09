@@ -1,5 +1,6 @@
 package be.domaindrivendesign.ecole.etablissement.data.jpa;
 
+import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
 import be.domaindrivendesign.ecole.etablissement.data.interfaces.ImplantationAnneeScolaireRepository;
 import be.domaindrivendesign.ecole.etablissement.model.ImplantationAnneeScolaire;
 import be.domaindrivendesign.ecole.etablissement.model.QImplantationAnneeScolaire;
@@ -15,9 +16,18 @@ public class JpaImplantationAnneeScolaireRepository extends RepositoryJpa<Implan
         implements ImplantationAnneeScolaireRepository {
 
     @Override
-    public List<ImplantationAnneeScolaire> getByImplantationNumeroReference(String numeroDeReference) {
+    public List<ImplantationAnneeScolaire> listImplantationAnneeScolaireForImplantationNumeroReference(String implantationNumeroReference) {
         JPAQuery<ImplantationAnneeScolaire> query = new JPAQuery<>(getJpaUnitOfWork().getEntityManager());
         QImplantationAnneeScolaire implantationsAnneeScolaire = QImplantationAnneeScolaire.implantationAnneeScolaire;
-        return query.from(implantationsAnneeScolaire).where(implantationsAnneeScolaire.implantationNumeroReference.eq(numeroDeReference)).fetch();
+        return query.from(implantationsAnneeScolaire).where(implantationsAnneeScolaire.implantationNumeroReference.eq(implantationNumeroReference)).fetch();
+        // TODO Aspect pour mettre les entités à unodified
+    }
+
+    @Override
+    public ImplantationAnneeScolaire getImplantationAnneeScolaireForAnneeScolaireAndImplantationNumeroReference(AnneeScolaire anneeScolaire, String implantationNumeroReference) {
+        JPAQuery<ImplantationAnneeScolaire> query = new JPAQuery<>(getJpaUnitOfWork().getEntityManager());
+        QImplantationAnneeScolaire implantationsAnneeScolaire = QImplantationAnneeScolaire.implantationAnneeScolaire;
+        return query.from(implantationsAnneeScolaire).where(implantationsAnneeScolaire.implantationNumeroReference.eq(implantationNumeroReference), implantationsAnneeScolaire.anneeScolaire.eq(anneeScolaire)).fetchFirst();
+        // TODO Aspect pour mettre les entités à unodified
     }
 }

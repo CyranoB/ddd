@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class DummyEventRegister implements DomainEventListener<ImplantationFermee> {
 
-    public ArrayList<Implantation> implantations;
+    public final ArrayList<Implantation> implantations;
 
     public DummyEventRegister() {
         DefaultDomainEventManager.getInstance().registerObserver(ImplantationFermee.class, this);

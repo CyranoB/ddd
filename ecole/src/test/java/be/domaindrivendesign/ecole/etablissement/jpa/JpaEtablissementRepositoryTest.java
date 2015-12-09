@@ -1,15 +1,8 @@
 package be.domaindrivendesign.ecole.etablissement.jpa;
 
 import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaEtablissementRepository;
-import be.domaindrivendesign.ecole.etablissement.model.Adresse01;
-import be.domaindrivendesign.ecole.etablissement.model.Contact01;
 import be.domaindrivendesign.ecole.etablissement.model.Etablissement;
-import be.domaindrivendesign.ecole.etablissement.model.Implantation;
-import be.domaindrivendesign.ecole.etablissement.type.EcoleType;
-import be.domaindrivendesign.ecole.etablissement.type.EnseignementReseauType;
-import be.domaindrivendesign.ecole.etablissement.type.NiveauType;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
-import be.domaindrivendesign.shared.valueobject.PeriodDateHeure;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import org.junit.Test;
@@ -23,12 +16,10 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = RepositoryTestConfiguration.class)
@@ -37,6 +28,7 @@ import static org.junit.Assert.assertTrue;
         DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class})
+@DatabaseSetup("/etablissement/etablissements_1180.xml")
 public class JpaEtablissementRepositoryTest {
 
     @Autowired
@@ -45,29 +37,20 @@ public class JpaEtablissementRepositoryTest {
     private UnitOfWork unitOfWork;
 
     @Test
-    @DatabaseSetup("/etablissements_1180.xml")
     public void testList() {
         List<Etablissement> etablissements = jpaRepository.findAll();
         assertEquals(29, etablissements.size());
-    }
-
-
-    @Test
-    public void insertTest() {
-        ArrayList<Implantation> implantations = new ArrayList<>();
-        Implantation implantation01A = Implantation.creer("reference a", "01 a", new Adresse01(), Collections.singletonList(NiveauType.Maternelle), new Contact01(), PeriodDateHeure.EMPTY);
-        implantations.add(implantation01A);
-        Etablissement etablissement = Etablissement.creer("1", "Test", EnseignementReseauType.LibreSubventionneCf, new Adresse01(), EcoleType.EtablissementScolaire, new Contact01(), implantations);
-        jpaRepository.insert(etablissement);
-        unitOfWork.commit();
-
-        List<Etablissement> entity01s = jpaRepository.findAll();
-        assertTrue(entity01s.size() > 0);
+        Etablissement etablissement = etablissements.stream().filter(e -> e.getNumeroReference().equals("446")).findFirst().get();
+        assertEquals("171B3EB4-E175-C159-7F6A-08D2892A9523", etablissement.getId().toString().toUpperCase());
+        assertEquals("446", etablissement.getNumeroReference());
+        // TODO: fix Etablissement -> Implantations
+        //assertEquals(1, etablissements.get(0).getImplantations().size());
     }
 
     @Test
-    public void testEmpty() {
-        List<Etablissement> emptyList = jpaRepository.findAll();
-        assertEquals(0, emptyList.size());
+    public void testGetForNumeroDeReference() {
+        Etablissement etablissement = jpaRepository.getEtablissementForNumeroDeReference("446");
+        assertNotNull(etablissement);
+        assertEquals("171B3EB4-E175-C159-7F6A-08D2892A9523", etablissement.getId().toString().toUpperCase());
     }
 }

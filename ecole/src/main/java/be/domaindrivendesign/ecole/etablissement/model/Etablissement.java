@@ -28,6 +28,7 @@ public class Etablissement extends AggregateRoot implements RuleObject {
     private Adresse adresse;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "ETABLISSEMENT_ID", referencedColumnName = "ID")
     private List<Implantation> implantations;
 
     @Column

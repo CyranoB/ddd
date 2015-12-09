@@ -13,8 +13,8 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="entityManagerFactory" />
-          <factory-entry name="entityManagerFactoryBean" />
+          <factory-entry name="entityManagerFactory" value="906186e1-d65b-4144-a70a-ddef9247b14d" />
+          <factory-entry name="entityManagerFactoryBean" value="906186e1-d65b-4144-a70a-ddef9247b14d" />
         </datasource-mapping>
       </configuration>
     </facet>
@@ -35,13 +35,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: com.querydsl:querydsl-apt:4.0.6" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: com.querydsl:querydsl-codegen:4.0.6" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: com.mysema.codegen:codegen:0.6.8" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.eclipse.jdt.core.compiler:ecj:4.3.1" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.inject:javax.inject:1" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.reflections:reflections:0.9.9" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: com.google.code.findbugs:annotations:2.0.1" level="project" />
     <orderEntry type="module" module-name="kernel" />
     <orderEntry type="library" name="Maven: com.trigersoft:jaque:2.1.2" level="project" />
     <orderEntry type="library" name="Maven: org.ow2.asm:asm:5.0.3" level="project" />
@@ -94,6 +87,13 @@
     <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:1.3.9" level="project" />
     <orderEntry type="library" name="Maven: com.mysema.commons:mysema-commons-lang:0.2.4" level="project" />
     <orderEntry type="library" name="Maven: com.infradna.tool:bridge-method-annotation:1.13" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.querydsl:querydsl-apt:4.0.6" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.querydsl:querydsl-codegen:4.0.6" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.mysema.codegen:codegen:0.6.8" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.eclipse.jdt.core.compiler:ecj:4.3.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.reflections:reflections:0.9.9" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.google.code.findbugs:annotations:2.0.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.dbunit:dbunit:2.5.1" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.apache.poi:poi-ooxml:3.11" level="project" />

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress XmlUnboundNsPrefix -->
+<dataset>
+    <ImplantationAnneeScolaire Id="119735F7-224E-4FF2-9F41-FD81643E6518" ImplantationNumeroReference="101"
+                               AnneeScolaire_AnneeDebut="2011" AnneeScolaire_AnneeFin="2012"/>
+    <ImplantationAnneeScolaire Id="889BC410-D4D9-4DBD-A0E0-D714EC40967C" ImplantationNumeroReference="101"
+                               AnneeScolaire_AnneeDebut="2012" AnneeScolaire_AnneeFin="2013"/>
+    <ImplantationAnneeScolaire Id="CD64664B-CE45-4355-973D-0DAF2369D2DC" ImplantationNumeroReference="101"
+                               AnneeScolaire_AnneeDebut="2013" AnneeScolaire_AnneeFin="2014"/>
+
+    <ClasseComptage Id="15FAFFF2-A95D-41B0-BFD2-5CE3388FF15C"
+                    ImplantationAnneeScolaire_Id="CD64664B-CE45-4355-973D-0DAF2369D2DC" Classe="11" NombreEleves="21"/>
+    <ClasseComptage Id="15FBFFF2-A95D-41B0-BFD2-5CE3388FF15C"
+                    ImplantationAnneeScolaire_Id="CD64664B-CE45-4355-973D-0DAF2369D2DC" Classe="12" NombreEleves="22"/>
+    <ClasseComptage Id="15FCFFF2-A95D-41B0-BFD2-5CE3388FF15C"
+                    ImplantationAnneeScolaire_Id="CD64664B-CE45-4355-973D-0DAF2369D2DC" Classe="13" NombreEleves="23"/>
+    <ClasseComptage Id="15FDFFF2-A95D-41B0-BFD2-5CE3388FF15C"
+                    ImplantationAnneeScolaire_Id="CD64664B-CE45-4355-973D-0DAF2369D2DC" Classe="14" NombreEleves="24"/>
+    <ClasseComptage Id="15FEFFF2-A95D-41B0-BFD2-5CE3388FF15C"
+                    ImplantationAnneeScolaire_Id="CD64664B-CE45-4355-973D-0DAF2369D2DC" Classe="15" NombreEleves="25"/>
+    <ClasseComptage Id="15FFFFF2-A95D-41B0-BFD2-5CE3388FF15C"
+                    ImplantationAnneeScolaire_Id="CD64664B-CE45-4355-973D-0DAF2369D2DC" Classe="16" NombreEleves="26"/>
+</dataset>

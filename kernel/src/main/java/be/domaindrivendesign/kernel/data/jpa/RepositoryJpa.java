@@ -33,7 +33,7 @@ public class RepositoryJpa<T extends Entity, ID extends Serializable> implements
         return (UnitOfWorkJpa) unitOfWork;
     }
 
-    // Il faudrait peut être faire un aspect qui fait cela pour toutes les méthodes find
+    // TODO Il faudrait peut être faire un aspect qui fait cela pour toutes les méthodes find
     public List<T> findAll() {
         @SuppressWarnings("unchecked")
         List<T> entities = getJpaUnitOfWork().getEntityManager().createQuery(
@@ -42,9 +42,13 @@ public class RepositoryJpa<T extends Entity, ID extends Serializable> implements
         return entities;
     }
 
+    // TODO Il faudrait peut être faire un aspect qui fait cela pour toutes les méthodes find
     public T findById(ID id) {
         //noinspection unchecked
-        return (T) getJpaUnitOfWork().getEntityManager().find(getEntityType(), id);
+        T entity = (T) getJpaUnitOfWork().getEntityManager().find(getEntityType(), id);
+        if (entity != null)
+            entity.forceState(EntityStateType.Unchanged);
+        return entity;
     }
 
     public void insert(T entity) {

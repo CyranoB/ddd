@@ -2,18 +2,20 @@ package be.domaindrivendesign.shared.valueobject;
 
 import be.domaindrivendesign.kernel.common.valueobject.ValueObject;
 
+import javax.persistence.Embeddable;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+@Embeddable
 public class PeriodDateHeure extends ValueObject {
-    public final static LocalDateTime DATE_MAX_VALUE = LocalDateTime.of(2999, 01, 01, 00, 00, 00);
-    public final static LocalDateTime DATE_MIN_VALUE = LocalDateTime.of(1754, 01, 01, 00, 00, 00);
+    public final static LocalDateTime DATE_MAX_VALUE = LocalDateTime.of(2999, 1, 1, 0, 0, 0);
+    public final static LocalDateTime DATE_MIN_VALUE = LocalDateTime.of(1754, 1, 1, 0, 0, 0);
     public final static PeriodDateHeure EMPTY = new PeriodDateHeure(DATE_MIN_VALUE, DATE_MAX_VALUE);
 
-    private LocalDateTime debut;
-    private LocalDateTime fin;
+    protected LocalDateTime debut;
+    protected LocalDateTime fin;
 
     protected PeriodDateHeure() {
     }
@@ -82,7 +84,15 @@ public class PeriodDateHeure extends ValueObject {
         return this.debut;
     }
 
+    protected void setDebut(LocalDateTime debut) {
+        this.debut = debut;
+    }
+
     public LocalDateTime getFin() {
         return this.fin;
+    }
+
+    protected void setFin(LocalDateTime fin) {
+        this.fin = fin;
     }
 }
