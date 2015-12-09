@@ -45,10 +45,10 @@ public class JpaEtablissementRepositoryTest {
     private UnitOfWork unitOfWork;
 
     @Test
-    @DatabaseSetup("/etablissements_smalset.xml")
+    @DatabaseSetup("/etablissements_1180.xml")
     public void testList() {
-        List<Etablissement> entity01s = jpaRepository.findAll();
-        assertTrue(entity01s.size() > 0);
+        List<Etablissement> etablissements = jpaRepository.findAll();
+        assertEquals(29, etablissements.size());
     }
 
 

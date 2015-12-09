@@ -3,6 +3,7 @@ package be.domaindrivendesign.kernel.domain.model;
 import be.domaindrivendesign.kernel.common.model.Entity;
 import be.domaindrivendesign.kernel.common.model.EntityStateType;
 
+import javax.persistence.MappedSuperclass;
 import java.util.UUID;
 
 /*
@@ -35,6 +36,7 @@ and not the entire aggregate root (or aggregate). Method that are no business ar
 Based on the aggregate pattern.
 */
 
+@MappedSuperclass
 public class AggregateRoot extends Entity {
     protected AggregateRoot() {
         super();

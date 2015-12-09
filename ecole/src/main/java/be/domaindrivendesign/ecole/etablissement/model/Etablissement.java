@@ -36,8 +36,6 @@ public class Etablissement extends AggregateRoot implements RuleObject {
     @Column
     private EcoleType ecole;
 
-    //endregion
-
     //region Getters
     /// <summary>
     /// Obtient les informations de contact.

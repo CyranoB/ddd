@@ -11,11 +11,11 @@ import javax.persistence.Embeddable;
 public class Adresse extends ValueObject {
 
     @Column(name = "ADRESSE_ADR")
-    public String adr;
+    protected String adr;
     @Column(name = "ADRESSE_CODEPOSTAL")
-    public int codePostal;
+    protected int codePostal;
     @Column(name = "ADRESSE_LOCALITE")
-    public String localite;
+    protected String localite;
 
     protected Adresse() {
     }
@@ -50,4 +50,5 @@ public class Adresse extends ValueObject {
     public String getLocalite() {
         return localite;
     }
+    //endregion
 }

@@ -7,10 +7,6 @@ import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-/**
- * Created by asmolabs on 15/11/15.
- */
-
 public class PeriodDateHeure extends ValueObject {
     public final static LocalDateTime DATE_MAX_VALUE = LocalDateTime.of(2999, 01, 01, 00, 00, 00);
     public final static LocalDateTime DATE_MIN_VALUE = LocalDateTime.of(1754, 01, 01, 00, 00, 00);

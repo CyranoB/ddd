@@ -1,6 +1,7 @@
 package be.domaindrivendesign.kernel.common.model;
 
 import be.domaindrivendesign.kernel.common.error.KernelException;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -18,6 +19,7 @@ import java.util.UUID;
 public class Entity {
 
     @Id
+    @Type(type = "uuid-char")
     protected UUID id;
     @Transient
     protected EntityStateType state;

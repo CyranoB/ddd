@@ -12,10 +12,7 @@ import be.domaindrivendesign.shared.valueobject.Adresse;
 import be.domaindrivendesign.shared.valueobject.Contact;
 import be.domaindrivendesign.shared.valueobject.PeriodDateHeure;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -38,6 +35,9 @@ public class Implantation extends Aggregate implements RuleObject {
     @Embedded
     private Contact contact;
     @Column
+    @AttributeOverrides({
+            @AttributeOverride(name = "debut", column = @Column(name = "VALIDITE_DEBUT")),
+            @AttributeOverride(name = "fin", column = @Column(name = "VALIDITE_FIN"))})
     private PeriodDateHeure validite;
 
     //region Constructeurs

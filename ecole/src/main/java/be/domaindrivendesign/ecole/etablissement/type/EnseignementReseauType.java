@@ -4,6 +4,7 @@ package be.domaindrivendesign.ecole.etablissement.type;
  * Created by eddie on 23/11/15.
  */
 public enum EnseignementReseauType {
+    Inconnu(0),
     /// <summary>
     /// Organisé par la Communauté Française.
     /// </summary>

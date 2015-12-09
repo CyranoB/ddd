@@ -5,14 +5,10 @@ import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWorkRepository;
 import org.springframework.transaction.annotation.Propagation;
 
-import javax.transaction.Transactional;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-/**
- * Created by eddie on 19/11/15.
- */
 public class UnitOfWorkImpl implements UnitOfWork {
 
     protected final UUID id;
