@@ -87,7 +87,6 @@ public class BudgetAnnuel extends Aggregate implements RuleObject {
         budgetAnnuel.fruitEtLegumeNbrEleve = fruitEtLegumeNbrEleve;
         budgetAnnuel.laitNbrEleve = laitNbrEleve;
 
-
         RuleGuard.mandatory(budgetAnnuel, budgetAnnuel::getAnneeScolaire);
         RuleGuard.greaterOrEqualThanInvariant(budgetAnnuel, budgetAnnuel::getMontantAideFruitEtLegumeParEleve, new BigDecimal(0.1));
         RuleGuard.greaterOrEqualThanInvariant(budgetAnnuel, budgetAnnuel::getMontantAideLaitParEleve, new BigDecimal(0.1));

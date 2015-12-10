@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 /// <summary>
 /// Définit une implantation par année scolaire.
 /// </summary>
-@Entity
+@Entity(name = "IMPLANTAIONANNEESCOLAIRE")
 public class ImplantationAnneeScolaire extends Aggregate implements RuleObject {
 
     @Column

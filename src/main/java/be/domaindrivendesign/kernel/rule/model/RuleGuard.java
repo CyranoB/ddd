@@ -753,7 +753,7 @@ public class RuleGuard {
 
         values.add(propertyLambda01.get());
 
-        domain.forEach(x -> values.add(x));
+        domain.forEach(values::add);
 
         raiseViolation(ruleObject, propertyLambda01, values, RuleType.DomainString.typeValue, severityType);
         return false;
@@ -867,6 +867,7 @@ public class RuleGuard {
      * @return
      */
     public static <TKey, T> boolean nbrOfElements(RuleObject ruleObject, MapProperty<Map<TKey, T>> propertyLambdas, int minElement, int maxElement, boolean nullCountAsElement, RuleSeverityType severityType) {
+        // TODO Condition 'propertyLambdas.get().values() == null' is always 'false' when reached
         return Guard.nbrOfElements(new ArrayList<>(propertyLambdas.get().values()), minElement, maxElement, nullCountAsElement) || RuleGuard.raiseViolation(ruleObject, propertyLambdas, new ArrayList<>(Arrays.asList(propertyLambdas.get().values() == null ? "0" : Integer.toString(propertyLambdas.get().values().size()), Integer.toString(minElement), Integer.toString(maxElement))), RuleType.NbrOfElementsInList.typeValue, severityType);
     }
 
@@ -1016,8 +1017,12 @@ public class RuleGuard {
      */
     public static <T> boolean raiseViolation(RuleObject ruleObject, Property<T> propertyLambda, String value, int ruleId, RuleSeverityType severityType) {
         List<String> values = new ArrayList<>();
-
-        values.add(propertyLambda.get().toString());
+        T l = propertyLambda.get();
+        if (l != null) {
+            values.add(propertyLambda.get().toString());
+        } else {
+            values.add("N/A");
+        }
         values.add(value);
 
         return raiseViolation(ruleObject, propertyLambda, values, ruleId, severityType);
@@ -1075,6 +1080,7 @@ public class RuleGuard {
                 true);
 
         for (Property propertyLambda : propertiesLambda) {
+            @SuppressWarnings("unchecked")
             final LambdaExpression<Supplier<T>> parsedTree =
                     LambdaExpression.parse(propertyLambda);
 
@@ -1096,6 +1102,7 @@ public class RuleGuard {
         if (severityType == RuleSeverityType.BlockingError)
             throw new RuleException(UnitOfWorkRule.getInstance().getViolations());
 
+        // TODO Always returns false?
         return false;
     }
 
