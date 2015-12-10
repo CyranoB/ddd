@@ -3,10 +3,7 @@ package be.domaindrivendesign.kernel.common.model;
 import be.domaindrivendesign.kernel.common.error.KernelException;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -117,4 +114,8 @@ public class Entity {
     }
     //endregion
 
+    @PostLoad
+    public void unchangedEntity() {
+        forceState(EntityStateType.Unchanged);
+    }
 }

@@ -5,6 +5,7 @@ import be.domaindrivendesign.kernel.common.model.EntityStateType;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWorkRepository;
 import net.jodah.typetools.TypeResolver;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ public class RepositoryJpa<T extends Entity, ID extends Serializable> implements
 
     @Autowired
     protected UnitOfWork unitOfWork;
+
     private Class<?>[] typeArgs = null;
 
     public UnitOfWork getUnitOfWork() {
@@ -38,7 +40,7 @@ public class RepositoryJpa<T extends Entity, ID extends Serializable> implements
         @SuppressWarnings("unchecked")
         List<T> entities = getJpaUnitOfWork().getEntityManager().createQuery(
                 "SELECT p FROM "+ getEntityType().getName() +" p").getResultList();
-        entities.stream().forEach(e -> e.forceState(EntityStateType.Unchanged));
+        //entities.stream().forEach(e -> e.forceState(EntityStateType.Unchanged));
         return entities;
     }
 
@@ -62,7 +64,7 @@ public class RepositoryJpa<T extends Entity, ID extends Serializable> implements
     public void delete(ID id) {
         Entity entity = findById(id);
 
-        if (entity!= null) {
+        if (entity != null) {
             delete(entity);
         }else{
             throw new EntityNotFoundException();
@@ -93,12 +95,12 @@ public class RepositoryJpa<T extends Entity, ID extends Serializable> implements
 
     @Override
     public void persistUpdatedItem(Entity entity) {
-        getJpaUnitOfWork().getEntityManager().persist(entity);
+        getJpaUnitOfWork().getEntityManager().unwrap(Session.class).persist(entity);
     }
 
     @Override
     public void persistDeletedItem(Entity entity) {
         entity.logicalDelete();
-        getJpaUnitOfWork().getEntityManager().merge(entity);
+        getJpaUnitOfWork().getEntityManager().unwrap(Session.class).merge(entity);
     }
 }

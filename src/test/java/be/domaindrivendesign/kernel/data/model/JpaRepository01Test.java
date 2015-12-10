@@ -9,13 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.List;
 import java.util.Properties;
@@ -30,6 +35,8 @@ import static org.junit.Assert.assertTrue;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = AnnotationConfigContextLoader.class)
 @EnableJpaRepositories
+@EnableTransactionManagement
+@Transactional(readOnly = true)
 public class JpaRepository01Test {
 
     @Autowired
@@ -49,7 +56,8 @@ public class JpaRepository01Test {
     }
 
     @Test
-    public void udapteTest() {
+    @Transactional(readOnly = true)
+    public void updateTest() {
         Entity01 entity01 = Entity01.create(UUID.randomUUID());
 
         entity01.setStringAttribute("Tutu");
@@ -66,11 +74,10 @@ public class JpaRepository01Test {
 
         unitOfWork.commit();
 
-        List<Entity01>entity01s = jpaRepository01.findAll();
+        List<Entity01> entity01s = jpaRepository01.findAll();
 
         assertTrue(entity01s.size() > 0);
         assertEquals(EntityStateType.Unchanged, entity01s.get(0).getState());
-
     }
 
     @Test
@@ -83,17 +90,26 @@ public class JpaRepository01Test {
     static class ContextConfiguration {
 
         @Bean
+        @Autowired
         public UnitOfWork unitOfWork() {
             return new UnitOfWorkJpa();
         }
 
         @Bean
-        public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
+        public DataSource dataSource() {
+
+            EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+            return builder.setType(EmbeddedDatabaseType.HSQL).build();
+        }
+
+        @Bean
+        @Autowired
+        public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(DataSource dataSource) {
 
             LocalContainerEntityManagerFactoryBean lcemfb
                     = new LocalContainerEntityManagerFactoryBean();
 
-            lcemfb.setDataSource(this.dataSource());
+            lcemfb.setDataSource(dataSource);
             lcemfb.setPackagesToScan("be.domaindrivendesign");
             lcemfb.setPersistenceUnitName("MyTestPU");
 
@@ -103,30 +119,29 @@ public class JpaRepository01Test {
             Properties ps = new Properties();
             ps.put("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
             ps.put("hibernate.hbm2ddl.auto", "create");
+            ps.put("hsqldb.sqllog", "3");
+            ps.put("hsqldb.applog", "1");
             lcemfb.setJpaProperties(ps);
 
             lcemfb.afterPropertiesSet();
 
             return lcemfb;
-
         }
 
         @Bean
-        public DataSource dataSource() {
-
-            DriverManagerDataSource ds = new DriverManagerDataSource();
-
-            ds.setDriverClassName("org.hsqldb.jdbcDriver");
-            ds.setUrl("jdbc:hsqldb:mem:testdb");
-            ds.setUsername("sa");
-            ds.setPassword("");
-
-            return ds;
-
+        @Autowired
+        public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+            JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
+            jpaTransactionManager.setEntityManagerFactory(entityManagerFactory);
+            jpaTransactionManager.setDataSource(dataSource());
+            return jpaTransactionManager;
         }
 
+
+
         @Bean
-        public JpaRepository01 jpaRepository01() {
+        @Autowired
+        public JpaRepository01 jpaRepository01(UnitOfWork unitOfWork) {
             return new JpaRepository01();
         }
     }

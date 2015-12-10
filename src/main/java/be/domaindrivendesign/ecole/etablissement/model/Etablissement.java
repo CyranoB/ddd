@@ -8,13 +8,12 @@ import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 import be.domaindrivendesign.shared.valueobject.Adresse;
 import be.domaindrivendesign.shared.valueobject.Contact;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 public class Etablissement extends AggregateRoot implements RuleObject {
@@ -28,8 +27,9 @@ public class Etablissement extends AggregateRoot implements RuleObject {
     private Adresse adresse;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "ETABLISSEMENT_ID", referencedColumnName = "ID")
-    private List<Implantation> implantations;
+    @JoinColumn(name = "ETABLISSEMENT_ID")
+    @Fetch(FetchMode.SUBSELECT)
+    private Set<Implantation> implantations;
 
     @Column
     private EnseignementReseauType enseignementReseau;
@@ -83,7 +83,7 @@ public class Etablissement extends AggregateRoot implements RuleObject {
         etablissement.adresse = adresse;
         etablissement.ecole = ecole;
         etablissement.contact = contact;
-        etablissement.implantations = new ArrayList<>(implantations);
+        etablissement.implantations = new HashSet<>(implantations);
         etablissement.enseignementReseau = enseignementReseau;
         etablissement.state = EntityStateType.Added;
 
@@ -92,7 +92,7 @@ public class Etablissement extends AggregateRoot implements RuleObject {
         RuleGuard.mandatory(etablissement, etablissement::getAdresse);
         RuleGuard.mandatory(etablissement, etablissement::getEnseignementReseau);
         RuleGuard.mandatory(etablissement, etablissement::getEcole);
-        RuleGuard.nbrOfElements(etablissement, etablissement::getImplantations, 1, 10);
+        //RuleGuard.nbrOfElements(etablissement, etablissement::getImplantations, 1, 10);
 
         return etablissement;
     }
@@ -160,7 +160,7 @@ public class Etablissement extends AggregateRoot implements RuleObject {
         return adresse;
     }
 
-    public List<Implantation> getImplantations() {
+    public Set<Implantation> getImplantations() {
         return implantations;
     }
 
@@ -176,4 +176,5 @@ public class Etablissement extends AggregateRoot implements RuleObject {
         return contact;
     }
     // endregion
+
 }

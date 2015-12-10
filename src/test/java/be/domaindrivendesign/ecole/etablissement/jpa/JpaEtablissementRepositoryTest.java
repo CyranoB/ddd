@@ -44,7 +44,7 @@ public class JpaEtablissementRepositoryTest {
         assertEquals("171B3EB4-E175-C159-7F6A-08D2892A9523", etablissement.getId().toString().toUpperCase());
         assertEquals("446", etablissement.getNumeroReference());
         // TODO: fix Etablissement -> Implantations
-        //assertEquals(1, etablissements.get(0).getImplantations().size());
+        assertEquals(1, etablissements.get(0).getImplantations().size());
     }
 
     @Test

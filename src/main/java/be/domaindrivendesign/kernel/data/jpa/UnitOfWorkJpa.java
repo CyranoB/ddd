@@ -5,12 +5,10 @@ import be.domaindrivendesign.kernel.data.model.UnitOfWorkImpl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
-import javax.persistence.SynchronizationType;
 
 public class UnitOfWorkJpa extends UnitOfWorkImpl {
 
-    @PersistenceContext(synchronization= SynchronizationType.UNSYNCHRONIZED, type = PersistenceContextType.EXTENDED)
+    @PersistenceContext
     private EntityManager entityManager;
 
     public EntityManager getEntityManager() {

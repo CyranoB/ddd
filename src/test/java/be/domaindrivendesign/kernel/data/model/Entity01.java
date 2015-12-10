@@ -34,4 +34,6 @@ public class Entity01 extends Entity {
     public void setStringAttribute(String stringAttribute) {
         this.stringAttribute = stringAttribute;
     }
+
+
 }

@@ -30,7 +30,7 @@ public class Implantation extends Aggregate implements RuleObject {
     private String denomination;
     @Embedded
     private Adresse adresse;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<NiveauType> niveaux;
     @Embedded
     private Contact contact;
