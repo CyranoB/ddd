@@ -947,6 +947,37 @@ public class RuleGuard {
         return false;
     }
 
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param element
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean notInList(RuleObject ruleObject, Property<List<T>> propertyLambda01, T element) {
+        return notInList(ruleObject, propertyLambda01, element, RuleSeverityType.Error);
+    }
+
+
+    /**
+     * @param ruleObject
+     * @param propertyLambda01
+     * @param element
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean notInList(RuleObject ruleObject, Property<List<T>> propertyLambda01, T element, RuleSeverityType severityType) {
+        //TODO test
+        if (!Guard.contains(element, propertyLambda01.get())) {
+            return true;
+        }
+        List<String> values = new ArrayList<>();
+        values.add(propertyLambda01.get() == null ? "0" : propertyLambda01.get().toString());
+        raiseViolation(ruleObject, propertyLambda01, element.toString(), RuleType.NotInList.typeValue, severityType);
+        return false;
+    }
+
     //endregion
 
     /**
