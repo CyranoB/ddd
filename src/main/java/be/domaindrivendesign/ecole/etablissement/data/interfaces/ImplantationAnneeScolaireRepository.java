@@ -1,7 +1,7 @@
 package be.domaindrivendesign.ecole.etablissement.data.interfaces;
 
 import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
-import be.domaindrivendesign.ecole.etablissement.model.ImplantationAnneeScolaire;
+import be.domaindrivendesign.ecole.etablissement.domain.model.ImplantationAnneeScolaire;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package be.domaindrivendesign.ecole.etablissement.data.jpa;
 
 import be.domaindrivendesign.ecole.etablissement.data.interfaces.EtablissementRepository;
-import be.domaindrivendesign.ecole.etablissement.model.Etablissement;
-import be.domaindrivendesign.ecole.etablissement.model.QEtablissement;
+import be.domaindrivendesign.ecole.etablissement.domain.model.Etablissement;
+import be.domaindrivendesign.ecole.etablissement.domain.model.QEtablissement;
 import be.domaindrivendesign.kernel.data.jpa.RepositoryJpa;
 import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.stereotype.Repository;

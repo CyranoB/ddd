@@ -2,12 +2,11 @@ package be.domaindrivendesign.ecole.budget.jpa;
 
 import be.domaindrivendesign.ecole.RepositoryTestConfiguration;
 import be.domaindrivendesign.ecole.budget.data.jpa.JpaBudgetAnnuelRepository;
-import be.domaindrivendesign.ecole.budget.model.BudgetAnnuel;
+import be.domaindrivendesign.ecole.budget.domain.model.BudgetAnnuel;
 import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

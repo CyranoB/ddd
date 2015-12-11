@@ -3,7 +3,7 @@ package be.domaindrivendesign.ecole.etablissement.jpa;
 import be.domaindrivendesign.ecole.RepositoryTestConfiguration;
 import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
 import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaImplantationAnneeScolaireRepository;
-import be.domaindrivendesign.ecole.etablissement.model.ImplantationAnneeScolaire;
+import be.domaindrivendesign.ecole.etablissement.domain.model.ImplantationAnneeScolaire;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;

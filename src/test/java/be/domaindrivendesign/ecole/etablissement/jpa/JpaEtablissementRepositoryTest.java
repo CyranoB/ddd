@@ -2,7 +2,7 @@ package be.domaindrivendesign.ecole.etablissement.jpa;
 
 import be.domaindrivendesign.ecole.RepositoryTestConfiguration;
 import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaEtablissementRepository;
-import be.domaindrivendesign.ecole.etablissement.model.Etablissement;
+import be.domaindrivendesign.ecole.etablissement.domain.model.Etablissement;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;

@@ -2,8 +2,8 @@ package be.domaindrivendesign.ecole.etablissement.data.jpa;
 
 import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
 import be.domaindrivendesign.ecole.etablissement.data.interfaces.ImplantationAnneeScolaireRepository;
-import be.domaindrivendesign.ecole.etablissement.model.ImplantationAnneeScolaire;
-import be.domaindrivendesign.ecole.etablissement.model.QImplantationAnneeScolaire;
+import be.domaindrivendesign.ecole.etablissement.domain.model.ImplantationAnneeScolaire;
+import be.domaindrivendesign.ecole.etablissement.domain.model.QImplantationAnneeScolaire;
 import be.domaindrivendesign.kernel.data.jpa.RepositoryJpa;
 import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.stereotype.Repository;

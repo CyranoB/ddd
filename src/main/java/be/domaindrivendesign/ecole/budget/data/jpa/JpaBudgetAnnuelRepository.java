@@ -1,8 +1,8 @@
 package be.domaindrivendesign.ecole.budget.data.jpa;
 
 import be.domaindrivendesign.ecole.budget.data.interfaces.BudgetAnnuelRepository;
-import be.domaindrivendesign.ecole.budget.model.BudgetAnnuel;
-import be.domaindrivendesign.ecole.budget.model.QBudgetAnnuel;
+import be.domaindrivendesign.ecole.budget.domain.model.BudgetAnnuel;
+import be.domaindrivendesign.ecole.budget.domain.model.QBudgetAnnuel;
 import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
 import be.domaindrivendesign.kernel.data.jpa.RepositoryJpa;
 import com.querydsl.jpa.impl.JPAQuery;
