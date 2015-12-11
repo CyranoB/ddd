@@ -22,7 +22,7 @@ public class Contact extends ValueObject {
     @Column(name = "CONTACT_TELEPHONE")
     protected NumeroTelephone telephone;
     @Column(name = "CONTACT_EMAIL")
-    protected Email eMail;
+    protected Email email;
     @Column(name = "CONTACT_NOMPRENOM")
     protected String nomPrenom;
     @Column(name = "CONTACT_LANGUE")
@@ -31,11 +31,11 @@ public class Contact extends ValueObject {
     protected Contact() {
     }
 
-    public Contact(Adresse adresse, NumeroTelephone fax, NumeroTelephone telephone, Email eMail, String nomPrenom, LanguageType langue) {
+    public Contact(Adresse adresse, NumeroTelephone fax, NumeroTelephone telephone, Email email, String nomPrenom, LanguageType langue) {
         this.adresse = adresse;
         this.fax = fax;
         this.telephone = telephone;
-        this.eMail = eMail;
+        this.email = email;
         this.nomPrenom = nomPrenom;
         this.langue = langue;
     }
@@ -52,8 +52,8 @@ public class Contact extends ValueObject {
         return telephone;
     }
 
-    public Email geteMail() {
-        return eMail;
+    public Email getEmail() {
+        return email;
     }
 
     public String getNomPrenom() {

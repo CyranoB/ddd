@@ -24,7 +24,7 @@ public class ContactTest {
         assertEquals(new Adresse01(), c.getAdresse());
         Assert.assertEquals(new NumeroTelephone01(), c.getFax());
         assertEquals(new NumeroTelephone02(), c.getTelephone());
-        Assert.assertEquals(new Email01(), c.geteMail());
+        Assert.assertEquals(new Email01(), c.getEmail());
         Assert.assertEquals("Storm Trooper", c.getNomPrenom());
         Assert.assertEquals(LanguageType.French, c.getLangue());
     }
