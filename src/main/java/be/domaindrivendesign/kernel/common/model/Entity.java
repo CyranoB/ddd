@@ -45,7 +45,7 @@ public class Entity {
     @Override
     public boolean equals(Object otherObject) {
 
-        if (otherObject == null) {
+        if (otherObject == null || id == null) {
             return false;
         }
 
@@ -54,7 +54,9 @@ public class Entity {
 
     @Override
     public final int hashCode() {
-        return id.hashCode();
+        if (id != null)
+            return id.hashCode();
+        return 0;
     }
 
     //region Getters and Setters

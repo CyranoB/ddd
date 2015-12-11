@@ -790,6 +790,38 @@ public class RuleGuard {
 
     // endregion
 
+
+    //region Set
+
+    /**
+     * @param ruleObject
+     * @param propertyLambdas
+     * @param minElement
+     * @param maxElement
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean nbrOfElements(RuleObject ruleObject, SetProperty<Set<T>> propertyLambdas, int minElement, int maxElement) {
+        return nbrOfElements(ruleObject, propertyLambdas, minElement, maxElement, false, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambdas
+     * @param minElement
+     * @param maxElement
+     * @param nullCountAsElement
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean nbrOfElements(RuleObject ruleObject, SetProperty<Set<T>> propertyLambdas, int minElement, int maxElement, boolean nullCountAsElement) {
+        return nbrOfElements(ruleObject, propertyLambdas, minElement, maxElement, nullCountAsElement, RuleSeverityType.Error);
+    }
+
+
+    //endregion
+
+
     //region List
 
     /**
@@ -815,6 +847,20 @@ public class RuleGuard {
      */
     public static <T> boolean nbrOfElements(RuleObject ruleObject, ListProperty<List<T>> propertyLambdas, int minElement, int maxElement, boolean nullCountAsElement) {
         return nbrOfElements(ruleObject, propertyLambdas, minElement, maxElement, nullCountAsElement, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject
+     * @param propertyLambdas
+     * @param minElement
+     * @param maxElement
+     * @param nullCountAsElement
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean nbrOfElements(RuleObject ruleObject, SetProperty<Set<T>> propertyLambdas, int minElement, int maxElement, boolean nullCountAsElement, RuleSeverityType severityType) {
+        return Guard.nbrOfElements(propertyLambdas.get(), minElement, maxElement, nullCountAsElement) || RuleGuard.raiseViolation(ruleObject, propertyLambdas, new ArrayList<>(Arrays.asList(propertyLambdas.get() == null ? "0" : Integer.toString(propertyLambdas.get().size()), Integer.toString(minElement), Integer.toString(maxElement))), RuleType.NbrOfElementsInList.typeValue, severityType);
     }
 
     /**

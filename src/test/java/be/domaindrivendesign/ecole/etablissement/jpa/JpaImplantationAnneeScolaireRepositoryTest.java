@@ -50,7 +50,7 @@ public class JpaImplantationAnneeScolaireRepositoryTest {
 
     @Test
     public void testGetById() {
-        ImplantationAnneeScolaire result = jpaRepository.findById(UUID.fromString("CD64664B-CE45-4355-973D-0DAF2369D2DC".toLowerCase()));
+        ImplantationAnneeScolaire result = jpaRepository.findById(UUID.fromString("CD64664B-CE45-4355-973D-0DAF2369D2DC"));
 
         Assert.assertNotNull(result);
         assertEquals("CD64664B-CE45-4355-973D-0DAF2369D2DC", result.getId().toString().toUpperCase());

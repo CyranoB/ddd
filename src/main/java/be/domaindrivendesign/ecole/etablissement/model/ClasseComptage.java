@@ -1,12 +1,12 @@
 package be.domaindrivendesign.ecole.etablissement.model;
 
 import be.domaindrivendesign.ecole.common.type.ClasseType;
+import be.domaindrivendesign.ecole.etablissement.data.jpa.ClasseTypeConverter;
 import be.domaindrivendesign.kernel.domain.model.Aggregate;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -17,6 +17,7 @@ import java.util.UUID;
 public class ClasseComptage extends Aggregate implements RuleObject {
 
     @Column
+    @Convert(converter = ClasseTypeConverter.class)
     public ClasseType classe;
     @Column
     public int nombreEleves;

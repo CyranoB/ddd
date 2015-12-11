@@ -5,6 +5,8 @@ import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
 import be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule;
 import be.domaindrivendesign.kernel.rule.type.RuleSeverityType;
 import be.domaindrivendesign.kernel.rule.type.RuleType;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.Matcher;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -12,6 +14,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 
 import static org.junit.Assert.assertEquals;
 
@@ -31,13 +34,13 @@ public class ImplantationAnneeScolaireTest {
         ClasseComptage classeComptage02 = ClasseComptage.creer(ClasseType.PremierePrimaire, 14);
         Arrays.asList(classeComptage01, classeComptage02);
         ImplantationAnneeScolaire implantationAnneeScolaire = ImplantationAnneeScolaire.creer("1", new AnneeScolaire(2014, 2015),
-                new ArrayList<>(Arrays.asList(classeComptage01, classeComptage02)));
+                new LinkedHashSet<>(Arrays.asList(classeComptage01, classeComptage02)));
 
         Assert.assertNotNull(implantationAnneeScolaire.getId());
         Assert.assertEquals("1", implantationAnneeScolaire.getImplantationNumeroReference());
         assertEquals(new AnneeScolaire(2014, 2015), implantationAnneeScolaire.getAnneeScolaire());
-        Assert.assertEquals(classeComptage01, implantationAnneeScolaire.getClasseComptages().get(0));
-        Assert.assertEquals(classeComptage02, implantationAnneeScolaire.getClasseComptages().get(1));
+        Assert.assertTrue(implantationAnneeScolaire.getClasseComptages().contains(classeComptage01));
+        Assert.assertTrue(implantationAnneeScolaire.getClasseComptages().contains(classeComptage02));
     }
 
     @Test
@@ -45,7 +48,7 @@ public class ImplantationAnneeScolaireTest {
         ClasseComptage classeComptage01 = ClasseComptage.creer(ClasseType.Maternelle, 10);
         ClasseComptage classeComptage02 = ClasseComptage.creer(ClasseType.PremierePrimaire, 14);
         ImplantationAnneeScolaire implantationAnneeScolaire = ImplantationAnneeScolaire.creer(null, new AnneeScolaire(2014, 2015),
-                new ArrayList<>(Arrays.asList(classeComptage01, classeComptage02)));
+                new LinkedHashSet<>(Arrays.asList(classeComptage01, classeComptage02)));
 
         // Violation
         Assert.assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
@@ -62,7 +65,7 @@ public class ImplantationAnneeScolaireTest {
         ClasseComptage classeComptage01 = ClasseComptage.creer(ClasseType.Maternelle, 10);
         ClasseComptage classeComptage02 = ClasseComptage.creer(ClasseType.PremierePrimaire, 14);
         ImplantationAnneeScolaire implantationAnneeScolaire = ImplantationAnneeScolaire.creer("1", null,
-                new ArrayList<>(Arrays.asList(classeComptage01, classeComptage02)));
+                new LinkedHashSet<>(Arrays.asList(classeComptage01, classeComptage02)));
 
         // Violation
         Assert.assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
@@ -94,7 +97,7 @@ public class ImplantationAnneeScolaireTest {
         ClasseComptage classeComptage02 = ClasseComptage.creer(ClasseType.Maternelle, 14);
         //noinspection UnusedAssignment
         ImplantationAnneeScolaire implantationAnneeScolaire = ImplantationAnneeScolaire.creer("1", new AnneeScolaire(2014, 2015),
-                new ArrayList<>(Arrays.asList(classeComptage01, classeComptage02)));
+                new LinkedHashSet<>(Arrays.asList(classeComptage01, classeComptage02)));
 
         // Violation
         Assert.assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
@@ -122,7 +125,7 @@ public class ImplantationAnneeScolaireTest {
         ClasseComptage classeComptageP5 = ClasseComptage.creer(ClasseType.CinquiemePrimaire, 5);
         ClasseComptage classeComptageP6 = ClasseComptage.creer(ClasseType.SixiemePrimaire, 6);
         ImplantationAnneeScolaire implantationAnneeScolaire = ImplantationAnneeScolaire.creer("1", new AnneeScolaire(2014, 2015),
-                new ArrayList<>(Arrays.asList(classeComptageM, classeComptageP1, classeComptageP2, classeComptageP3, classeComptageP4, classeComptageP5, classeComptageP6)));
+                new LinkedHashSet<>(Arrays.asList(classeComptageM, classeComptageP1, classeComptageP2, classeComptageP3, classeComptageP4, classeComptageP5, classeComptageP6)));
 
         // Violation
         Assert.assertEquals(10, implantationAnneeScolaire.getClasseComptages().stream().filter(x -> x.getClasse().equals(ClasseType.Maternelle)).findFirst().get().getNombreEleves());
@@ -139,7 +142,7 @@ public class ImplantationAnneeScolaireTest {
         ClasseComptage classeComptages5 = ClasseComptage.creer(ClasseType.CinquiemeSecondaire, 5);
         ClasseComptage classecomptages6 = ClasseComptage.creer(ClasseType.SixiemeSecondaire, 6);
         ImplantationAnneeScolaire implantationAnneeScolaire = ImplantationAnneeScolaire.creer("1", new AnneeScolaire(2014, 2015),
-                new ArrayList<>(Arrays.asList(classeComptageM, classeComptages1, classeComptages2, classeComptages3, classeComptages4, classeComptages5, classecomptages6)));
+                new LinkedHashSet<>(Arrays.asList(classeComptageM, classeComptages1, classeComptages2, classeComptages3, classeComptages4, classeComptages5, classecomptages6)));
 
         // Violation
         Assert.assertEquals(10, implantationAnneeScolaire.getClasseComptages().stream().filter(x -> x.getClasse().equals(ClasseType.Maternelle)).findFirst().get().getNombreEleves());

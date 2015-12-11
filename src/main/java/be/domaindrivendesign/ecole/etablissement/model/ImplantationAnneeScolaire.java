@@ -6,8 +6,11 @@ import be.domaindrivendesign.kernel.common.model.EntityStateType;
 import be.domaindrivendesign.kernel.domain.model.Aggregate;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -15,16 +18,18 @@ import java.util.stream.Collectors;
 /// <summary>
 /// Définit une implantation par année scolaire.
 /// </summary>
-@Entity(name = "IMPLANTAIONANNEESCOLAIRE")
+@Entity
 public class ImplantationAnneeScolaire extends Aggregate implements RuleObject {
 
     @Column
     public String implantationNumeroReference;
     @Embedded
     public AnneeScolaire anneeScolaire;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "IMPLANTATIONANNEESCOLAIRE_ID")
-    public List<ClasseComptage> classeComptages;
+    @Fetch(FetchMode.SUBSELECT)
+    public Set<ClasseComptage> classeComptages;
 
     //region Constructeurs
     /// <summary>
@@ -51,12 +56,12 @@ public class ImplantationAnneeScolaire extends Aggregate implements RuleObject {
     /// <param name="anneScolaire">L'année scolaire.</param>
     /// <param name="classes">La liste des décomptes d'élèves par classe.</param>
     /// <returns>Une référence sur l'objet <see cref="ImplantationAnneeScolaire"/> nouvellement créé.</returns>
-    public static ImplantationAnneeScolaire creer(String implantationNumeroReference, AnneeScolaire anneScolaire, ArrayList<ClasseComptage> classes) {
+    public static ImplantationAnneeScolaire creer(String implantationNumeroReference, AnneeScolaire anneScolaire, Set<ClasseComptage> classes) {
         ImplantationAnneeScolaire implantationAnneeScolaire = new ImplantationAnneeScolaire(UUID.randomUUID());
 
         implantationAnneeScolaire.implantationNumeroReference = implantationNumeroReference;
         implantationAnneeScolaire.anneeScolaire = anneScolaire;
-        implantationAnneeScolaire.classeComptages = classes != null ? classes : new ArrayList<>();
+        implantationAnneeScolaire.classeComptages = classes != null ? classes : new LinkedHashSet<>();
         implantationAnneeScolaire.state = EntityStateType.Added;
 
 
@@ -76,14 +81,15 @@ public class ImplantationAnneeScolaire extends Aggregate implements RuleObject {
     /// Vérifie la présence de doublons dans la liste des décomptes d'élève.
     /// </summary>
     /// <param name="classes">La liste des décomptes à vérifier.</param>
-    private static void verifierDoublonClasseType(List<ClasseComptage> classes) {
+    private static void verifierDoublonClasseType(Set<ClasseComptage> classes) {
         //TODO Simplify?
+        List<ClasseComptage> classeComptages = new ArrayList<>(classes);
         List<ClasseType> classeTypes = classes.stream().map(ClasseComptage::getClasse).collect(Collectors.toList());
         Map<ClasseType, Long> counted = classeTypes.stream().collect(Collectors.groupingBy(o -> o, Collectors.counting()));
         counted.values().removeIf(x -> x <= 1);
         Set<ClasseType> duplicates = counted.keySet();
         for (ClasseType duplicate : duplicates) {
-            RuleGuard.raiseUniqueViolation(classes.get(0), () -> classes.get(0).getClasse());
+            RuleGuard.raiseUniqueViolation(classeComptages.get(0), () -> classeComptages.get(0).getClasse());
         }
     }
 
@@ -159,7 +165,7 @@ public class ImplantationAnneeScolaire extends Aggregate implements RuleObject {
         return anneeScolaire;
     }
 
-    public List<ClasseComptage> getClasseComptages() {
+    public Set<ClasseComptage> getClasseComptages() {
         return classeComptages;
     }
     //endregion

@@ -75,7 +75,7 @@ public class Etablissement extends AggregateRoot implements RuleObject {
     /// <param name="contact">Les informations de contact.</param>
     /// <param name="implantations">Les implantations.</param>
     /// <returns>La référene sur l'objet nouvellement créé.</returns>
-    public static Etablissement creer(String numeroReference, String denomination, EnseignementReseauType enseignementReseau, Adresse adresse, EcoleType ecole, Contact contact, List<Implantation> implantations) {
+    public static Etablissement creer(String numeroReference, String denomination, EnseignementReseauType enseignementReseau, Adresse adresse, EcoleType ecole, Contact contact, Set<Implantation> implantations) {
         Etablissement etablissement = new Etablissement(UUID.randomUUID());
 
         etablissement.denomination = denomination;
@@ -83,7 +83,7 @@ public class Etablissement extends AggregateRoot implements RuleObject {
         etablissement.adresse = adresse;
         etablissement.ecole = ecole;
         etablissement.contact = contact;
-        etablissement.implantations = new HashSet<>(implantations);
+        etablissement.implantations = implantations;
         etablissement.enseignementReseau = enseignementReseau;
         etablissement.state = EntityStateType.Added;
 
@@ -92,7 +92,7 @@ public class Etablissement extends AggregateRoot implements RuleObject {
         RuleGuard.mandatory(etablissement, etablissement::getAdresse);
         RuleGuard.mandatory(etablissement, etablissement::getEnseignementReseau);
         RuleGuard.mandatory(etablissement, etablissement::getEcole);
-        //RuleGuard.nbrOfElements(etablissement, etablissement::getImplantations, 1, 10);
+        RuleGuard.nbrOfElements(etablissement, etablissement::getImplantations, 1, 10);
 
         return etablissement;
     }

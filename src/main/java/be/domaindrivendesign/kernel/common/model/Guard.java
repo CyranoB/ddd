@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.temporal.Temporal;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -304,6 +305,22 @@ public class Guard {
             objs = objs.stream().filter(x -> x != null).collect(Collectors.toList());
         return objs == null ? minElement == 0 : (minElement <= objs.size() && objs.size() <= maxElement);
     }
+
+
+    /**
+     * @param objs
+     * @param minElement
+     * @param maxElement
+     * @param nullCountAsElement
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean nbrOfElements(Set<T> objs, int minElement, int maxElement, boolean nullCountAsElement) {
+        if (objs != null && !nullCountAsElement)
+            objs = objs.stream().filter(x -> x != null).collect(Collectors.toSet());
+        return objs == null ? minElement == 0 : (minElement <= objs.size() && objs.size() <= maxElement);
+    }
+
 
     /**
      * @param value

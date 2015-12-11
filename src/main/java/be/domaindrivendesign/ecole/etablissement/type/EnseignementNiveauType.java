@@ -5,6 +5,7 @@ package be.domaindrivendesign.ecole.etablissement.type;
  */
 public enum EnseignementNiveauType {
 
+    Inconnu(0),
     /// <summary>
     /// Enseignement ordinaire.
     /// </summary>

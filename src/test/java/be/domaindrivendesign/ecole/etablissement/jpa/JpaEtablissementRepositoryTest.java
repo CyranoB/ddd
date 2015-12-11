@@ -18,8 +18,10 @@ import org.springframework.test.context.support.DirtiesContextTestExecutionListe
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = RepositoryTestConfiguration.class)
@@ -43,8 +45,14 @@ public class JpaEtablissementRepositoryTest {
         Etablissement etablissement = etablissements.stream().filter(e -> e.getNumeroReference().equals("446")).findFirst().get();
         assertEquals("171B3EB4-E175-C159-7F6A-08D2892A9523", etablissement.getId().toString().toUpperCase());
         assertEquals("446", etablissement.getNumeroReference());
-        // TODO: fix Etablissement -> Implantations
         assertEquals(1, etablissements.get(0).getImplantations().size());
+    }
+
+    @Test
+    public void getById() {
+        Etablissement etablissement = jpaRepository.findById(UUID.fromString("171B3EB4-E175-C159-7F6A-08D2892A9523"));
+        assertNotNull(etablissement);
+
     }
 
     @Test

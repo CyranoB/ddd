@@ -5,7 +5,7 @@ package be.domaindrivendesign.ecole.common.type;
  */
 public enum ClasseType {
 
-
+    Inconnu(0),
     /// <summary>
     /// Maternelle
     /// </summary>
@@ -76,5 +76,6 @@ public enum ClasseType {
     ClasseType(int typeValue) {
         this.typeValue = typeValue;
     }
+
 
 }

@@ -40,7 +40,7 @@ public class RepositoryJpa<T extends Entity, ID extends Serializable> implements
         @SuppressWarnings("unchecked")
         List<T> entities = getJpaUnitOfWork().getEntityManager().createQuery(
                 "SELECT p FROM "+ getEntityType().getName() +" p").getResultList();
-        //entities.stream().forEach(e -> e.forceState(EntityStateType.Unchanged));
+        entities.stream().forEach(e -> e.forceState(EntityStateType.Unchanged));
         return entities;
     }
 

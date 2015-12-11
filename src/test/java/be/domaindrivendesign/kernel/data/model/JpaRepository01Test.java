@@ -56,7 +56,6 @@ public class JpaRepository01Test {
     }
 
     @Test
-    @Transactional(readOnly = true)
     public void updateTest() {
         Entity01 entity01 = Entity01.create(UUID.randomUUID());
 

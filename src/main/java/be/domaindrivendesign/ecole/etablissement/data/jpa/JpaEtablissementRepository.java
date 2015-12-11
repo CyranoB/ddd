@@ -12,6 +12,7 @@ import java.util.UUID;
 @Repository
 public class JpaEtablissementRepository extends RepositoryJpa<Etablissement, UUID>
         implements EtablissementRepository {
+
     @Override
     public Etablissement getEtablissementForNumeroDeReference(String numeroDeReference) {
         JPAQuery<Etablissement> query = new JPAQuery<>(getJpaUnitOfWork().getEntityManager());
