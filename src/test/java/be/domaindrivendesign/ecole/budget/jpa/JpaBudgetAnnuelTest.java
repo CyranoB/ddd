@@ -1,8 +1,9 @@
-package be.domaindrivendesign.ecole.etablissement.jpa;
+package be.domaindrivendesign.ecole.budget.jpa;
 
 import be.domaindrivendesign.ecole.RepositoryTestConfiguration;
-import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaEtablissementRepository;
-import be.domaindrivendesign.ecole.etablissement.model.Etablissement;
+import be.domaindrivendesign.ecole.budget.data.jpa.JpaBudgetAnnuelRepository;
+import be.domaindrivendesign.ecole.budget.model.BudgetAnnuel;
+import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -31,35 +32,33 @@ import static org.junit.Assert.assertNotNull;
         DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class})
-@DatabaseSetup("/datasets/etablissement/etablissements_1180.xml")
-public class JpaEtablissementRepositoryTest {
-
+@DatabaseSetup("/datasets/budgetannuel/budgetannuels.xml")
+public class JpaBudgetAnnuelTest {
     @Autowired
-    private JpaEtablissementRepository jpaRepository;
+    private JpaBudgetAnnuelRepository jpaRepository;
     @Autowired
     private UnitOfWork unitOfWork;
 
     @Test
     public void testList() {
-        List<Etablissement> etablissements = jpaRepository.findAll();
-        Assert.assertEquals(29, etablissements.size());
-        Etablissement etablissement = etablissements.stream().filter(e -> e.getNumeroReference().equals("446")).findFirst().get();
-        assertEquals("171B3EB4-E175-C159-7F6A-08D2892A9523", etablissement.getId().toString().toUpperCase());
-        assertEquals("446", etablissement.getNumeroReference());
-        assertEquals(1, etablissements.get(0).getImplantations().size());
+        List<BudgetAnnuel> budgetAnnuels = jpaRepository.findAll();
+        assertEquals(4, budgetAnnuels.size());
     }
 
     @Test
-    public void getById() {
-        Etablissement etablissement = jpaRepository.findById(UUID.fromString("171B3EB4-E175-C159-7F6A-08D2892A9523"));
-        assertNotNull(etablissement);
-
+    public void testGetById() {
+        BudgetAnnuel budgetAnnuel = jpaRepository.findById(UUID.fromString("41C919A9-E42C-443F-A6F6-FC0C210D806A"));
+        assertNotNull(budgetAnnuel);
     }
 
     @Test
-    public void testGetForNumeroDeReference() {
-        Etablissement etablissement = jpaRepository.getEtablissementForNumeroDeReference("446");
-        Assert.assertNotNull(etablissement);
-        assertEquals("171B3EB4-E175-C159-7F6A-08D2892A9523", etablissement.getId().toString().toUpperCase());
+    public void testGetForAnneeScolaire() {
+        BudgetAnnuel budget = jpaRepository.getBudgetAnnuelForAnneeScolaire(new AnneeScolaire(2011, 2012));
+        assertEquals(2011, budget.getAnneeScolaire().getAnneeDebut());
+        assertEquals(2012, budget.getAnneeScolaire().getAnneeFin());
+        assertEquals(101, budget.getMontantAideFruitEtLegumeParEleve().intValue());
+        assertEquals(51, budget.getMontantAideLaitParEleve().intValue());
+        assertEquals(1001, budget.getFruitEtLegumeNbrEleve());
+        assertEquals(501, budget.getLaitNbrEleve());
     }
 }

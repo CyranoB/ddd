@@ -7,48 +7,29 @@ import be.domaindrivendesign.kernel.domain.model.Aggregate;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.util.UUID;
 
+@Entity(name = "BUDGETANNUEL")
 public class BudgetAnnuel extends Aggregate implements RuleObject {
 
-    //region Propriétés
-    /// <summary>
-    /// Obtient l'année scolaire.
-    /// </summary>
-    /// <value>
-    /// L'année scolaire.
-    /// </value>
-    public AnneeScolaire anneeScolaire;
-    /// <summary>
-    /// Obtient le montant de l'aide "Fruits et Légume" par élève.
-    /// </summary>
-    /// <value>
-    /// Le montant de l'aide "Fruits et Légume" par élève.
-    /// </value>
-    public BigDecimal montantAideFruitEtLegumeParEleve;
-    /// <summary>
-    /// Obtient le montant de l'aide "Lait" par élève.
-    /// </summary>
-    /// <value>
-    /// Le montant de l'aide "Lait" par élève.
-    /// </value>
-    public BigDecimal montantAideLaitParEleve;
-    /// <summary>
-    /// Obtient le nombre d'élève éligibles pour l'aide "Fruits et Légumes".
-    /// </summary>
-    /// <value>
-    /// Le nombre d'élève éligibles pour l'aide "Fruits et Légumes".
-    /// </value>
-    public long fruitEtLegumeNbrEleve;
-    /// <summary>
-    /// Obtient le nombre d'élève éligibles pour l'aide "Lait".
-    /// </summary>
-    /// <value>
-    /// Le nombre d'élève éligibles pour l'aide "Lait".
-    /// </value>
-    public long laitNbrEleve;
-    //endregion
+    @Embedded
+    private AnneeScolaire anneeScolaire;
+
+    @Column
+    private BigDecimal montantAideFruitEtLegumeParEleve;
+
+    @Column
+    private BigDecimal montantAideLaitParEleve;
+
+    @Column
+    private long fruitEtLegumeNbrEleve;
+
+    @Column
+    private long laitNbrEleve;
 
     //region Constructeurs
     /// <summary>
@@ -64,12 +45,12 @@ public class BudgetAnnuel extends Aggregate implements RuleObject {
     /// Constructeur protégé afin d'éviter les créations illicites d'objet.
     /// </summary>
     /// <param name="id">L'identificateur unique de l'objet.</param>
-    protected BudgetAnnuel(UUID id) {
+    private BudgetAnnuel(UUID id) {
         super(id);
     }
 
     /// <summary>
-    /// Crée un budget annuel.
+    /// Crée un datasets.budgetannuel annuel.
     /// </summary>
     /// <param name="anneeScolaire">L'année scolaire.</param>
     /// <param name="montantAideFruitEtLegumeparEleve">Le montant de l'aide "Fruits et Légumes" par élève.</param>
@@ -90,8 +71,8 @@ public class BudgetAnnuel extends Aggregate implements RuleObject {
         RuleGuard.mandatory(budgetAnnuel, budgetAnnuel::getAnneeScolaire);
         RuleGuard.greaterOrEqualThanInvariant(budgetAnnuel, budgetAnnuel::getMontantAideFruitEtLegumeParEleve, new BigDecimal(0.1));
         RuleGuard.greaterOrEqualThanInvariant(budgetAnnuel, budgetAnnuel::getMontantAideLaitParEleve, new BigDecimal(0.1));
-        RuleGuard.greaterOrEqualThanInvariant(budgetAnnuel, budgetAnnuel::getFruitEtLegumeNbrEleve, 0l);
-        RuleGuard.greaterOrEqualThanInvariant(budgetAnnuel, budgetAnnuel::getLaitNbrEleve, 0l);
+        RuleGuard.greaterOrEqualThanInvariant(budgetAnnuel, budgetAnnuel::getFruitEtLegumeNbrEleve, 0L);
+        RuleGuard.greaterOrEqualThanInvariant(budgetAnnuel, budgetAnnuel::getLaitNbrEleve, 0L);
 
         return budgetAnnuel;
     }
@@ -105,7 +86,7 @@ public class BudgetAnnuel extends Aggregate implements RuleObject {
     /// <param name="fruitEtLegumeNbrEleve">Le nombre d'élève.</param>
     public void ModifierFruitEtLegumeNbrEleve(long fruitEtLegumeNbrEleve) {
         this.fruitEtLegumeNbrEleve = fruitEtLegumeNbrEleve;
-        RuleGuard.greaterOrEqualThanInvariant(this, this::getFruitEtLegumeNbrEleve, 0l);
+        RuleGuard.greaterOrEqualThanInvariant(this, this::getFruitEtLegumeNbrEleve, 0L);
         setState(EntityStateType.Modified);
     }
 
@@ -115,7 +96,7 @@ public class BudgetAnnuel extends Aggregate implements RuleObject {
     /// <param name="aideLaitNbrEleve">Le nombre d'élève.</param>
     public void ModifierAideLaitNbrEleve(long aideLaitNbrEleve) {
         this.laitNbrEleve = aideLaitNbrEleve;
-        RuleGuard.greaterOrEqualThanInvariant(this, this::getLaitNbrEleve, 0l);
+        RuleGuard.greaterOrEqualThanInvariant(this, this::getLaitNbrEleve, 0L);
         setState(EntityStateType.Modified);
     }
     //endregion

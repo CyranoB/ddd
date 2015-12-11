@@ -1,5 +1,6 @@
-package be.domaindrivendesign.ecole.etablissement.jpa;
+package be.domaindrivendesign.ecole;
 
+import be.domaindrivendesign.ecole.budget.data.jpa.JpaBudgetAnnuelRepository;
 import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaEtablissementRepository;
 import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaImplantationAnneeScolaireRepository;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
@@ -15,7 +16,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-class RepositoryTestConfiguration {
+public class RepositoryTestConfiguration {
 
     @Bean
     public UnitOfWork unitOfWork() {
@@ -62,6 +63,11 @@ class RepositoryTestConfiguration {
     @Bean
     public JpaEtablissementRepository jpaEtablissementRepository() {
         return new JpaEtablissementRepository();
+    }
+
+    @Bean
+    public JpaBudgetAnnuelRepository jpaBudgetAnnuelRepository() {
+        return new JpaBudgetAnnuelRepository();
     }
 
 }

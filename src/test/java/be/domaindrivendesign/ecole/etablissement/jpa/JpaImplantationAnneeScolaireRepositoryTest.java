@@ -1,5 +1,6 @@
 package be.domaindrivendesign.ecole.etablissement.jpa;
 
+import be.domaindrivendesign.ecole.RepositoryTestConfiguration;
 import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
 import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaImplantationAnneeScolaireRepository;
 import be.domaindrivendesign.ecole.etablissement.model.ImplantationAnneeScolaire;
@@ -31,7 +32,7 @@ import static org.junit.Assert.assertEquals;
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class})
 @EnableJpaRepositories
-@DatabaseSetup("/etablissement/implantation_annee_scolaires.xml")
+@DatabaseSetup("/datasets/etablissement/implantation_annee_scolaires.xml")
 public class JpaImplantationAnneeScolaireRepositoryTest {
 
     @Autowired
