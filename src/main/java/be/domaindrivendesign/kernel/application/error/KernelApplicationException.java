@@ -6,9 +6,6 @@ import be.domaindrivendesign.kernel.rule.interfaces.RuleViolation;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by eddie on 20/11/15.
- */
 public class KernelApplicationException extends KernelException {
     private List<RuleViolation> ruleViolations;
 

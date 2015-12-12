@@ -17,10 +17,8 @@ import java.util.List;
 public class UnitOfWorkRule {
 
     private static final UnitOfWorkRule unitOfWorkRule = new UnitOfWorkRule();
-
+    private static final String contextKey = "UnitOfWorkManager.UnitOfWorkRule";
     private final StaticApplicationContext staticApplicationContext;
-
-    private final String contextKey = "UnitOfWorkManager.UnitOfWorkRule";
 
     /**
      *

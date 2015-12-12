@@ -7,5 +7,5 @@ import be.domaindrivendesign.shared.valueobject.NumeroIdentificationRegistreNati
 public interface BeneficiaireRepository {
     Beneficiaire getBeneficiaireForNumeroEntreprise(NumeroEntreprise numeroEntreprise);
 
-    Beneficiaire GetBeneficiaireForNumeroIdentificationRegistreNational(NumeroIdentificationRegistreNational numeroIdentificationRegistreNational);
+    Beneficiaire getBeneficiaireForNumeroIdentificationRegistreNational(NumeroIdentificationRegistreNational numeroIdentificationRegistreNational);
 }

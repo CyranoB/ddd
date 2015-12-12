@@ -22,6 +22,7 @@ public class DomainEventImpl<T> implements DomainEvent<T> {
     }
 
     // Getter
+    @Override
     public LocalDateTime getEventOccuredTime() {
         return this.eventOccurredTime;
     }

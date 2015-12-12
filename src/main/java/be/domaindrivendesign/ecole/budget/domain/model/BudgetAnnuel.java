@@ -69,8 +69,8 @@ public class BudgetAnnuel extends Aggregate implements RuleObject {
         budgetAnnuel.laitNbrEleve = laitNbrEleve;
 
         RuleGuard.mandatory(budgetAnnuel, budgetAnnuel::getAnneeScolaire);
-        RuleGuard.greaterOrEqualThanInvariant(budgetAnnuel, budgetAnnuel::getMontantAideFruitEtLegumeParEleve, new BigDecimal(0.1));
-        RuleGuard.greaterOrEqualThanInvariant(budgetAnnuel, budgetAnnuel::getMontantAideLaitParEleve, new BigDecimal(0.1));
+        RuleGuard.greaterOrEqualThanInvariant(budgetAnnuel, budgetAnnuel::getMontantAideFruitEtLegumeParEleve, BigDecimal.valueOf(0.1));
+        RuleGuard.greaterOrEqualThanInvariant(budgetAnnuel, budgetAnnuel::getMontantAideLaitParEleve, BigDecimal.valueOf(0.1));
         RuleGuard.greaterOrEqualThanInvariant(budgetAnnuel, budgetAnnuel::getFruitEtLegumeNbrEleve, 0L);
         RuleGuard.greaterOrEqualThanInvariant(budgetAnnuel, budgetAnnuel::getLaitNbrEleve, 0L);
 
@@ -84,7 +84,7 @@ public class BudgetAnnuel extends Aggregate implements RuleObject {
     /// Modifie le nombre d'élève concernés par l'aide "Fruits et Légumes".
     /// </summary>
     /// <param name="fruitEtLegumeNbrEleve">Le nombre d'élève.</param>
-    public void ModifierFruitEtLegumeNbrEleve(long fruitEtLegumeNbrEleve) {
+    public void modifierFruitEtLegumeNbrEleve(long fruitEtLegumeNbrEleve) {
         this.fruitEtLegumeNbrEleve = fruitEtLegumeNbrEleve;
         RuleGuard.greaterOrEqualThanInvariant(this, this::getFruitEtLegumeNbrEleve, 0L);
         setState(EntityStateType.Modified);
@@ -94,13 +94,12 @@ public class BudgetAnnuel extends Aggregate implements RuleObject {
     /// Modifie le nombre d'élève concernés par l'aide "Lait".
     /// </summary>
     /// <param name="aideLaitNbrEleve">Le nombre d'élève.</param>
-    public void ModifierAideLaitNbrEleve(long aideLaitNbrEleve) {
+    public void modifierAideLaitNbrEleve(long aideLaitNbrEleve) {
         this.laitNbrEleve = aideLaitNbrEleve;
         RuleGuard.greaterOrEqualThanInvariant(this, this::getLaitNbrEleve, 0L);
         setState(EntityStateType.Modified);
     }
     //endregion
-
 
     public AnneeScolaire getAnneeScolaire() {
         return anneeScolaire;

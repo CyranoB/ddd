@@ -10,9 +10,9 @@ import java.util.List;
 
 @Embeddable
 public class PeriodDateHeure extends ValueObject {
-    public final static LocalDateTime DATE_MAX_VALUE = LocalDateTime.of(2999, 1, 1, 0, 0, 0);
-    public final static LocalDateTime DATE_MIN_VALUE = LocalDateTime.of(1754, 1, 1, 0, 0, 0);
-    public final static PeriodDateHeure EMPTY = new PeriodDateHeure(DATE_MIN_VALUE, DATE_MAX_VALUE);
+    public static final LocalDateTime DATE_MAX_VALUE = LocalDateTime.of(2999, 1, 1, 0, 0, 0);
+    public static final LocalDateTime DATE_MIN_VALUE = LocalDateTime.of(1754, 1, 1, 0, 0, 0);
+    public static final PeriodDateHeure EMPTY = new PeriodDateHeure(DATE_MIN_VALUE, DATE_MAX_VALUE);
 
     protected LocalDateTime debut;
     protected LocalDateTime fin;

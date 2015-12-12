@@ -26,7 +26,7 @@ public class Subvention extends Aggregate implements RuleObject {
     }
 
     /// <summary>
-    public static Subvention Cree(CodeProduitType codeProduit, int quantiteLivree, UniteProduitType unite, BigDecimal montantUnitaire, BigDecimal montantTotal) {
+    public static Subvention creer(CodeProduitType codeProduit, int quantiteLivree, UniteProduitType unite, BigDecimal montantUnitaire, BigDecimal montantTotal) {
         Subvention subvention = new Subvention(UUID.randomUUID());
         subvention.codeProduit = codeProduit;
         subvention.montantTotal = montantTotal;

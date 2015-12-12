@@ -4,6 +4,7 @@ import be.domaindrivendesign.kernel.common.model.Entity;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWorkRepository;
 import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,20 +25,22 @@ public class UnitOfWorkImpl implements UnitOfWork {
     }
 
     //region UnitOfWork members
-
+    @Override
     public void registerInserted(Entity entity, UnitOfWorkRepository repository){
         insertedEntities.put(entity, repository);
     }
 
+    @Override
     public void registerUpdated(Entity entity, UnitOfWorkRepository repository) {
         updatedEntities.put(entity, repository);
     }
 
+    @Override
     public void registerRemoved(Entity entity, UnitOfWorkRepository repository) {
         deletedEntities.put(entity, repository);
     }
 
-    @org.springframework.transaction.annotation.Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public  void commit() {
         try {
             deletedEntities.forEach((e, r) -> r.persistDeletedItem(e));

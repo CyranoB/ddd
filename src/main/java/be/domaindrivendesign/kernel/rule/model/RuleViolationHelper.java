@@ -9,6 +9,9 @@ import java.util.List;
  * Created by asmolabs on 14/11/15.
  */
 public class RuleViolationHelper {
+
+    private RuleViolationHelper() {}
+
     /**
      * @param violations
      * @return

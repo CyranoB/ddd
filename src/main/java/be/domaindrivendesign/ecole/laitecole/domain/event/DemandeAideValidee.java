@@ -11,4 +11,8 @@ public class DemandeAideValidee extends DomainEventImpl<DemandeAideValidee> {
         super();
         this.demandeAide = demandeAide;
     }
+
+    public DemandeAide getDemandeAide() {
+        return demandeAide;
+    }
 }

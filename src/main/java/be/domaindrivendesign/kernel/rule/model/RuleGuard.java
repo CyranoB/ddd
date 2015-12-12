@@ -18,8 +18,10 @@ import java.util.function.Supplier;
  */
 public class RuleGuard {
 
-//region Number
+    private RuleGuard() {
+    }
 
+    //region Number
 
     /**
      * @param ruleObject     L'objet sur lequel la validation est effectué
@@ -614,11 +616,6 @@ public class RuleGuard {
         return false;
     }
 
-    /*public static <T extends Temporal & Comparable> boolean include(RuleObject ruleObject, Property<T> propertyLambda01, Property propertyLambda02, RuleSeverityType severityType)
-    {
-        return (PeriodDateHeure.(value01, value02)) || RuleGuard.RaiseViolation(ruleObject, propertyLambda01, value01.ToString(), propertyLambda02, value02.ToString(), (int)RuleGuardRuleId.Include, severityType);
-    }*/
-
     //endregion
 
     //region String
@@ -1078,7 +1075,8 @@ public class RuleGuard {
     public static <T> boolean raiseViolation(RuleObject ruleObject, Property<T> propertyLambda, int ruleId, RuleSeverityType severityType) {
         List<String> values = new ArrayList<>();
 
-        if (propertyLambda.get() != null) values.add(propertyLambda.get().toString());
+        if (propertyLambda.get() != null)
+            values.add(propertyLambda.get().toString());
 
         return raiseViolation(ruleObject, propertyLambda, values, ruleId, severityType);
     }
@@ -1163,7 +1161,7 @@ public class RuleGuard {
 
             Expression body = parsedTree.getBody();
 
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder buffer = new StringBuilder();
 
             completePropertyPath(body, buffer);
 
@@ -1187,70 +1185,55 @@ public class RuleGuard {
      * @param expression
      * @param buffer
      */
-    private static void completePropertyPath(Expression expression, StringBuffer buffer) {
-
+    private static void completePropertyPath(Expression expression, StringBuilder buffer) {
         switch (expression.getExpressionType()) {
             case ExpressionType.Convert:
-
                 UnaryExpression unaryExpression = (UnaryExpression) expression;
-
                 final Expression first = unaryExpression.getFirst();
-
                 completePropertyPath(first, buffer);
-
                 break;
             case ExpressionType.Lambda:
                 LambdaExpression lambdaExpression = (LambdaExpression) expression;
-
                 completePropertyPath(lambdaExpression.getBody(), buffer);
-
                 break;
             case ExpressionType.Invoke:
-                InvocationExpression invocationExpression = (InvocationExpression) expression;
-
-                final List<Expression> arguments = invocationExpression.getArguments();
-
-                if (buffer.toString().equals("")) {
-
-                    ConstantExpression constantExpression = (ConstantExpression) arguments.get(0);
-
-                    Class baseClass = constantExpression.getResultType();
-
-                    buffer.append(baseClass.getPackage().getName());
-
-                    buffer.append("|");
-
-                    buffer.append(baseClass.getSimpleName());
-
-                    buffer.append(".");
-
-                    completePropertyPath(invocationExpression.getTarget(), buffer);
-                } else {
-                    completePropertyPath(invocationExpression.getTarget(), buffer);
-                }
+                completePropertyPathForInvoke((InvocationExpression) expression, buffer);
                 break;
             case ExpressionType.MethodAccess:
-                MemberExpression memberExpression = (MemberExpression) expression;
-
-                final Expression instance = memberExpression.getInstance();
-
-                if (instance != null) {
-                    String before = buffer.toString();
-
-                    completePropertyPath(instance, buffer);
-
-                    if (!before.equals(buffer.toString())) {
-                        buffer.append(".");
-                    }
-                }
-
-                buffer.append(memberExpression.getMember().getName());
-
+                completePropertyPathForMethodAccess((MemberExpression) expression, buffer);
                 break;
             default:
                 break;
         }
+    }
 
+    private static void completePropertyPathForMethodAccess(MemberExpression expression, StringBuilder buffer) {
+        MemberExpression memberExpression = expression;
+        final Expression instance = memberExpression.getInstance();
+        if (instance != null) {
+            String before = buffer.toString();
+            completePropertyPath(instance, buffer);
+            if (!before.equals(buffer.toString())) {
+                buffer.append(".");
+            }
+        }
+        buffer.append(memberExpression.getMember().getName());
+    }
+
+    private static void completePropertyPathForInvoke(InvocationExpression expression, StringBuilder buffer) {
+        InvocationExpression invocationExpression = expression;
+        final List<Expression> arguments = invocationExpression.getArguments();
+        if ("".equals(buffer.toString())) {
+            ConstantExpression constantExpression = (ConstantExpression) arguments.get(0);
+            Class baseClass = constantExpression.getResultType();
+            buffer.append(baseClass.getPackage().getName());
+            buffer.append("|");
+            buffer.append(baseClass.getSimpleName());
+            buffer.append(".");
+            completePropertyPath(invocationExpression.getTarget(), buffer);
+        } else {
+            completePropertyPath(invocationExpression.getTarget(), buffer);
+        }
     }
 
     //endregion

@@ -88,7 +88,7 @@ public class ImplantationAnneeScolaire extends Aggregate implements RuleObject {
         counted.values().removeIf(x -> x <= 1);
         Set<ClasseType> duplicates = counted.keySet();
         for (ClasseType duplicate : duplicates) {
-            RuleGuard.raiseUniqueViolation(classeComptages.get(0), () -> classeComptages.get(0).getClasse());
+            RuleGuard.raiseUniqueViolation(classeComptages.get(0), () -> duplicate);
         }
     }
 

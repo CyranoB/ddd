@@ -46,7 +46,7 @@ public class RuleException extends KernelException {
 
     @Override
     public String toString() {
-        return String.format("%s \n %s \n", super.toString(), ruleViolations.toString());
+        return String.format("%s %n %s %n", super.toString(), ruleViolations.toString());
     }
 
 }

@@ -33,7 +33,7 @@ public class ClasseComptage extends Aggregate implements RuleObject {
         super(id);
     }
 
-    public ClasseComptage() {
+    protected ClasseComptage() {
     }
 
     /// <summary>

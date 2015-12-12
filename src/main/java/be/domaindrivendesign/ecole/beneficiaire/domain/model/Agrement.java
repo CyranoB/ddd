@@ -21,56 +21,56 @@ public class Agrement extends AggregateRoot implements RuleObject {
     /// <value>
     /// La date de dépôt.
     /// </value>
-    public LocalDateTime dateDepot;
+    protected LocalDateTime dateDepot;
     /// <summary>
     /// Obtient la date de demande.
     /// </summary>
     /// <value>
     /// La date de demande.
     /// </value>
-    public LocalDateTime dateDemande;
+    protected LocalDateTime dateDemande;
     /// <summary>
     /// Obtient le numéro de dossier.
     /// </summary>
     /// <value>
     /// Le numéro de dossier.
     /// </value>
-    public int numeroDossier;
+    protected int numeroDossier;
     /// <summary>
     /// Obtient la première année scolaire.
     /// </summary>
     /// <value>
     /// La première année scolaire.
     /// </value>
-    public AnneeScolaire premiereAnneeScolaire;
+    protected AnneeScolaire premiereAnneeScolaire;
     /// <summary>
     /// Obtient la dernière année scolaire.
     /// </summary>
     /// <value>
     /// La dernière année scolaire.
     /// </value>
-    public AnneeScolaire derniereAnneeScolaire;
+    protected AnneeScolaire derniereAnneeScolaire;
     /// <summary>
     /// Obtient l'identificateur du <see cref="Beneficiaire"/>.
     /// </summary>
     /// <value>
     /// Le GUID du <see cref="Beneficiaire"/>.
     /// </value>
-    public UUID beneficiaireId;
+    protected UUID beneficiaireId;
     /// <summary>
     /// Obtient la date de validation de la demande.
     /// </summary>
     /// <value>
     /// La date de validation de la demande.
     /// </value>
-    public ValidationDemande validationDemande;
+    protected ValidationDemande validationDemande;
     /// <summary>
     /// Obtient le numéro DGARNE.
     /// </summary>
     /// <value>
     /// La numéro DGARNE.
     /// </value>
-    public String numeroDgarne;
+    protected String numeroDgarne;
     //endregion
 
     //region Constructeurs

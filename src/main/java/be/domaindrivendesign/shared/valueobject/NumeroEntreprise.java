@@ -5,10 +5,10 @@ import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 
 public class NumeroEntreprise extends ValueObject {
 
-    public String part01;
-    public String part02;
-    public String part03;
-    public String part04;
+    protected String part01;
+    protected String part02;
+    protected String part03;
+    protected String part04;
 
     private NumeroEntreprise() {
 
@@ -33,7 +33,7 @@ public class NumeroEntreprise extends ValueObject {
 
     @Override
     public String toString() {
-        return String.format("BE-%d-%d-%d-%d", part01, part02, part03, part04);
+        return String.format("BE-%s-%s-%s-%s", part01, part02, part03, part04);
     }
 
 

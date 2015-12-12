@@ -26,26 +26,34 @@ public abstract class AbstractRepository<T extends Entity> implements Repository
         this.unitOfWork = unitOfWork;
     }
 
+    @Override
     public abstract Collection list();
 
+    @Override
     public abstract Entity getById(UUID id);
 
+    @Override
     public abstract void persistNewItem(Entity entity);
 
+    @Override
     public abstract void persistUpdatedItem(Entity entity);
 
+    @Override
     public abstract void persistDeletedItem(Entity entity);
 
+    @Override
     public void insert(Entity entity) {
         raiseUnitOfWorkOrEntityNull(entity);
         unitOfWork.registerInserted(entity, this);
     }
 
+    @Override
     public void update(Entity entity) {
         raiseUnitOfWorkOrEntityNull(entity);
         unitOfWork.registerUpdated(entity, this);
     }
 
+    @Override
     public void delete(Entity entity) {
         raiseUnitOfWorkOrEntityNull(entity);
         unitOfWork.registerRemoved(entity, this);

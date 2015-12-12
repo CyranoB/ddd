@@ -69,8 +69,8 @@ public class Justificatif extends Aggregate implements RuleObject {
     /// <returns>Une référence sur l'objet <see cref="Justificatif"/> nouvellement créé.</returns>
     public static Justificatif creer(int ecoleId, int implantationId) {
         Justificatif justificatif = new Justificatif(UUID.randomUUID());
-        justificatif.factures = new ArrayList<JustificatifFacture>();
-        justificatif.produits = new ArrayList<JustificatifProduit>();
+        justificatif.factures = new ArrayList<>();
+        justificatif.produits = new ArrayList<>();
 
         justificatif.ecoleNumeroReference = ecoleId;
         justificatif.implantationNumeroReference = implantationId;

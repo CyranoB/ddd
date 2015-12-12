@@ -26,7 +26,7 @@ public class Beneficiaire extends AggregateRoot implements RuleObject {
     /// <value>
     /// Le numéro d'entreprise.
     /// </value>
-    public NumeroEntreprise NumeroEntreprise;
+    public NumeroEntreprise numeroEntreprise;
     /// <summary>
     /// Obtient le numéro d'identification au registre national.
     /// </summary>
@@ -108,7 +108,7 @@ public class Beneficiaire extends AggregateRoot implements RuleObject {
 
         demandeur.adresse = adresse;
         demandeur.beneficiaireCategorie = beneficiaireCategorie;
-        demandeur.NumeroEntreprise = numeroEntreprise;
+        demandeur.numeroEntreprise = numeroEntreprise;
         demandeur.numeroIdentificationRegistreNational = numeroIdentificationRegistreNational;
         demandeur.contact = contact;
         demandeur.compteBancaire = compteBancaire;
@@ -119,9 +119,9 @@ public class Beneficiaire extends AggregateRoot implements RuleObject {
         RuleGuard.mandatory(demandeur, demandeur::getAdresse);
         RuleGuard.mandatory(demandeur, demandeur::getBeneficiaireCategorie);
 
-        // TODO NumeroEntreprise XOR NumeroIdentificationRegistreNational: 1 des 2 obligatoire (mais seulement 1 à la fois)
+        // TODO numeroEntreprise XOR NumeroIdentificationRegistreNational: 1 des 2 obligatoire (mais seulement 1 à la fois)
         //RuleGuard.nbrOfElements(demandeur, new Dictionary<Expression<Func<Object>>, object>() {
-        //    {() => demandeur.NumeroEntreprise,numeroEntreprise },
+        //    {() => demandeur.numeroEntreprise,numeroEntreprise },
         //    {() => demandeur.NumeroIdentificationRegistreNational, numeroIdentificationRegistreNational}}, 1, 1);
 
         // Compte bancaire & langue obligatoire 
@@ -172,7 +172,7 @@ public class Beneficiaire extends AggregateRoot implements RuleObject {
     }
 
     public be.domaindrivendesign.shared.valueobject.NumeroEntreprise getNumeroEntreprise() {
-        return NumeroEntreprise;
+        return numeroEntreprise;
     }
 
     public NumeroIdentificationRegistreNational getNumeroIdentificationRegistreNational() {

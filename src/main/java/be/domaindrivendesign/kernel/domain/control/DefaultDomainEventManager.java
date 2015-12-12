@@ -62,7 +62,8 @@ public class DefaultDomainEventManager implements DomainEventManager {
     public <T> void unregisterObserver(Class<T> event, DomainEventListener<T> listener) {
 
         final Set<DomainEventListener<?>> observers = registrations.get(event);
-        if (observers == null) return;
+        if (observers == null)
+            return;
 
         observers.remove(listener);
     }
@@ -77,7 +78,8 @@ public class DefaultDomainEventManager implements DomainEventManager {
     public void fire(Object event) {
 
         final Set<DomainEventListener<?>> observers = registrations.get(event.getClass());
-        if (observers == null) return;
+        if (observers == null)
+            return;
 
         for (DomainEventListener observer : observers)
             //noinspection unchecked

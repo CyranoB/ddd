@@ -16,6 +16,7 @@ public class UnitOfWorkJpa extends UnitOfWorkImpl {
         return entityManager;
     }
 
+    @Override
     @Transactional
     public void commit() {
         try {

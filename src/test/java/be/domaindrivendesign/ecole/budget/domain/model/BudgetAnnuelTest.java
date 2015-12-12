@@ -152,7 +152,7 @@ public class BudgetAnnuelTest {
         BudgetAnnuel budgetAnnuel = BudgetAnnuel.creer(new AnneeScolaire(2015, 2016), BigDecimal.valueOf(10), BigDecimal.valueOf(5), 20, 15);
 
         // Act
-        budgetAnnuel.ModifierFruitEtLegumeNbrEleve(25);
+        budgetAnnuel.modifierFruitEtLegumeNbrEleve(25);
 
         // Assert
         Assert.assertEquals(25, budgetAnnuel.getFruitEtLegumeNbrEleve());
@@ -164,7 +164,7 @@ public class BudgetAnnuelTest {
         BudgetAnnuel budgetAnnuel = BudgetAnnuel.creer(new AnneeScolaire(2015, 2016), BigDecimal.valueOf(10), BigDecimal.valueOf(5), 20, 15);
 
         // Act
-        budgetAnnuel.ModifierFruitEtLegumeNbrEleve(-5);
+        budgetAnnuel.modifierFruitEtLegumeNbrEleve(-5);
 
         // Assert
         Assert.assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
@@ -182,7 +182,7 @@ public class BudgetAnnuelTest {
         BudgetAnnuel budgetAnnuel = BudgetAnnuel.creer(new AnneeScolaire(2015, 2016), BigDecimal.valueOf(10), BigDecimal.valueOf(5), 20, 15);
 
         // Act
-        budgetAnnuel.ModifierAideLaitNbrEleve(7);
+        budgetAnnuel.modifierAideLaitNbrEleve(7);
 
         // Assert
         Assert.assertEquals(7, budgetAnnuel.getLaitNbrEleve());
@@ -194,7 +194,7 @@ public class BudgetAnnuelTest {
         BudgetAnnuel budgetAnnuel = BudgetAnnuel.creer(new AnneeScolaire(2015, 2016), BigDecimal.valueOf(10), BigDecimal.valueOf(5), 20, 15);
 
         // Act
-        budgetAnnuel.ModifierAideLaitNbrEleve(-5);
+        budgetAnnuel.modifierAideLaitNbrEleve(-5);
 
         // Assert
         Assert.assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());

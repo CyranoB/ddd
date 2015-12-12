@@ -4,12 +4,10 @@ import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleViolation;
 import be.domaindrivendesign.kernel.rule.type.RuleSeverityType;
 
+import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by asmolabs on 13/11/15.
- */
-public class RuleViolationImpl implements RuleViolation {
+public class RuleViolationImpl implements RuleViolation, Serializable {
     private RuleObject ruleObject;
     private List<String> propertyPaths;
     private long ruleId;
