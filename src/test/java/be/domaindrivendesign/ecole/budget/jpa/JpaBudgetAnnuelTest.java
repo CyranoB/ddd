@@ -46,7 +46,8 @@ public class JpaBudgetAnnuelTest {
 
     @Test
     public void testGetById() {
-        BudgetAnnuel budgetAnnuel = jpaRepository.findById(UUID.fromString("41C919A9-E42C-443F-A6F6-FC0C210D806A"));
+
+        BudgetAnnuel budgetAnnuel = jpaRepository.findById(UUID.fromString("1276f93c-a1e5-11e5-bf7f-feff819cdc9f"));
         assertNotNull(budgetAnnuel);
     }
 
@@ -60,4 +61,6 @@ public class JpaBudgetAnnuelTest {
         assertEquals(1001, budget.getFruitEtLegumeNbrEleve());
         assertEquals(501, budget.getLaitNbrEleve());
     }
+
+
 }

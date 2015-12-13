@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--suppress XmlUnboundNsPrefix -->
 <dataset>
-    <BudgetAnnuel Id="AC8E0E3C-94C0-441B-8613-9FEC379035D6" AnneeScolaire_AnneeDebut="2010"
+    <BudgetAnnuel Id="ac8e0e3c-94c0-441b-8613-9fec379035d6" AnneeScolaire_AnneeDebut="2010"
                   AnneeScolaire_AnneeFin="2011" MontantAideFruitEtLegumeParEleve="100" MontantAideLaitParEleve="50"
                   FruitEtLegumeNbrEleve="1000" LaitNbrEleve="500"/>
-    <BudgetAnnuel Id="1DB7E634-1FAF-44FD-9289-D1050CC148C5" AnneeScolaire_AnneeDebut="2011"
+    <BudgetAnnuel Id="1276f93c-a1e5-11e5-bf7f-feff819cdc9f" AnneeScolaire_AnneeDebut="2011"
                   AnneeScolaire_AnneeFin="2012" MontantAideFruitEtLegumeParEleve="101" MontantAideLaitParEleve="51"
                   FruitEtLegumeNbrEleve="1001" LaitNbrEleve="501"/>
-    <BudgetAnnuel Id="41C919A9-E42C-443F-A6F6-FC0C210D806A" AnneeScolaire_AnneeDebut="2012"
+    <BudgetAnnuel Id="41c919a9-e42c-443f-a6f6-fc0c210d806a" AnneeScolaire_AnneeDebut="2012"
                   AnneeScolaire_AnneeFin="2013" MontantAideFruitEtLegumeParEleve="102" MontantAideLaitParEleve="52"
                   FruitEtLegumeNbrEleve="1002" LaitNbrEleve="502"/>
-    <BudgetAnnuel Id="3A8CB919-7711-4F6C-A570-EC1D376D9C10" AnneeScolaire_AnneeDebut="2013"
+    <BudgetAnnuel Id="3a8cb919-7711-4f6c-a570-ec1d376d9c10" AnneeScolaire_AnneeDebut="2013"
                   AnneeScolaire_AnneeFin="2014" MontantAideFruitEtLegumeParEleve="103" MontantAideLaitParEleve="53"
                   FruitEtLegumeNbrEleve="1003" LaitNbrEleve="503"/>
 </dataset>

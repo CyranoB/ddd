@@ -10,6 +10,7 @@ import com.querydsl.jpa.impl.JPAQuery;
 import java.util.UUID;
 
 public class JpaBudgetAnnuelRepository extends RepositoryJpa<BudgetAnnuel, UUID> implements BudgetAnnuelRepository {
+
     @Override
     public BudgetAnnuel getBudgetAnnuelForAnneeScolaire(AnneeScolaire anneeScolaire) {
         JPAQuery<BudgetAnnuel> query = new JPAQuery<>(getJpaUnitOfWork().getEntityManager());

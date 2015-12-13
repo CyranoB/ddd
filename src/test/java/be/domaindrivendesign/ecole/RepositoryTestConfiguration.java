@@ -69,5 +69,4 @@ public class RepositoryTestConfiguration {
     public JpaBudgetAnnuelRepository jpaBudgetAnnuelRepository() {
         return new JpaBudgetAnnuelRepository();
     }
-
 }

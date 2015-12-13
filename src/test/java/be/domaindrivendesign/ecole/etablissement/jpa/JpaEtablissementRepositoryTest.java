@@ -31,7 +31,7 @@ import static org.junit.Assert.assertNotNull;
         DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class})
-@DatabaseSetup("/datasets/etablissement/etablissements_1180.xml")
+@DatabaseSetup("/datasets/etablissement/etablissements_test.xml")
 public class JpaEtablissementRepositoryTest {
 
     @Autowired
@@ -42,16 +42,16 @@ public class JpaEtablissementRepositoryTest {
     @Test
     public void testList() {
         List<Etablissement> etablissements = jpaRepository.findAll();
-        Assert.assertEquals(29, etablissements.size());
+        Assert.assertEquals(2, etablissements.size());
         Etablissement etablissement = etablissements.stream().filter(e -> e.getNumeroReference().equals("446")).findFirst().get();
-        assertEquals("171B3EB4-E175-C159-7F6A-08D2892A9523", etablissement.getId().toString().toUpperCase());
+        assertEquals("171b3eb4-e175-c159-7f6a-08d2892a9523", etablissement.getId().toString());
         assertEquals("446", etablissement.getNumeroReference());
         assertEquals(1, etablissements.get(0).getImplantations().size());
     }
 
     @Test
     public void getById() {
-        Etablissement etablissement = jpaRepository.findById(UUID.fromString("171B3EB4-E175-C159-7F6A-08D2892A9523"));
+        Etablissement etablissement = jpaRepository.findById(UUID.fromString("171b3eb4-e175-c159-7f6a-08d2892a9523"));
         assertNotNull(etablissement);
 
     }
@@ -60,6 +60,6 @@ public class JpaEtablissementRepositoryTest {
     public void testGetForNumeroDeReference() {
         Etablissement etablissement = jpaRepository.getEtablissementForNumeroDeReference("446");
         Assert.assertNotNull(etablissement);
-        assertEquals("171B3EB4-E175-C159-7F6A-08D2892A9523", etablissement.getId().toString().toUpperCase());
+        assertEquals("171b3eb4-e175-c159-7f6a-08d2892a9523", etablissement.getId().toString());
     }
 }
