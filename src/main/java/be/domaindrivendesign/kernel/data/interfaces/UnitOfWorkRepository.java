@@ -2,13 +2,10 @@ package be.domaindrivendesign.kernel.data.interfaces;
 
 import be.domaindrivendesign.kernel.common.model.Entity;
 
-/**
- * Created by eddie on 19/11/15.
- */
-public interface UnitOfWorkRepository {
-    void persistNewItem(Entity entity);
+public interface UnitOfWorkRepository<T extends Entity> {
+    void persistNewItem(T entity);
 
-    void persistUpdatedItem(Entity entity);
+    void persistUpdatedItem(T entity);
 
-    void persistDeletedItem(Entity entity);
+    void persistDeletedItem(T entity);
 }

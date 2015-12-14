@@ -7,9 +7,7 @@ import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
 import be.domaindrivendesign.kernel.data.jpa.RepositoryJpa;
 import com.querydsl.jpa.impl.JPAQuery;
 
-import java.util.UUID;
-
-public class JpaBudgetAnnuelRepository extends RepositoryJpa<BudgetAnnuel, UUID> implements BudgetAnnuelRepository {
+public class JpaBudgetAnnuelRepository extends RepositoryJpa<BudgetAnnuel> implements BudgetAnnuelRepository {
 
     @Override
     public BudgetAnnuel getBudgetAnnuelForAnneeScolaire(AnneeScolaire anneeScolaire) {

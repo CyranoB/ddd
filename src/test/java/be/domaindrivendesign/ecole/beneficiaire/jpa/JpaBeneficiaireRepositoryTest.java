@@ -52,7 +52,7 @@ public class JpaBeneficiaireRepositoryTest {
 
     @Test
     public void testList() {
-        List<Beneficiaire> beneficiaires = jpaRepository.findAll();
+        List<Beneficiaire> beneficiaires = jpaRepository.list();
         Assert.assertEquals(2, beneficiaires.size());
         Optional<Beneficiaire> beneficiaire = beneficiaires.stream().filter(b -> b.getId().equals(UUID.fromString("4ea00e16-4275-443b-9ead-e1c892e926ea"))).findFirst();
         assertTrue(beneficiaire.isPresent());
@@ -60,7 +60,7 @@ public class JpaBeneficiaireRepositoryTest {
 
     @Test
     public void getById() {
-        Beneficiaire beneficiaire = jpaRepository.findById(UUID.fromString("4ea00e16-4275-443b-9ead-e1c892e926ea"));
+        Beneficiaire beneficiaire = jpaRepository.getById(UUID.fromString("4ea00e16-4275-443b-9ead-e1c892e926ea"));
         assertNotNull(beneficiaire);
         assertEquals("Zaza Enterprise", beneficiaire.getDenomination());
         assertEquals(new Adresse("Rue de Zaza 0", 1050, "Ixelles"), beneficiaire.getAdresse());

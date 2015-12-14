@@ -7,10 +7,8 @@ import be.domaindrivendesign.kernel.data.jpa.RepositoryJpa;
 import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
-
 @Repository
-public class JpaEtablissementRepository extends RepositoryJpa<Etablissement, UUID>
+public class JpaEtablissementRepository extends RepositoryJpa<Etablissement>
         implements EtablissementRepository {
 
     @Override

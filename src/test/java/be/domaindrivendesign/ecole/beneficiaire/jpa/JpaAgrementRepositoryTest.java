@@ -49,7 +49,7 @@ public class JpaAgrementRepositoryTest {
 
     @Test
     public void testList() {
-        List<Agrement> agrements = jpaRepository.findAll();
+        List<Agrement> agrements = jpaRepository.list();
         Assert.assertEquals(3, agrements.size());
         Optional<Agrement> agrement = agrements.stream().filter(b -> b.getId().equals(UUID.fromString("3f6337b6-25d9-415c-bfa6-d6697051cfa0"))).findFirst();
         assertTrue(agrement.isPresent());
@@ -57,7 +57,7 @@ public class JpaAgrementRepositoryTest {
 
     @Test
     public void getById() {
-        Agrement agrement = jpaRepository.findById(UUID.fromString("3f6337b6-15d9-415c-bfa6-d6697051cfa0"));
+        Agrement agrement = jpaRepository.getById(UUID.fromString("3f6337b6-15d9-415c-bfa6-d6697051cfa0"));
         assertNotNull(agrement);
         assertEquals("1111", agrement.getNumeroDgarne());
     }

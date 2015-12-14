@@ -41,7 +41,7 @@ public class JpaEtablissementRepositoryTest {
 
     @Test
     public void testList() {
-        List<Etablissement> etablissements = jpaRepository.findAll();
+        List<Etablissement> etablissements = jpaRepository.list();
         Assert.assertEquals(2, etablissements.size());
         Etablissement etablissement = etablissements.stream().filter(e -> e.getNumeroReference().equals("446")).findFirst().get();
         assertEquals("171b3eb4-e175-c159-7f6a-08d2892a9523", etablissement.getId().toString());
@@ -51,7 +51,7 @@ public class JpaEtablissementRepositoryTest {
 
     @Test
     public void getById() {
-        Etablissement etablissement = jpaRepository.findById(UUID.fromString("171b3eb4-e175-c159-7f6a-08d2892a9523"));
+        Etablissement etablissement = jpaRepository.getById(UUID.fromString("171b3eb4-e175-c159-7f6a-08d2892a9523"));
         assertNotNull(etablissement);
 
     }

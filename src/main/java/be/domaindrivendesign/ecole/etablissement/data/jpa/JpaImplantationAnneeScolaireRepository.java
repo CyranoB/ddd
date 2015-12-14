@@ -9,10 +9,9 @@ import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.UUID;
 
 @Repository
-public class JpaImplantationAnneeScolaireRepository extends RepositoryJpa<ImplantationAnneeScolaire, UUID>
+public class JpaImplantationAnneeScolaireRepository extends RepositoryJpa<ImplantationAnneeScolaire>
         implements ImplantationAnneeScolaireRepository {
 
     @Override

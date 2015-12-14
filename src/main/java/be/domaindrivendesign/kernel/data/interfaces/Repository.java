@@ -5,9 +5,6 @@ import be.domaindrivendesign.kernel.common.model.Entity;
 import java.util.Collection;
 import java.util.UUID;
 
-/**
- * Created by eddie on 20/11/15.
- */
 public interface Repository<T extends Entity> {
     Collection<T> list();
 

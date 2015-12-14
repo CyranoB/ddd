@@ -2,6 +2,7 @@ package be.domaindrivendesign.kernel.data.jpa;
 
 import be.domaindrivendesign.kernel.common.model.Entity;
 import be.domaindrivendesign.kernel.common.model.EntityStateType;
+import be.domaindrivendesign.kernel.data.interfaces.Repository;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWorkRepository;
 import net.jodah.typetools.TypeResolver;
@@ -11,12 +12,12 @@ import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
-import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
 @NoRepositoryBean
 @Transactional(readOnly = true)
-public class RepositoryJpa<T extends Entity, ID extends Serializable> implements UnitOfWorkRepository {
+public class RepositoryJpa<T extends Entity> implements Repository<T>, UnitOfWorkRepository<T> {
 
     @Autowired
     protected UnitOfWork unitOfWork;
@@ -35,8 +36,9 @@ public class RepositoryJpa<T extends Entity, ID extends Serializable> implements
         return (UnitOfWorkJpa) unitOfWork;
     }
 
-    // TODO Il faudrait peut être faire un aspect qui fait cela pour toutes les méthodes find
-    public List<T> findAll() {
+    @Override
+    public List<T> list() {
+        // TODO Il faudrait peut être faire un aspect qui fait cela pour toutes les méthodes find
         @SuppressWarnings("unchecked")
         List<T> entities = getJpaUnitOfWork().getEntityManager().createQuery(
                 "SELECT p FROM "+ getEntityType().getName() +" p").getResultList();
@@ -44,8 +46,9 @@ public class RepositoryJpa<T extends Entity, ID extends Serializable> implements
         return entities;
     }
 
-    // TODO Il faudrait peut être faire un aspect qui fait cela pour toutes les méthodes find
-    public T findById(ID id) {
+    @Override
+    public T getById(UUID id) {
+        // TODO Il faudrait peut être faire un aspect qui fait cela pour toutes les méthodes find
         //noinspection unchecked
         T entity = (T) getJpaUnitOfWork().getEntityManager().find(getEntityType(), id);
         if (entity != null)
@@ -53,16 +56,18 @@ public class RepositoryJpa<T extends Entity, ID extends Serializable> implements
         return entity;
     }
 
+    @Override
     public void insert(T entity) {
         unitOfWork.registerInserted(entity, this);
     }
 
+    @Override
     public void update(T entity) {
         unitOfWork.registerUpdated(entity, this);
     }
 
-    public void delete(ID id) {
-        Entity entity = findById(id);
+    public void delete(UUID id) {
+        Entity entity = getById(id);
 
         if (entity != null) {
             delete(entity);
@@ -70,9 +75,28 @@ public class RepositoryJpa<T extends Entity, ID extends Serializable> implements
             throw new EntityNotFoundException();
         }
     }
+
+    @Override
     public void delete(Entity entity) {
         unitOfWork.registerRemoved(entity, this);
     }
+
+    @Override
+    public void persistNewItem(T entity) {
+        getJpaUnitOfWork().getEntityManager().persist(entity);
+    }
+
+    @Override
+    public void persistUpdatedItem(T entity) {
+        getJpaUnitOfWork().getEntityManager().unwrap(Session.class).persist(entity);
+    }
+
+    @Override
+    public void persistDeletedItem(T entity) {
+        entity.logicalDelete();
+        getJpaUnitOfWork().getEntityManager().unwrap(Session.class).merge(entity);
+    }
+
 
     protected Class<?> getEntityType() {
         if (this.typeArgs == null) {
@@ -88,19 +112,4 @@ public class RepositoryJpa<T extends Entity, ID extends Serializable> implements
         return this.typeArgs[1];
     }
 
-    @Override
-    public void persistNewItem(Entity entity) {
-        getJpaUnitOfWork().getEntityManager().persist(entity);
-    }
-
-    @Override
-    public void persistUpdatedItem(Entity entity) {
-        getJpaUnitOfWork().getEntityManager().unwrap(Session.class).persist(entity);
-    }
-
-    @Override
-    public void persistDeletedItem(Entity entity) {
-        entity.logicalDelete();
-        getJpaUnitOfWork().getEntityManager().unwrap(Session.class).merge(entity);
-    }
 }

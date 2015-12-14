@@ -42,7 +42,7 @@ public class JpaImplantationAnneeScolaireRepositoryTest {
 
     @Test
     public void testList() {
-        List<ImplantationAnneeScolaire> anneeScolaires = jpaRepository.findAll();
+        List<ImplantationAnneeScolaire> anneeScolaires = jpaRepository.list();
         List<?> ids = anneeScolaires.stream().map(ImplantationAnneeScolaire::getId).collect(Collectors.toList());
 
         Assert.assertEquals(3, anneeScolaires.size());
@@ -51,7 +51,7 @@ public class JpaImplantationAnneeScolaireRepositoryTest {
 
     @Test
     public void testGetById() {
-        ImplantationAnneeScolaire result = jpaRepository.findById(UUID.fromString("CD64664B-CE45-4355-973D-0DAF2369D2DC"));
+        ImplantationAnneeScolaire result = jpaRepository.getById(UUID.fromString("CD64664B-CE45-4355-973D-0DAF2369D2DC"));
 
         Assert.assertNotNull(result);
         assertEquals("CD64664B-CE45-4355-973D-0DAF2369D2DC", result.getId().toString().toUpperCase());

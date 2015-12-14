@@ -40,14 +40,14 @@ public class JpaBudgetAnnuelTest {
 
     @Test
     public void testList() {
-        List<BudgetAnnuel> budgetAnnuels = jpaRepository.findAll();
+        List<BudgetAnnuel> budgetAnnuels = jpaRepository.list();
         assertEquals(4, budgetAnnuels.size());
     }
 
     @Test
     public void testGetById() {
 
-        BudgetAnnuel budgetAnnuel = jpaRepository.findById(UUID.fromString("1276f93c-a1e5-11e5-bf7f-feff819cdc9f"));
+        BudgetAnnuel budgetAnnuel = jpaRepository.getById(UUID.fromString("1276f93c-a1e5-11e5-bf7f-feff819cdc9f"));
         assertNotNull(budgetAnnuel);
     }
 

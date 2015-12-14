@@ -9,9 +9,7 @@ import be.domaindrivendesign.shared.valueobject.NumeroEntreprise;
 import be.domaindrivendesign.shared.valueobject.NumeroIdentificationRegistreNational;
 import com.querydsl.jpa.impl.JPAQuery;
 
-import java.util.UUID;
-
-public class JpaBeneficiaireRepository extends RepositoryJpa<Beneficiaire, UUID> implements BeneficiaireRepository {
+public class JpaBeneficiaireRepository extends RepositoryJpa<Beneficiaire> implements BeneficiaireRepository {
 
     @Override
     public Beneficiaire getBeneficiaireForNumeroEntreprise(NumeroEntreprise numeroEntreprise) {

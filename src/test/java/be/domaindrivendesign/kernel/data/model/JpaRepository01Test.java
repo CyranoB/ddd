@@ -51,7 +51,7 @@ public class JpaRepository01Test {
         jpaRepository01.insert(entity01);
         unitOfWork.commit();
 
-        List<Entity01> entity01s = jpaRepository01.findAll();
+        List<Entity01> entity01s = jpaRepository01.list();
         assertTrue(entity01s.size() > 0);
     }
 
@@ -65,7 +65,7 @@ public class JpaRepository01Test {
 
         unitOfWork.commit();
 
-        entity01 = jpaRepository01.findAll().get(0);
+        entity01 = jpaRepository01.list().get(0);
 
         entity01.setStringAttribute("Toto");
 
@@ -73,7 +73,7 @@ public class JpaRepository01Test {
 
         unitOfWork.commit();
 
-        List<Entity01> entity01s = jpaRepository01.findAll();
+        List<Entity01> entity01s = jpaRepository01.list();
 
         assertTrue(entity01s.size() > 0);
         assertEquals(EntityStateType.Unchanged, entity01s.get(0).getState());
@@ -81,7 +81,7 @@ public class JpaRepository01Test {
 
     @Test
     public void testEmpty() {
-        List<Entity01> emptyList = jpaRepository01.findAll();
+        List<Entity01> emptyList = jpaRepository01.list();
         assertEquals(0, emptyList.size());
     }
 
