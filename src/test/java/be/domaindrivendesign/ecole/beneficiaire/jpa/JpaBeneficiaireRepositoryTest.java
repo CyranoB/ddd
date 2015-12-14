@@ -1,4 +1,4 @@
-package be.domaindrivendesign.ecole.budget.jpa;
+package be.domaindrivendesign.ecole.beneficiaire.jpa;
 
 
 import be.domaindrivendesign.ecole.RepositoryTestConfiguration;

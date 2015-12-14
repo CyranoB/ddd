@@ -7,9 +7,6 @@ import be.domaindrivendesign.kernel.domain.interfaces.DomainEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by eddie on 26/11/15.
- */
 public class DummyEventRegister implements DomainEventListener<ImplantationFermee> {
 
     public final ArrayList<Implantation> implantations;

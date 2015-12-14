@@ -1,4 +1,4 @@
-package be.domaindrivendesign.ecole.beneficiaire.getmodel;
+package be.domaindrivendesign.ecole.beneficiaire.model;
 
 import be.domaindrivendesign.ecole.beneficiaire.domain.model.Beneficiaire;
 import be.domaindrivendesign.ecole.beneficiaire.domain.type.BeneficiaireCategorieType;

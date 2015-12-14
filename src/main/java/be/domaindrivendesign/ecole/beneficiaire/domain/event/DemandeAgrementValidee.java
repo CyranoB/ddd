@@ -12,4 +12,7 @@ public class DemandeAgrementValidee extends DomainEventImpl<DemandeAgrementValid
         this.demandeAgrement = demandeAgrement;
     }
 
+    public Agrement getDemandeAgrement() {
+        return demandeAgrement;
+    }
 }
