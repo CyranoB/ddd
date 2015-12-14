@@ -7,67 +7,33 @@ import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 import be.domaindrivendesign.shared.valueobject.*;
 
+import javax.persistence.*;
 import java.util.Arrays;
 import java.util.UUID;
 
+@Entity
 public class Beneficiaire extends AggregateRoot implements RuleObject {
 
-    //region Propriétés
-    /// <summary>
-    /// Obtient la catégorie du bénéficiaire.
-    /// </summary>
-    /// <value>
-    /// La catégorie du bénéficiaire.
-    /// </value>
+    //region
+    @Column
     public BeneficiaireCategorieType beneficiaireCategorie;
-    /// <summary>
-    /// Obtient le numéro d'entreprise.
-    /// </summary>
-    /// <value>
-    /// Le numéro d'entreprise.
-    /// </value>
+    @Embedded
     public NumeroEntreprise numeroEntreprise;
-    /// <summary>
-    /// Obtient le numéro d'identification au registre national.
-    /// </summary>
-    /// <value>
-    /// Le numéro d'identification au registre national.
-    /// </value>
+    @Embedded
     public NumeroIdentificationRegistreNational numeroIdentificationRegistreNational;
-    /// <summary>
-    /// Obtient les informations du compte bancaire.
-    /// </summary>
-    /// <value>
-    /// Les informations du compte bancaire.
-    /// </value>
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "iban", column = @Column(name = "COMPTABANCAISE_IBAN")),
+            @AttributeOverride(name = "bic", column = @Column(name = "COMPTABANCAISE_BIC"))
+    })
     public CompteBancaire compteBancaire;
-    /// <summary>
-    /// Obtient la dénomination.
-    /// </summary>
-    /// <value>
-    /// La dénomination.
-    /// </value>
+    @Column
     public String denomination;
-    /// <summary>
-    /// Obtient le nombre de jour de crèche.
-    /// </summary>
-    /// <value>
-    /// Le nombre de jours de crèche.
-    /// </value>
+    @Column
     public int crecheNombreDeJours;
-    /// <summary>
-    /// Obtient les information de contact.
-    /// </summary>
-    /// <value>
-    /// Les informations de contact.
-    /// </value>
+    @Embedded
     public Contact contact;
-    /// <summary>
-    /// Obtient l'adresse.
-    /// </summary>
-    /// <value>
-    /// L'adresse.
-    /// </value>
+    @Embedded
     public Adresse adresse;
     //endregion
 
@@ -129,7 +95,9 @@ public class Beneficiaire extends AggregateRoot implements RuleObject {
 
         // Creche => Specifier le nombre de jours: 0,5 ou 7
         if (beneficiaireCategorie != null && beneficiaireCategorie == BeneficiaireCategorieType.Creche) {
-            RuleGuard.domain(demandeur, demandeur::getCrecheNombreDeJours, Arrays.asList(0, 5, 7));
+            RuleGuard.domain(demandeur, demandeur::getCrecheNombreDeJours, Arrays.asList(5, 7));
+        } else {
+            RuleGuard.equalsInvariant(demandeur, demandeur::getCrecheNombreDeJours, 0);
         }
 
         // EMail obligatoire pour envoyer confirmation d'aggrement

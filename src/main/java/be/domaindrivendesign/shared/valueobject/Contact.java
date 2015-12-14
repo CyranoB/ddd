@@ -17,11 +17,16 @@ public class Contact extends ValueObject {
             @AttributeOverride(name = "codePostal", column = @Column(name="CONTACT_ADRESSE_CODEPOSTAL")),
             @AttributeOverride(name = "localite", column = @Column(name="CONTACT_ADRESSE_LOCALITE"))})
     protected Adresse adresse;
+
     @Column(name = "CONTACT_FAX")
+    @AttributeOverride(name = "numero", column = @Column(name = "CONTACT_FAX_NUMERO"))
     protected NumeroTelephone fax;
+
     @Column(name = "CONTACT_TELEPHONE")
+    @AttributeOverride(name = "numero", column = @Column(name = "CONTACT_TELEPHONE_NUMERO"))
     protected NumeroTelephone telephone;
     @Column(name = "CONTACT_EMAIL")
+    @AttributeOverride(name = "mail", column = @Column(name = "CONTACT_EMAIL_MAIL"))
     protected Email email;
     @Column(name = "CONTACT_NOMPRENOM")
     protected String nomPrenom;

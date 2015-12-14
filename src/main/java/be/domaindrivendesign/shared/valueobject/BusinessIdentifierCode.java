@@ -3,10 +3,17 @@ package be.domaindrivendesign.shared.valueobject;
 import be.domaindrivendesign.kernel.common.valueobject.ValueObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class BusinessIdentifierCode extends ValueObject {
 
+    @Column(name = "BIC_PART01")
     protected String part01;
+    @Column(name = "BIC_PART02")
     protected String part02;
+    @Column(name = "BIC_PART03")
     protected String part03;
 
     private BusinessIdentifierCode() {

@@ -3,9 +3,9 @@ package be.domaindrivendesign.shared.valueobject;
 import be.domaindrivendesign.kernel.common.valueobject.ValueObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 
-/**
- * Created by eddie on 23/11/15.
- */
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Email extends ValueObject {
 
     private String mail;
