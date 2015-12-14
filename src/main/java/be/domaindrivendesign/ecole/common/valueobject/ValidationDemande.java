@@ -4,42 +4,19 @@ import be.domaindrivendesign.kernel.common.valueobject.ValueObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 import be.domaindrivendesign.kernel.rule.type.RuleSeverityType;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import java.time.LocalDateTime;
 
-/**
- * Created by eddie on 27/11/15.
- */
+@Embeddable
 public class ValidationDemande extends ValueObject {
-
-
-    /// <summary>
-    /// Obtient la date de mise en validation de la demande.
-    /// </summary>
-    /// <value>
-    /// La date de mise en validation de la demande.
-    /// </value>
+    @Column(name = "VALIDATIONDEMANDE_ENVALIDATIONLE", nullable = true)
     public LocalDateTime enValidationLe;
-    /// <summary>
-    /// Obtient la date d'acceptation de la demande.
-    /// </summary>
-    /// <value>
-    /// La date d'acceptation de la demande.
-    /// </value>
+    @Column(name = "VALIDATIONDEMANDE_ACCEPTERLE")
     public LocalDateTime accepterLe;
-    //endregion
-    /// <summary>
-    /// Obtient la date de rejet de la demande.
-    /// </summary>
-    /// <value>
-    /// La date de rejet de la demande.
-    /// </value>
+    @Column(name = "VALIDATIONDEMANDE_REJETERLE")
     public LocalDateTime rejeterLe;
-    /// <summary>
-    /// Obtient la raison du rejet.
-    /// </summary>
-    /// <value>
-    /// La raison du rejet.
-    /// </value>
+    @Column(name = "VALIDATIONDEMANDE_RAISONDEREJET")
     public String raisonDeRejet;
 
     //region Constructeurs

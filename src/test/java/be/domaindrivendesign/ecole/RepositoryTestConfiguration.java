@@ -1,5 +1,6 @@
 package be.domaindrivendesign.ecole;
 
+import be.domaindrivendesign.ecole.beneficiaire.data.jpa.JpaAgrementRepository;
 import be.domaindrivendesign.ecole.beneficiaire.data.jpa.JpaBeneficiaireRepository;
 import be.domaindrivendesign.ecole.budget.data.jpa.JpaBudgetAnnuelRepository;
 import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaEtablissementRepository;
@@ -74,6 +75,11 @@ public class RepositoryTestConfiguration {
     @Bean
     public JpaBeneficiaireRepository jpaBeneficiaireRepository() {
         return new JpaBeneficiaireRepository();
+    }
+
+    @Bean
+    public JpaAgrementRepository jpaAgrementRepository() {
+        return new JpaAgrementRepository();
     }
 
 }

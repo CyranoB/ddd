@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress XmlUnboundNsPrefix -->
+<dataset>
+
+    <Beneficiaire Id="4ea00e16-4275-443b-9ead-e1c892e926ea" BeneficiaireCategorie="0" NBCE_Part01="1" NBCE_Part02="022"
+                  NBCE_Part03="033" NBCE_Part04="044"
+                  NIRN_PART01="01" NIRN_PART02="02" NIRN_PART03="03" NIRN_PART04="044" NIRN_PART05="05"
+                  CompteBancaire_Titulaire="Zoro0"
+                  CompteBancaire_BIC_Part01="01" CompteBancaire_BIC_Part02="02" CompteBancaire_BIC_Part03="03"
+                  CompteBancaire_IBAN_Part01="011" CompteBancaire_IBAN_Part02="022" CompteBancaire_IBAN_Part03="033"
+                  CompteBancaire_IBAN_Part04="044"
+                  Denomination="Zaza1 Enterprise"
+                  CrecheNombreDeJours="0"
+                  Contact_Adresse_Adr="Rue de Toto 0" Contact_Adresse_CodePostal="1180" Contact_Adresse_Localite="Uccle"
+                  Contact_Fax_Numero="0299364440" Contact_Telephone_Numero="0499364440"
+                  Contact_EMail_Mail="toto@zaza.be" Contact_NomPrenom="Toto0 Zaza0" Contact_Langue="1"
+                  Adresse_Adr="Rue de Zaza 0" Adresse_CodePostal="1050" Adresse_Localite="Ixelles"
+    />
+
+
+    <Beneficiaire Id="4ea00e16-5275-443b-9ead-e1c892e926ea" BeneficiaireCategorie="0" NBCE_Part01="1" NBCE_Part02="122"
+                  NBCE_Part03="133" NBCE_Part04="144"
+                  NIRN_PART01="11" NIRN_PART02="12" NIRN_PART03="13" NIRN_PART04="144" NIRN_PART05="15"
+                  CompteBancaire_Titulaire="Zoro0"
+                  CompteBancaire_BIC_Part01="11" CompteBancaire_BIC_Part02="12" CompteBancaire_BIC_Part03="13"
+                  CompteBancaire_IBAN_Part01="111" CompteBancaire_IBAN_Part02="122" CompteBancaire_IBAN_Part03="133"
+                  CompteBancaire_IBAN_Part04="144"
+                  Denomination="Zaza Enterprise"
+                  CrecheNombreDeJours="0"
+                  Contact_Adresse_Adr="Rue de Toto 1" Contact_Adresse_CodePostal="1180" Contact_Adresse_Localite="Uccle"
+                  Contact_Fax_Numero="0299364441" Contact_Telephone_Numero="0499364441"
+                  Contact_EMail_Mail="toto@zaza.be" Contact_NomPrenom="Toto0 Zaza0" Contact_Langue="1"
+                  Adresse_Adr="Rue de Zaza 1" Adresse_CodePostal="1050" Adresse_Localite="Ixelles"
+    />
+
+    <Beneficiaire Id="4ea00e16-6275-443b-9ead-e1c892e926ea" BeneficiaireCategorie="0" NBCE_Part01="1" NBCE_Part02="122"
+                  NBCE_Part03="133" NBCE_Part04="144"
+                  NIRN_PART01="11" NIRN_PART02="12" NIRN_PART03="13" NIRN_PART04="144" NIRN_PART05="15"
+                  CompteBancaire_Titulaire="Zoro0"
+                  CompteBancaire_BIC_Part01="11" CompteBancaire_BIC_Part02="12" CompteBancaire_BIC_Part03="13"
+                  CompteBancaire_IBAN_Part01="111" CompteBancaire_IBAN_Part02="122" CompteBancaire_IBAN_Part03="133"
+                  CompteBancaire_IBAN_Part04="144"
+                  Denomination="Zaza2 Enterprise"
+                  CrecheNombreDeJours="0"
+                  Contact_Adresse_Adr="Rue de Toto 2" Contact_Adresse_CodePostal="1180" Contact_Adresse_Localite="Uccle"
+                  Contact_Fax_Numero="0299364443" Contact_Telephone_Numero="0499364443"
+                  Contact_EMail_Mail="toto@zaza.be" Contact_NomPrenom="Toto0 Zaza0" Contact_Langue="1"
+                  Adresse_Adr="Rue de Zaza 2" Adresse_CodePostal="1050" Adresse_Localite="Ixelles"
+    />
+
+
+    <Agrement Id="3f6337b6-15d9-415c-bfa6-d6697051cfa0" DateDepot="2010-01-01" DateDemande="2010-01-31"
+              NumeroDossier="022"
+              PremiereAnneeScolaire_AnneeDebut="2014" PremiereAnneeScolaire_AnneeFin="2015"
+              BeneficiaireId="4ea00e16-5275-443b-9ead-e1c892e926ea"
+              NumeroDgarne="1111"
+    />
+
+    <Agrement Id="3f6337b6-25d9-415c-bfa6-d6697051cfa0" DateDepot="2010-01-01" DateDemande="2010-01-31"
+              NumeroDossier="022"
+              PremiereAnneeScolaire_AnneeDebut="2014" PremiereAnneeScolaire_AnneeFin="2015"
+              BeneficiaireId="4ea00e16-5275-443b-9ead-e1c892e926ea"
+              NumeroDgarne="2222"
+    />
+
+    <Agrement Id="3f6337b6-35d9-415c-bfa6-d6697051cfa0" DateDepot="2010-01-01" DateDemande="2010-01-31"
+              NumeroDossier="022"
+              PremiereAnneeScolaire_AnneeDebut="2014" PremiereAnneeScolaire_AnneeFin="2015"
+              BeneficiaireId="4ea00e16-5275-443b-9ead-e1c892e926ea"
+              NumeroDgarne="3333"
+    />
+
+</dataset>

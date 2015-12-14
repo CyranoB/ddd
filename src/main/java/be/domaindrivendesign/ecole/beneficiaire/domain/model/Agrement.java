@@ -10,68 +10,45 @@ import be.domaindrivendesign.kernel.domain.model.AggregateRoot;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Entity
 public class Agrement extends AggregateRoot implements RuleObject {
-    //region Propriétés
-    /// <summary>
-    /// Obtient la date de dépôt.
-    /// </summary>
-    /// <value>
-    /// La date de dépôt.
-    /// </value>
+
+    @Column
     protected LocalDateTime dateDepot;
-    /// <summary>
-    /// Obtient la date de demande.
-    /// </summary>
-    /// <value>
-    /// La date de demande.
-    /// </value>
+
+    @Column
     protected LocalDateTime dateDemande;
-    /// <summary>
-    /// Obtient le numéro de dossier.
-    /// </summary>
-    /// <value>
-    /// Le numéro de dossier.
-    /// </value>
+
+    @Column
     protected int numeroDossier;
-    /// <summary>
-    /// Obtient la première année scolaire.
-    /// </summary>
-    /// <value>
-    /// La première année scolaire.
-    /// </value>
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "anneeDebut", column = @Column(name = "PREMIEREANNEESCOLAIRE_ANNEEDEBUT")),
+            @AttributeOverride(name = "anneeFin", column = @Column(name = "PREMIEREANNEESCOLAIRE_ANNEEFIN"))
+    })
     protected AnneeScolaire premiereAnneeScolaire;
-    /// <summary>
-    /// Obtient la dernière année scolaire.
-    /// </summary>
-    /// <value>
-    /// La dernière année scolaire.
-    /// </value>
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "anneeDebut", column = @Column(name = "DERNIEREANNEESCOLAIRE_ANNEEDEBUT")),
+            @AttributeOverride(name = "anneeFin", column = @Column(name = "DERNIEREANNEESCOLAIRE_ANNEEFIN"))
+    })
     protected AnneeScolaire derniereAnneeScolaire;
-    /// <summary>
-    /// Obtient l'identificateur du <see cref="Beneficiaire"/>.
-    /// </summary>
-    /// <value>
-    /// Le GUID du <see cref="Beneficiaire"/>.
-    /// </value>
+
+    @Column
     protected UUID beneficiaireId;
-    /// <summary>
-    /// Obtient la date de validation de la demande.
-    /// </summary>
-    /// <value>
-    /// La date de validation de la demande.
-    /// </value>
+
+    @Embedded
     protected ValidationDemande validationDemande;
-    /// <summary>
-    /// Obtient le numéro DGARNE.
-    /// </summary>
-    /// <value>
-    /// La numéro DGARNE.
-    /// </value>
+
+    @Column
     protected String numeroDgarne;
-    //endregion
+
 
     //region Constructeurs
     /// <summary>
