@@ -5,13 +5,9 @@ import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * Created by eddie on 20/11/15.
- */
 public class Repository01 extends AbstractRepository<Entity01> {
 
     public List<Entity> persistedInsertedItems = new ArrayList<>();
@@ -23,7 +19,7 @@ public class Repository01 extends AbstractRepository<Entity01> {
     }
 
     @Override
-    public Collection<Entity01> list() {
+    public List<Entity01> list() {
         throw new NotImplementedException();
     }
 
@@ -33,17 +29,17 @@ public class Repository01 extends AbstractRepository<Entity01> {
     }
 
     @Override
-    public void persistNewItem(Entity entity) {
+    public void persistNewItem(Entity01 entity) {
         persistedInsertedItems.add(entity);
     }
 
     @Override
-    public void persistUpdatedItem(Entity entity) {
+    public void persistUpdatedItem(Entity01 entity) {
         persistedUpdatedItems.add(entity);
     }
 
     @Override
-    public void persistDeletedItem(Entity entity) {
+    public void persistDeletedItem(Entity01 entity) {
         persistedDeletedItems.add(entity);
     }
 }

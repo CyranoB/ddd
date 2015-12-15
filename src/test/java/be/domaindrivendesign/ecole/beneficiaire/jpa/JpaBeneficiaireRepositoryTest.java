@@ -2,7 +2,7 @@ package be.domaindrivendesign.ecole.beneficiaire.jpa;
 
 
 import be.domaindrivendesign.ecole.RepositoryTestConfiguration;
-import be.domaindrivendesign.ecole.beneficiaire.data.jpa.JpaBeneficiaireRepository;
+import be.domaindrivendesign.ecole.beneficiaire.data.interfaces.BeneficiaireRepository;
 import be.domaindrivendesign.ecole.beneficiaire.domain.model.Beneficiaire;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule;
@@ -41,7 +41,7 @@ import static org.junit.Assert.*;
 public class JpaBeneficiaireRepositoryTest {
 
     @Autowired
-    private JpaBeneficiaireRepository jpaRepository;
+    private BeneficiaireRepository repository;
     @Autowired
     private UnitOfWork unitOfWork;
 
@@ -52,7 +52,7 @@ public class JpaBeneficiaireRepositoryTest {
 
     @Test
     public void testList() {
-        List<Beneficiaire> beneficiaires = jpaRepository.list();
+        List<Beneficiaire> beneficiaires = repository.list();
         Assert.assertEquals(2, beneficiaires.size());
         Optional<Beneficiaire> beneficiaire = beneficiaires.stream().filter(b -> b.getId().equals(UUID.fromString("4ea00e16-4275-443b-9ead-e1c892e926ea"))).findFirst();
         assertTrue(beneficiaire.isPresent());
@@ -60,7 +60,7 @@ public class JpaBeneficiaireRepositoryTest {
 
     @Test
     public void getById() {
-        Beneficiaire beneficiaire = jpaRepository.getById(UUID.fromString("4ea00e16-4275-443b-9ead-e1c892e926ea"));
+        Beneficiaire beneficiaire = repository.getById(UUID.fromString("4ea00e16-4275-443b-9ead-e1c892e926ea"));
         assertNotNull(beneficiaire);
         assertEquals("Zaza Enterprise", beneficiaire.getDenomination());
         assertEquals(new Adresse("Rue de Zaza 0", 1050, "Ixelles"), beneficiaire.getAdresse());
@@ -69,7 +69,7 @@ public class JpaBeneficiaireRepositoryTest {
     @Test
     public void getBeneficiaireFromNumeroEntreprise() {
         NumeroEntreprise num = new NumeroEntreprise("1", "122", "133", "144");
-        Beneficiaire beneficiaire = jpaRepository.getBeneficiaireForNumeroEntreprise(num);
+        Beneficiaire beneficiaire = repository.getBeneficiaireForNumeroEntreprise(num);
         assertNotNull(beneficiaire);
         assertEquals(UUID.fromString("4ea00e16-5275-443b-9ead-e1c892e926ea"), beneficiaire.getId());
     }
@@ -77,7 +77,7 @@ public class JpaBeneficiaireRepositoryTest {
     @Test
     public void getBeneficiaireFromNumeroDeRegistreNational() {
         NumeroIdentificationRegistreNational nirn = new NumeroIdentificationRegistreNational("11", "12", "13", "144", "15");
-        Beneficiaire beneficiaire = jpaRepository.getBeneficiaireForNumeroIdentificationRegistreNational(nirn);
+        Beneficiaire beneficiaire = repository.getBeneficiaireForNumeroIdentificationRegistreNational(nirn);
         assertNotNull(beneficiaire);
         assertEquals(UUID.fromString("4ea00e16-5275-443b-9ead-e1c892e926ea"), beneficiaire.getId());
     }

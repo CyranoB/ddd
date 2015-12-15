@@ -4,11 +4,11 @@ import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
 import be.domaindrivendesign.ecole.etablissement.domain.model.ImplantationAnneeScolaire;
 import be.domaindrivendesign.kernel.data.interfaces.Repository;
 
-import java.util.Collection;
+import java.util.List;
 
 public interface ImplantationAnneeScolaireRepository extends Repository<ImplantationAnneeScolaire> {
 
-    Collection<ImplantationAnneeScolaire> listImplantationAnneeScolaireForImplantationNumeroReference(String implantationNumeroReference);
+    List<ImplantationAnneeScolaire> listImplantationAnneeScolaireForImplantationNumeroReference(String implantationNumeroReference);
     ImplantationAnneeScolaire getImplantationAnneeScolaireForAnneeScolaireAndImplantationNumeroReference(AnneeScolaire anneeScolaire, String implantationNumeroReference);
 
 }

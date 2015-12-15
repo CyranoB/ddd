@@ -6,13 +6,10 @@ import be.domaindrivendesign.kernel.data.interfaces.Repository;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWorkRepository;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
-/**
- * Created by eddie on 20/11/15.
- */
-public abstract class AbstractRepository<T extends Entity> implements Repository, UnitOfWorkRepository {
+public abstract class AbstractRepository<T extends Entity> implements Repository<T>, UnitOfWorkRepository<T> {
 
 
     protected final UnitOfWork unitOfWork;
@@ -27,19 +24,19 @@ public abstract class AbstractRepository<T extends Entity> implements Repository
     }
 
     @Override
-    public abstract Collection list();
+    public abstract List<T> list();
 
     @Override
-    public abstract Entity getById(UUID id);
+    public abstract T getById(UUID id);
 
     @Override
-    public abstract void persistNewItem(Entity entity);
+    public abstract void persistNewItem(T entity);
 
     @Override
-    public abstract void persistUpdatedItem(Entity entity);
+    public abstract void persistUpdatedItem(T entity);
 
     @Override
-    public abstract void persistDeletedItem(Entity entity);
+    public abstract void persistDeletedItem(T entity);
 
     @Override
     public void insert(Entity entity) {

@@ -1,7 +1,7 @@
 package be.domaindrivendesign.ecole.budget.jpa;
 
 import be.domaindrivendesign.ecole.RepositoryTestConfiguration;
-import be.domaindrivendesign.ecole.budget.data.jpa.JpaBudgetAnnuelRepository;
+import be.domaindrivendesign.ecole.budget.data.interfaces.BudgetAnnuelRepository;
 import be.domaindrivendesign.ecole.budget.domain.model.BudgetAnnuel;
 import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
@@ -18,7 +18,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
@@ -34,26 +34,26 @@ import static org.junit.Assert.assertNotNull;
 @DatabaseSetup("/datasets/budgetannuel/budgetannuels.xml")
 public class JpaBudgetAnnuelTest {
     @Autowired
-    private JpaBudgetAnnuelRepository jpaRepository;
+    private BudgetAnnuelRepository repository;
     @Autowired
     private UnitOfWork unitOfWork;
 
     @Test
     public void testList() {
-        List<BudgetAnnuel> budgetAnnuels = jpaRepository.list();
+        Collection<BudgetAnnuel> budgetAnnuels = repository.list();
         assertEquals(4, budgetAnnuels.size());
     }
 
     @Test
     public void testGetById() {
 
-        BudgetAnnuel budgetAnnuel = jpaRepository.getById(UUID.fromString("1276f93c-a1e5-11e5-bf7f-feff819cdc9f"));
+        BudgetAnnuel budgetAnnuel = repository.getById(UUID.fromString("1276f93c-a1e5-11e5-bf7f-feff819cdc9f"));
         assertNotNull(budgetAnnuel);
     }
 
     @Test
     public void testGetForAnneeScolaire() {
-        BudgetAnnuel budget = jpaRepository.getBudgetAnnuelForAnneeScolaire(new AnneeScolaire(2011, 2012));
+        BudgetAnnuel budget = repository.getBudgetAnnuelForAnneeScolaire(new AnneeScolaire(2011, 2012));
         assertEquals(2011, budget.getAnneeScolaire().getAnneeDebut());
         assertEquals(2012, budget.getAnneeScolaire().getAnneeFin());
         assertEquals(101, budget.getMontantAideFruitEtLegumeParEleve().intValue());

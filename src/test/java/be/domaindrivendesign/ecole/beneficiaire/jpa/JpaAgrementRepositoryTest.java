@@ -2,7 +2,7 @@ package be.domaindrivendesign.ecole.beneficiaire.jpa;
 
 
 import be.domaindrivendesign.ecole.RepositoryTestConfiguration;
-import be.domaindrivendesign.ecole.beneficiaire.data.jpa.JpaAgrementRepository;
+import be.domaindrivendesign.ecole.beneficiaire.data.interfaces.AgrementRepository;
 import be.domaindrivendesign.ecole.beneficiaire.domain.model.Agrement;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule;
@@ -38,7 +38,7 @@ import static org.junit.Assert.*;
 public class JpaAgrementRepositoryTest {
 
     @Autowired
-    private JpaAgrementRepository jpaRepository;
+    private AgrementRepository repository;
     @Autowired
     private UnitOfWork unitOfWork;
 
@@ -49,7 +49,7 @@ public class JpaAgrementRepositoryTest {
 
     @Test
     public void testList() {
-        List<Agrement> agrements = jpaRepository.list();
+        List<Agrement> agrements = repository.list();
         Assert.assertEquals(3, agrements.size());
         Optional<Agrement> agrement = agrements.stream().filter(b -> b.getId().equals(UUID.fromString("3f6337b6-25d9-415c-bfa6-d6697051cfa0"))).findFirst();
         assertTrue(agrement.isPresent());
@@ -57,7 +57,7 @@ public class JpaAgrementRepositoryTest {
 
     @Test
     public void getById() {
-        Agrement agrement = jpaRepository.getById(UUID.fromString("3f6337b6-15d9-415c-bfa6-d6697051cfa0"));
+        Agrement agrement = repository.getById(UUID.fromString("3f6337b6-15d9-415c-bfa6-d6697051cfa0"));
         assertNotNull(agrement);
         assertEquals("1111", agrement.getNumeroDgarne());
     }

@@ -1,8 +1,13 @@
 package be.domaindrivendesign.ecole;
 
+import be.domaindrivendesign.ecole.beneficiaire.data.interfaces.AgrementRepository;
+import be.domaindrivendesign.ecole.beneficiaire.data.interfaces.BeneficiaireRepository;
 import be.domaindrivendesign.ecole.beneficiaire.data.jpa.JpaAgrementRepository;
 import be.domaindrivendesign.ecole.beneficiaire.data.jpa.JpaBeneficiaireRepository;
+import be.domaindrivendesign.ecole.budget.data.interfaces.BudgetAnnuelRepository;
 import be.domaindrivendesign.ecole.budget.data.jpa.JpaBudgetAnnuelRepository;
+import be.domaindrivendesign.ecole.etablissement.data.interfaces.EtablissementRepository;
+import be.domaindrivendesign.ecole.etablissement.data.interfaces.ImplantationAnneeScolaireRepository;
 import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaEtablissementRepository;
 import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaImplantationAnneeScolaireRepository;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
@@ -58,27 +63,27 @@ public class RepositoryTestConfiguration {
     }
 
     @Bean
-    public JpaImplantationAnneeScolaireRepository jpaImplantationAnneeScolaireRepository() {
+    public ImplantationAnneeScolaireRepository jpaImplantationAnneeScolaireRepository() {
         return new JpaImplantationAnneeScolaireRepository();
     }
 
     @Bean
-    public JpaEtablissementRepository jpaEtablissementRepository() {
+    public EtablissementRepository etablissementRepository() {
         return new JpaEtablissementRepository();
     }
 
     @Bean
-    public JpaBudgetAnnuelRepository jpaBudgetAnnuelRepository() {
+    public BudgetAnnuelRepository budgetAnnuelRepository() {
         return new JpaBudgetAnnuelRepository();
     }
 
     @Bean
-    public JpaBeneficiaireRepository jpaBeneficiaireRepository() {
+    public BeneficiaireRepository beneficiaireRepository() {
         return new JpaBeneficiaireRepository();
     }
 
     @Bean
-    public JpaAgrementRepository jpaAgrementRepository() {
+    public AgrementRepository agrementRepository() {
         return new JpaAgrementRepository();
     }
 

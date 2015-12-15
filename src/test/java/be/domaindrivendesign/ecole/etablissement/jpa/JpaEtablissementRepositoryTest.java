@@ -1,7 +1,7 @@
 package be.domaindrivendesign.ecole.etablissement.jpa;
 
 import be.domaindrivendesign.ecole.RepositoryTestConfiguration;
-import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaEtablissementRepository;
+import be.domaindrivendesign.ecole.etablissement.data.interfaces.EtablissementRepository;
 import be.domaindrivendesign.ecole.etablissement.domain.model.Etablissement;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
@@ -35,13 +35,13 @@ import static org.junit.Assert.assertNotNull;
 public class JpaEtablissementRepositoryTest {
 
     @Autowired
-    private JpaEtablissementRepository jpaRepository;
+    private EtablissementRepository repository;
     @Autowired
     private UnitOfWork unitOfWork;
 
     @Test
     public void testList() {
-        List<Etablissement> etablissements = jpaRepository.list();
+        List<Etablissement> etablissements = repository.list();
         Assert.assertEquals(2, etablissements.size());
         Etablissement etablissement = etablissements.stream().filter(e -> e.getNumeroReference().equals("446")).findFirst().get();
         assertEquals("171b3eb4-e175-c159-7f6a-08d2892a9523", etablissement.getId().toString());
@@ -51,14 +51,14 @@ public class JpaEtablissementRepositoryTest {
 
     @Test
     public void getById() {
-        Etablissement etablissement = jpaRepository.getById(UUID.fromString("171b3eb4-e175-c159-7f6a-08d2892a9523"));
+        Etablissement etablissement = repository.getById(UUID.fromString("171b3eb4-e175-c159-7f6a-08d2892a9523"));
         assertNotNull(etablissement);
 
     }
 
     @Test
     public void testGetForNumeroDeReference() {
-        Etablissement etablissement = jpaRepository.getEtablissementForNumeroDeReference("446");
+        Etablissement etablissement = repository.getEtablissementForNumeroDeReference("446");
         Assert.assertNotNull(etablissement);
         assertEquals("171b3eb4-e175-c159-7f6a-08d2892a9523", etablissement.getId().toString());
     }

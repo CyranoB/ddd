@@ -2,7 +2,7 @@ package be.domaindrivendesign.ecole.etablissement.jpa;
 
 import be.domaindrivendesign.ecole.RepositoryTestConfiguration;
 import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
-import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaImplantationAnneeScolaireRepository;
+import be.domaindrivendesign.ecole.etablissement.data.interfaces.ImplantationAnneeScolaireRepository;
 import be.domaindrivendesign.ecole.etablissement.domain.model.ImplantationAnneeScolaire;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
@@ -36,13 +36,13 @@ import static org.junit.Assert.assertEquals;
 public class JpaImplantationAnneeScolaireRepositoryTest {
 
     @Autowired
-    private JpaImplantationAnneeScolaireRepository jpaRepository;
+    private ImplantationAnneeScolaireRepository repository;
     @Autowired
     private UnitOfWork unitOfWork;
 
     @Test
     public void testList() {
-        List<ImplantationAnneeScolaire> anneeScolaires = jpaRepository.list();
+        List<ImplantationAnneeScolaire> anneeScolaires = repository.list();
         List<?> ids = anneeScolaires.stream().map(ImplantationAnneeScolaire::getId).collect(Collectors.toList());
 
         Assert.assertEquals(3, anneeScolaires.size());
@@ -51,7 +51,7 @@ public class JpaImplantationAnneeScolaireRepositoryTest {
 
     @Test
     public void testGetById() {
-        ImplantationAnneeScolaire result = jpaRepository.getById(UUID.fromString("CD64664B-CE45-4355-973D-0DAF2369D2DC"));
+        ImplantationAnneeScolaire result = repository.getById(UUID.fromString("CD64664B-CE45-4355-973D-0DAF2369D2DC"));
 
         Assert.assertNotNull(result);
         assertEquals("CD64664B-CE45-4355-973D-0DAF2369D2DC", result.getId().toString().toUpperCase());
@@ -61,7 +61,7 @@ public class JpaImplantationAnneeScolaireRepositoryTest {
 
     @Test
     public void testForImplantationNumeroReference() {
-        List<ImplantationAnneeScolaire> result = jpaRepository.listImplantationAnneeScolaireForImplantationNumeroReference("101");
+        List<ImplantationAnneeScolaire> result = repository.listImplantationAnneeScolaireForImplantationNumeroReference("101");
 
         Assert.assertEquals(3, result.size());
         List<AnneeScolaire> annees = result.stream().map(ImplantationAnneeScolaire::getAnneeScolaire).collect(Collectors.toList());
@@ -74,7 +74,7 @@ public class JpaImplantationAnneeScolaireRepositoryTest {
     @Test
     public void testImplantationAnneeScolaireForAnneeScolaireAndImplantationNumeroReference() {
         ImplantationAnneeScolaire result =
-                jpaRepository.getImplantationAnneeScolaireForAnneeScolaireAndImplantationNumeroReference(
+                repository.getImplantationAnneeScolaireForAnneeScolaireAndImplantationNumeroReference(
                         new AnneeScolaire(2011, 2012), "101");
 
         Assert.assertNotNull(result);

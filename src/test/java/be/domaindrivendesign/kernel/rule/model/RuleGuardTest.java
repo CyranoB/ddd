@@ -39,7 +39,6 @@ public class RuleGuardTest implements Serializable {
 
     @Test
     public void testEqualsInvariantOneLevelFalse() throws Exception {
-        System.out.println("testEqualsInvariantOneLevelFalseThread" + Thread.currentThread().getId());
         RuleObjectA ruleObjectA = new RuleObjectA();
 
         ruleObjectA.setNumber(100);
@@ -74,7 +73,6 @@ public class RuleGuardTest implements Serializable {
 
     @Test
     public void testEqualsInvariantTwoLevelFalse() throws Exception {
-        System.out.println("testEqualsInvariantTwoLevelFalseThread" + Thread.currentThread().getId());
         RuleObjectA ruleObjectA = new RuleObjectA();
 
         ruleObjectA.setNumber(100);
