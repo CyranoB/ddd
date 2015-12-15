@@ -15,10 +15,10 @@ public class GuardTest {
 
     @Test
     public void testEqualsInt() throws Exception {
-        Assert.assertFalse(Guard.equal(1, -1));
-        Assert.assertTrue(Guard.equal(1, 1));
-        Assert.assertFalse(Guard.equal(null, 1));
-        Assert.assertFalse(Guard.equal(1, null));
+        Assert.assertFalse(Guard.equalsTo(1, -1));
+        Assert.assertTrue(Guard.equalsTo(1, 1));
+        Assert.assertFalse(Guard.equalsTo(null, 1));
+        Assert.assertFalse(Guard.equalsTo(1, null));
     }
 
     @Test
@@ -74,10 +74,10 @@ public class GuardTest {
 
     @Test
     public void testEqualsDouble() throws Exception {
-        Assert.assertFalse(Guard.equal(1.00, -1.01));
-        Assert.assertTrue(Guard.equal(1.10, 1.10));
-        Assert.assertFalse(Guard.equal(null, 1.10));
-        Assert.assertFalse(Guard.equal(1.10, null));
+        Assert.assertFalse(Guard.equalsTo(1.00, -1.01));
+        Assert.assertTrue(Guard.equalsTo(1.10, 1.10));
+        Assert.assertFalse(Guard.equalsTo(null, 1.10));
+        Assert.assertFalse(Guard.equalsTo(1.10, null));
     }
 
     @Test
@@ -198,11 +198,11 @@ public class GuardTest {
 
     @Test
     public void testEqualsTemporal() throws Exception {
-        Assert.assertFalse(Guard.equal(LocalDateTime.of(2010, 01, 01, 0, 0, 0), LocalDateTime.of(2011, 01, 01, 0, 0, 0)));
-        Assert.assertTrue(Guard.equal(LocalDateTime.of(2010, 01, 01, 0, 0, 0), LocalDateTime.of(2010, 01, 01, 0, 0, 0)));
-        Assert.assertFalse(Guard.equal(LocalDateTime.of(2011, 01, 01, 0, 0, 0), LocalDateTime.of(2010, 01, 01, 0, 0, 0)));
-        Assert.assertFalse(Guard.equal(LocalDateTime.of(2011, 01, 01, 0, 0, 0), null));
-        Assert.assertFalse(Guard.equal(null, LocalDateTime.of(2010, 01, 01, 0, 0, 0)));
+        Assert.assertFalse(Guard.equalsTo(LocalDateTime.of(2010, 01, 01, 0, 0, 0), LocalDateTime.of(2011, 01, 01, 0, 0, 0)));
+        Assert.assertTrue(Guard.equalsTo(LocalDateTime.of(2010, 01, 01, 0, 0, 0), LocalDateTime.of(2010, 01, 01, 0, 0, 0)));
+        Assert.assertFalse(Guard.equalsTo(LocalDateTime.of(2011, 01, 01, 0, 0, 0), LocalDateTime.of(2010, 01, 01, 0, 0, 0)));
+        Assert.assertFalse(Guard.equalsTo(LocalDateTime.of(2011, 01, 01, 0, 0, 0), null));
+        Assert.assertFalse(Guard.equalsTo(null, LocalDateTime.of(2010, 01, 01, 0, 0, 0)));
     }
 
 
@@ -271,9 +271,9 @@ public class GuardTest {
 
     @Test
     public void testEqualsString() throws Exception {
-        Assert.assertTrue(Guard.equal("1", "1"));
-        Assert.assertFalse(Guard.equal(null, "1"));
-        Assert.assertFalse(Guard.equal("1", "2"));
+        Assert.assertTrue(Guard.equalsTo("1", "1"));
+        Assert.assertFalse(Guard.equalsTo(null, "1"));
+        Assert.assertFalse(Guard.equalsTo("1", "2"));
         Assert.assertFalse(Guard.domain("1", null));
     }
 

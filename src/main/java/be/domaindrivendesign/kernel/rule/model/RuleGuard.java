@@ -151,8 +151,8 @@ public class RuleGuard {
      * @param <T>
      * @return
      */
-    public static <T extends Number & Comparable<T>> boolean equal(RuleObject ruleObject, NumberProperty<T> propertyLambda01, NumberProperty<T> propertyLambda02) {
-        return equal(ruleObject, propertyLambda01, propertyLambda02, RuleSeverityType.Error);
+    public static <T extends Number & Comparable<T>> boolean equalsTo(RuleObject ruleObject, NumberProperty<T> propertyLambda01, NumberProperty<T> propertyLambda02) {
+        return equalsTo(ruleObject, propertyLambda01, propertyLambda02, RuleSeverityType.Error);
     }
 
     /**
@@ -163,9 +163,9 @@ public class RuleGuard {
      * @param <T>
      * @return
      */
-    public static <T extends Number & Comparable<T>> boolean equal(RuleObject ruleObject, NumberProperty<T> propertyLambda01, NumberProperty<T> propertyLambda02, RuleSeverityType severityType) {
+    public static <T extends Number & Comparable<T>> boolean equalsTo(RuleObject ruleObject, NumberProperty<T> propertyLambda01, NumberProperty<T> propertyLambda02, RuleSeverityType severityType) {
 
-        return (Guard.equal(propertyLambda01.get(), propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.EqualsNumber.typeValue, severityType);
+        return (Guard.equalsTo(propertyLambda01.get(), propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.EqualsNumber.typeValue, severityType);
     }
 
     /**
@@ -188,7 +188,7 @@ public class RuleGuard {
      * @return
      */
     public static <T extends Number & Comparable<T>> boolean equalsInvariant(RuleObject ruleObject, NumberProperty<T> propertyLambda, T invariant, RuleSeverityType severityType) {
-        return (Guard.equal(propertyLambda.get(), invariant)) || raiseViolation(ruleObject, propertyLambda, invariant.toString(), RuleType.EqualsNumberInvariant.typeValue, severityType);
+        return (Guard.equalsTo(propertyLambda.get(), invariant)) || raiseViolation(ruleObject, propertyLambda, invariant.toString(), RuleType.EqualsNumberInvariant.typeValue, severityType);
     }
 
     /**
@@ -544,8 +544,8 @@ public class RuleGuard {
      * @param propertyLambdaTemporal02
      * @return
      */
-    public static <T extends Temporal & Comparable<T>> boolean equal(RuleObject ruleObject, TemporalProperty<T> propertyLambdaTemporal01, TemporalProperty<T> propertyLambdaTemporal02) {
-        return equal(ruleObject, propertyLambdaTemporal01, propertyLambdaTemporal02, RuleSeverityType.Error);
+    public static <T extends Temporal & Comparable<T>> boolean equalsTo(RuleObject ruleObject, TemporalProperty<T> propertyLambdaTemporal01, TemporalProperty<T> propertyLambdaTemporal02) {
+        return equalsTo(ruleObject, propertyLambdaTemporal01, propertyLambdaTemporal02, RuleSeverityType.Error);
     }
 
     /**
@@ -555,9 +555,9 @@ public class RuleGuard {
      * @param severityType
      * @return
      */
-    public static <T extends Temporal & Comparable<T>> boolean equal(RuleObject ruleObject, TemporalProperty<T> propertyLambdaTemporal01, TemporalProperty<T> propertyLambdaTemporal02, RuleSeverityType severityType) {
+    public static <T extends Temporal & Comparable<T>> boolean equalsTo(RuleObject ruleObject, TemporalProperty<T> propertyLambdaTemporal01, TemporalProperty<T> propertyLambdaTemporal02, RuleSeverityType severityType) {
 
-        return (Guard.equal(propertyLambdaTemporal01.get(), propertyLambdaTemporal02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambdaTemporal01, propertyLambdaTemporal02, RuleType.EqualsTemporal.typeValue, severityType);
+        return (Guard.equalsTo(propertyLambdaTemporal01.get(), propertyLambdaTemporal02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambdaTemporal01, propertyLambdaTemporal02, RuleType.EqualsTemporal.typeValue, severityType);
     }
 
     /**
@@ -579,7 +579,7 @@ public class RuleGuard {
      */
 
     public static <T extends Temporal & Comparable<T>> boolean equalsInvariant(RuleObject ruleObject, TemporalProperty<T> propertyLambda01, T invariant, RuleSeverityType severityType) {
-        return (Guard.equal(propertyLambda01.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, invariant.toString(), RuleType.EqualsTemporalInvariant.typeValue, severityType);
+        return (Guard.equalsTo(propertyLambda01.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, invariant.toString(), RuleType.EqualsTemporalInvariant.typeValue, severityType);
     }
 
     /**
@@ -647,8 +647,8 @@ public class RuleGuard {
      * @param propertyLambda02
      * @return
      */
-    public static <T extends String & Comparable<String>> boolean equal(RuleObject ruleObject, StringProperty<T> propertyLambda01, StringProperty<T> propertyLambda02) {
-        return equal(ruleObject, propertyLambda01, propertyLambda02, RuleSeverityType.Error);
+    public static <T extends String & Comparable<String>> boolean equalsTo(RuleObject ruleObject, StringProperty<T> propertyLambda01, StringProperty<T> propertyLambda02) {
+        return equalsTo(ruleObject, propertyLambda01, propertyLambda02, RuleSeverityType.Error);
     }
 
     /**
@@ -658,9 +658,9 @@ public class RuleGuard {
      * @param severityType
      * @return
      */
-    public static <T extends String & Comparable<String>> boolean equal(RuleObject ruleObject, StringProperty<T> propertyLambda01, StringProperty<T> propertyLambda02, RuleSeverityType severityType) {
+    public static <T extends String & Comparable<String>> boolean equalsTo(RuleObject ruleObject, StringProperty<T> propertyLambda01, StringProperty<T> propertyLambda02, RuleSeverityType severityType) {
 
-        return (Guard.equal(propertyLambda01.get(), propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.EqualsString.typeValue, severityType);
+        return (Guard.equalsTo(propertyLambda01.get(), propertyLambda02.get())) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, propertyLambda02, RuleType.EqualsString.typeValue, severityType);
     }
 
     /**
@@ -682,7 +682,7 @@ public class RuleGuard {
      */
 
     public static <T extends String & Comparable<String>> boolean equalsInvariant(RuleObject ruleObject, StringProperty<T> propertyLambda01, T invariant, RuleSeverityType severityType) {
-        return (Guard.equal(propertyLambda01.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, invariant, RuleType.EqualsStringInvariant.typeValue, severityType);
+        return (Guard.equalsTo(propertyLambda01.get(), invariant)) || RuleGuard.raiseViolation(ruleObject, propertyLambda01, invariant, RuleType.EqualsStringInvariant.typeValue, severityType);
     }
 
     /**

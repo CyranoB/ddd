@@ -21,19 +21,19 @@ public class EntityTests {
         Entity entity03 = EntityGuid02.create(entity01.getId());
         Object object01 = new Object();
 
-        // equal to itself
+        // equalsTo to itself
         assertTrue(entity01.equals(entity01));
 
         // 2 entities with different ID
         assertFalse(entity01.equals(entity02));
 
-        // 2 entities with same ID => Must be equal cause ID is unique
+        // 2 entities with same ID => Must be equalsTo cause ID is unique
         assertTrue(entity01.equals(entity03));
 
-        // entity vs non entity always non equal
+        // entity vs non entity always non equalsTo
         assertFalse(entity01.equals(object01));
 
-        // entity vs null always non equal
+        // entity vs null always non equalsTo
         assertFalse(entity01.equals(null));
     }
 
@@ -41,7 +41,7 @@ public class EntityTests {
     public void testDefaultState() {
         Entity entity01 = EntityGuid01.create(UUID.randomUUID());
 
-        // default state must be equal to Added
+        // default state must be equalsTo to Added
         assertTrue(entity01.getState() == EntityStateType.Added);
     }
 

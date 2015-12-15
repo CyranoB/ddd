@@ -27,7 +27,7 @@ public class Guard {
      * @param <T>
      * @return
      */
-    public static <T extends Number & Comparable<T>> boolean equal(T value01, T value02) {
+    public static <T extends Number & Comparable<T>> boolean equalsTo(T value01, T value02) {
         return value01 != null && value02 != null && value01.equals(value02);
     }
 
@@ -110,7 +110,7 @@ public class Guard {
         }
         BigDecimal bigDecimal = new BigDecimal(value).setScale(decimalPlaces, RoundingMode.HALF_EVEN);
         double rounded = bigDecimal.doubleValue();
-        if ((value) != rounded) {
+        if ((value) != rounded) { //NOSONAR
             return false;
         }
         Double maxValue = Math.pow(10, digitBeforeComma);
@@ -173,7 +173,7 @@ public class Guard {
      * @param date
      * @return
      */
-    public static <T extends Temporal & Comparable<T>> boolean equal(T value, T date) {
+    public static <T extends Temporal & Comparable<T>> boolean equalsTo(T value, T date) {
         return value != null && date != null && value.compareTo(date) == 0;
     }
 
@@ -204,7 +204,7 @@ public class Guard {
      * @param value02
      * @return
      */
-    public static <T extends String> boolean equal(T value01, T value02) {
+    public static <T extends String> boolean equalsTo(T value01, T value02) {
         return value01 != null && value02 != null && value01.compareTo(value02) == 0;
     }
 
@@ -278,7 +278,7 @@ public class Guard {
                 Phonenumber.PhoneNumber phoneNumber = phoneUtil.parse(value, "BE");
 
                 return phoneUtil.isValidNumber(phoneNumber);
-            } catch (NumberParseException e) {
+            } catch (NumberParseException e) { //NOSONAR
                 return false;
             }
         }
