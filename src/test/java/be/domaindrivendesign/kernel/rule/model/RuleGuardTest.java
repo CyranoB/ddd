@@ -370,12 +370,12 @@ public class RuleGuardTest implements Serializable {
         ruleObject02.setAttribute02(1);
 
         // No violation
-        Assert.assertTrue(RuleGuard.equals(ruleObject01, () -> ruleObject01.getAttribute01(), () -> ruleObject02.getAttribute02(), RuleSeverityType.Warning));
+        Assert.assertTrue(RuleGuard.equal(ruleObject01, () -> ruleObject01.getAttribute01(), () -> ruleObject02.getAttribute02(), RuleSeverityType.Warning));
         Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
 
         // Violation
         ruleObject02.setAttribute02(2);
-        Assert.assertFalse(RuleGuard.equals(ruleObject01, () -> ruleObject01.getAttribute01(), () -> ruleObject02.getAttribute02(), RuleSeverityType.Warning));
+        Assert.assertFalse(RuleGuard.equal(ruleObject01, () -> ruleObject01.getAttribute01(), () -> ruleObject02.getAttribute02(), RuleSeverityType.Warning));
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
@@ -395,12 +395,12 @@ public class RuleGuardTest implements Serializable {
         ruleObject02.setAttribute02(1);
 
         // No violation
-        Assert.assertTrue(RuleGuard.equals(ruleObject01, () -> ruleObject01.getAttribute01(), () -> ruleObject02.getAttribute02()));
+        Assert.assertTrue(RuleGuard.equal(ruleObject01, () -> ruleObject01.getAttribute01(), () -> ruleObject02.getAttribute02()));
         Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
 
         // Violation
         ruleObject02.setAttribute02(2);
-        Assert.assertFalse(RuleGuard.equals(ruleObject01, () -> ruleObject01.getAttribute01(), () -> ruleObject02.getAttribute02()));
+        Assert.assertFalse(RuleGuard.equal(ruleObject01, () -> ruleObject01.getAttribute01(), () -> ruleObject02.getAttribute02()));
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
@@ -1194,12 +1194,12 @@ public class RuleGuardTest implements Serializable {
         ruleObject02.setLocalDateTime02(LocalDateTime.of(2015, 1, 1, 0, 0));
 
         // No violation
-        Assert.assertTrue(RuleGuard.equals(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02(), RuleSeverityType.Warning));
+        Assert.assertTrue(RuleGuard.equal(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02(), RuleSeverityType.Warning));
         Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
 
         // Violation
         ruleObject02.setLocalDateTime02(LocalDateTime.of(2016, 1, 1, 0, 0));
-        Assert.assertFalse(RuleGuard.equals(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02(), RuleSeverityType.Warning));
+        Assert.assertFalse(RuleGuard.equal(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02(), RuleSeverityType.Warning));
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
@@ -1219,12 +1219,12 @@ public class RuleGuardTest implements Serializable {
         ruleObject02.setLocalDateTime02(LocalDateTime.of(2015, 1, 1, 0, 0));
 
         // No violation
-        Assert.assertTrue(RuleGuard.equals(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02()));
+        Assert.assertTrue(RuleGuard.equal(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02()));
         Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
 
         // Violation
         ruleObject02.setLocalDateTime02(LocalDateTime.of(2016, 1, 1, 0, 0));
-        Assert.assertFalse(RuleGuard.equals(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02()));
+        Assert.assertFalse(RuleGuard.equal(ruleObject01, () -> ruleObject01.getLocalDateTime01(), () -> ruleObject02.getLocalDateTime02()));
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
@@ -1389,13 +1389,13 @@ public class RuleGuardTest implements Serializable {
         ruleObject02.setString02("Test");
 
         // No violation Smaller
-        Assert.assertTrue(RuleGuard.equals(ruleObject01, () -> ruleObject01.getString01(), () -> ruleObject02.getString02(), RuleSeverityType.Warning));
+        Assert.assertTrue(RuleGuard.equal(ruleObject01, () -> ruleObject01.getString01(), () -> ruleObject02.getString02(), RuleSeverityType.Warning));
         Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
 
         // Violation
         ruleObject02.setString02("test");
 
-        Assert.assertFalse(RuleGuard.equals(ruleObject01, () -> ruleObject01.getString01(), () -> ruleObject02.getString02(), RuleSeverityType.Warning));
+        Assert.assertFalse(RuleGuard.equal(ruleObject01, () -> ruleObject01.getString01(), () -> ruleObject02.getString02(), RuleSeverityType.Warning));
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
@@ -1416,13 +1416,13 @@ public class RuleGuardTest implements Serializable {
         ruleObject02.setString02("Test");
 
         // No violation Smaller
-        Assert.assertTrue(RuleGuard.equals(ruleObject01, () -> ruleObject01.getString01(), () -> ruleObject02.getString02()));
+        Assert.assertTrue(RuleGuard.equal(ruleObject01, () -> ruleObject01.getString01(), () -> ruleObject02.getString02()));
         Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
 
         // Violation
         ruleObject02.setString02("test");
 
-        Assert.assertFalse(RuleGuard.equals(ruleObject01, () -> ruleObject01.getString01(), () -> ruleObject02.getString02()));
+        Assert.assertFalse(RuleGuard.equal(ruleObject01, () -> ruleObject01.getString01(), () -> ruleObject02.getString02()));
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject01);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());

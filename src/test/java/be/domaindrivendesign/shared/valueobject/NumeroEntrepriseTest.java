@@ -91,7 +91,7 @@ public class NumeroEntrepriseTest {
         assertEquals(Arrays.asList("be.domaindrivendesign.shared.valueobject|NumeroEntreprise.getPart01"), UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths());
         assertEquals(RuleType.Length.typeValue, UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId());
         assertEquals(RuleSeverityType.Error, UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType());
-        assertEquals(Arrays.asList("1111"), UnitOfWorkRule.getInstance().getViolations().get(0).getValues());
+        assertEquals(Arrays.asList("1111", "1"), UnitOfWorkRule.getInstance().getViolations().get(0).getValues());
     }
 
     @Test
@@ -104,7 +104,7 @@ public class NumeroEntrepriseTest {
         assertEquals(Arrays.asList("be.domaindrivendesign.shared.valueobject|NumeroEntreprise.getPart02"), UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths());
         assertEquals(RuleType.Length.typeValue, UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId());
         assertEquals(RuleSeverityType.Error, UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType());
-        assertEquals(Arrays.asList("2"), UnitOfWorkRule.getInstance().getViolations().get(0).getValues());
+        assertEquals(Arrays.asList("2", "3"), UnitOfWorkRule.getInstance().getViolations().get(0).getValues());
     }
 
     @Test
@@ -117,7 +117,7 @@ public class NumeroEntrepriseTest {
         assertEquals(Arrays.asList("be.domaindrivendesign.shared.valueobject|NumeroEntreprise.getPart03"), UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths());
         assertEquals(RuleType.Length.typeValue, UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId());
         assertEquals(RuleSeverityType.Error, UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType());
-        assertEquals(Arrays.asList("3333"), UnitOfWorkRule.getInstance().getViolations().get(0).getValues());
+        assertEquals(Arrays.asList("3333", "3"), UnitOfWorkRule.getInstance().getViolations().get(0).getValues());
     }
 
     @Test
@@ -130,6 +130,6 @@ public class NumeroEntrepriseTest {
         assertEquals(Arrays.asList("be.domaindrivendesign.shared.valueobject|NumeroEntreprise.getPart04"), UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths());
         assertEquals(RuleType.Length.typeValue, UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId());
         assertEquals(RuleSeverityType.Error, UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType());
-        assertEquals(Arrays.asList("4"), UnitOfWorkRule.getInstance().getViolations().get(0).getValues());
+        assertEquals(Arrays.asList("4", "3"), UnitOfWorkRule.getInstance().getViolations().get(0).getValues());
     }
 }

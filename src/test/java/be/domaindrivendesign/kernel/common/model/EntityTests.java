@@ -21,7 +21,7 @@ public class EntityTests {
         Entity entity03 = EntityGuid02.create(entity01.getId());
         Object object01 = new Object();
 
-        // equals to itself
+        // equal to itself
         assertTrue(entity01.equals(entity01));
 
         // 2 entities with different ID
