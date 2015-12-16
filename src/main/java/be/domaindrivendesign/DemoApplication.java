@@ -1,10 +1,10 @@
 package be.domaindrivendesign;
 
-import be.domaindrivendesign.ecole.beneficiaire.data.jpa.AgrementRepositoryJpa;
-import be.domaindrivendesign.ecole.beneficiaire.data.jpa.BeneficiaireRepositoryJpa;
-import be.domaindrivendesign.ecole.budget.data.jpa.BudgetAnnuelRepositoryJpa;
-import be.domaindrivendesign.ecole.etablissement.data.jpa.EtablissementRepositoryJpa;
-import be.domaindrivendesign.ecole.etablissement.data.jpa.ImplantationAnneeScolaireRepositoryJpa;
+import be.domaindrivendesign.ecole.module.beneficiaire.data.jpa.AgrementRepositoryJpa;
+import be.domaindrivendesign.ecole.module.beneficiaire.data.jpa.BeneficiaireRepositoryJpa;
+import be.domaindrivendesign.ecole.module.budget.data.jpa.BudgetAnnuelRepositoryJpa;
+import be.domaindrivendesign.ecole.module.etablissement.data.jpa.EtablissementRepositoryJpa;
+import be.domaindrivendesign.ecole.module.etablissement.data.jpa.ImplantationAnneeScolaireRepositoryJpa;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpaImpl;
 import org.springframework.boot.SpringApplication;

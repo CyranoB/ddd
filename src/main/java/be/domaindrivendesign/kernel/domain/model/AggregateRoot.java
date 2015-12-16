@@ -25,7 +25,7 @@ The domain service has to retrieve the aggregate objects trought the aggregate r
 and never directly.
 
 If an aggregate objects need to have access to the aggregate root, it will only contains
-the Id of the aggregate root to avoid circular references. This aggregate root Id will
+the id of the aggregate root to avoid circular references. This aggregate root id will
 often be used as foreign key in the database (repository implementation).
 
 Aggregate or aggregate root are statefull.
