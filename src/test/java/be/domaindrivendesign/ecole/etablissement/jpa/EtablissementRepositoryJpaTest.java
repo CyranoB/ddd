@@ -3,7 +3,7 @@ package be.domaindrivendesign.ecole.etablissement.jpa;
 import be.domaindrivendesign.ecole.TestConfiguration;
 import be.domaindrivendesign.ecole.etablissement.data.interfaces.EtablissementRepository;
 import be.domaindrivendesign.ecole.etablissement.domain.model.Etablissement;
-import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
+import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpa;
 import be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -41,7 +41,7 @@ public class EtablissementRepositoryJpaTest {
     @Autowired
     private EtablissementRepository repository;
     @Autowired
-    private UnitOfWork unitOfWork;
+    private UnitOfWorkJpa unitOfWork;
 
     @After
     public void tearDown() {

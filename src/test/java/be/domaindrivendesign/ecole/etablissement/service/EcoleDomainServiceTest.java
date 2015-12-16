@@ -48,6 +48,7 @@ public class EcoleDomainServiceTest {
     @After
     public void tearDown() {
         UnitOfWorkRule.getInstance().clear();
+
     }
 
     @Test
@@ -65,49 +66,39 @@ public class EcoleDomainServiceTest {
         // Valider
         List<Etablissement> etablissements = etablissementRepository.list();
         Assert.assertEquals(1, etablissements.size());
+        Assert.assertEquals(etablissement.getId(), etablissements.get(0).getId());
         Assert.assertEquals(etablissement, etablissements.get(0));
 
     }
 
+    @Test
+    public void testImporterEtablissementExistant() {
+        // Etbalissement original.
+        Implantation implantation01 = Implantation.creer("reference I01", "denomination I01", new Adresse02(), Arrays.asList(NiveauType.Prescolaire5Jour), new Contact01(), PeriodDateHeure.EMPTY);
+        Etablissement etablissement = Etablissement.creer("reference", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse01(),
+                EcoleType.EtablissementScolaire, new Contact01(), new LinkedHashSet<>(Arrays.asList(implantation01)));
+        ecoleDomainService.importerEtablissement(etablissement, LocalDateTime.now());
+
+        // Etablissement modifié
+        Implantation implantation01M = Implantation.creer("reference I01", "denomination m01", new Adresse02(), Arrays.asList(NiveauType.Prescolaire5Jour), new Contact02(), PeriodDateHeure.EMPTY);
+        Implantation implantation02M = Implantation.creer("reference I02", "denomination I02", new Adresse02(), Arrays.asList(NiveauType.Prescolaire5Jour), new Contact02(), PeriodDateHeure.EMPTY);
+        Etablissement etablissementm = Etablissement.creer("reference", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse01(),
+                EcoleType.EtablissementScolaire, new Contact02(), new LinkedHashSet<>(Arrays.asList(implantation01M, implantation02M)));
+
+        // Import
+        ecoleDomainService.importerEtablissement(etablissementm, LocalDateTime.now());
+
+        // Valider
+        List<Etablissement> etablissements = etablissementRepository.list();
+        Assert.assertEquals(1, etablissements.size());
+        Assert.assertEquals(new Contact02(), etablissements.get(0).getContact());
+        Assert.assertEquals(2, etablissements.get(0).getImplantations().size());
+    }
+
 //    @Test
-//    public void testImporterEtablissementExistant()
+//    public void testImporterImplantationAnneeScolaireNouveau()
 //    {
 //        // Contexte
-//        EtablissementRepositoryMock etablissementRepositoryMock = new EtablissementRepositoryMock();
-//        ImplantationAnneeScolaireRepositoryMock implantationAnneeScolaireRepositoryMock = new ImplantationAnneeScolaireRepositoryMock();
-//        EcoleDomainService ecoleDomainService = new EcoleDomainService(etablissementRepositoryMock, implantationAnneeScolaireRepositoryMock);
-//
-//        // Etbalissement original.
-//        Implantation implantation01 = Implantation.creer("reference I01", "denomination I01", new Adresse02(), new List<NiveauType>() { NiveauType.Prescolaire5Jour }, new Contact01(), PeriodDateHeure.Empty);
-//        Etablissement etablissement = Etablissement.creer("reference", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse01(),
-//                EcoleType.EtablissementScolaire, new Contact01(), new List<Implantation>() { implantation01 });
-//        etablissementRepositoryMock.Insert(etablissement);
-//
-//        // Etablissement modifié
-//        Implantation implantation01M = Implantation.creer("reference I01", "denomination m01", new Adresse02(), new List<NiveauType>() { NiveauType.Prescolaire5Jour }, new Contact02(), PeriodDateHeure.Empty);
-//        Implantation implantation02M = Implantation.creer("reference I02", "denomination I02", new Adresse02(), new List<NiveauType>() { NiveauType.Prescolaire5Jour }, new Contact02(), PeriodDateHeure.Empty);
-//        Etablissement etablissementm = Etablissement.creer("reference", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse01(),
-//                EcoleType.EtablissementScolaire, new Contact02(), new List<Implantation>() { implantation01M, implantation02M });
-//        etablissementRepositoryMock.Insert(etablissement);
-//
-//        LocalDateTime dateApplication = LocalDateTime.now();
-//
-//        // Import
-//        ecoleDomainService.importerEtablissement(etablissementm, dateApplication);
-//
-//        // Valider
-//        Assert.AreEqual(etablissementRepositoryMock.Objects[0].Contact, new Contact02());
-//        Assert.AreEqual(etablissementRepositoryMock.Objects[0].Implantations.Count, 2);
-//    }
-//
-//    @Test
-//    public void TestImporterImplantationAnneeScolaireNouveau()
-//    {
-//        // Contexte
-//        EtablissementRepositoryMock etablissementRepositoryMock = new EtablissementRepositoryMock();
-//        ImplantationAnneeScolaireRepositoryMock implantationAnneeScolaireRepositoryMock = new ImplantationAnneeScolaireRepositoryMock();
-//        EcoleDomainService ecoleDomainService = new EcoleDomainService(etablissementRepositoryMock, implantationAnneeScolaireRepositoryMock);
-//        LocalDateTime dateApplication = LocalDateTime.now();
 //        ImplantationAnneeScolaire implantationAnneeScolaire = ImplantationAnneeScolaireRepositoryMock.GetImplantationAnneeScolaire01();
 //
 //        // Import

@@ -4,7 +4,7 @@ package be.domaindrivendesign.ecole.beneficiaire.jpa;
 import be.domaindrivendesign.ecole.TestConfiguration;
 import be.domaindrivendesign.ecole.beneficiaire.data.interfaces.AgrementRepository;
 import be.domaindrivendesign.ecole.beneficiaire.domain.model.Agrement;
-import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
+import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpa;
 import be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -40,7 +40,7 @@ public class AgrementRepositoryJpaTest {
     @Autowired
     private AgrementRepository repository;
     @Autowired
-    private UnitOfWork unitOfWork;
+    private UnitOfWorkJpa unitOfWork;
 
     @After
     public void tearDown() {

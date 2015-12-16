@@ -4,7 +4,7 @@ import be.domaindrivendesign.ecole.TestConfiguration;
 import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
 import be.domaindrivendesign.ecole.etablissement.data.interfaces.ImplantationAnneeScolaireRepository;
 import be.domaindrivendesign.ecole.etablissement.domain.model.ImplantationAnneeScolaire;
-import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
+import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpa;
 import be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -40,7 +40,7 @@ public class ImplantationAnneeScolaireRepositoryJpaTest {
     @Autowired
     private ImplantationAnneeScolaireRepository repository;
     @Autowired
-    private UnitOfWork unitOfWork;
+    private UnitOfWorkJpa unitOfWork;
 
     @After
     public void tearDown() {

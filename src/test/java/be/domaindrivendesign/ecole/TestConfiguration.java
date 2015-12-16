@@ -12,7 +12,7 @@ import be.domaindrivendesign.ecole.etablissement.data.jpa.EtablissementRepositor
 import be.domaindrivendesign.ecole.etablissement.data.jpa.ImplantationAnneeScolaireRepositoryJpa;
 import be.domaindrivendesign.ecole.etablissement.service.EcoleDomainService;
 import be.domaindrivendesign.ecole.etablissement.service.EcoleDomainServiceImpl;
-import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
+import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpa;
 import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpaImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +28,7 @@ import java.util.Properties;
 public class TestConfiguration {
 
     @Bean
-    public UnitOfWork unitOfWork() {
+    public UnitOfWorkJpa unitOfWork() {
         return new UnitOfWorkJpaImpl();
     }
 
