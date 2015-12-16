@@ -1,10 +1,10 @@
 package be.domaindrivendesign;
 
-import be.domaindrivendesign.ecole.beneficiaire.data.jpa.JpaAgrementRepository;
-import be.domaindrivendesign.ecole.beneficiaire.data.jpa.JpaBeneficiaireRepository;
-import be.domaindrivendesign.ecole.budget.data.jpa.JpaBudgetAnnuelRepository;
-import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaEtablissementRepository;
-import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaImplantationAnneeScolaireRepository;
+import be.domaindrivendesign.ecole.beneficiaire.data.jpa.AgrementRepositoryJpa;
+import be.domaindrivendesign.ecole.beneficiaire.data.jpa.BeneficiaireRepositoryJpa;
+import be.domaindrivendesign.ecole.budget.data.jpa.BudgetAnnuelRepositoryJpa;
+import be.domaindrivendesign.ecole.etablissement.data.jpa.EtablissementRepositoryJpa;
+import be.domaindrivendesign.ecole.etablissement.data.jpa.ImplantationAnneeScolaireRepositoryJpa;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpaImpl;
 import org.springframework.boot.SpringApplication;
@@ -71,28 +71,28 @@ public class DemoApplication {
     }
 
     @Bean
-    public JpaImplantationAnneeScolaireRepository jpaImplantationAnneeScolaireRepository() {
-        return new JpaImplantationAnneeScolaireRepository();
+    public ImplantationAnneeScolaireRepositoryJpa jpaImplantationAnneeScolaireRepository() {
+        return new ImplantationAnneeScolaireRepositoryJpa();
     }
 
     @Bean
-    public JpaEtablissementRepository jpaEtablissementRepository() {
-        return new JpaEtablissementRepository();
+    public EtablissementRepositoryJpa jpaEtablissementRepository() {
+        return new EtablissementRepositoryJpa();
     }
 
     @Bean
-    public JpaBudgetAnnuelRepository jpaBudgetAnnuelRepository() {
-        return new JpaBudgetAnnuelRepository();
+    public BudgetAnnuelRepositoryJpa jpaBudgetAnnuelRepository() {
+        return new BudgetAnnuelRepositoryJpa();
     }
 
     @Bean
-    public JpaBeneficiaireRepository jpaBeneficiaireRepository() {
-        return new JpaBeneficiaireRepository();
+    public BeneficiaireRepositoryJpa jpaBeneficiaireRepository() {
+        return new BeneficiaireRepositoryJpa();
     }
 
     @Bean
-    public JpaAgrementRepository jpaAgrementRepository() {
-        return new JpaAgrementRepository();
+    public AgrementRepositoryJpa jpaAgrementRepository() {
+        return new AgrementRepositoryJpa();
     }
 
 

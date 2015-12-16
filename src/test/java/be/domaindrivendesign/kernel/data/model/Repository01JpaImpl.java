@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
  * Created by asmol on 16-12-15.
  */
 @Repository
-public class JpaRepository01Impl extends RepositoryJpa<Entity01> implements JpaRepository01 {
+public class Repository01JpaImpl extends RepositoryJpa<Entity01> implements Repository01Jpa {
 }

@@ -38,7 +38,7 @@ import static org.junit.Assert.*;
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class})
 @DatabaseSetup("/datasets/beneficiaire/beneficaires.xml")
-public class JpaBeneficiaireRepositoryTest {
+public class BeneficiaireRepositoryJpaTest {
 
     @Autowired
     private BeneficiaireRepository repository;

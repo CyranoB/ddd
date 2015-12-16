@@ -18,11 +18,11 @@ import static org.junit.Assert.assertTrue;
  * Created by eddie on 03/12/15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = {JpaRepositoryConfiguration.class})
-public class JpaRepository01Test {
+@SpringApplicationConfiguration(classes = {RepositoryJpaConfiguration.class})
+public class Repository01JpaTest {
 
     @Autowired
-    private JpaRepository01 jpaRepository01;
+    private Repository01Jpa jpaRepository01;
     @Autowired
     private UnitOfWork unitOfWork;
 

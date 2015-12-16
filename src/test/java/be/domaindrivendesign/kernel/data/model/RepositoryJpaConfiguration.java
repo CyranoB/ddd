@@ -1,6 +1,5 @@
 package be.domaindrivendesign.kernel.data.model;
 
-import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpa;
 import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ import java.util.Properties;
 @EntityScan(basePackages = {"be.domaindrivendesign"})
 @EnableJpaRepositories(basePackages = {"be.domaindrivendesign"})
 @EnableTransactionManagement
-public class JpaRepositoryConfiguration {
+public class RepositoryJpaConfiguration {
     @Bean
     public UnitOfWorkJpa unitOfWork() {
         return new UnitOfWorkJpaImpl();
@@ -66,7 +65,7 @@ public class JpaRepositoryConfiguration {
     }
 
     @Bean
-    public JpaRepository01 jpaRepository01() {
-        return new JpaRepository01Impl();
+    public Repository01Jpa jpaRepository01() {
+        return new Repository01JpaImpl();
     }
 }

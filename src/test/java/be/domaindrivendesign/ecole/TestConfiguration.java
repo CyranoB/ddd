@@ -2,14 +2,14 @@ package be.domaindrivendesign.ecole;
 
 import be.domaindrivendesign.ecole.beneficiaire.data.interfaces.AgrementRepository;
 import be.domaindrivendesign.ecole.beneficiaire.data.interfaces.BeneficiaireRepository;
-import be.domaindrivendesign.ecole.beneficiaire.data.jpa.JpaAgrementRepository;
-import be.domaindrivendesign.ecole.beneficiaire.data.jpa.JpaBeneficiaireRepository;
+import be.domaindrivendesign.ecole.beneficiaire.data.jpa.AgrementRepositoryJpa;
+import be.domaindrivendesign.ecole.beneficiaire.data.jpa.BeneficiaireRepositoryJpa;
 import be.domaindrivendesign.ecole.budget.data.interfaces.BudgetAnnuelRepository;
-import be.domaindrivendesign.ecole.budget.data.jpa.JpaBudgetAnnuelRepository;
+import be.domaindrivendesign.ecole.budget.data.jpa.BudgetAnnuelRepositoryJpa;
 import be.domaindrivendesign.ecole.etablissement.data.interfaces.EtablissementRepository;
 import be.domaindrivendesign.ecole.etablissement.data.interfaces.ImplantationAnneeScolaireRepository;
-import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaEtablissementRepository;
-import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaImplantationAnneeScolaireRepository;
+import be.domaindrivendesign.ecole.etablissement.data.jpa.EtablissementRepositoryJpa;
+import be.domaindrivendesign.ecole.etablissement.data.jpa.ImplantationAnneeScolaireRepositoryJpa;
 import be.domaindrivendesign.ecole.etablissement.service.EcoleDomainService;
 import be.domaindrivendesign.ecole.etablissement.service.EcoleDomainServiceImpl;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
@@ -66,27 +66,27 @@ public class TestConfiguration {
 
     @Bean
     public ImplantationAnneeScolaireRepository jpaImplantationAnneeScolaireRepository() {
-        return new JpaImplantationAnneeScolaireRepository();
+        return new ImplantationAnneeScolaireRepositoryJpa();
     }
 
     @Bean
     public EtablissementRepository etablissementRepository() {
-        return new JpaEtablissementRepository();
+        return new EtablissementRepositoryJpa();
     }
 
     @Bean
     public BudgetAnnuelRepository budgetAnnuelRepository() {
-        return new JpaBudgetAnnuelRepository();
+        return new BudgetAnnuelRepositoryJpa();
     }
 
     @Bean
     public BeneficiaireRepository beneficiaireRepository() {
-        return new JpaBeneficiaireRepository();
+        return new BeneficiaireRepositoryJpa();
     }
 
     @Bean
     public AgrementRepository agrementRepository() {
-        return new JpaAgrementRepository();
+        return new AgrementRepositoryJpa();
     }
 
     @Bean

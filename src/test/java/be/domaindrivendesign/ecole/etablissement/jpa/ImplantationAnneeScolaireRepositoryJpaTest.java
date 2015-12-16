@@ -35,7 +35,7 @@ import static org.junit.Assert.assertEquals;
         DbUnitTestExecutionListener.class})
 @EnableJpaRepositories
 @DatabaseSetup("/datasets/etablissement/implantation_annee_scolaires.xml")
-public class JpaImplantationAnneeScolaireRepositoryTest {
+public class ImplantationAnneeScolaireRepositoryJpaTest {
 
     @Autowired
     private ImplantationAnneeScolaireRepository repository;

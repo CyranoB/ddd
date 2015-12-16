@@ -32,7 +32,7 @@ import static org.junit.Assert.assertNotNull;
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class})
 @DatabaseSetup("/datasets/budgetannuel/budgetannuels.xml")
-public class JpaBudgetAnnuelTest {
+public class BudgetAnnuelJpaTest {
     @Autowired
     private BudgetAnnuelRepository repository;
     @Autowired

@@ -8,7 +8,7 @@ import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class JpaEtablissementRepository extends RepositoryJpa<Etablissement>
+public class EtablissementRepositoryJpa extends RepositoryJpa<Etablissement>
         implements EtablissementRepository {
 
     @Override

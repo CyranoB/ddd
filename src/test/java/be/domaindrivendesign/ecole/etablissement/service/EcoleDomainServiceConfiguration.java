@@ -2,12 +2,10 @@ package be.domaindrivendesign.ecole.etablissement.service;
 
 import be.domaindrivendesign.ecole.etablissement.data.interfaces.EtablissementRepository;
 import be.domaindrivendesign.ecole.etablissement.data.interfaces.ImplantationAnneeScolaireRepository;
-import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaEtablissementRepository;
-import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaImplantationAnneeScolaireRepository;
+import be.domaindrivendesign.ecole.etablissement.data.jpa.EtablissementRepositoryJpa;
+import be.domaindrivendesign.ecole.etablissement.data.jpa.ImplantationAnneeScolaireRepositoryJpa;
 import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpa;
 import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpaImpl;
-import be.domaindrivendesign.kernel.data.model.JpaRepository01;
-import be.domaindrivendesign.kernel.data.model.JpaRepository01Impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.orm.jpa.EntityScan;
@@ -42,10 +40,14 @@ public class EcoleDomainServiceConfiguration {
     public EcoleDomainService ecoleDomainService(){return new EcoleDomainServiceImpl();}
 
     @Bean
-    public ImplantationAnneeScolaireRepository implantationAnneeScolaireRepository(){return new JpaImplantationAnneeScolaireRepository();}
+    public ImplantationAnneeScolaireRepository implantationAnneeScolaireRepository() {
+        return new ImplantationAnneeScolaireRepositoryJpa();
+    }
 
     @Bean
-    public EtablissementRepository etablissementRepository(){return new JpaEtablissementRepository();}
+    public EtablissementRepository etablissementRepository() {
+        return new EtablissementRepositoryJpa();
+    }
 
     @Bean
     public DataSource dataSource() {

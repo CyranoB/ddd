@@ -1,8 +1,9 @@
-package be.domaindrivendesign.ecole.etablissement.jpa;
+package be.domaindrivendesign.ecole.beneficiaire.jpa;
+
 
 import be.domaindrivendesign.ecole.TestConfiguration;
-import be.domaindrivendesign.ecole.etablissement.data.interfaces.EtablissementRepository;
-import be.domaindrivendesign.ecole.etablissement.domain.model.Etablissement;
+import be.domaindrivendesign.ecole.beneficiaire.data.interfaces.AgrementRepository;
+import be.domaindrivendesign.ecole.beneficiaire.domain.model.Agrement;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
@@ -19,27 +20,25 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestConfiguration.class)
 @EnableJpaRepositories
-@EnableTransactionManagement
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
         DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class})
-@DatabaseSetup("/datasets/etablissement/etablissements_test.xml")
-public class JpaEtablissementRepositoryTest {
+@DatabaseSetup("/datasets/beneficiaire/agrements.xml")
+public class AgrementRepositoryJpaTest {
 
     @Autowired
-    private EtablissementRepository repository;
+    private AgrementRepository repository;
     @Autowired
     private UnitOfWork unitOfWork;
 
@@ -50,25 +49,16 @@ public class JpaEtablissementRepositoryTest {
 
     @Test
     public void testList() {
-        List<Etablissement> etablissements = repository.list();
-        Assert.assertEquals(2, etablissements.size());
-        Etablissement etablissement = etablissements.stream().filter(e -> e.getNumeroReference().equals("446")).findFirst().get();
-        assertEquals("171b3eb4-e175-c159-7f6a-08d2892a9523", etablissement.getId().toString());
-        assertEquals("446", etablissement.getNumeroReference());
-        assertEquals(1, etablissements.get(0).getImplantations().size());
+        List<Agrement> agrements = repository.list();
+        Assert.assertEquals(3, agrements.size());
+        Optional<Agrement> agrement = agrements.stream().filter(b -> b.getId().equals(UUID.fromString("3f6337b6-25d9-415c-bfa6-d6697051cfa0"))).findFirst();
+        assertTrue(agrement.isPresent());
     }
 
     @Test
     public void getById() {
-        Etablissement etablissement = repository.getById(UUID.fromString("171b3eb4-e175-c159-7f6a-08d2892a9523"));
-        assertNotNull(etablissement);
-
-    }
-
-    @Test
-    public void testGetForNumeroDeReference() {
-        Etablissement etablissement = repository.getEtablissementForNumeroDeReference("446");
-        Assert.assertNotNull(etablissement);
-        assertEquals("171b3eb4-e175-c159-7f6a-08d2892a9523", etablissement.getId().toString());
+        Agrement agrement = repository.getById(UUID.fromString("3f6337b6-15d9-415c-bfa6-d6697051cfa0"));
+        assertNotNull(agrement);
+        assertEquals("1111", agrement.getNumeroDgarne());
     }
 }

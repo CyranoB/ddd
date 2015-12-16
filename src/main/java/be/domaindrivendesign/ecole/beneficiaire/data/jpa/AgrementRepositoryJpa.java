@@ -5,5 +5,5 @@ import be.domaindrivendesign.ecole.beneficiaire.data.interfaces.AgrementReposito
 import be.domaindrivendesign.ecole.beneficiaire.domain.model.Agrement;
 import be.domaindrivendesign.kernel.data.jpa.RepositoryJpa;
 
-public class JpaAgrementRepository extends RepositoryJpa<Agrement> implements AgrementRepository {
+public class AgrementRepositoryJpa extends RepositoryJpa<Agrement> implements AgrementRepository {
 }

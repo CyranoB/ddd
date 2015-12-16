@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class JpaImplantationAnneeScolaireRepository extends RepositoryJpa<ImplantationAnneeScolaire>
+public class ImplantationAnneeScolaireRepositoryJpa extends RepositoryJpa<ImplantationAnneeScolaire>
         implements ImplantationAnneeScolaireRepository {
 
     @Override
