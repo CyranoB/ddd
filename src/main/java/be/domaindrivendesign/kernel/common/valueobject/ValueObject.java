@@ -27,7 +27,9 @@ public class ValueObject implements RuleObject {
 
     @Override
     public final boolean equals(final Object o) {
-        return this == o || !(o == null || getClass() != o.getClass()) && EqualsBuilder.reflectionEquals(this, o, false);
+        if (o == null)
+            return false;
+        return EqualsBuilder.reflectionEquals(this, o, false);
     }
 
     public final boolean areEntirePropertyNull() throws IllegalAccessException {
