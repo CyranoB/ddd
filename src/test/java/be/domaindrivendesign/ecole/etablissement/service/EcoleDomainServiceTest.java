@@ -26,7 +26,6 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
-import java.util.List;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -56,7 +55,7 @@ public class EcoleDomainServiceTest {
 
         Implantation implantation01 = Implantation.creer("reference I01", "denomination I01", new Adresse02(), Arrays.asList(NiveauType.Prescolaire5Jour), new Contact02(), PeriodDateHeure.EMPTY);
         Implantation implantation02 = Implantation.creer("reference I02", "denomination I02", new Adresse02(), Arrays.asList(NiveauType.Prescolaire5Jour), new Contact02(), PeriodDateHeure.EMPTY);
-        Etablissement etablissement = Etablissement.creer("reference", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse01(),
+        Etablissement etablissement = Etablissement.creer("reference nouveau", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse01(),
                 EcoleType.EtablissementScolaire, new Contact01(), new LinkedHashSet<>(Arrays.asList(implantation01, implantation02)));
         LocalDateTime dateApplication = LocalDateTime.now();
 
@@ -64,10 +63,9 @@ public class EcoleDomainServiceTest {
         ecoleDomainService.importerEtablissement(etablissement, dateApplication);
 
         // Valider
-        List<Etablissement> etablissements = etablissementRepository.list();
-        Assert.assertEquals(1, etablissements.size());
-        Assert.assertEquals(etablissement.getId(), etablissements.get(0).getId());
-        Assert.assertEquals(etablissement, etablissements.get(0));
+        Etablissement e = etablissementRepository.getEtablissementForNumeroDeReference("reference nouveau");
+        Assert.assertEquals(etablissement.getId(), e.getId());
+        Assert.assertEquals(etablissement, e);
 
     }
 
@@ -75,24 +73,23 @@ public class EcoleDomainServiceTest {
     public void testImporterEtablissementExistant() {
         // Etbalissement original.
         Implantation implantation01 = Implantation.creer("reference I01", "denomination I01", new Adresse02(), Arrays.asList(NiveauType.Prescolaire5Jour), new Contact01(), PeriodDateHeure.EMPTY);
-        Etablissement etablissement = Etablissement.creer("reference", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse01(),
+        Etablissement etablissement = Etablissement.creer("reference modif", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse01(),
                 EcoleType.EtablissementScolaire, new Contact01(), new LinkedHashSet<>(Arrays.asList(implantation01)));
         ecoleDomainService.importerEtablissement(etablissement, LocalDateTime.now());
 
         // Etablissement modifié
         Implantation implantation01M = Implantation.creer("reference I01", "denomination m01", new Adresse02(), Arrays.asList(NiveauType.Prescolaire5Jour), new Contact02(), PeriodDateHeure.EMPTY);
         Implantation implantation02M = Implantation.creer("reference I02", "denomination I02", new Adresse02(), Arrays.asList(NiveauType.Prescolaire5Jour), new Contact02(), PeriodDateHeure.EMPTY);
-        Etablissement etablissementm = Etablissement.creer("reference", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse01(),
+        Etablissement etablissementm = Etablissement.creer("reference modif", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse01(),
                 EcoleType.EtablissementScolaire, new Contact02(), new LinkedHashSet<>(Arrays.asList(implantation01M, implantation02M)));
 
         // Import
         ecoleDomainService.importerEtablissement(etablissementm, LocalDateTime.now());
 
         // Valider
-        List<Etablissement> etablissements = etablissementRepository.list();
-        Assert.assertEquals(1, etablissements.size());
-        Assert.assertEquals(new Contact02(), etablissements.get(0).getContact());
-        Assert.assertEquals(2, etablissements.get(0).getImplantations().size());
+        Etablissement e = etablissementRepository.getEtablissementForNumeroDeReference("reference modif");
+        Assert.assertEquals(new Contact02(), e.getContact());
+        Assert.assertEquals(2, e.getImplantations().size());
     }
 
 //    @Test
