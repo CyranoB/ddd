@@ -1,6 +1,7 @@
 package be.domaindrivendesign.ecole.etablissement.service;
 
 
+import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
 import be.domaindrivendesign.ecole.etablissement.data.interfaces.EtablissementRepository;
 import be.domaindrivendesign.ecole.etablissement.data.interfaces.ImplantationAnneeScolaireRepository;
 import be.domaindrivendesign.ecole.etablissement.domain.model.*;
@@ -57,10 +58,9 @@ public class EcoleDomainServiceTest {
         Implantation implantation02 = Implantation.creer("reference I02", "denomination I02", new Adresse02(), Arrays.asList(NiveauType.Prescolaire5Jour), new Contact02(), PeriodDateHeure.EMPTY);
         Etablissement etablissement = Etablissement.creer("reference nouveau", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse01(),
                 EcoleType.EtablissementScolaire, new Contact01(), new LinkedHashSet<>(Arrays.asList(implantation01, implantation02)));
-        LocalDateTime dateApplication = LocalDateTime.now();
 
         // Import
-        ecoleDomainService.importerEtablissement(etablissement, dateApplication);
+        ecoleDomainService.importerEtablissement(etablissement, LocalDateTime.now());
 
         // Valider
         Etablissement e = etablissementRepository.getEtablissementForNumeroDeReference("reference nouveau");
@@ -92,38 +92,32 @@ public class EcoleDomainServiceTest {
         Assert.assertEquals(2, e.getImplantations().size());
     }
 
-//    @Test
-//    public void testImporterImplantationAnneeScolaireNouveau()
-//    {
-//        // Contexte
-//        ImplantationAnneeScolaire implantationAnneeScolaire = ImplantationAnneeScolaireRepositoryMock.GetImplantationAnneeScolaire01();
-//
-//        // Import
-//        ecoleDomainService.ImporterImplantationAnneeScolaire(implantationAnneeScolaire, dateApplication);
-//
-//        // Valider
-//        Assert.AreEqual(implantationAnneeScolaireRepositoryMock.Objects[0], implantationAnneeScolaire);
-//
-//    }
-//
-//    @Test
-//    public void TestImporterImplantationAnneeScolaireExistant()
-//    {
-//        // Contexte
-//        EtablissementRepositoryMock etablissementRepositoryMock = new EtablissementRepositoryMock();
-//        ImplantationAnneeScolaireRepositoryMock implantationAnneeScolaireRepositoryMock = new ImplantationAnneeScolaireRepositoryMock();
-//        EcoleDomainService ecoleDomainService = new EcoleDomainService(etablissementRepositoryMock, implantationAnneeScolaireRepositoryMock);
-//        LocalDateTime dateApplication = LocalDateTime.now();
-//        ImplantationAnneeScolaire implantationAnneeScolaire = ImplantationAnneeScolaireRepositoryMock.GetImplantationAnneeScolaire01(100, 200);
-//        implantationAnneeScolaireRepositoryMock.Insert(implantationAnneeScolaire);
-//
-//        // Import
-//        ImplantationAnneeScolaire implantationAnneeScolaireM = ImplantationAnneeScolaireRepositoryMock.GetImplantationAnneeScolaire01(200, 300);
-//        ecoleDomainService.ImporterImplantationAnneeScolaire(implantationAnneeScolaireM, dateApplication);
-//
-//        // Valider
-//        Assert.AreEqual(implantationAnneeScolaireRepositoryMock.Objects[0].ClasseComptages.Count, 5);
-//    }
+    @Test
+    public void testImporterImplantationAnneeScolaireNouveau() {
+        ImplantationAnneeScolaire implantationAnneeScolaire = ImplantationAnneeScolaireRepositoryMock.getImplantationAnneeScolaire01(100, 200);
+
+        // Import
+        ecoleDomainService.importerImplantationAnneeScolaire(implantationAnneeScolaire, LocalDateTime.now());
+
+        // Valider
+        ImplantationAnneeScolaire i = implantationAnneeScolaireRepository.getImplantationAnneeScolaireForAnneeScolaireAndImplantationNumeroReference(new AnneeScolaire(2014, 2015), ImplantationAnneeScolaireRepositoryMock.INPLANTATION_REF);
+        Assert.assertEquals(implantationAnneeScolaire, i);
+
+    }
+
+    @Test
+    public void testImporterImplantationAnneeScolaireExistant() {
+        ImplantationAnneeScolaire implantationAnneeScolaire = ImplantationAnneeScolaireRepositoryMock.getImplantationAnneeScolaire01(100, 200);
+        ecoleDomainService.importerImplantationAnneeScolaire(implantationAnneeScolaire, LocalDateTime.now());
+
+        // Change
+        ImplantationAnneeScolaire implantationAnneeScolaireM = ImplantationAnneeScolaireRepositoryMock.getImplantationAnneeScolaire01(200, 300);
+        ecoleDomainService.importerImplantationAnneeScolaire(implantationAnneeScolaireM, LocalDateTime.now());
+
+        // Valider
+        ImplantationAnneeScolaire i = implantationAnneeScolaireRepository.getImplantationAnneeScolaireForAnneeScolaireAndImplantationNumeroReference(new AnneeScolaire(2014, 2015), ImplantationAnneeScolaireRepositoryMock.INPLANTATION_REF);
+        Assert.assertEquals(5, i.getClasseComptages().size());
+    }
 
 
 }
