@@ -1,6 +1,6 @@
 package be.domaindrivendesign.ecole.budget.jpa;
 
-import be.domaindrivendesign.ecole.RepositoryTestConfiguration;
+import be.domaindrivendesign.ecole.TestConfiguration;
 import be.domaindrivendesign.ecole.budget.data.interfaces.BudgetAnnuelRepository;
 import be.domaindrivendesign.ecole.budget.domain.model.BudgetAnnuel;
 import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
@@ -25,7 +25,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = RepositoryTestConfiguration.class)
+@ContextConfiguration(classes = TestConfiguration.class)
 @EnableJpaRepositories
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
         DirtiesContextTestExecutionListener.class,

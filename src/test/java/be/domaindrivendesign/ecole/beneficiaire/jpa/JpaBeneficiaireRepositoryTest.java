@@ -1,7 +1,7 @@
 package be.domaindrivendesign.ecole.beneficiaire.jpa;
 
 
-import be.domaindrivendesign.ecole.RepositoryTestConfiguration;
+import be.domaindrivendesign.ecole.TestConfiguration;
 import be.domaindrivendesign.ecole.beneficiaire.data.interfaces.BeneficiaireRepository;
 import be.domaindrivendesign.ecole.beneficiaire.domain.model.Beneficiaire;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
@@ -31,7 +31,7 @@ import java.util.UUID;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = RepositoryTestConfiguration.class)
+@ContextConfiguration(classes = TestConfiguration.class)
 @EnableJpaRepositories
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
         DirtiesContextTestExecutionListener.class,

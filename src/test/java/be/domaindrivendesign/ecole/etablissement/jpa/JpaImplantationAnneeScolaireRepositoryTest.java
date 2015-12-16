@@ -1,12 +1,14 @@
 package be.domaindrivendesign.ecole.etablissement.jpa;
 
-import be.domaindrivendesign.ecole.RepositoryTestConfiguration;
+import be.domaindrivendesign.ecole.TestConfiguration;
 import be.domaindrivendesign.ecole.common.valueobject.AnneeScolaire;
 import be.domaindrivendesign.ecole.etablissement.data.interfaces.ImplantationAnneeScolaireRepository;
 import be.domaindrivendesign.ecole.etablissement.domain.model.ImplantationAnneeScolaire;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
+import be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +28,7 @@ import java.util.stream.Collectors;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = RepositoryTestConfiguration.class)
+@ContextConfiguration(classes = TestConfiguration.class)
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
         DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class,
@@ -39,6 +41,11 @@ public class JpaImplantationAnneeScolaireRepositoryTest {
     private ImplantationAnneeScolaireRepository repository;
     @Autowired
     private UnitOfWork unitOfWork;
+
+    @After
+    public void tearDown() {
+        UnitOfWorkRule.getInstance().clear();
+    }
 
     @Test
     public void testList() {

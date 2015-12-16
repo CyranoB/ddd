@@ -53,25 +53,23 @@ public class UnitOfWorkImpl implements UnitOfWork {
         }
     }
 
+    @Override
     public boolean isEmpty() {
         return (deletedEntities.size() + insertedEntities.size() + updatedEntities.size()) == 0;
     }
 
+    @Override
     public UUID getId() {
         return id;
     }
     //endregion
 
+    @Override
     public boolean equals(Object other) {
         return other instanceof UnitOfWork && id.equals(((UnitOfWork) other).getId());
     }
 
-    /// <summary>
-    /// Returns a hash code for this instance.
-    /// </summary>
-    /// <returns>
-    /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
-    /// </returns>
+    @Override
     public int hashCode() {
         // 397 is a sufficient size prime number to cause the result variable to overflow and mix the bits of the hash
         return 397 ^ super.hashCode() ^ this.id.hashCode();
