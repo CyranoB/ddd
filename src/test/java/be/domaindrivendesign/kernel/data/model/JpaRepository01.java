@@ -1,8 +1,9 @@
 package be.domaindrivendesign.kernel.data.model;
 
+import be.domaindrivendesign.kernel.data.interfaces.Repository;
+import be.domaindrivendesign.kernel.data.interfaces.UnitOfWorkRepository;
 import be.domaindrivendesign.kernel.data.jpa.RepositoryJpa;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public class JpaRepository01 extends RepositoryJpa<Entity01> {
+
+public interface JpaRepository01 extends Repository<Entity01>, UnitOfWorkRepository<Entity01> {
 }

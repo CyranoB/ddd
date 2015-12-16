@@ -3,6 +3,7 @@ package be.domaindrivendesign.kernel.data.model;
 import be.domaindrivendesign.kernel.common.model.Entity;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWorkRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,7 +41,7 @@ public class UnitOfWorkImpl implements UnitOfWork {
         deletedEntities.put(entity, repository);
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(readOnly = false)
     public  void commit() {
         try {
             deletedEntities.forEach((e, r) -> r.persistDeletedItem(e));

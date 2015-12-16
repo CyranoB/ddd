@@ -13,14 +13,14 @@ public class JpaBeneficiaireRepository extends RepositoryJpa<Beneficiaire> imple
 
     @Override
     public Beneficiaire getBeneficiaireForNumeroEntreprise(NumeroEntreprise numeroEntreprise) {
-        JPAQuery<Beneficiaire> query = new JPAQuery<>(getJpaUnitOfWork().getEntityManager());
+        JPAQuery<Beneficiaire> query = new JPAQuery<>(getUnitOfWorkJpa().getEntityManager());
         QBeneficiaire beneficiaires = QBeneficiaire.beneficiaire;
         return query.from(beneficiaires).where(beneficiaires.numeroEntreprise.eq(numeroEntreprise)).fetchOne();
     }
 
     @Override
     public Beneficiaire getBeneficiaireForNumeroIdentificationRegistreNational(NumeroIdentificationRegistreNational numeroIdentificationRegistreNational) {
-        JPAQuery<Beneficiaire> query = new JPAQuery<>(getJpaUnitOfWork().getEntityManager());
+        JPAQuery<Beneficiaire> query = new JPAQuery<>(getUnitOfWorkJpa().getEntityManager());
         QBeneficiaire beneficiaires = QBeneficiaire.beneficiaire;
         return query.from(beneficiaires).where(beneficiaires.numeroIdentificationRegistreNational.eq(numeroIdentificationRegistreNational)).fetchOne();
     }

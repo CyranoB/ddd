@@ -8,6 +8,7 @@ import be.domaindrivendesign.ecole.etablissement.domain.model.*;
 import be.domaindrivendesign.ecole.etablissement.domain.type.EcoleType;
 import be.domaindrivendesign.ecole.etablissement.domain.type.EnseignementReseauType;
 import be.domaindrivendesign.ecole.etablissement.domain.type.NiveauType;
+import be.domaindrivendesign.kernel.data.model.JpaRepositoryConfiguration;
 import be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule;
 import be.domaindrivendesign.shared.valueobject.PeriodDateHeure;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
@@ -16,6 +17,11 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.orm.jpa.EntityScan;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -24,6 +30,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
@@ -33,18 +40,15 @@ import java.util.List;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TestConfiguration.class)
-@EnableJpaRepositories
-@EnableTransactionManagement
-@Transactional
+@ComponentScan(basePackages = {})
+@SpringApplicationConfiguration(classes = {EcoleDomainServiceConfiguration.class})
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
         DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class})
-
 public class EcoleDomainServiceTest {
 
-    @Autowired
+    @Autowired(required = true)
     private EcoleDomainService ecoleDomainService;
     @Autowired
     private EtablissementRepository etablissementRepository;

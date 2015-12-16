@@ -6,7 +6,7 @@ import be.domaindrivendesign.ecole.budget.data.jpa.JpaBudgetAnnuelRepository;
 import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaEtablissementRepository;
 import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaImplantationAnneeScolaireRepository;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
-import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpa;
+import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpaImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -35,7 +35,7 @@ public class DemoApplication {
 
     @Bean
     public UnitOfWork unitOfWork() {
-        return new UnitOfWorkJpa();
+        return new UnitOfWorkJpaImpl();
     }
 
     @Bean

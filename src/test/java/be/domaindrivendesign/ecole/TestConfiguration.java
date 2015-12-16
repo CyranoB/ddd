@@ -13,7 +13,7 @@ import be.domaindrivendesign.ecole.etablissement.data.jpa.JpaImplantationAnneeSc
 import be.domaindrivendesign.ecole.etablissement.service.EcoleDomainService;
 import be.domaindrivendesign.ecole.etablissement.service.EcoleDomainServiceImpl;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
-import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpa;
+import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpaImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -29,7 +29,7 @@ public class TestConfiguration {
 
     @Bean
     public UnitOfWork unitOfWork() {
-        return new UnitOfWorkJpa();
+        return new UnitOfWorkJpaImpl();
     }
 
     @Bean

@@ -3,7 +3,6 @@ package be.domaindrivendesign.kernel.data.jpa;
 import be.domaindrivendesign.kernel.common.model.Entity;
 import be.domaindrivendesign.kernel.common.model.EntityStateType;
 import be.domaindrivendesign.kernel.data.interfaces.Repository;
-import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWorkRepository;
 import net.jodah.typetools.TypeResolver;
 import org.hibernate.Session;
@@ -20,27 +19,23 @@ import java.util.UUID;
 public class RepositoryJpa<T extends Entity> implements Repository<T>, UnitOfWorkRepository<T> {
 
     @Autowired
-    protected UnitOfWork unitOfWork;
+    protected UnitOfWorkJpa unitOfWorkJpa;
 
     private Class<?>[] typeArgs = null;
 
-    public UnitOfWork getUnitOfWork() {
-        return unitOfWork;
+    public UnitOfWorkJpa getUnitOfWorkJpa() {
+        return unitOfWorkJpa;
     }
 
-    public void setUnitOfWork(UnitOfWork unitOfWork) {
-        this.unitOfWork = unitOfWork;
-    }
-
-    public UnitOfWorkJpa getJpaUnitOfWork() {
-        return (UnitOfWorkJpa) unitOfWork;
+    public void setUnitOfWorkJpa(UnitOfWorkJpa unitOfWorkJpa) {
+        this.unitOfWorkJpa = unitOfWorkJpa;
     }
 
     @Override
     public List<T> list() {
         // TODO Il faudrait peut être faire un aspect qui fait cela pour toutes les méthodes find
         @SuppressWarnings("unchecked")
-        List<T> entities = getJpaUnitOfWork().getEntityManager().createQuery(
+        List<T> entities = getUnitOfWorkJpa().getEntityManager().createQuery(
                 "SELECT p FROM "+ getEntityType().getName() +" p").getResultList();
         entities.stream().forEach(e -> e.forceState(EntityStateType.Unchanged));
         return entities;
@@ -50,7 +45,7 @@ public class RepositoryJpa<T extends Entity> implements Repository<T>, UnitOfWor
     public T getById(UUID id) {
         // TODO Il faudrait peut être faire un aspect qui fait cela pour toutes les méthodes find
         //noinspection unchecked
-        T entity = (T) getJpaUnitOfWork().getEntityManager().find(getEntityType(), id);
+        T entity = (T) getUnitOfWorkJpa().getEntityManager().find(getEntityType(), id);
         if (entity != null)
             entity.forceState(EntityStateType.Unchanged);
         return entity;
@@ -58,12 +53,12 @@ public class RepositoryJpa<T extends Entity> implements Repository<T>, UnitOfWor
 
     @Override
     public void insert(T entity) {
-        unitOfWork.registerInserted(entity, this);
+        unitOfWorkJpa.registerInserted(entity, this);
     }
 
     @Override
     public void update(T entity) {
-        unitOfWork.registerUpdated(entity, this);
+        unitOfWorkJpa.registerUpdated(entity, this);
     }
 
     public void delete(UUID id) {
@@ -78,23 +73,23 @@ public class RepositoryJpa<T extends Entity> implements Repository<T>, UnitOfWor
 
     @Override
     public void delete(Entity entity) {
-        unitOfWork.registerRemoved(entity, this);
+        unitOfWorkJpa.registerRemoved(entity, this);
     }
 
     @Override
     public void persistNewItem(T entity) {
-        getJpaUnitOfWork().getEntityManager().persist(entity);
+        unitOfWorkJpa.getEntityManager().persist(entity);
     }
 
     @Override
     public void persistUpdatedItem(T entity) {
-        getJpaUnitOfWork().getEntityManager().unwrap(Session.class).persist(entity);
+        unitOfWorkJpa.getEntityManager().merge(entity);
     }
 
     @Override
     public void persistDeletedItem(T entity) {
         entity.logicalDelete();
-        getJpaUnitOfWork().getEntityManager().unwrap(Session.class).merge(entity);
+        unitOfWorkJpa.getEntityManager().unwrap(Session.class).merge(entity);
     }
 
 

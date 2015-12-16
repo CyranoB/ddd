@@ -11,7 +11,7 @@ public class JpaBudgetAnnuelRepository extends RepositoryJpa<BudgetAnnuel> imple
 
     @Override
     public BudgetAnnuel getBudgetAnnuelForAnneeScolaire(AnneeScolaire anneeScolaire) {
-        JPAQuery<BudgetAnnuel> query = new JPAQuery<>(getJpaUnitOfWork().getEntityManager());
+        JPAQuery<BudgetAnnuel> query = new JPAQuery<>(getUnitOfWorkJpa().getEntityManager());
         QBudgetAnnuel budgetsAnnuel = QBudgetAnnuel.budgetAnnuel;
         return query.from(budgetsAnnuel).where(budgetsAnnuel.anneeScolaire.eq(anneeScolaire)).fetchFirst();
     }
