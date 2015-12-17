@@ -12,6 +12,12 @@ import java.util.stream.Collectors;
 
 public class EtablissementDtoList extends Dto {
 
+    public static Function<Etablissement, EtablissementDtoList> aggregateToDto = new Function<Etablissement, EtablissementDtoList>() {
+        @Override
+        public EtablissementDtoList apply(Etablissement etablissement) {
+            return EtablissementDtoList.convertir(etablissement);
+        }
+    };
     public UUID id;
     public String numeroReference;
     public String denomination;
@@ -42,27 +48,4 @@ public class EtablissementDtoList extends Dto {
         etablissementDtoList.numeroReference = etablissement.getNumeroReference();
         return etablissementDtoList;
     }
-
-    public static EtablissementDtoList convertir(Etablissement etablissement) {
-        EtablissementDtoList etablissementDtoList = new EtablissementDtoList();
-
-        if (etablissement.getAdresse() != null) {
-            etablissementDtoList.codePostal = etablissement.getAdresse().getCodePostal();
-            etablissementDtoList.adr = etablissement.getAdresse().getAdr();
-            etablissementDtoList.localite = etablissement.getAdresse().getLocalite();
-        }
-        etablissementDtoList.denomination = etablissement.getDenomination();
-        etablissementDtoList.ecole = etablissement.getEcole();
-        etablissementDtoList.enseignementReseau = etablissement.getEnseignementReseau();
-        etablissementDtoList.id = etablissement.getId();
-        etablissementDtoList.numeroReference = etablissement.getNumeroReference();
-        return etablissementDtoList;
-    }
-
-    public static Function<Etablissement, EtablissementDtoList> aggregateToDto = new Function<Etablissement, EtablissementDtoList>() {
-        @Override
-        public EtablissementDtoList apply(Etablissement etablissement) {
-            return EtablissementDtoList.convertir(etablissement);
-        }
-    };
 }
