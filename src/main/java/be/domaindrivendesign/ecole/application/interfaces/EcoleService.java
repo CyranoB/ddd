@@ -18,17 +18,17 @@ public interface EcoleService extends ApplicationService {
 
 
     //region Etablissement
-    List<EtablissementDtoList> ListEtablissement(EtablissementDtoSearch search);
+    List<EtablissementDtoList> listEtablissement(EtablissementDtoSearch search);
 
-    EtablissementDto GetEtablissement(UUID etablissementId);
+    EtablissementDto getEtablissement(UUID etablissementId);
 
-    void ModifierEtablissementContact(UUID etablissementId, ContactDto contactDto);
+    void modifierEtablissementContact(UUID etablissementId, ContactDto contactDto);
 
-    List<ImplantationDtoList> ListImplantation(ImplantationDtoSearch search);
+    List<ImplantationDtoList> listImplantation(ImplantationDtoSearch search);
 
-    ImplantationDto GetImplantation(UUID etablissementId, UUID implantationId);
+    ImplantationDto getImplantation(UUID etablissementId, UUID implantationId);
 
-    void ModifierImplantationContact(UUID etablissementId, UUID implementationId, ContactDto contactDto);
+    void modifierImplantationContact(UUID etablissementId, UUID implementationId, ContactDto contactDto);
 
     //TODO void ImporterFichierCommunauteFrancaise(ImportFichierDto importFichierDto, StreamReader reader);
 

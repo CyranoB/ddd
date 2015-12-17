@@ -3,8 +3,8 @@ package be.domaindrivendesign.kernel.module.dto;
 
 public class DtoSearch {
 
-    protected int take;
-    protected int skip;
+    public int take;
+    public int skip;
 
     public DtoSearch() {
         this.take = 200;

@@ -56,32 +56,32 @@ public class EcoleServiceImpl extends ApplicationServiceImpl implements EcoleSer
     }
 
     @Override
-    public List<EtablissementDtoList> ListEtablissement(EtablissementDtoSearch search) {
+    public List<EtablissementDtoList> listEtablissement(EtablissementDtoSearch search) {
         return null;
     }
 
     @Override
-    public EtablissementDto GetEtablissement(UUID etablissementId) {
+    public EtablissementDto getEtablissement(UUID etablissementId) {
         return null;
     }
 
     @Override
-    public void ModifierEtablissementContact(UUID etablissementId, ContactDto contactDto) {
+    public void modifierEtablissementContact(UUID etablissementId, ContactDto contactDto) {
 
     }
 
     @Override
-    public List<ImplantationDtoList> ListImplantation(ImplantationDtoSearch search) {
+    public List<ImplantationDtoList> listImplantation(ImplantationDtoSearch search) {
         return null;
     }
 
     @Override
-    public ImplantationDto GetImplantation(UUID etablissementId, UUID implantationId) {
+    public ImplantationDto getImplantation(UUID etablissementId, UUID implantationId) {
         return null;
     }
 
     @Override
-    public void ModifierImplantationContact(UUID etablissementId, UUID implementationId, ContactDto contactDto) {
+    public void modifierImplantationContact(UUID etablissementId, UUID implementationId, ContactDto contactDto) {
 
     }
 }
