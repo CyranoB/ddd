@@ -1,9 +1,13 @@
-package be.domaindrivendesign.ecole.module.etablissement.service;
+package be.domaindrivendesign.ecole.application;
 
+import be.domaindrivendesign.ecole.application.interfaces.EcoleService;
+import be.domaindrivendesign.ecole.application.model.EcoleServiceImpl;
 import be.domaindrivendesign.ecole.module.etablissement.data.interfaces.EtablissementRepository;
 import be.domaindrivendesign.ecole.module.etablissement.data.interfaces.ImplantationAnneeScolaireRepository;
 import be.domaindrivendesign.ecole.module.etablissement.data.jpa.EtablissementRepositoryJpa;
 import be.domaindrivendesign.ecole.module.etablissement.data.jpa.ImplantationAnneeScolaireRepositoryJpa;
+import be.domaindrivendesign.ecole.module.etablissement.service.EcoleDomainService;
+import be.domaindrivendesign.ecole.module.etablissement.service.EcoleDomainServiceImpl;
 import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpa;
 import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,23 +25,28 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-/**
- * Created by asmol on 16-12-15.
- */
+
 @Configuration
 @EnableAutoConfiguration
 
 @EntityScan(basePackages = {"be.domaindrivendesign"})
 @EnableJpaRepositories(basePackages = {"be.domaindrivendesign"})
 @EnableTransactionManagement
-public class EcoleDomainServiceConfiguration {
+public class EcoleServiceConfiguration {
     @Bean
     public UnitOfWorkJpa unitOfWork() {
         return new UnitOfWorkJpaImpl();
     }
 
     @Bean
-    public EcoleDomainService ecoleDomainService(){return new EcoleDomainServiceImpl();}
+    public EcoleService ecoleService() {
+        return new EcoleServiceImpl();
+    }
+
+    @Bean
+    public EcoleDomainService ecoleDomainService() {
+        return new EcoleDomainServiceImpl();
+    }
 
     @Bean
     public ImplantationAnneeScolaireRepository implantationAnneeScolaireRepository() {

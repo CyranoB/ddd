@@ -6,9 +6,22 @@ import be.domaindrivendesign.kernel.module.dto.Dto;
 
 import java.math.BigDecimal;
 import java.util.UUID;
+import java.util.function.Function;
 
 public class BudgetAnnuelDto extends Dto {
 
+    public static Function<BudgetAnnuel, BudgetAnnuelDto> aggregateToDto = new Function<BudgetAnnuel, BudgetAnnuelDto>() {
+        @Override
+        public BudgetAnnuelDto apply(BudgetAnnuel budgetAnnuel) {
+            return BudgetAnnuelDto.convertir(budgetAnnuel);
+        }
+    };
+    public static Function<BudgetAnnuelDto, BudgetAnnuel> dtoToAggregate = new Function<BudgetAnnuelDto, BudgetAnnuel>() {
+        @Override
+        public BudgetAnnuel apply(BudgetAnnuelDto budgetAnnuelDto) {
+            return BudgetAnnuelDto.convertir(budgetAnnuelDto);
+        }
+    };
     public UUID id;
     public AnneeScolaireDto anneeScolaire;
     public BigDecimal montantAideFruitEtLegumeParEleve;
@@ -38,7 +51,6 @@ public class BudgetAnnuelDto extends Dto {
                 budgetAnnuelDto.getFruitEtLegumeNbrEleve(),
                 budgetAnnuelDto.getLaitNbrEleve());
     }
-
 
     public UUID getId() {
         return id;
