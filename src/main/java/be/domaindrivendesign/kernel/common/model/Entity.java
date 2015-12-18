@@ -72,7 +72,7 @@ public class Entity {
         return state;
     }
 
-    protected void setState(EntityStateType state) {
+    public void setState(EntityStateType state) {
         if (this.state != EntityStateType.Unchanged && state == EntityStateType.Added) {
             throw new KernelException("State can only be set to added by the factory methods.");
         } else {

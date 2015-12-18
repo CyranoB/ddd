@@ -1084,6 +1084,17 @@ public class RuleGuard {
     /**
      * @param ruleObject     L'objet sur lequel la validation est effectué
      * @param propertyLambda La propriété sur laquelle la validation est effectuée
+     * @param ruleId
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean raiseViolation(RuleObject ruleObject, Property<T> propertyLambda, int ruleId) {
+        return raiseViolation(ruleObject, propertyLambda, ruleId, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject     L'objet sur lequel la validation est effectué
+     * @param propertyLambda La propriété sur laquelle la validation est effectuée
      * @param value
      * @param ruleId
      * @param severityType

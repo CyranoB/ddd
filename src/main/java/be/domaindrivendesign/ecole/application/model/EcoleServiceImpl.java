@@ -7,7 +7,9 @@ import be.domaindrivendesign.ecole.application.interfaces.EcoleService;
 import be.domaindrivendesign.ecole.module.budget.data.interfaces.BudgetAnnuelRepository;
 import be.domaindrivendesign.ecole.module.budget.domain.model.BudgetAnnuel;
 import be.domaindrivendesign.ecole.module.etablissement.data.interfaces.EtablissementRepository;
+import be.domaindrivendesign.ecole.module.etablissement.data.interfaces.EtablissementRepositoryDto;
 import be.domaindrivendesign.ecole.module.etablissement.data.interfaces.ImplantationAnneeScolaireRepository;
+import be.domaindrivendesign.ecole.module.etablissement.domain.model.Etablissement;
 import be.domaindrivendesign.ecole.module.etablissement.service.EcoleDomainService;
 import be.domaindrivendesign.kernel.application.interfaces.ApplicationServiceImpl;
 import be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule;
@@ -28,6 +30,8 @@ public class EcoleServiceImpl extends ApplicationServiceImpl implements EcoleSer
     private EcoleDomainService ecoleDomainService;
     @Autowired
     private EtablissementRepository etablissementRepository;
+    @Autowired
+    private EtablissementRepositoryDto etablissementRepositoryDto;
     @Autowired
     private ImplantationAnneeScolaireRepository implantationAnneeScolaireRepository;
 
@@ -57,11 +61,20 @@ public class EcoleServiceImpl extends ApplicationServiceImpl implements EcoleSer
 
     @Override
     public List<EtablissementDtoList> listEtablissement(EtablissementDtoSearch search) {
-        return null;
+        return etablissementRepositoryDto.listEtablissement(search);
     }
 
     @Override
     public EtablissementDto getEtablissement(UUID etablissementId) {
+        Etablissement etablissement = etablissementRepository.getById(etablissementId);
+        if (etablissement == null)
+            return null;
+
+        //TODO etablissementParticipantRepositoryDto
+        // List<String> numeroDgarnEs = etablissementParticipantRepositoryDto.ListNumeroDGARNEFor(etablissementId);
+        //TODO agrementRepositoryDto
+        // List<AgrementDtoList> agrementDtoLists = _agrementRepositoryDto.ListAgrement(new AgrementDtoSearch() { NumeroDgarnes = numeroDgarnEs });
+
         return null;
     }
 
