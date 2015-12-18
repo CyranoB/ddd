@@ -6,15 +6,21 @@ import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 import be.domaindrivendesign.kernel.rule.type.RuleSeverityType;
 import be.domaindrivendesign.kernel.rule.type.RuleType;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.List;
 import java.util.UUID;
 
+//TODO mappings
+@Entity
 public class ImplantationParticipante extends Aggregate implements RuleObject {
 
     protected String implantationNumeroReference;
+    @OneToMany
     protected List<ClasseParticipante> classeParticipantes;
 
-
+    protected ImplantationParticipante() {
+    }
     protected ImplantationParticipante(UUID id) {
         super(id);
     }

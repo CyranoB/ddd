@@ -5,8 +5,10 @@ import be.domaindrivendesign.kernel.domain.model.Aggregate;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 
+import javax.persistence.Entity;
 import java.util.UUID;
 
+@Entity
 public class ClasseParticipante extends Aggregate implements RuleObject {
 
     //region Propriétés
@@ -14,6 +16,8 @@ public class ClasseParticipante extends Aggregate implements RuleObject {
     protected int nbrEleves;
     //endregion
 
+    protected ClasseParticipante() {
+    }
     //region Constructeurs
     /// <summary>
     /// Constructeur protégé afin d'empêcher les créations illicites d'objets.

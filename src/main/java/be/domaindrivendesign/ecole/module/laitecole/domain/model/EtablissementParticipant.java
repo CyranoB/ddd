@@ -6,16 +6,23 @@ import be.domaindrivendesign.kernel.domain.model.AggregateRoot;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+//TODO mappings
+@Entity
 public class EtablissementParticipant extends AggregateRoot implements RuleObject {
     //region Propriétés
     public String etablissementNumeroReference;
+    @OneToMany
     public List<ImplantationParticipante> implantationParticipantes;
     public AnneeScolaire anneeScolaire;
+    @OneToOne
     public CalendrierProgramme calendrierProgramme;
     public String numeroDgarne;
     //endregion
@@ -86,7 +93,7 @@ public class EtablissementParticipant extends AggregateRoot implements RuleObjec
     /// <param name="implantationParticipanteId">L'identificateur de l'implantation à supprimer.</param>
     public void SupprimerImplantationParticipante(UUID implantationParticipanteId) {
         Optional<ImplantationParticipante> implantation = implantationParticipantes.stream().filter(i -> i.getId().equals(implantationParticipanteId)).findFirst();
-        //TODO RuleGuard.mandatoryClass??
+        //TODO Laurent RuleGuard.mandatoryClass??
         //if (!RuleGuard.mandatoryClass<ImplantationParticipante>(implantation))
         //{
         if (implantation.isPresent())

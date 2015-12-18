@@ -1,5 +1,6 @@
 package be.domaindrivendesign.ecole.module.laitecole.domain.type;
 
+//TODO convertisseur
 public enum JourType {
     Lundi(1),
     Mardi(2),

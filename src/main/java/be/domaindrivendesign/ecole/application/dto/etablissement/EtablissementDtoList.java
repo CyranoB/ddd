@@ -48,4 +48,76 @@ public class EtablissementDtoList extends Dto {
         etablissementDtoList.numeroReference = etablissement.getNumeroReference();
         return etablissementDtoList;
     }
+
+    public static Function<Etablissement, EtablissementDtoList> getAggregateToDto() {
+        return aggregateToDto;
+    }
+
+    public static void setAggregateToDto(Function<Etablissement, EtablissementDtoList> aggregateToDto) {
+        EtablissementDtoList.aggregateToDto = aggregateToDto;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getNumeroReference() {
+        return numeroReference;
+    }
+
+    public void setNumeroReference(String numeroReference) {
+        this.numeroReference = numeroReference;
+    }
+
+    public String getDenomination() {
+        return denomination;
+    }
+
+    public void setDenomination(String denomination) {
+        this.denomination = denomination;
+    }
+
+    public EnseignementReseauType getEnseignementReseau() {
+        return enseignementReseau;
+    }
+
+    public void setEnseignementReseau(EnseignementReseauType enseignementReseau) {
+        this.enseignementReseau = enseignementReseau;
+    }
+
+    public EcoleType getEcole() {
+        return ecole;
+    }
+
+    public void setEcole(EcoleType ecole) {
+        this.ecole = ecole;
+    }
+
+    public int getCodePostal() {
+        return codePostal;
+    }
+
+    public void setCodePostal(int codePostal) {
+        this.codePostal = codePostal;
+    }
+
+    public String getLocalite() {
+        return localite;
+    }
+
+    public void setLocalite(String localite) {
+        this.localite = localite;
+    }
+
+    public String getAdr() {
+        return adr;
+    }
+
+    public void setAdr(String adr) {
+        this.adr = adr;
+    }
 }

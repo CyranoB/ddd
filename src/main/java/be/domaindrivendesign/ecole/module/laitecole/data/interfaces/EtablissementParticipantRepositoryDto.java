@@ -8,9 +8,9 @@ import java.util.UUID;
 
 
 public interface EtablissementParticipantRepositoryDto {
-    List<String> ListNumeroDGARNEFor(UUID etablissementId);
+    List<String> listNumeroDGARNEFor(UUID etablissementId);
 
-    List<String> ListNumeroDGARNEFor(UUID etablissementId, UUID implantationId);
+    List<String> listNumeroDGARNEFor(UUID etablissementId, UUID implantationId);
 
-    List<EtablissementParticipantDtoList> ListEtablissementParticipant(EtablissementParticipantDtoSearch search);
+    List<EtablissementParticipantDtoList> listEtablissementParticipant(EtablissementParticipantDtoSearch search);
 }

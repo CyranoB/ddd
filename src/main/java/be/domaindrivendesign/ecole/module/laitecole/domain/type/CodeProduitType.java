@@ -1,8 +1,6 @@
 package be.domaindrivendesign.ecole.module.laitecole.domain.type;
 
-/**
- * Created by eddie on 11/12/15.
- */
+//TODO convertisseur
 public enum CodeProduitType {
 
     //TODO: Où trouver la description des valeurs de cette énumération ?

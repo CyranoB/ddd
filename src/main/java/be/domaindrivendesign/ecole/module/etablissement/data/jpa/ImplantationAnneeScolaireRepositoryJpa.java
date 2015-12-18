@@ -19,7 +19,6 @@ public class ImplantationAnneeScolaireRepositoryJpa extends RepositoryJpa<Implan
         JPAQuery<ImplantationAnneeScolaire> query = new JPAQuery<>(getUnitOfWork().getEntityManager());
         QImplantationAnneeScolaire implantationsAnneeScolaire = QImplantationAnneeScolaire.implantationAnneeScolaire;
         return query.from(implantationsAnneeScolaire).where(implantationsAnneeScolaire.implantationNumeroReference.eq(implantationNumeroReference)).fetch();
-        // TODO Aspect pour mettre les entités à unodified
     }
 
     @Override
@@ -27,6 +26,5 @@ public class ImplantationAnneeScolaireRepositoryJpa extends RepositoryJpa<Implan
         JPAQuery<ImplantationAnneeScolaire> query = new JPAQuery<>(getUnitOfWork().getEntityManager());
         QImplantationAnneeScolaire implantationsAnneeScolaire = QImplantationAnneeScolaire.implantationAnneeScolaire;
         return query.from(implantationsAnneeScolaire).where(implantationsAnneeScolaire.implantationNumeroReference.eq(implantationNumeroReference), implantationsAnneeScolaire.anneeScolaire.eq(anneeScolaire)).fetchFirst();
-        // TODO Aspect pour mettre les entités à unodified
     }
 }

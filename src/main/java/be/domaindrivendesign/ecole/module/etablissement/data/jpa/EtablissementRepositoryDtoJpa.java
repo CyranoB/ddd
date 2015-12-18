@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class EtablissementReposityDtoJpa extends RepositoryJpa<Etablissement> implements EtablissementRepositoryDto {
+public class EtablissementRepositoryDtoJpa extends RepositoryJpa<Etablissement> implements EtablissementRepositoryDto {
 
 
     @Override

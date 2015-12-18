@@ -11,6 +11,7 @@ import be.domaindrivendesign.ecole.module.etablissement.data.interfaces.Etabliss
 import be.domaindrivendesign.ecole.module.etablissement.data.interfaces.ImplantationAnneeScolaireRepository;
 import be.domaindrivendesign.ecole.module.etablissement.domain.model.Etablissement;
 import be.domaindrivendesign.ecole.module.etablissement.service.EcoleDomainService;
+import be.domaindrivendesign.ecole.module.laitecole.data.interfaces.EtablissementParticipantRepositoryDto;
 import be.domaindrivendesign.kernel.application.interfaces.ApplicationServiceImpl;
 import be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule;
 import be.domaindrivendesign.shared.dto.ContactDto;
@@ -35,6 +36,9 @@ public class EcoleServiceImpl extends ApplicationServiceImpl implements EcoleSer
     @Autowired
     private ImplantationAnneeScolaireRepository implantationAnneeScolaireRepository;
 
+    @Autowired
+    private EtablissementParticipantRepositoryDto etablissementParticipantRepositoryDto;
+
 
     @Override
     public List<BudgetAnnuelDto> listBudgetAnnuel() {
@@ -47,10 +51,12 @@ public class EcoleServiceImpl extends ApplicationServiceImpl implements EcoleSer
         // Double
         BudgetAnnuel budgetAnnuel = BudgetAnnuelDto.convertir(budgetAnnuelDto);
         UnitOfWorkRule.getInstance().raiseExceptionInCaseOfError();
-        //TODO RuleGuard.mandatoryClass<BudgetAnnuel>(budgetAnnuel, RuleSeverityType.BlockingError);
+        //TODO Laurent RuleGuard
+        // RuleGuard.mandatoryClass<BudgetAnnuel>(budgetAnnuel, RuleSeverityType.BlockingError);
 
         BudgetAnnuel budgetAnnuelExistant = budgetAnnuelRepository.getBudgetAnnuelForAnneeScolaire(budgetAnnuel.getAnneeScolaire());
-        //TODO RuleGuard.unique(budgetAnnuel, budgetAnnuel::getAnneeScolaire, budgetAnnuelExistant, budgetAnnuel.getAnneeScolaire().toString(), RuleSeverityType.BlockingError);
+        //TODO TODO Laurent
+        // RuleGuard.unique(budgetAnnuel, budgetAnnuel::getAnneeScolaire, budgetAnnuelExistant, budgetAnnuel.getAnneeScolaire().toString(), RuleSeverityType.BlockingError);
 
         // Convertir
         UnitOfWorkRule.getInstance().raiseExceptionInCaseOfError();
@@ -71,7 +77,7 @@ public class EcoleServiceImpl extends ApplicationServiceImpl implements EcoleSer
             return null;
 
         //TODO etablissementParticipantRepositoryDto
-        // List<String> numeroDgarnEs = etablissementParticipantRepositoryDto.ListNumeroDGARNEFor(etablissementId);
+        List<String> numeroDgarnEs = etablissementParticipantRepositoryDto.listNumeroDGARNEFor(etablissementId);
         //TODO agrementRepositoryDto
         // List<AgrementDtoList> agrementDtoLists = _agrementRepositoryDto.ListAgrement(new AgrementDtoSearch() { NumeroDgarnes = numeroDgarnEs });
 

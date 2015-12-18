@@ -7,14 +7,21 @@ import be.domaindrivendesign.kernel.rule.type.RuleSeverityType;
 import be.domaindrivendesign.kernel.rule.type.RuleType;
 import be.domaindrivendesign.shared.valueobject.PeriodDateHeure;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+//TODO mappings
+@Entity
 public class CalendrierProgramme extends Aggregate implements RuleObject {
 
     //region Propriétés
+    @Embedded
     protected PeriodDateHeure periodeDistribution;
+    @OneToMany
     protected List<Journalier> journaliers;
     //endregion
 

@@ -6,8 +6,11 @@ import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 import be.domaindrivendesign.shared.valueobject.Heure;
 
+import javax.persistence.Entity;
 import java.util.UUID;
 
+//TODO mappings
+@Entity
 public class Journalier extends Aggregate implements RuleObject {
 
     //region Propriétés
@@ -35,6 +38,10 @@ public class Journalier extends Aggregate implements RuleObject {
     //endregion
 
     //region Constructeurs
+
+    protected Journalier() {
+    }
+
     /// <summary>
     /// Constructeur protégé afin d'empêcher les créations illicites d'objets.
     /// </summary>

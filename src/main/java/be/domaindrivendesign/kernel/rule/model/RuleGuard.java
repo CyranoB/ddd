@@ -910,7 +910,7 @@ public class RuleGuard {
      * @return
      */
     public static <TKey, T> boolean nbrOfElements(RuleObject ruleObject, MapProperty<Map<TKey, T>> propertyLambdas, int minElement, int maxElement, boolean nullCountAsElement, RuleSeverityType severityType) {
-        // TODO Condition 'propertyLambdas.get().values() == null' is always 'false' when reached
+        // TODO Laurent: Condition 'propertyLambdas.get().values() == null' is always 'false' when reached
         return Guard.nbrOfElements(new ArrayList<>(propertyLambdas.get().values()), minElement, maxElement, nullCountAsElement) || RuleGuard.raiseViolation(ruleObject, propertyLambdas, new ArrayList<>(Arrays.asList(propertyLambdas.get().values() == null ? "0" : Integer.toString(propertyLambdas.get().values().size()), Integer.toString(minElement), Integer.toString(maxElement))), RuleType.NbrOfElementsInList.typeValue, severityType);
     }
 
@@ -965,7 +965,7 @@ public class RuleGuard {
      * @return
      */
     public static <T> boolean notInList(RuleObject ruleObject, Property<List<T>> propertyLambda01, T element, RuleSeverityType severityType) {
-        //TODO test
+        //TODO Laurent test
         if (!Guard.contains(element, propertyLambda01.get())) {
             return true;
         }
@@ -1188,7 +1188,7 @@ public class RuleGuard {
         if (severityType == RuleSeverityType.BlockingError)
             throw new RuleException(UnitOfWorkRule.getInstance().getViolations());
 
-        // TODO Always returns false?
+        // TODO Laurent Always returns false?
         return false;
     }
 
