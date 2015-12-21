@@ -16,6 +16,15 @@ public class ImplantationDtoList extends Dto {
             return ImplantationDtoList.convertir(implantation);
         }
     };
+
+    public static Function<Set<Implantation>, List<ImplantationDtoList>> aggregatesToDtos =
+            new Function<Set<Implantation>, List<ImplantationDtoList>>() {
+                @Override
+                public List<ImplantationDtoList> apply(Set<Implantation> implantations) {
+                    return convertir(implantations);
+                }
+            };
+
     public UUID id;
     public String numeroReference;
     public String denomination;
@@ -38,5 +47,37 @@ public class ImplantationDtoList extends Dto {
         idl.id = implantation.getId();
         idl.numeroReference = implantation.getNumeroReference();
         return idl;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getNumeroReference() {
+        return numeroReference;
+    }
+
+    public void setNumeroReference(String numeroReference) {
+        this.numeroReference = numeroReference;
+    }
+
+    public String getDenomination() {
+        return denomination;
+    }
+
+    public void setDenomination(String denomination) {
+        this.denomination = denomination;
+    }
+
+    public int getAdresseCodePostal() {
+        return adresseCodePostal;
+    }
+
+    public void setAdresseCodePostal(int adresseCodePostal) {
+        this.adresseCodePostal = adresseCodePostal;
     }
 }

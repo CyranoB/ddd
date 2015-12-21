@@ -1,4 +1,4 @@
-package be.domaindrivendesign.ecole.module.etablissement.jpa;
+package be.domaindrivendesign.ecole.module.etablissement.data.jpa;
 
 import be.domaindrivendesign.ecole.TestConfiguration;
 import be.domaindrivendesign.ecole.module.etablissement.data.interfaces.EtablissementRepository;

@@ -52,7 +52,7 @@ public class EtablissementParticipant extends AggregateRoot implements RuleObjec
     /// <param name="anneeScolaire">L'année scolaire.</param>
     /// <param name="etablissementNumeroReference">Le numéro de référence de l'établissement.</param>
     /// <returns>Une référence sur l'objet <see cref="EtablissementParticipant"/> nouvellement créé.</returns>
-    public static EtablissementParticipant Creer(String numeroDgarne, AnneeScolaire anneeScolaire, String etablissementNumeroReference) {
+    public static EtablissementParticipant creer(String numeroDgarne, AnneeScolaire anneeScolaire, String etablissementNumeroReference) {
         EtablissementParticipant ecole = new EtablissementParticipant(UUID.randomUUID());
 
         RuleGuard.mandatory(ecole, ecole::getNumeroDgarne);
@@ -71,7 +71,7 @@ public class EtablissementParticipant extends AggregateRoot implements RuleObjec
     /// Définit le programme de distribution.
     /// </summary>
     /// <param name="calendrierProgramme">Le calendrier.</param>
-    public void DefinirCalendrierProgramme(CalendrierProgramme calendrierProgramme) {
+    public void definirCalendrierProgramme(CalendrierProgramme calendrierProgramme) {
         this.calendrierProgramme = calendrierProgramme;
         this.calendrierProgramme.setState(EntityStateType.Modified);
     }
@@ -81,7 +81,7 @@ public class EtablissementParticipant extends AggregateRoot implements RuleObjec
     /// Ajoute une implantation à la liste des implantations participantes.
     /// </summary>
     /// <param name="implantationParticipante">L'implantation à ajouter</param>
-    public void AjouterImplantationParticipante(ImplantationParticipante implantationParticipante) {
+    public void ajouterImplantationParticipante(ImplantationParticipante implantationParticipante) {
         if (implantationParticipantes == null)
             implantationParticipantes = new ArrayList<ImplantationParticipante>();
         implantationParticipantes.add(implantationParticipante);
@@ -91,7 +91,7 @@ public class EtablissementParticipant extends AggregateRoot implements RuleObjec
     /// Supprime une implantation de la liste des implantations participantes.
     /// </summary>
     /// <param name="implantationParticipanteId">L'identificateur de l'implantation à supprimer.</param>
-    public void SupprimerImplantationParticipante(UUID implantationParticipanteId) {
+    public void supprimerImplantationParticipante(UUID implantationParticipanteId) {
         Optional<ImplantationParticipante> implantation = implantationParticipantes.stream().filter(i -> i.getId().equals(implantationParticipanteId)).findFirst();
         if (!RuleGuard.mandatoryClass(implantation)) {
         if (implantation.isPresent())

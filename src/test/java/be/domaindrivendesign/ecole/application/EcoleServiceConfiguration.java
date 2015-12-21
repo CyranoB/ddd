@@ -2,12 +2,21 @@ package be.domaindrivendesign.ecole.application;
 
 import be.domaindrivendesign.ecole.application.interfaces.EcoleService;
 import be.domaindrivendesign.ecole.application.model.EcoleServiceImpl;
+import be.domaindrivendesign.ecole.module.beneficiaire.data.interfaces.AgrementRepository;
+import be.domaindrivendesign.ecole.module.beneficiaire.data.mock.AgrementRepositoryMock;
+import be.domaindrivendesign.ecole.module.budget.data.interfaces.BudgetAnnuelRepository;
+import be.domaindrivendesign.ecole.module.budget.data.jpa.BudgetAnnuelRepositoryJpa;
 import be.domaindrivendesign.ecole.module.etablissement.data.interfaces.EtablissementRepository;
 import be.domaindrivendesign.ecole.module.etablissement.data.interfaces.ImplantationAnneeScolaireRepository;
 import be.domaindrivendesign.ecole.module.etablissement.data.jpa.EtablissementRepositoryJpa;
 import be.domaindrivendesign.ecole.module.etablissement.data.jpa.ImplantationAnneeScolaireRepositoryJpa;
+import be.domaindrivendesign.ecole.module.etablissement.data.mock.EtablissementRepositoryMock;
 import be.domaindrivendesign.ecole.module.etablissement.service.EcoleDomainService;
 import be.domaindrivendesign.ecole.module.etablissement.service.EcoleDomainServiceImpl;
+import be.domaindrivendesign.ecole.module.laitecole.data.interfaces.EtablissementParticipantRepository;
+import be.domaindrivendesign.ecole.module.laitecole.data.interfaces.EtablissementParticipantRepositoryDto;
+import be.domaindrivendesign.ecole.module.laitecole.data.jpa.EtablissementParticipantRepositoryDtoJpa;
+import be.domaindrivendesign.ecole.module.laitecole.mock.EtablissementParticipantRepositoryMock;
 import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpa;
 import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpaImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +42,7 @@ import java.util.Properties;
 @EnableJpaRepositories(basePackages = {"be.domaindrivendesign"})
 @EnableTransactionManagement
 public class EcoleServiceConfiguration {
+
     @Bean
     public UnitOfWorkJpa unitOfWork() {
         return new UnitOfWorkJpaImpl();
@@ -49,6 +59,26 @@ public class EcoleServiceConfiguration {
     }
 
     @Bean
+    public AgrementRepository agrementRepositoryMock() {
+        return new AgrementRepositoryMock();
+    }
+
+    @Bean
+    public BudgetAnnuelRepository budgetAnnuelRepository() {
+        return new BudgetAnnuelRepositoryJpa();
+    }
+
+    @Bean
+    public EtablissementParticipantRepositoryDto etablissementParticipantRepositoryDto() {
+        return new EtablissementParticipantRepositoryDtoJpa();
+    }
+
+    @Bean
+    public EtablissementParticipantRepository etablissementParticipantRepositoryMock() {
+        return new EtablissementParticipantRepositoryMock();
+    }
+
+    @Bean
     public ImplantationAnneeScolaireRepository implantationAnneeScolaireRepository() {
         return new ImplantationAnneeScolaireRepositoryJpa();
     }
@@ -56,6 +86,11 @@ public class EcoleServiceConfiguration {
     @Bean
     public EtablissementRepository etablissementRepository() {
         return new EtablissementRepositoryJpa();
+    }
+
+    @Bean
+    public EtablissementRepository etablissementRepositoryMock() {
+        return new EtablissementRepositoryMock();
     }
 
     @Bean
