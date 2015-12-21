@@ -6,9 +6,12 @@ import be.domaindrivendesign.kernel.domain.model.Aggregate;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 
+import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.util.UUID;
 
+//TODO mappings
+@Entity
 public class JustificatifProduit extends Aggregate implements RuleObject {
 
     //region Propriétés
@@ -78,6 +81,8 @@ public class JustificatifProduit extends Aggregate implements RuleObject {
     //endregion
 
     //region Constructeurs
+    protected JustificatifProduit() {
+    }
     /// <summary>
     /// Constructeur protégé afin d'empêcher les créations illicites d'objets.
     /// </summary>

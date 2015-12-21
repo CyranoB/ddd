@@ -4,10 +4,13 @@ import be.domaindrivendesign.kernel.domain.model.Aggregate;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 
+import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+//TODO mappings
+@Entity
 public class JustificatifFacture extends Aggregate implements RuleObject {
 
     //region Propriétés
@@ -35,6 +38,8 @@ public class JustificatifFacture extends Aggregate implements RuleObject {
     //endregion
 
     //region Constructeurs
+    protected JustificatifFacture() {
+    }
     /// <summary>
     /// Constructeur protégé afin d'empêcher les créations illicites d'objets.
     /// </summary>

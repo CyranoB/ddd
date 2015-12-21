@@ -3,14 +3,11 @@ package be.domaindrivendesign.kernel.domain.model;
 import be.domaindrivendesign.kernel.common.model.Entity;
 import be.domaindrivendesign.kernel.common.model.EntityStateType;
 
+import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-/**
- * An aggregate is a cluster of domain objects that can be treated as a single unit.
- *
- * Created by eddie on 19/11/15.
- */
+@MappedSuperclass
 public class Aggregate extends Entity {
     protected Aggregate() {
         super();

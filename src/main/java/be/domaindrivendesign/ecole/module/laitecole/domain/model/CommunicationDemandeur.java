@@ -5,9 +5,11 @@ import be.domaindrivendesign.kernel.domain.model.Aggregate;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Entity
 public class CommunicationDemandeur extends Aggregate implements RuleObject {
     //region Propriétés
     /// <summary>
@@ -34,6 +36,10 @@ public class CommunicationDemandeur extends Aggregate implements RuleObject {
     //endregion
 
     //region Constructeurs
+
+    protected CommunicationDemandeur() {
+    }
+
     /// <summary>
     /// Constructeur protégé afin d'empêcher les créations illicites d'objets.
     /// </summary>
@@ -74,7 +80,7 @@ public class CommunicationDemandeur extends Aggregate implements RuleObject {
     public void reponseDemandeur(LocalDateTime reponduLe) {
         this.reponduLe = reponduLe;
 
-        // TODO RuleGuards
+        // TODO Laurent RuleGuards
 //        if (RuleGuard.After(this, () => ReponduLe, reponduLe, () => EmisLe, EmisLe)) {
 //            RuleGuard.After(this, () => this.ReponduLe, reponduLe, () => this.EmisLe, this.EmisLe);
 //        }

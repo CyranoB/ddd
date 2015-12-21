@@ -5,10 +5,14 @@ import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 import be.domaindrivendesign.kernel.rule.type.RuleSeverityType;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+//TODO Faire mapping
+@Entity
 public class Justificatif extends Aggregate implements RuleObject {
 
 
@@ -33,6 +37,7 @@ public class Justificatif extends Aggregate implements RuleObject {
     /// <value>
     /// Les factures.
     /// </value>
+    @OneToMany
     protected List<JustificatifFacture> factures;
     /// <summary>
     /// Obtient la liste des produits.
@@ -40,17 +45,19 @@ public class Justificatif extends Aggregate implements RuleObject {
     /// <value>
     /// Les produits.
     /// </value>
+    @OneToMany
     protected List<JustificatifProduit> produits;
     //endregion
 
     //region Constructeurs
-    /// <summary>
+
+    // <summary>
     /// Constructeur privé afin d'empêcher la création illicite d'objet.
     /// </summary>
     /// <remarks>
     /// Ce constructeur est exclusivement utilisé par l'ORM pour créer les objets.
     /// </remarks>
-    private Justificatif() {
+    protected Justificatif() {
     }
 
     /// <summary>
@@ -88,8 +95,8 @@ public class Justificatif extends Aggregate implements RuleObject {
     /// <param name="facture">La facture.</param>
     public void ajouterFacture(JustificatifFacture facture) {
         RuleGuard.notInList(this, this::getFactures, facture, RuleSeverityType.BlockingError);
-        // TODO RuleGuard
-        //if (RuleGuard.notInList(this, () => this.Factures, facture.Numero, this.Factures.Select(f => f.Numero).ToList()));
+        // TODO Lurent RuleGuard
+        //        if (RuleGuard.NotInList(this, () => this.Factures, facture.Numero, this.Factures.Select(f => f.Numero).ToList()))
 
         this.factures.add(facture);
     }

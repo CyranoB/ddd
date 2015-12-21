@@ -81,6 +81,4 @@ public class EcoleDomainServiceConfiguration {
 
         return lcemfb;
     }
-
-
 }

@@ -18,6 +18,9 @@ import java.util.function.Supplier;
  */
 public class RuleGuard {
 
+    private RuleGuard() {
+    }
+
     //region Number
 
     /**
@@ -941,7 +944,7 @@ public class RuleGuard {
         return false;
     }
 
- /**
+    /**
      * @param ruleObject
      * @param propertyLambda01
      * @param element
@@ -962,6 +965,7 @@ public class RuleGuard {
      * @return
      */
     public static <T> boolean notInList(RuleObject ruleObject, Property<List<T>> propertyLambda01, T element, RuleSeverityType severityType) {
+        //TODO Laurent test
         if (!Guard.contains(element, propertyLambda01.get())) {
             return true;
         }
@@ -1080,6 +1084,17 @@ public class RuleGuard {
     /**
      * @param ruleObject     L'objet sur lequel la validation est effectué
      * @param propertyLambda La propriété sur laquelle la validation est effectuée
+     * @param ruleId
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean raiseViolation(RuleObject ruleObject, Property<T> propertyLambda, int ruleId) {
+        return raiseViolation(ruleObject, propertyLambda, ruleId, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param ruleObject     L'objet sur lequel la validation est effectué
+     * @param propertyLambda La propriété sur laquelle la validation est effectuée
      * @param value
      * @param ruleId
      * @param severityType
@@ -1173,7 +1188,7 @@ public class RuleGuard {
         if (severityType == RuleSeverityType.BlockingError)
             throw new RuleException(UnitOfWorkRule.getInstance().getViolations());
 
-        // TODO Always returns false?
+        // TODO Laurent Always returns false?
         return false;
     }
 

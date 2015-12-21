@@ -6,10 +6,12 @@ import be.domaindrivendesign.kernel.domain.model.Aggregate;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 
+import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-
+//TODO mappings
+@Entity
 public class Subvention extends Aggregate implements RuleObject {
 
     //region Propriétés
@@ -21,6 +23,8 @@ public class Subvention extends Aggregate implements RuleObject {
     //endregion
 
     //region Constructeurs
+    protected Subvention() {
+    }
     protected Subvention(UUID id) {
         super(id);
     }

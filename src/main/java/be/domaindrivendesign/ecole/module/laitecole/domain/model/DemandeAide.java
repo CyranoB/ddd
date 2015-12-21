@@ -4,21 +4,28 @@ import be.domaindrivendesign.ecole.module.common.valueobject.ValidationDemande;
 import be.domaindrivendesign.kernel.domain.model.AggregateRoot;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.math.BigDecimal;
 import java.util.List;
 
+//TODO finir entity mapping
+@Entity
 public class DemandeAide extends AggregateRoot implements RuleObject {
 
     protected String numeroDgarne;
     protected int anneeDeDistribution;
     protected int moisDeDistribution;
+    @OneToMany
     protected List<Subvention> subventions;
     protected BigDecimal montant;
     protected BigDecimal montantTotalSubvention;
     protected BigDecimal montantTotalJustificatif;
     protected BigDecimal montantTotalFacture;
     protected ValidationDemande validationDemande;
+    @OneToMany
     protected List<Justificatif> justificatifs;
+    @OneToMany
     protected List<CommunicationDemandeur> communicationDemandeurs;
 
 

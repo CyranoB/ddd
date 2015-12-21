@@ -13,7 +13,7 @@ public class EtablissementRepositoryJpa extends RepositoryJpa<Etablissement>
 
     @Override
     public Etablissement getEtablissementForNumeroDeReference(String numeroDeReference) {
-        JPAQuery<Etablissement> query = new JPAQuery<>(getUnitOfWorkJpa().getEntityManager());
+        JPAQuery<Etablissement> query = new JPAQuery<>(getUnitOfWork().getEntityManager());
         QEtablissement implantationsAnneeScolaire = QEtablissement.etablissement;
         return query.from(implantationsAnneeScolaire).where(implantationsAnneeScolaire.numeroReference.eq(numeroDeReference)).fetchFirst();
     }
