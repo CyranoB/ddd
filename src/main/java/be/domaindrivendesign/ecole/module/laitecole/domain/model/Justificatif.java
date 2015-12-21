@@ -89,7 +89,7 @@ public class Justificatif extends Aggregate implements RuleObject {
     public void ajouterFacture(JustificatifFacture facture) {
         RuleGuard.notInList(this, this::getFactures, facture, RuleSeverityType.BlockingError);
         // TODO RuleGuard
-        //        if (RuleGuard.NotInList(this, () => this.Factures, facture.Numero, this.Factures.Select(f => f.Numero).ToList()))
+        //if (RuleGuard.notInList(this, () => this.Factures, facture.Numero, this.Factures.Select(f => f.Numero).ToList()));
 
         this.factures.add(facture);
     }

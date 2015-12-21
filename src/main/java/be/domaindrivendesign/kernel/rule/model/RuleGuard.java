@@ -18,9 +18,6 @@ import java.util.function.Supplier;
  */
 public class RuleGuard {
 
-    private RuleGuard() {
-    }
-
     //region Number
 
     /**
@@ -944,7 +941,7 @@ public class RuleGuard {
         return false;
     }
 
-    /**
+ /**
      * @param ruleObject
      * @param propertyLambda01
      * @param element
@@ -965,7 +962,6 @@ public class RuleGuard {
      * @return
      */
     public static <T> boolean notInList(RuleObject ruleObject, Property<List<T>> propertyLambda01, T element, RuleSeverityType severityType) {
-        //TODO test
         if (!Guard.contains(element, propertyLambda01.get())) {
             return true;
         }
