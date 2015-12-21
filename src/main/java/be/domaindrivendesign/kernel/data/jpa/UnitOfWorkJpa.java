@@ -9,5 +9,5 @@ import javax.persistence.EntityManager;
  */
 public interface UnitOfWorkJpa extends UnitOfWork {
 
-    public EntityManager getEntityManager();
+    EntityManager getEntityManager();
 }

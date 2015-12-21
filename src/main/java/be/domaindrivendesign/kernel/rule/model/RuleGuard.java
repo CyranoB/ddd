@@ -785,6 +785,25 @@ public class RuleGuard {
         }
     }
 
+    /**
+     * @param object
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean mandatoryClass(T object) {
+        return mandatoryClass(object, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param object
+     * @param severityType
+     * @param <T>
+     * @return
+     */
+    public static <T> boolean mandatoryClass(T object, RuleSeverityType severityType) {
+        return (object != null) || RuleGuard.raiseViolation(null, new ArrayList<Property<T>>(), new ArrayList<String>(), RuleType.Mandatory.typeValue, severityType);
+    }
+
     // endregion
 
 
@@ -969,9 +988,7 @@ public class RuleGuard {
         if (!Guard.contains(element, propertyLambda01.get())) {
             return true;
         }
-        List<String> values = new ArrayList<>();
-        values.add(propertyLambda01.get() == null ? "0" : propertyLambda01.get().toString());
-        raiseViolation(ruleObject, propertyLambda01, element.toString(), RuleType.NotInList.typeValue, severityType);
+        raiseViolation(ruleObject, propertyLambda01, element, RuleType.NotInList.typeValue, severityType);
         return false;
     }
 
@@ -1112,6 +1129,16 @@ public class RuleGuard {
         values.add(value);
 
         return raiseViolation(ruleObject, propertyLambda, values, ruleId, severityType);
+    }
+
+    public static <T> boolean raiseViolation(RuleObject ruleObject, Property<List<T>> propertiesLambda, T element, int ruleId, RuleSeverityType severityType) {
+        List<String> values = new ArrayList<>();
+
+        propertiesLambda.get().forEach(x -> values.add(x.toString()));
+
+        values.add(element == null ? "0" : element.toString());
+
+        return raiseViolation(ruleObject, propertiesLambda, values, ruleId, severityType);
     }
 
     /**

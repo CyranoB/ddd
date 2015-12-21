@@ -93,12 +93,10 @@ public class EtablissementParticipant extends AggregateRoot implements RuleObjec
     /// <param name="implantationParticipanteId">L'identificateur de l'implantation à supprimer.</param>
     public void SupprimerImplantationParticipante(UUID implantationParticipanteId) {
         Optional<ImplantationParticipante> implantation = implantationParticipantes.stream().filter(i -> i.getId().equals(implantationParticipanteId)).findFirst();
-        //TODO Laurent RuleGuard.mandatoryClass??
-        //if (!RuleGuard.mandatoryClass<ImplantationParticipante>(implantation))
-        //{
+        if (!RuleGuard.mandatoryClass(implantation)) {
         if (implantation.isPresent())
             implantationParticipantes.remove(implantation.get());
-        //}
+        }
     }
     //endregion
 

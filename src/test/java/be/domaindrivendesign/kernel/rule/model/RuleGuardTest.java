@@ -1611,6 +1611,46 @@ public class RuleGuardTest implements Serializable {
     }
 
     @Test
+    public void testMandatoryClass() {
+        RuleObject01 ruleObject = new RuleObject01();
+
+        Assert.assertTrue(RuleGuard.mandatoryClass(ruleObject, RuleSeverityType.Warning));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        ruleObject = null;
+
+        Assert.assertFalse(RuleGuard.mandatoryClass(ruleObject, RuleSeverityType.Warning));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), new String[0]);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.Mandatory.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Collections.emptyList().toArray());
+    }
+
+    @Test
+    public void testMandatoryClassWithoutSeverity() {
+        RuleObject01 ruleObject = new RuleObject01();
+
+        Assert.assertTrue(RuleGuard.mandatoryClass(ruleObject));
+        Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
+
+        // Violation
+        ruleObject = null;
+
+        Assert.assertFalse(RuleGuard.mandatoryClass(ruleObject));
+
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
+        Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), new String[0]);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.Mandatory.typeValue);
+        Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Collections.emptyList().toArray());
+    }
+
+    @Test
     public void testMandatory() {
         RuleObject01 ruleObject = new RuleObject01();
 
@@ -1862,48 +1902,46 @@ public class RuleGuardTest implements Serializable {
     public void testNotInList02() {
         RuleObject01 ruleObject = new RuleObject01();
 
-        ruleObject.setAttribute01(1);
         ruleObject.setLists01(Arrays.asList(2, 3, 4));
 
         // No violation
-        Assert.assertTrue(RuleGuard.notInList(ruleObject, () -> ruleObject.getLists01(), ruleObject.getAttribute01(), RuleSeverityType.Warning));
+        Assert.assertTrue(RuleGuard.notInList(ruleObject, () -> ruleObject.getLists01(), 1, RuleSeverityType.Warning));
         Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
 
         ruleObject.setLists01(Arrays.asList(1, 2, 3));
 
         // Violation
-        Assert.assertFalse(RuleGuard.notInList(ruleObject, () -> ruleObject.getLists01(), ruleObject.getAttribute01(), RuleSeverityType.Warning));
+        Assert.assertFalse(RuleGuard.notInList(ruleObject, () -> ruleObject.getLists01(), 1, RuleSeverityType.Warning));
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLists01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.NotInList.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Warning);
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "1", "2", "3").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2", "3", "1").toArray());
     }
 
     @Test
     public void testNotInListWithoutSeverity02() {
         RuleObject01 ruleObject = new RuleObject01();
 
-        ruleObject.setAttribute01(1);
         ruleObject.setLists01(Arrays.asList(2, 3, 4));
 
         // No violation
-        Assert.assertTrue(RuleGuard.notInList(ruleObject, () -> ruleObject.getLists01(), ruleObject.getAttribute01()));
+        Assert.assertTrue(RuleGuard.notInList(ruleObject, () -> ruleObject.getLists01(), 1));
         Assert.assertEquals(0, UnitOfWorkRule.getInstance().getViolations().size());
 
         ruleObject.setLists01(Arrays.asList(1, 2, 3));
 
         // Violation
-        Assert.assertFalse(RuleGuard.notInList(ruleObject, () -> ruleObject.getLists01(), ruleObject.getAttribute01()));
+        Assert.assertFalse(RuleGuard.notInList(ruleObject, () -> ruleObject.getLists01(), 1));
 
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject(), ruleObject);
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getAttribute01").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths().toArray(), Collections.singletonList("be.domaindrivendesign.kernel.rule.entity|RuleObject01.getLists01").toArray());
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId(), RuleType.NotInList.typeValue);
         Assert.assertEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType(), RuleSeverityType.Error);
-        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "1", "2", "3").toArray());
+        Assert.assertArrayEquals(UnitOfWorkRule.getInstance().getViolations().get(0).getValues().toArray(), Arrays.asList("1", "2", "3", "1").toArray());
     }
 
     @Test

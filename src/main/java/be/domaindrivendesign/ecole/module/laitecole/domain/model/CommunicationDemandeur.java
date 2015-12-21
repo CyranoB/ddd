@@ -80,10 +80,9 @@ public class CommunicationDemandeur extends Aggregate implements RuleObject {
     public void reponseDemandeur(LocalDateTime reponduLe) {
         this.reponduLe = reponduLe;
 
-        // TODO Laurent RuleGuards
-//        if (RuleGuard.After(this, () => ReponduLe, reponduLe, () => EmisLe, EmisLe)) {
-//            RuleGuard.After(this, () => this.ReponduLe, reponduLe, () => this.EmisLe, this.EmisLe);
-//        }
+        if (RuleGuard.after(this, () -> this.getReponduLe(), () -> getEmisLe())) {
+            RuleGuard.after(this, () -> this.getReponduLe(), () -> getEmisLe());
+        }
 
         setState(EntityStateType.Modified);
     }
