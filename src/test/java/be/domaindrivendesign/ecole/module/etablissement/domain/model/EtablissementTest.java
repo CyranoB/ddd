@@ -13,6 +13,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashSet;
@@ -35,13 +36,13 @@ public class EtablissementTest {
         Implantation implantation01 = Implantation.creer("reference I01", "denomination I01", new Adresse01(), Arrays.asList(NiveauType.Maternelle, NiveauType.Primaire), new Contact01(), PeriodDateHeure.EMPTY);
         Implantation implantation02 = Implantation.creer("reference I02", "denomination I02", new Adresse02(), Collections.singletonList(NiveauType.Prescolaire5Jour), new Contact02(), PeriodDateHeure.EMPTY);
         Etablissement etablissement = Etablissement.creer("reference", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse01(),
-                EcoleType.EtablissementScolaire, new Contact01(), new LinkedHashSet<>(Arrays.asList(implantation01, implantation02)));
+                EcoleType.EtablissementScolaire, new Contact01(), new ArrayList<>(Arrays.asList(implantation01, implantation02)));
 
         Assert.assertNotNull(etablissement.getId());
         Assert.assertEquals("reference", etablissement.getNumeroReference());
         Assert.assertEquals("denomination", etablissement.getDenomination());
         Assert.assertEquals(new Adresse01(), etablissement.getAdresse());
-        Assert.assertEquals(new LinkedHashSet<>(Arrays.asList(implantation01, implantation02)), etablissement.getImplantations());
+        Assert.assertEquals(new ArrayList<Implantation>(Arrays.asList(implantation01, implantation02)), etablissement.getImplantations());
         assertEquals(EnseignementReseauType.OfficielProvincial, etablissement.getEnseignementReseau());
         assertEquals(EcoleType.EtablissementScolaire, etablissement.getEcole());
         assertEquals(new Contact01(), etablissement.getContact());
@@ -52,7 +53,7 @@ public class EtablissementTest {
     public void testCreerNullNumeroReference() {
         Implantation implantation01 = Implantation.creer("reference I01", "denomination I01", new Adresse01(), Arrays.asList(NiveauType.Maternelle, NiveauType.Primaire), new Contact01(), PeriodDateHeure.EMPTY);
         Etablissement etablissement = Etablissement.creer(null, "denomination", EnseignementReseauType.OfficielProvincial, new Adresse01(),
-                EcoleType.EtablissementScolaire, new Contact01(), new LinkedHashSet<>(Collections.singletonList(implantation01)));
+                EcoleType.EtablissementScolaire, new Contact01(), new ArrayList<>(Collections.singletonList(implantation01)));
 
         // Violation
         Assert.assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
@@ -68,7 +69,7 @@ public class EtablissementTest {
     public void testCreerNullDenomination() {
         Implantation implantation01 = Implantation.creer("reference 01", "denomination 01", new Adresse01(), Arrays.asList(NiveauType.Maternelle, NiveauType.Primaire), new Contact01(), PeriodDateHeure.EMPTY);
         Etablissement etablissement = Etablissement.creer("ref", null, EnseignementReseauType.OfficielProvincial, new Adresse01(),
-                EcoleType.EtablissementScolaire, new Contact01(), new LinkedHashSet<>(Collections.singletonList(implantation01)));
+                EcoleType.EtablissementScolaire, new Contact01(), new ArrayList<>(Collections.singletonList(implantation01)));
 
         // Violation
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
@@ -84,7 +85,7 @@ public class EtablissementTest {
     public void testCreerNullAdresse() {
         Implantation implantation01 = Implantation.creer("reference I01", "denomination I01", new Adresse01(), Arrays.asList(NiveauType.Maternelle, NiveauType.Primaire), new Contact01(), PeriodDateHeure.EMPTY);
         Etablissement etablissement = Etablissement.creer("reference 1", "denomination", EnseignementReseauType.OfficielProvincial, null,
-                EcoleType.EtablissementScolaire, new Contact01(), new LinkedHashSet<>(Collections.singletonList(implantation01)));
+                EcoleType.EtablissementScolaire, new Contact01(), new ArrayList<>(Collections.singletonList(implantation01)));
 
         // Violation
         Assert.assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
@@ -100,7 +101,7 @@ public class EtablissementTest {
     public void testCreerNullEnseignementReseauType() {
         Implantation implantation01 = Implantation.creer("reference I01", "denomination I01", new Adresse01(), Arrays.asList(NiveauType.Maternelle, NiveauType.Primaire), new Contact01(), PeriodDateHeure.EMPTY);
         Etablissement etablissement = Etablissement.creer("reference 1", "denomination", null, new Adresse02(),
-                EcoleType.EtablissementScolaire, new Contact01(), new LinkedHashSet<>(Collections.singletonList(implantation01)));
+                EcoleType.EtablissementScolaire, new Contact01(), new ArrayList<>(Collections.singletonList(implantation01)));
 
         // Violation
         Assert.assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
@@ -117,7 +118,7 @@ public class EtablissementTest {
         Implantation implantation01 = Implantation.creer("reference I01", "denomination I01", new Adresse01(), Arrays.asList(NiveauType.Maternelle, NiveauType.Primaire), new Contact01(), PeriodDateHeure.EMPTY);
 
         Etablissement etablissement = Etablissement.creer("reference 1", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse02(),
-                null, new Contact01(), new LinkedHashSet<>(Collections.singletonList(implantation01)));
+                null, new Contact01(), new ArrayList<>(Collections.singletonList(implantation01)));
 
         // Violation
         Assert.assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
@@ -132,7 +133,7 @@ public class EtablissementTest {
     @Test
     public void testCreerNoImplantation() {
         Etablissement etablissement = Etablissement.creer("reference 1", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse02(),
-                EcoleType.EtablissementScolaire, new Contact01(), new LinkedHashSet<>(Collections.emptyList()));
+                EcoleType.EtablissementScolaire, new Contact01(), new ArrayList<>(Collections.emptyList()));
         // Violation
         Assert.assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
@@ -147,7 +148,7 @@ public class EtablissementTest {
     public void testModifierContact() {
         Implantation implantation01 = Implantation.creer("reference I01", "denomination I01", new Adresse01(), Arrays.asList(NiveauType.Maternelle, NiveauType.Primaire), new Contact01(), PeriodDateHeure.EMPTY);
         Etablissement etablissement = Etablissement.creer("reference", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse01(),
-                EcoleType.EtablissementScolaire, new Contact01(), new LinkedHashSet<>(Collections.singletonList(implantation01)));
+                EcoleType.EtablissementScolaire, new Contact01(), new ArrayList<>(Collections.singletonList(implantation01)));
         etablissement.forceState(EntityStateType.Unchanged); // Tromper l'état pour éviter que le test Modified reste Added.
 
         etablissement.modifierContact(new Contact02());
@@ -165,7 +166,7 @@ public class EtablissementTest {
         implantation02.forceState(EntityStateType.Unchanged); // Tromper l'état pour éviter que le test Modified reste Added.
 
         Etablissement etablissement = Etablissement.creer("reference", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse01(),
-                EcoleType.EtablissementScolaire, new Contact01(), new LinkedHashSet<>(Arrays.asList(implantation01, implantation02)));
+                EcoleType.EtablissementScolaire, new Contact01(), new ArrayList<>(Arrays.asList(implantation01, implantation02)));
         etablissement.forceState(EntityStateType.Unchanged); // Tromper l'état pour éviter que le test Modified reste Added.
 
         // Event Register
@@ -196,7 +197,7 @@ public class EtablissementTest {
         implantation01B.forceState(EntityStateType.Unchanged); // Tromper l'état pour éviter que le test Modified reste Added.
 
         Etablissement etablissement01 = Etablissement.creer("reference", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse01(),
-                EcoleType.EtablissementScolaire, new Contact01(), new LinkedHashSet<>(Arrays.asList(implantation01A, implantation01B)));
+                EcoleType.EtablissementScolaire, new Contact01(), new ArrayList<>(Arrays.asList(implantation01A, implantation01B)));
         etablissement01.forceState(EntityStateType.Unchanged); // Tromper l'état pour éviter que le test Modified reste Added.
 
         // Modifier etablissement02 vers: a est modifie, b disparait, c est ajouté

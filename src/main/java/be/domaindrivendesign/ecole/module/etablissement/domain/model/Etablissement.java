@@ -10,6 +10,8 @@ import be.domaindrivendesign.shared.valueobject.Adresse;
 import be.domaindrivendesign.shared.valueobject.Contact;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -31,8 +33,8 @@ public class Etablissement extends AggregateRoot implements RuleObject {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "ETABLISSEMENT_ID")
-    @Fetch(FetchMode.SUBSELECT)
-    private Set<Implantation> implantations;
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Implantation> implantations;
 
     @Column
     private EnseignementReseauType enseignementReseau;
@@ -78,7 +80,7 @@ public class Etablissement extends AggregateRoot implements RuleObject {
     /// <param name="contact">Les informations de contact.</param>
     /// <param name="implantations">Les implantations.</param>
     /// <returns>La référene sur l'objet nouvellement créé.</returns>
-    public static Etablissement creer(String numeroReference, String denomination, EnseignementReseauType enseignementReseau, Adresse adresse, EcoleType ecole, Contact contact, Set<Implantation> implantations) {
+    public static Etablissement creer(String numeroReference, String denomination, EnseignementReseauType enseignementReseau, Adresse adresse, EcoleType ecole, Contact contact, List<Implantation> implantations) {
         Etablissement etablissement = new Etablissement(UUID.randomUUID());
 
         etablissement.denomination = denomination;
@@ -163,7 +165,7 @@ public class Etablissement extends AggregateRoot implements RuleObject {
         return adresse;
     }
 
-    public Set<Implantation> getImplantations() {
+    public List<Implantation> getImplantations() {
         return implantations;
     }
 

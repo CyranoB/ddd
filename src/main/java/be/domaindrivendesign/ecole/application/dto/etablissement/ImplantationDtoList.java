@@ -21,7 +21,7 @@ public class ImplantationDtoList extends Dto {
     public String denomination;
     public int adresseCodePostal;
 
-    public static List<ImplantationDtoList> convertir(Set<Implantation> implantations) {
+    public static List<ImplantationDtoList> convertir(List<Implantation> implantations) {
         if (implantations == null)
             return null;
         return implantations.stream().map(ImplantationDtoList.aggregateToDto).collect(Collectors.toList());

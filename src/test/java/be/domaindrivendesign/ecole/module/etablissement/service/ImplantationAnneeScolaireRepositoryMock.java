@@ -25,6 +25,7 @@ import org.springframework.test.context.support.DirtiesContextTestExecutionListe
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 
@@ -75,7 +76,7 @@ public class ImplantationAnneeScolaireRepositoryMock {
             Implantation implantation01 = Implantation.creer("reference I01", "denomination I01", new Adresse02(), Arrays.asList(NiveauType.Prescolaire5Jour), new Contact02(), PeriodDateHeure.EMPTY);
             Implantation implantation02 = Implantation.creer("reference I02", "denomination I02", new Adresse02(), Arrays.asList(NiveauType.Prescolaire5Jour), new Contact02(), PeriodDateHeure.EMPTY);
             Etablissement etablissement = Etablissement.creer("reference nouveau", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse01(),
-                    EcoleType.EtablissementScolaire, new Contact01(), new LinkedHashSet<>(Arrays.asList(implantation01, implantation02)));
+                    EcoleType.EtablissementScolaire, new Contact01(), new ArrayList<>(Arrays.asList(implantation01, implantation02)));
 
             // Import
             ecoleDomainService.importerEtablissement(etablissement, LocalDateTime.now());
@@ -92,14 +93,14 @@ public class ImplantationAnneeScolaireRepositoryMock {
             // Etbalissement original.
             Implantation implantation01 = Implantation.creer("reference I01", "denomination I01", new Adresse02(), Arrays.asList(NiveauType.Prescolaire5Jour), new Contact01(), PeriodDateHeure.EMPTY);
             Etablissement etablissement = Etablissement.creer("reference modif", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse01(),
-                    EcoleType.EtablissementScolaire, new Contact01(), new LinkedHashSet<>(Arrays.asList(implantation01)));
+                    EcoleType.EtablissementScolaire, new Contact01(), new ArrayList<>(Arrays.asList(implantation01)));
             ecoleDomainService.importerEtablissement(etablissement, LocalDateTime.now());
 
             // Etablissement modifié
             Implantation implantation01M = Implantation.creer("reference I01", "denomination m01", new Adresse02(), Arrays.asList(NiveauType.Prescolaire5Jour), new Contact02(), PeriodDateHeure.EMPTY);
             Implantation implantation02M = Implantation.creer("reference I02", "denomination I02", new Adresse02(), Arrays.asList(NiveauType.Prescolaire5Jour), new Contact02(), PeriodDateHeure.EMPTY);
             Etablissement etablissementm = Etablissement.creer("reference modif", "denomination", EnseignementReseauType.OfficielProvincial, new Adresse01(),
-                    EcoleType.EtablissementScolaire, new Contact02(), new LinkedHashSet<>(Arrays.asList(implantation01M, implantation02M)));
+                    EcoleType.EtablissementScolaire, new Contact02(), new ArrayList<>(Arrays.asList(implantation01M, implantation02M)));
 
             // Import
             ecoleDomainService.importerEtablissement(etablissementm, LocalDateTime.now());
