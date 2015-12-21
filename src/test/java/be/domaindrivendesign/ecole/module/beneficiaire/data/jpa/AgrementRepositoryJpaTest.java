@@ -1,4 +1,4 @@
-package be.domaindrivendesign.ecole.module.beneficiaire.jpa;
+package be.domaindrivendesign.ecole.module.beneficiaire.data.jpa;
 
 
 import be.domaindrivendesign.ecole.TestConfiguration;

@@ -1,4 +1,4 @@
-package be.domaindrivendesign.ecole.module.etablissement.service;
+package be.domaindrivendesign.ecole.module.etablissement.data.mock;
 
 import be.domaindrivendesign.ecole.module.common.type.ClasseType;
 import be.domaindrivendesign.ecole.module.common.valueobject.AnneeScolaire;
@@ -8,6 +8,8 @@ import be.domaindrivendesign.ecole.module.etablissement.domain.model.*;
 import be.domaindrivendesign.ecole.module.etablissement.domain.type.EcoleType;
 import be.domaindrivendesign.ecole.module.etablissement.domain.type.EnseignementReseauType;
 import be.domaindrivendesign.ecole.module.etablissement.domain.type.NiveauType;
+import be.domaindrivendesign.ecole.module.etablissement.service.EcoleDomainService;
+import be.domaindrivendesign.ecole.module.etablissement.service.EcoleDomainServiceConfiguration;
 import be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule;
 import be.domaindrivendesign.shared.valueobject.PeriodDateHeure;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;

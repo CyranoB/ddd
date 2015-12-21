@@ -1,4 +1,4 @@
-package be.domaindrivendesign.ecole.module.etablissement.jpa;
+package be.domaindrivendesign.ecole.module.etablissement.data.jpa;
 
 import be.domaindrivendesign.ecole.TestDtoConfiguration;
 import be.domaindrivendesign.ecole.application.dto.etablissement.EtablissementDtoList;

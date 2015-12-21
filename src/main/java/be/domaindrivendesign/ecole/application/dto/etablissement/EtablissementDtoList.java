@@ -49,14 +49,6 @@ public class EtablissementDtoList extends Dto {
         return etablissementDtoList;
     }
 
-    public static Function<Etablissement, EtablissementDtoList> getAggregateToDto() {
-        return aggregateToDto;
-    }
-
-    public static void setAggregateToDto(Function<Etablissement, EtablissementDtoList> aggregateToDto) {
-        EtablissementDtoList.aggregateToDto = aggregateToDto;
-    }
-
     public UUID getId() {
         return id;
     }
@@ -83,10 +75,6 @@ public class EtablissementDtoList extends Dto {
 
     public EnseignementReseauType getEnseignementReseau() {
         return enseignementReseau;
-    }
-
-    public void setEnseignementReseau(EnseignementReseauType enseignementReseau) {
-        this.enseignementReseau = enseignementReseau;
     }
 
     public EcoleType getEcole() {

@@ -40,6 +40,4 @@ public class EtablissementDto extends Dto {
         e.numeroReference = etablissement.getNumeroReference();
         return e;
     }
-
-
 }
