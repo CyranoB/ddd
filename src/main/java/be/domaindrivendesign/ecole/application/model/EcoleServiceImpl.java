@@ -13,7 +13,9 @@ import be.domaindrivendesign.ecole.module.etablissement.domain.model.Etablisseme
 import be.domaindrivendesign.ecole.module.etablissement.service.EcoleDomainService;
 import be.domaindrivendesign.ecole.module.laitecole.data.interfaces.EtablissementParticipantRepositoryDto;
 import be.domaindrivendesign.kernel.application.interfaces.ApplicationServiceImpl;
+import be.domaindrivendesign.kernel.rule.model.RuleGuard;
 import be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule;
+import be.domaindrivendesign.kernel.rule.type.RuleSeverityType;
 import be.domaindrivendesign.shared.dto.ContactDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,10 +37,8 @@ public class EcoleServiceImpl extends ApplicationServiceImpl implements EcoleSer
     private EtablissementRepositoryDto etablissementRepositoryDto;
     @Autowired
     private ImplantationAnneeScolaireRepository implantationAnneeScolaireRepository;
-
     @Autowired
     private EtablissementParticipantRepositoryDto etablissementParticipantRepositoryDto;
-
 
     @Override
     public List<BudgetAnnuelDto> listBudgetAnnuel() {
@@ -51,12 +51,10 @@ public class EcoleServiceImpl extends ApplicationServiceImpl implements EcoleSer
         // Double
         BudgetAnnuel budgetAnnuel = BudgetAnnuelDto.convertir(budgetAnnuelDto);
         UnitOfWorkRule.getInstance().raiseExceptionInCaseOfError();
-        //TODO Laurent RuleGuard
-        // RuleGuard.mandatoryClass<BudgetAnnuel>(budgetAnnuel, RuleSeverityType.BlockingError);
+        RuleGuard.mandatoryClass(budgetAnnuel, RuleSeverityType.BlockingError);
 
         BudgetAnnuel budgetAnnuelExistant = budgetAnnuelRepository.getBudgetAnnuelForAnneeScolaire(budgetAnnuel.getAnneeScolaire());
-        //TODO TODO Laurent
-        // RuleGuard.unique(budgetAnnuel, budgetAnnuel::getAnneeScolaire, budgetAnnuelExistant, budgetAnnuel.getAnneeScolaire().toString(), RuleSeverityType.BlockingError);
+        //RuleGuard.unique(budgetAnnuel, budgetAnnuel::getAnneeScolaire, budgetAnnuelExistant, budgetAnnuel.getAnneeScolaire().toString(), RuleSeverityType.BlockingError);
 
         // Convertir
         UnitOfWorkRule.getInstance().raiseExceptionInCaseOfError();

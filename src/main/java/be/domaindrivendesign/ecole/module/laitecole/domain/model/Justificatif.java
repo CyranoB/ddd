@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 //TODO Faire mapping
 @Entity
@@ -95,10 +96,8 @@ public class Justificatif extends Aggregate implements RuleObject {
     /// <param name="facture">La facture.</param>
     public void ajouterFacture(JustificatifFacture facture) {
         RuleGuard.notInList(this, this::getFactures, facture, RuleSeverityType.BlockingError);
-        // TODO Lurent RuleGuard
-        //        if (RuleGuard.NotInList(this, () => this.Factures, facture.Numero, this.Factures.Select(f => f.Numero).ToList()))
-
-        this.factures.add(facture);
+        if (RuleGuard.notInList(this, () -> this.getFactures().stream().map(JustificatifFacture::getNumero).collect(Collectors.toList()), facture.getNumero()))
+            this.factures.add(facture);
     }
     //endregion
 
