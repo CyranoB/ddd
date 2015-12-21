@@ -4,7 +4,6 @@ import be.domaindrivendesign.ecole.module.etablissement.domain.model.Implantatio
 import be.domaindrivendesign.kernel.module.dto.Dto;
 
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -17,10 +16,10 @@ public class ImplantationDtoList extends Dto {
         }
     };
 
-    public static Function<Set<Implantation>, List<ImplantationDtoList>> aggregatesToDtos =
-            new Function<Set<Implantation>, List<ImplantationDtoList>>() {
+    public static Function<List<Implantation>, List<ImplantationDtoList>> aggregatesToDtos =
+            new Function<List<Implantation>, List<ImplantationDtoList>>() {
                 @Override
-                public List<ImplantationDtoList> apply(Set<Implantation> implantations) {
+                public List<ImplantationDtoList> apply(List<Implantation> implantations) {
                     return convertir(implantations);
                 }
             };

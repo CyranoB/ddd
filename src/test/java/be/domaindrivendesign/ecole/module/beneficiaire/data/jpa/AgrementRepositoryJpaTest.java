@@ -4,7 +4,6 @@ package be.domaindrivendesign.ecole.module.beneficiaire.data.jpa;
 import be.domaindrivendesign.ecole.TestConfiguration;
 import be.domaindrivendesign.ecole.module.beneficiaire.data.interfaces.AgrementRepository;
 import be.domaindrivendesign.ecole.module.beneficiaire.domain.model.Agrement;
-import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpa;
 import be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -39,8 +38,6 @@ public class AgrementRepositoryJpaTest {
 
     @Autowired
     private AgrementRepository repository;
-    @Autowired
-    private UnitOfWorkJpa unitOfWork;
 
     @After
     public void tearDown() {
@@ -57,7 +54,7 @@ public class AgrementRepositoryJpaTest {
 
     @Test
     public void getById() {
-        Agrement agrement = repository.getById(UUID.fromString("3f6337b6-15d9-415c-bfa6-d6697051cfa0"));
+        Agrement agrement = repository.getById(UUID.fromString("2bae606d-b5ad-45de-a841-97183ed8d160"));
         assertNotNull(agrement);
         assertEquals("1111", agrement.getNumeroDgarne());
     }

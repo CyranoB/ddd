@@ -15,7 +15,10 @@ import be.domaindrivendesign.shared.valueobject.PeriodDateHeure;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -44,7 +47,7 @@ public class EtablissementRepositoryMock extends RepositoryMock<Etablissement>
                 new Adresse01(),
                 EcoleType.EtablissementScolaire,
                 new Contact01(),
-                new LinkedHashSet<>(Arrays.asList(getImplantation01())));
+                Arrays.asList(getImplantation01()));
     }
 
     public static Implantation getImplantation01() {

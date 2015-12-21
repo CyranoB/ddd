@@ -9,6 +9,7 @@ import be.domaindrivendesign.kernel.domain.control.DefaultDomainEventManager;
 import be.domaindrivendesign.kernel.domain.model.AggregateRoot;
 import be.domaindrivendesign.kernel.rule.interfaces.RuleObject;
 import be.domaindrivendesign.kernel.rule.model.RuleGuard;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -41,6 +42,7 @@ public class Agrement extends AggregateRoot implements RuleObject {
     protected AnneeScolaire derniereAnneeScolaire;
 
     @Column
+    @Type(type = "uuid-char")
     protected UUID beneficiaireId;
 
     @Embedded
