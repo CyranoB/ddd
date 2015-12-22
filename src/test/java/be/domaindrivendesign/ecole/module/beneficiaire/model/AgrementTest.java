@@ -114,7 +114,6 @@ public class AgrementTest {
 
     @Test
     public void testCreerNullBeneficiaireId() {
-        UUID beneficiaireId = UUID.randomUUID();
         Agrement demandeAgrement = Agrement.creer("DGRANE01", LocalDateTime.of(2010, 01, 01, 0, 0, 0), LocalDateTime.of(2010, 01, 15, 0, 0, 0), 1,
                 new AnneeScolaire(2010, 2011), null);
 

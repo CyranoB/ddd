@@ -25,6 +25,7 @@ public class ValueObject implements RuleObject {
         return h;
     }
 
+    @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
     @Override
     public final boolean equals(final Object o) {
         if (o == null)

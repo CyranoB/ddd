@@ -12,7 +12,7 @@ public class NumeroTelephone extends ValueObject {
     @Column
     private String numero;
 
-    private NumeroTelephone() {
+    protected NumeroTelephone() {
     }
 
     public NumeroTelephone(String numero) {

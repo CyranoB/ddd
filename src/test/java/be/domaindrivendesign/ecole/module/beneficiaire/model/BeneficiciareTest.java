@@ -54,7 +54,7 @@ public class BeneficiciareTest {
 
     @Test
     public void testCreerNullEMail() {
-        Beneficiaire beneficiaire = Beneficiaire.creer("beneficiaire 1", BeneficiaireCategorieType.Fournisseur,
+        Beneficiaire.creer("beneficiaire 1", BeneficiaireCategorieType.Fournisseur,
                 new NumeroEntreprise01(), null, new Contact02NullEmail(), new CompteBancaire01(), 0, new Adresse01());
 
         // Violation
@@ -105,7 +105,7 @@ public class BeneficiciareTest {
         Assert.assertEquals(1, UnitOfWorkRule.getInstance().getViolations().size());
         Assert.assertNull(UnitOfWorkRule.getInstance().getViolations().get(0).getMessage());
         Assert.assertEquals(Arrays.asList("BeneficiaireDomain.Domain.Model|Beneficiaire.NumeroEntreprise, BeneficiaireDomain.Domain.Model|Beneficiaire.NumeroIdentificationRegistreNational"), UnitOfWorkRule.getInstance().getViolations().get(0).getPropertyPaths());
-        Assert.assertEquals(RuleType.NbrOfElementsAsProperty, UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId());
+        Assert.assertEquals(RuleType.NbrOfElementsAsProperty.typeValue, UnitOfWorkRule.getInstance().getViolations().get(0).getRuleId());
         Assert.assertEquals(beneficiaire, UnitOfWorkRule.getInstance().getViolations().get(0).getRuleObject());
         Assert.assertEquals(RuleSeverityType.Error, UnitOfWorkRule.getInstance().getViolations().get(0).getSeverityType());
         Assert.assertEquals(Arrays.asList("2", "1", "1"), UnitOfWorkRule.getInstance().getViolations().get(0).getValues());

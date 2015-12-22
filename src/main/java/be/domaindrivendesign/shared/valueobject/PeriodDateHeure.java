@@ -84,7 +84,15 @@ public class PeriodDateHeure extends ValueObject {
         return this.debut;
     }
 
+    protected void setDebut(LocalDateTime debut) {
+        this.debut = debut;
+    }
+
     public LocalDateTime getFin() {
         return this.fin;
+    }
+
+    protected void setFin(LocalDateTime fin) {
+        this.fin = fin;
     }
 }

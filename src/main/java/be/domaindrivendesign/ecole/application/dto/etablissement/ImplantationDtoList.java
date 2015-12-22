@@ -9,20 +9,10 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ImplantationDtoList extends Dto {
-    public static Function<Implantation, ImplantationDtoList> aggregateToDto = new Function<Implantation, ImplantationDtoList>() {
-        @Override
-        public ImplantationDtoList apply(Implantation implantation) {
-            return ImplantationDtoList.convertir(implantation);
-        }
-    };
+    public static Function<Implantation, ImplantationDtoList> aggregateToDto = ImplantationDtoList::convertir;
 
     public static Function<List<Implantation>, List<ImplantationDtoList>> aggregatesToDtos =
-            new Function<List<Implantation>, List<ImplantationDtoList>>() {
-                @Override
-                public List<ImplantationDtoList> apply(List<Implantation> implantations) {
-                    return convertir(implantations);
-                }
-            };
+            ImplantationDtoList::convertir;
 
     public UUID id;
     public String numeroReference;

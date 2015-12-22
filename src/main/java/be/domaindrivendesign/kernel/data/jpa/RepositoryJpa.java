@@ -32,15 +32,13 @@ public class RepositoryJpa<T extends Entity> implements Repository<T>, UnitOfWor
 
     @Override
     public List<T> list() {
-        List<T> entities = getUnitOfWork().getEntityManager().createQuery(
+        return getUnitOfWork().getEntityManager().createQuery(
                 "SELECT p FROM "+ getEntityType().getName() +" p").getResultList();
-        return entities;
     }
 
     @Override
     public T getById(UUID id) {
-        T entity = (T) getUnitOfWork().getEntityManager().find(getEntityType(), id);
-        return entity;
+        return (T) getUnitOfWork().getEntityManager().find(getEntityType(), id);
     }
 
     @Override

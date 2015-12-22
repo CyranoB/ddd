@@ -20,11 +20,13 @@ public class StandAloneContext implements KernelContext {
 
     @Override
     public void setData(String key, Object value) {
+        //noinspection unchecked
         context.get().put(key, value);
     }
 
     @Override
     public <T> T getData(String key) {
+        //noinspection unchecked
         return context.get() == null ? null : (T) context.get().get(key);
     }
 }

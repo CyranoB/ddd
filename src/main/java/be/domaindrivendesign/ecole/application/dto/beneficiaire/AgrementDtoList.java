@@ -25,7 +25,7 @@ public class AgrementDtoList extends DtoList {
     }
 
     public static AgrementDtoList convertir(Agrement agrement, String beneficiaire) {
-        if (agrement != null)
+        if (agrement == null)
             return null;
 
         AgrementDtoList adl = new AgrementDtoList();

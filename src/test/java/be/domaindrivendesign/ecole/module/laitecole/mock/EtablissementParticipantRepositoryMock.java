@@ -34,7 +34,7 @@ public class EtablissementParticipantRepositoryMock
     public List<String> listNumeroDGARNEFor(UUID etablissementId, UUID implantationId) {
         List<EtablissementParticipant> etablissementParticipants =
                 mocked.stream().filter(e -> e.getId().equals(etablissementId)).collect(Collectors.toList());
-        List<String> numeroDgarnEs = new ArrayList<String>();
+        List<String> numeroDgarnEs = new ArrayList<>();
         for (EtablissementParticipant etablissementParticipant : etablissementParticipants) {
             String n = etablissementParticipant.getImplantationParticipantes().stream()
                     .filter(i -> i.getId().equals(implantationId))

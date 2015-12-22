@@ -20,8 +20,7 @@ public class NumeroIdentificationRegistreNational extends ValueObject {
     @Column(name = "NIRN_PART05")
     protected String part05;
 
-    private NumeroIdentificationRegistreNational() {
-
+    protected NumeroIdentificationRegistreNational() {
     }
 
     public NumeroIdentificationRegistreNational(String part01, String part02, String part03, String part04, String part05) {

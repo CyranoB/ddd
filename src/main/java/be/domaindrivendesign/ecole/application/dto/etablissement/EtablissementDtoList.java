@@ -12,12 +12,7 @@ import java.util.stream.Collectors;
 
 public class EtablissementDtoList extends Dto {
 
-    public static Function<Etablissement, EtablissementDtoList> aggregateToDto = new Function<Etablissement, EtablissementDtoList>() {
-        @Override
-        public EtablissementDtoList apply(Etablissement etablissement) {
-            return EtablissementDtoList.convertir(etablissement);
-        }
-    };
+    public static Function<Etablissement, EtablissementDtoList> aggregateToDto = EtablissementDtoList::convertir;
     public UUID id;
     public String numeroReference;
     public String denomination;

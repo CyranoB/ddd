@@ -25,8 +25,7 @@ public class EtablissementRepositoryDtoJpa extends RepositoryJpa<Etablissement> 
         JPAQuery<Etablissement> query = new JPAQuery<>(getUnitOfWork().getEntityManager());
         QEtablissement etablissements = QEtablissement.etablissement;
         Etablissement etablissement = query.from(etablissements).where(etablissements.numeroReference.eq(search.numeroReference)).fetchFirst();
-        EtablissementDto etablissementDto = EtablissementDto.convertir(etablissement, null);
-        return etablissementDto;
+        return EtablissementDto.convertir(etablissement, null);
     }
 
     @Override

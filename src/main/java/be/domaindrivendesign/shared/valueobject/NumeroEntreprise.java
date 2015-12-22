@@ -18,8 +18,7 @@ public class NumeroEntreprise extends ValueObject {
     @Column(name = "NBCE_PART04")
     protected String part04;
 
-    private NumeroEntreprise() {
-
+    protected NumeroEntreprise() {
     }
 
     public NumeroEntreprise(String part01, String part02, String part03, String part04) {

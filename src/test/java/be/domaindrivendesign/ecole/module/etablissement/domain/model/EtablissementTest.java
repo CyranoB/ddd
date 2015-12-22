@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.LinkedHashSet;
 
 import static be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule.getInstance;
 import static org.junit.Assert.assertEquals;
@@ -42,7 +41,7 @@ public class EtablissementTest {
         Assert.assertEquals("reference", etablissement.getNumeroReference());
         Assert.assertEquals("denomination", etablissement.getDenomination());
         Assert.assertEquals(new Adresse01(), etablissement.getAdresse());
-        Assert.assertEquals(new ArrayList<Implantation>(Arrays.asList(implantation01, implantation02)), etablissement.getImplantations());
+        Assert.assertEquals(new ArrayList<>(Arrays.asList(implantation01, implantation02)), etablissement.getImplantations());
         assertEquals(EnseignementReseauType.OfficielProvincial, etablissement.getEnseignementReseau());
         assertEquals(EcoleType.EtablissementScolaire, etablissement.getEcole());
         assertEquals(new Contact01(), etablissement.getContact());

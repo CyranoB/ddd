@@ -10,7 +10,7 @@ public class Email extends ValueObject {
 
     private String mail;
 
-    private Email() {
+    protected Email() {
     }
 
     public Email(String mail) {
@@ -24,4 +24,7 @@ public class Email extends ValueObject {
         return mail;
     }
 
+    protected void setMail(String mail) {
+        this.mail = mail;
+    }
 }

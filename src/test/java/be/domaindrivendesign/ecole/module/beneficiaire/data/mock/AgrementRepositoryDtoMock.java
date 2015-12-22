@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class AgrementRepositoryMock extends RepositoryMock<Agrement> implements AgrementRepository, AgrementRepositoryDto {
+public class AgrementRepositoryDtoMock extends RepositoryMock<Agrement> implements AgrementRepository, AgrementRepositoryDto {
 
     public static Agrement getAgrement01(UUID beneficiaireId, String numeroDgarne) {
         return Agrement.creer(numeroDgarne, LocalDateTime.now(), LocalDateTime.now(), 1, new AnneeScolaire(2014, 2015), beneficiaireId);

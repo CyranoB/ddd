@@ -18,7 +18,7 @@ public class InternationalBankAccountNumber extends ValueObject {
     @Column(name = "IBAN_PART04")
     protected String part04;
 
-    private InternationalBankAccountNumber() {
+    protected InternationalBankAccountNumber() {
     }
 
     public InternationalBankAccountNumber(String part01, String part02, String part03, String part04) {

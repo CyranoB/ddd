@@ -1,9 +1,12 @@
 package be.domaindrivendesign.ecole.application.model;
 
 
+import be.domaindrivendesign.ecole.application.dto.beneficiaire.AgrementDtoList;
+import be.domaindrivendesign.ecole.application.dto.beneficiaire.AgrementDtoSearch;
 import be.domaindrivendesign.ecole.application.dto.budget.BudgetAnnuelDto;
 import be.domaindrivendesign.ecole.application.dto.etablissement.*;
 import be.domaindrivendesign.ecole.application.interfaces.EcoleService;
+import be.domaindrivendesign.ecole.module.beneficiaire.data.interfaces.AgrementRepositoryDto;
 import be.domaindrivendesign.ecole.module.budget.data.interfaces.BudgetAnnuelRepository;
 import be.domaindrivendesign.ecole.module.budget.domain.model.BudgetAnnuel;
 import be.domaindrivendesign.ecole.module.etablissement.data.interfaces.EtablissementRepository;
@@ -39,6 +42,8 @@ public class EcoleServiceImpl extends ApplicationServiceImpl implements EcoleSer
     private ImplantationAnneeScolaireRepository implantationAnneeScolaireRepository;
     @Autowired
     private EtablissementParticipantRepositoryDto etablissementParticipantRepositoryDto;
+    @Autowired
+    private AgrementRepositoryDto agrementRepositoryDto;
 
     @Override
     public List<BudgetAnnuelDto> listBudgetAnnuel() {
@@ -54,7 +59,8 @@ public class EcoleServiceImpl extends ApplicationServiceImpl implements EcoleSer
         RuleGuard.mandatoryClass(budgetAnnuel, RuleSeverityType.BlockingError);
 
         BudgetAnnuel budgetAnnuelExistant = budgetAnnuelRepository.getBudgetAnnuelForAnneeScolaire(budgetAnnuel.getAnneeScolaire());
-        //RuleGuard.unique(budgetAnnuel, budgetAnnuel::getAnneeScolaire, budgetAnnuelExistant, budgetAnnuel.getAnneeScolaire().toString(), RuleSeverityType.BlockingError);
+        //TODO Laurent
+        // RuleGuard.unique(budgetAnnuel, budgetAnnuel::getAnneeScolaire, budgetAnnuelExistant, budgetAnnuel.getAnneeScolaire().toString(), RuleSeverityType.BlockingError);
 
         // Convertir
         UnitOfWorkRule.getInstance().raiseExceptionInCaseOfError();
@@ -73,18 +79,15 @@ public class EcoleServiceImpl extends ApplicationServiceImpl implements EcoleSer
         Etablissement etablissement = etablissementRepository.getById(etablissementId);
         if (etablissement == null)
             return null;
-
-        //TODO etablissementParticipantRepositoryDto
         List<String> numeroDgarnEs = etablissementParticipantRepositoryDto.listNumeroDGARNEFor(etablissementId);
-        //TODO agrementRepositoryDto
-        // List<AgrementDtoList> agrementDtoLists = _agrementRepositoryDto.ListAgrement(new AgrementDtoSearch() { NumeroDgarnes = numeroDgarnEs });
-
-        return null;
+        AgrementDtoSearch agrementDtoSearch = new AgrementDtoSearch();
+        agrementDtoSearch.numeroDgarnes = numeroDgarnEs;
+        List<AgrementDtoList> agrementDtoLists = agrementRepositoryDto.listAgrement(agrementDtoSearch);
+        return EtablissementDto.convertir(etablissement, agrementDtoLists);
     }
 
     @Override
     public void modifierEtablissementContact(UUID etablissementId, ContactDto contactDto) {
-
     }
 
     @Override
@@ -99,6 +102,5 @@ public class EcoleServiceImpl extends ApplicationServiceImpl implements EcoleSer
 
     @Override
     public void modifierImplantationContact(UUID etablissementId, UUID implementationId, ContactDto contactDto) {
-
     }
 }

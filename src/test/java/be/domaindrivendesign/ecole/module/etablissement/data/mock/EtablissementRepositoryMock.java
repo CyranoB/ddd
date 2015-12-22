@@ -86,7 +86,7 @@ public class EtablissementRepositoryMock extends RepositoryMock<Etablissement>
     }
 
     public List<ImplantationDtoList> listImplantation(ImplantationDtoSearch search) {
-        List<ImplantationDtoList> results = new ArrayList<ImplantationDtoList>();
+        List<ImplantationDtoList> results = new ArrayList<>();
         for (Etablissement et : mocked) {
             List<ImplantationDtoList> l = mocked.stream().map(Etablissement::getImplantations).map(ImplantationDtoList.aggregatesToDtos).findFirst().get();
             results.addAll(l);

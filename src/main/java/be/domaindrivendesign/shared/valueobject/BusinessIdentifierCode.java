@@ -16,7 +16,7 @@ public class BusinessIdentifierCode extends ValueObject {
     @Column(name = "BIC_PART03")
     protected String part03;
 
-    private BusinessIdentifierCode() {
+    protected BusinessIdentifierCode() {
     }
 
     public BusinessIdentifierCode(String part01, String part02, String part03) {

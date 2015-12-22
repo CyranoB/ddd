@@ -59,7 +59,7 @@ public class ImplantationAnneeScolaireRepositoryMock {
             DbUnitTestExecutionListener.class})
     public static class EcoleDomainServiceTest {
 
-        @Autowired(required = true)
+        @Autowired
         private EcoleDomainService ecoleDomainService;
         @Autowired
         private EtablissementRepository etablissementRepository;

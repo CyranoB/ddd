@@ -3,8 +3,6 @@ package be.domaindrivendesign.kernel.data.model;
 import be.domaindrivendesign.kernel.common.model.Entity;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWorkRepository;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
@@ -41,6 +39,7 @@ public class UnitOfWorkImpl implements UnitOfWork {
         deletedEntities.put(entity, repository);
     }
 
+    @SuppressWarnings("unchecked")
     @Transactional(readOnly = false)
     public  void commit() {
         try {

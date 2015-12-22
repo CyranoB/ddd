@@ -83,7 +83,7 @@ public class EtablissementParticipant extends AggregateRoot implements RuleObjec
     /// <param name="implantationParticipante">L'implantation à ajouter</param>
     public void ajouterImplantationParticipante(ImplantationParticipante implantationParticipante) {
         if (implantationParticipantes == null)
-            implantationParticipantes = new ArrayList<ImplantationParticipante>();
+            implantationParticipantes = new ArrayList<>();
         implantationParticipantes.add(implantationParticipante);
     }
 

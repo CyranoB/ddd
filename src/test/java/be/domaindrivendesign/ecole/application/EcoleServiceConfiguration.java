@@ -2,13 +2,12 @@ package be.domaindrivendesign.ecole.application;
 
 import be.domaindrivendesign.ecole.application.interfaces.EcoleService;
 import be.domaindrivendesign.ecole.application.model.EcoleServiceImpl;
-import be.domaindrivendesign.ecole.module.beneficiaire.data.interfaces.AgrementRepository;
-import be.domaindrivendesign.ecole.module.beneficiaire.data.mock.AgrementRepositoryMock;
+import be.domaindrivendesign.ecole.module.beneficiaire.data.interfaces.AgrementRepositoryDto;
+import be.domaindrivendesign.ecole.module.beneficiaire.data.mock.AgrementRepositoryDtoMock;
 import be.domaindrivendesign.ecole.module.budget.data.interfaces.BudgetAnnuelRepository;
 import be.domaindrivendesign.ecole.module.budget.data.jpa.BudgetAnnuelRepositoryJpa;
 import be.domaindrivendesign.ecole.module.etablissement.data.interfaces.EtablissementRepository;
 import be.domaindrivendesign.ecole.module.etablissement.data.interfaces.ImplantationAnneeScolaireRepository;
-import be.domaindrivendesign.ecole.module.etablissement.data.jpa.EtablissementRepositoryJpa;
 import be.domaindrivendesign.ecole.module.etablissement.data.jpa.ImplantationAnneeScolaireRepositoryJpa;
 import be.domaindrivendesign.ecole.module.etablissement.data.mock.EtablissementRepositoryMock;
 import be.domaindrivendesign.ecole.module.etablissement.service.EcoleDomainService;
@@ -59,8 +58,8 @@ public class EcoleServiceConfiguration {
     }
 
     @Bean
-    public AgrementRepository agrementRepositoryMock() {
-        return new AgrementRepositoryMock();
+    public AgrementRepositoryDto agrementRepositoryDto() {
+        return new AgrementRepositoryDtoMock();
     }
 
     @Bean
@@ -85,11 +84,6 @@ public class EcoleServiceConfiguration {
 
     @Bean
     public EtablissementRepository etablissementRepository() {
-        return new EtablissementRepositoryJpa();
-    }
-
-    @Bean
-    public EtablissementRepository etablissementRepositoryMock() {
         return new EtablissementRepositoryMock();
     }
 

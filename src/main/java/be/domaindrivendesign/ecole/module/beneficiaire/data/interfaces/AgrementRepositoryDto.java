@@ -9,6 +9,5 @@ import java.util.List;
 
 public interface AgrementRepositoryDto {
     List<AgrementDtoList> listAgrement(AgrementDtoSearch search);
-
     DemandeValidationDashBoardDto getDemandeValidationDashBoard(AnneeScolaireDto anneeScolaireDto);
 }

@@ -11,12 +11,7 @@ import java.util.function.Function;
 
 public class EtablissementParticipantDtoList extends DtoList {
 
-    public static Function<EtablissementParticipant, EtablissementParticipantDtoList> aggregateToDto = new Function<EtablissementParticipant, EtablissementParticipantDtoList>() {
-        @Override
-        public EtablissementParticipantDtoList apply(EtablissementParticipant etablissementParticipant) {
-            return convertir(etablissementParticipant);
-        }
-    };
+    public static Function<EtablissementParticipant, EtablissementParticipantDtoList> aggregateToDto = EtablissementParticipantDtoList::convertir;
 
     public UUID id;
     public String etablissementNumeroReference;
