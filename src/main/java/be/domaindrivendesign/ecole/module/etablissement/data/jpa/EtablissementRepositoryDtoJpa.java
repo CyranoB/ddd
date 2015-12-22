@@ -6,6 +6,7 @@ import be.domaindrivendesign.ecole.module.etablissement.data.interfaces.Etabliss
 import be.domaindrivendesign.ecole.module.etablissement.domain.model.Etablissement;
 import be.domaindrivendesign.ecole.module.etablissement.domain.model.Implantation;
 import be.domaindrivendesign.ecole.module.etablissement.domain.model.QEtablissement;
+import be.domaindrivendesign.ecole.module.etablissement.domain.model.QImplantation;
 import be.domaindrivendesign.kernel.data.jpa.RepositoryJpa;
 import com.querydsl.jpa.impl.JPAQuery;
 import org.apache.commons.lang3.StringUtils;
@@ -58,13 +59,37 @@ public class EtablissementRepositoryDtoJpa extends RepositoryJpa<Etablissement> 
 
     @Override
     public List<ImplantationDtoList> listImplantation(ImplantationDtoSearch search) {
-        return null;
+        List<Implantation> selected = (search != null && search.etablissementId != null) ? listByEtablissementId(search) : listByImplentationId(search);
+        return ImplantationDtoList.convertir(selected);
+    }
+
+
+    private List<Implantation> listByImplentationId(ImplantationDtoSearch search) {
+        JPAQuery<Implantation> query = new JPAQuery<>(getUnitOfWork().getEntityManager());
+        QImplantation implantations = QImplantation.implantation;
+        query = query.from(implantations);
+
+        int take = 100;
+        int skip = 0;
+        if (search != null) {
+            if (search.id != null)
+                query = query.where(implantations.id.eq(search.id));
+            if (StringUtils.isNotBlank(search.denomination))
+                query = query.where(implantations.denomination.contains(search.denomination));
+            if (StringUtils.isNotBlank(search.numeroReference))
+                query = query.where(implantations.numeroReference.contains(search.numeroReference));
+            if (search.codePostal > 0)
+                query = query.where(implantations.adresse.codePostal.eq(search.codePostal));
+            take = search.take;
+            skip = search.skip;
+        }
+        query = query.orderBy(implantations.id.asc()).offset(skip).limit(take);
+        return query.fetch();
     }
 
 
     private List<Implantation> listByEtablissementId(ImplantationDtoSearch search) {
-        // On doit pouvoir faire plus simple...
-
+        // TODO On doit pouvoir faire plus simple...
         JPAQuery<Etablissement> query = new JPAQuery<>(getUnitOfWork().getEntityManager());
         QEtablissement etablissements = QEtablissement.etablissement;
         query = query.from(etablissements);
