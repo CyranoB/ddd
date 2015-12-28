@@ -1,13 +1,11 @@
-package be.domaindrivendesign.ecole.presentation;
+package be.domaindrivendesign;
 
 import be.domaindrivendesign.ecole.application.interfaces.EcoleService;
 import be.domaindrivendesign.ecole.application.model.EcoleServiceImpl;
 import be.domaindrivendesign.ecole.module.beneficiaire.data.interfaces.AgrementRepository;
-import be.domaindrivendesign.ecole.module.beneficiaire.data.interfaces.AgrementRepositoryDto;
 import be.domaindrivendesign.ecole.module.beneficiaire.data.interfaces.BeneficiaireRepository;
 import be.domaindrivendesign.ecole.module.beneficiaire.data.jpa.AgrementRepositoryJpa;
 import be.domaindrivendesign.ecole.module.beneficiaire.data.jpa.BeneficiaireRepositoryJpa;
-import be.domaindrivendesign.ecole.module.beneficiaire.data.mock.AgrementRepositoryDtoMock;
 import be.domaindrivendesign.ecole.module.budget.data.interfaces.BudgetAnnuelRepository;
 import be.domaindrivendesign.ecole.module.budget.data.jpa.BudgetAnnuelRepositoryJpa;
 import be.domaindrivendesign.ecole.module.etablissement.data.interfaces.EtablissementRepository;
@@ -37,17 +35,17 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+//import be.domaindrivendesign.ecole.module.beneficiaire.data.mock.AgrementRepositoryDtoMock;
+
 //TODO compatimenter les configs
 @Configuration
 @EnableAutoConfiguration
 @EntityScan(basePackages = {"be.domaindrivendesign"})
 @EnableJpaRepositories(basePackages = {"be.domaindrivendesign"})
 @EnableTransactionManagement
-public class EcoleRestConfiguration {
-    public static final String URL_API = "/api/v1/Etablissement/";
-
+public class DemoConfiguration {
     @Bean
-    public EcoleControllerRest ecoleControllerRest() {
+    public EcoleControllerRest ecoleController() {
         return new EcoleControllerRest();
     }
 
@@ -108,10 +106,10 @@ public class EcoleRestConfiguration {
         return new EtablissementParticipantRepositoryDtoJpa();
     }
 
-    @Bean
+    /*@Bean
     public AgrementRepositoryDto agrementRepositoryDto() {
         return new AgrementRepositoryDtoMock();
-    }
+    }*/
 
     @Bean
     public BudgetAnnuelRepository budgetAnnuelRepository() {

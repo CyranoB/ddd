@@ -1,14 +1,11 @@
 package be.domaindrivendesign.ecole.presentation;
 
-import be.domaindrivendesign.ecole.application.interfaces.EcoleService;
-import be.domaindrivendesign.ecole.module.etablissement.data.interfaces.EtablissementRepositoryDto;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jayway.restassured.RestAssured;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -33,14 +30,7 @@ import static org.springframework.http.HttpStatus.OK;
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class})
 
-public class EcoleRestTest {
-
-    @Autowired
-    EcoleService ecoleService;
-
-    @Autowired
-    EtablissementRepositoryDto etablissementRepositoryDto;
-
+public class EcoleControllerIntegrationTest {
     @Value("${local.server.port}")
     int port;
 
@@ -51,11 +41,13 @@ public class EcoleRestTest {
 
     @Test
     public void canListEtablissements() {
-        when().get("/ecole/etablissement/").then().statusCode(OK.value()).and().contentType(JSON);
+        when().get(EcoleRestConfiguration.URL_API)
+                .then().statusCode(OK.value()).and().contentType(JSON);
     }
 
     @Test
     public void canGetEtablissementById() {
-        when().get("/ecole/etablissement/9536d73b-9a4a-cf5c-7f6a-08d2892a9521").then().statusCode(OK.value()).and().contentType(JSON);
+        when().get(EcoleRestConfiguration.URL_API + "9536d73b-9a4a-cf5c-7f6a-08d2892a9521")
+                .then().statusCode(OK.value()).and().contentType(JSON);
     }
 }
