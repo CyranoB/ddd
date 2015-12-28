@@ -1,6 +1,8 @@
 package be.domaindrivendesign.ecole.presentation;
 
 import be.domaindrivendesign.ecole.application.interfaces.EcoleService;
+import be.domaindrivendesign.ecole.module.etablissement.data.interfaces.EtablissementRepositoryDto;
+import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jayway.restassured.RestAssured;
 import org.junit.Before;
@@ -10,7 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import static com.jayway.restassured.RestAssured.when;
@@ -22,11 +28,18 @@ import static org.springframework.http.HttpStatus.OK;
 @WebAppConfiguration
 @IntegrationTest("server.port:0")
 @DatabaseSetup("/datasets/etablissement/etablissements_testdto.xml")
+@TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
+        DirtiesContextTestExecutionListener.class,
+        TransactionalTestExecutionListener.class,
+        DbUnitTestExecutionListener.class})
 
-public class TestEcoleRest {
+public class EcoleRestTest {
 
     @Autowired
     EcoleService ecoleService;
+
+    @Autowired
+    EtablissementRepositoryDto etablissementRepositoryDto;
 
     @Value("${local.server.port}")
     int port;
@@ -41,8 +54,8 @@ public class TestEcoleRest {
         when().get("/ecole/etablissement/").then().statusCode(OK.value()).and().contentType(JSON);
     }
 
+    @Test
     public void canGetEtablissementById() {
         when().get("/ecole/etablissement/9536d73b-9a4a-cf5c-7f6a-08d2892a9521").then().statusCode(OK.value()).and().contentType(JSON);
     }
-
 }
