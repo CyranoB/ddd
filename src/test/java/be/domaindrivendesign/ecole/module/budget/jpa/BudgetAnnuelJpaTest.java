@@ -61,6 +61,4 @@ public class BudgetAnnuelJpaTest {
         assertEquals(1001, budget.getFruitEtLegumeNbrEleve());
         assertEquals(501, budget.getLaitNbrEleve());
     }
-
-
 }

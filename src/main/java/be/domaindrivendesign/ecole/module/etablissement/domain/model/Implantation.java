@@ -17,10 +17,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * Created by eddie on 23/11/15.
- */
-
 @Entity
 public class Implantation extends Aggregate implements RuleObject {
 
@@ -30,7 +26,7 @@ public class Implantation extends Aggregate implements RuleObject {
     private String denomination;
     @Embedded
     private Adresse adresse;
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.EAGER, targetClass = NiveauType.class)
     private List<NiveauType> niveaux;
     @Embedded
     private Contact contact;

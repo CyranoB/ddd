@@ -1,8 +1,5 @@
 package be.domaindrivendesign.ecole.module.etablissement.domain.type;
 
-/**
- * Created by eddie on 23/11/15.
- */
 public enum EnseignementReseauType {
     Inconnu(0),
     /// <summary>

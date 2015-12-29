@@ -10,9 +10,7 @@ import java.util.UUID;
 import java.util.function.Function;
 
 public class EtablissementParticipantDtoList extends DtoList {
-
-    public static Function<EtablissementParticipant, EtablissementParticipantDtoList> aggregateToDto = EtablissementParticipantDtoList::convertir;
-
+    public static final Function<EtablissementParticipant, EtablissementParticipantDtoList> aggregateToDto = EtablissementParticipantDtoList::convertir;
     public UUID id;
     public String etablissementNumeroReference;
     public AnneeScolaireDto anneeScolaire;

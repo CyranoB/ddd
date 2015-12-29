@@ -1,8 +1,10 @@
 package be.domaindrivendesign.kernel.data.model;
 
+import be.domaindrivendesign.kernel.application.error.KernelApplicationException;
 import be.domaindrivendesign.kernel.common.model.Entity;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWorkRepository;
+import be.domaindrivendesign.kernel.rule.model.UnitOfWorkRule;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
@@ -42,6 +44,9 @@ public class UnitOfWorkImpl implements UnitOfWork {
     @SuppressWarnings("unchecked")
     @Transactional(readOnly = false)
     public  void commit() {
+        if (UnitOfWorkRule.getInstance().hasBlockingError() || UnitOfWorkRule.getInstance().hasError())
+            throw new KernelApplicationException(UnitOfWorkRule.getInstance().getViolations());
+
         try {
             deletedEntities.forEach((e, r) -> r.persistDeletedItem(e));
             insertedEntities.forEach((e, r) -> r.persistNewItem(e));

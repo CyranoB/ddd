@@ -1,4 +1,6 @@
 package be.domaindrivendesign.kernel.module.dto;
 
-public class DtoList {
+import java.io.Serializable;
+
+public class DtoList implements Serializable {
 }

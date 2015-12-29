@@ -18,14 +18,10 @@ public class UnitOfWorkJpaImpl extends UnitOfWorkImpl implements UnitOfWorkJpa {
         return entityManager;
     }
 
-    /*@Override
+    @Override
     @Transactional
     public void commit() {
-        try {
-            super.commit();
-            getEntityManager().flush();
-        } catch (Exception e) {
-            throw new KernelException("UnitOfWork Commit Exception", e);
-        }
-    }*/
+        super.commit();
+        getEntityManager().flush();
+    }
 }

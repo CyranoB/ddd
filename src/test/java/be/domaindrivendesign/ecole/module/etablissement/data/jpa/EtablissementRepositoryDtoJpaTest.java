@@ -61,7 +61,7 @@ public class EtablissementRepositoryDtoJpaTest {
     }
 
     @Test
-    public void TestListEtablissementSkipTake() {
+    public void testListEtablissementSkipTake() {
         EtablissementDtoSearch searchDto = new EtablissementDtoSearch();
         searchDto.skip = 3;
         searchDto.take = 2;

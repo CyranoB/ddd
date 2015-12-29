@@ -10,8 +10,8 @@ import java.util.function.Function;
 
 public class BudgetAnnuelDto extends Dto {
 
-    public static Function<BudgetAnnuel, BudgetAnnuelDto> aggregateToDto = BudgetAnnuelDto::convertir;
-    public static Function<BudgetAnnuelDto, BudgetAnnuel> dtoToAggregate = BudgetAnnuelDto::convertir;
+    public static final Function<BudgetAnnuel, BudgetAnnuelDto> aggregateToDto = BudgetAnnuelDto::convertir;
+    public static final Function<BudgetAnnuelDto, BudgetAnnuel> dtoToAggregate = BudgetAnnuelDto::convertir;
     public UUID id;
     public AnneeScolaireDto anneeScolaire;
     public BigDecimal montantAideFruitEtLegumeParEleve;

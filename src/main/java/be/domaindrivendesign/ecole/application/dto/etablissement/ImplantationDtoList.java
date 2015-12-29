@@ -9,11 +9,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ImplantationDtoList extends Dto {
-    public static Function<Implantation, ImplantationDtoList> aggregateToDto = ImplantationDtoList::convertir;
 
-    public static Function<List<Implantation>, List<ImplantationDtoList>> aggregatesToDtos =
-            ImplantationDtoList::convertir;
-
+    public static final Function<Implantation, ImplantationDtoList> aggregateToDto = ImplantationDtoList::convertir;
+    public static final Function<List<Implantation>, List<ImplantationDtoList>> aggregatesToDtos = ImplantationDtoList::convertir;
     public UUID id;
     public String numeroReference;
     public String denomination;

@@ -14,17 +14,25 @@ import be.domaindrivendesign.ecole.module.etablissement.service.EcoleDomainServi
 import be.domaindrivendesign.ecole.module.etablissement.service.EcoleDomainServiceImpl;
 import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpa;
 import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpaImpl;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
+@EnableAutoConfiguration
+@EntityScan(basePackages = {"be.domaindrivendesign"})
+@EnableJpaRepositories(basePackages = {"be.domaindrivendesign"})
+@EnableTransactionManagement
 public class TestConfiguration {
 
     @Bean

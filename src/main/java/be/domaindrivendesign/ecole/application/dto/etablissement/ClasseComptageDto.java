@@ -8,7 +8,7 @@ import java.util.function.Function;
 
 public class ClasseComptageDto extends Dto {
 
-    public static Function<ClasseComptage, ClasseComptageDto> aggregateToDto
+    public static final Function<ClasseComptage, ClasseComptageDto> aggregateToDto
             = ClasseComptageDto::convertir;
     public ClasseType classe;
     public int nombreEleves;
