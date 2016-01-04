@@ -2,7 +2,6 @@ package be.domaindrivendesign.kernel.data.model;
 
 import be.domaindrivendesign.kernel.common.model.Entity;
 import be.domaindrivendesign.kernel.data.interfaces.UnitOfWork;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +19,12 @@ public class Repository01 extends AbstractRepository<Entity01> {
 
     @Override
     public List<Entity01> list() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public Entity01 getById(UUID id) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     @Override

@@ -2,7 +2,7 @@ package be.domaindrivendesign.ecole.presentation;
 
 import be.domaindrivendesign.ecole.application.dto.etablissement.EtablissementDto;
 import be.domaindrivendesign.ecole.application.dto.etablissement.EtablissementDtoList;
-import be.domaindrivendesign.ecole.presentation.rest.v1.EcoleControllerRest;
+import be.domaindrivendesign.ecole.presentation.rest.v1.EcoleController;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jayway.restassured.RestAssured;
@@ -46,7 +46,7 @@ public class EcoleControllerTest {
 
     @Before
     public void setup() {
-        RestAssuredMockMvc.standaloneSetup(new EcoleControllerRest());
+        RestAssuredMockMvc.standaloneSetup(new EcoleController());
         RestAssured.port = port;
     }
 

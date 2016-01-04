@@ -20,7 +20,7 @@ import be.domaindrivendesign.ecole.module.etablissement.service.EcoleDomainServi
 import be.domaindrivendesign.ecole.module.etablissement.service.EcoleDomainServiceImpl;
 import be.domaindrivendesign.ecole.module.laitecole.data.interfaces.EtablissementParticipantRepositoryDto;
 import be.domaindrivendesign.ecole.module.laitecole.data.jpa.EtablissementParticipantRepositoryDtoJpa;
-import be.domaindrivendesign.ecole.presentation.rest.v1.EcoleControllerRest;
+import be.domaindrivendesign.ecole.presentation.rest.v1.EcoleController;
 import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpa;
 import be.domaindrivendesign.kernel.data.jpa.UnitOfWorkJpaImpl;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -47,8 +47,8 @@ public class EcoleRestConfiguration {
     public static final String URL_API = "/api/v1/Etablissement/";
 
     @Bean
-    public EcoleControllerRest ecoleControllerRest() {
-        return new EcoleControllerRest();
+    public EcoleController ecoleControllerRest() {
+        return new EcoleController();
     }
 
     @Bean
