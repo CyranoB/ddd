@@ -1,4 +1,4 @@
 package be.domaindrivendesign.kernel.common.annotation;
 
-public interface SecurityTest {
+public interface IntegrationTestCategory {
 }

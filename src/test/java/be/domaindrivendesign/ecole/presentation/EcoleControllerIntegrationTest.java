@@ -1,5 +1,6 @@
 package be.domaindrivendesign.ecole.presentation;
 
+import be.domaindrivendesign.kernel.common.annotation.IntegrationTestCategory;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jayway.restassured.RestAssured;
@@ -30,7 +31,7 @@ import static org.springframework.http.HttpStatus.OK;
         DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class})
-@Category(be.domaindrivendesign.kernel.common.annotation.IntegrationTest.class)
+@Category(IntegrationTestCategory.class)
 public class EcoleControllerIntegrationTest {
     @Value("${local.server.port}")
     int port;

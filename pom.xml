@@ -168,7 +168,8 @@
                     <includes>
                         <include>**/*.class</include>
                     </includes>
-                    <excludedGroups>be.domaindrivendesign.kernel.common.annotation.IntegrationTest</excludedGroups>
+                    <excludedGroups>be.domaindrivendesign.kernel.common.annotation.IntegrationTestCategory
+                    </excludedGroups>
                 </configuration>
             </plugin>
             <plugin>
@@ -182,7 +183,7 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <groups>be.domaindrivendesign.kernel.common.annotation.IntegrationTest</groups>
+                    <groups>be.domaindrivendesign.kernel.common.annotation.IntegrationTestCategory</groups>
                 </configuration>
                 <executions>
                     <execution>
