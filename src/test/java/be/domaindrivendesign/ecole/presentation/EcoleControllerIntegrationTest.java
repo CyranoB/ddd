@@ -5,6 +5,7 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jayway.restassured.RestAssured;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.IntegrationTest;
@@ -29,7 +30,7 @@ import static org.springframework.http.HttpStatus.OK;
         DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class})
-
+@Category(be.domaindrivendesign.kernel.common.annotation.IntegrationTest.class)
 public class EcoleControllerIntegrationTest {
     @Value("${local.server.port}")
     int port;
