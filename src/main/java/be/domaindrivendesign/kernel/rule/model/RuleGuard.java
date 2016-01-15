@@ -804,6 +804,29 @@ public class RuleGuard {
         return (object != null) || RuleGuard.raiseViolation(null, new ArrayList<Property<T>>(), new ArrayList<String>(), RuleType.Mandatory.typeValue, severityType);
     }
 
+    /**
+     * @param object
+     * @param <To>
+     * @return
+     */
+    public static <To, Tv> boolean notFoundClass(To object, Tv value) {
+        return notFoundClass(object, RuleSeverityType.Error);
+    }
+
+    /**
+     * @param object
+     * @param severityType
+     * @param <To>
+     * @return
+     */
+    public static <To, Tv> boolean notFoundClass(To object, Tv value, RuleSeverityType severityType) {
+        List<String> values = new ArrayList<>();
+
+        values.add(value.toString());
+
+        return (object != null) || RuleGuard.raiseViolation(null, new ArrayList<Property<To>>(), values, RuleType.NotFound.typeValue, severityType);
+    }
+
     // endregion
 
 
