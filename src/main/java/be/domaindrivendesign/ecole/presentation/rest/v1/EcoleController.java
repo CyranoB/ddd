@@ -15,7 +15,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
 @RequestMapping("/api/v1/Etablissement")
-@CrossOrigin(origins = "http://localhost:9000")
+@CrossOrigin
 public class EcoleController {
 
     @Autowired
