@@ -16,7 +16,6 @@ addons:
   coverity_scan:
     project:
       name: "CyranoB/ddd"
-      description: "Build submitted via Travis CI"
     notification_email: eddie@pick.fr
     build_command_prepend: "mvn clean"
     build_command:   "mvn -DskipTests=true compile"
